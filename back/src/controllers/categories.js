@@ -1,4 +1,4 @@
-const {Category} = require ('../bd.js')
+const {Category} = require ('../bd')
 
 const categories=async(req,res)=>{
     try{

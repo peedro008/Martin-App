@@ -35,7 +35,6 @@ const postOrderItems=async(req,res)=>{
         })
 
         )
-        res.status(200).send("Order Added") 
     }
     catch(e){
         console.log("Error in Order controller "+ e)

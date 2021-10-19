@@ -15,7 +15,7 @@ const products=async(req,res)=>{
         }else{
             let productsBd= await Product.findAll({
                 attributes:['name','id','description','img','price',"sale","salePercent"],
-                include:{
+                 include:{
                  model:Category,
                  attributes:["id","name"]
                 }
