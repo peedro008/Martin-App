@@ -64,8 +64,8 @@ export default function ProductDetail({route,navigation}) {
                 <Button title="-" onPress={()=> handleCount()}/>
             </View>
 
-            <Text>Price: ${product.price -(product.price * product.salePercent / 100)} {product.sale && "(On sale)"+ "$"+ product.price + " " + "%"+product.salePercent}</Text>
-            <Text>TOTAL: ${(product.price -(product.price * product.salePercent / 100))*count}</Text>
+            <Text>Price: ${(product.price -(product.price * product.salePercent / 100)).toFixed(2)} {product.sale && "(On sale)"+ "$"+ product.price + " " + "%"+product.salePercent}</Text>
+            <Text>TOTAL: ${((product.price -(product.price * product.salePercent / 100))*count).toFixed(2)}</Text>
             {!added ? <Button title="Add to cart" onPress={()=>handleAddProduct()}/>
             
             :             <View>

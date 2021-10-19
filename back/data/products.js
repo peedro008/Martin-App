@@ -1,4 +1,4 @@
-const {Product} = require ('../src/bd.js')
+const {Product} = require ('../src/bd')
 
 
  const products= async ()=>{

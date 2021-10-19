@@ -1,5 +1,5 @@
 const server = require('./src/app.js');
-const { sequelize } = require('./src/bd.js')
+const { sequelize } = require('./src/bd')
 const categories = require('./data/categories.js')
 const products = require('./data/products.js')
 const roles = require('./data/roles.js')

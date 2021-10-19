@@ -16,7 +16,7 @@ export default function Home({navigation}) {
     
    
 
-     useEffect(()=>{                //traigo los productos en ofertas
+     useEffect(()=>{    //traigo los productos en ofertas
          axios.get(`${IP}/productsSale`)
              .then(function(response){
                  console.log(response.data)
@@ -25,7 +25,7 @@ export default function Home({navigation}) {
  
              })
              .catch(error=>{
-               console.log( "Error in clientHome get ProductSales : " + error)  
+               console.log( "Error in Home get ProductSales : " + error)  
              })
               
                 axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 

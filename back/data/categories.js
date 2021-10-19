@@ -1,4 +1,4 @@
-const {Category} = require ('../src/bd.js')
+const {Category} = require ('../src/bd')
 
 function categories(){
 

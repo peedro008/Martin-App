@@ -1,4 +1,4 @@
-const {Role} = require ('../bd.js')
+const {Role} = require ('../bd')
 
 
 const roles = async(req,res)=>{

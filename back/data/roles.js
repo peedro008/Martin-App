@@ -1,4 +1,4 @@
-const {Role} = require('../src/bd.js')
+const {Role} = require('../src/bd')
 
 
 function roles(){

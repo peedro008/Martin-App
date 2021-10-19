@@ -1,7 +1,7 @@
 
 const bcrypt = require ('bcryptjs')
 const jwt = require ('jsonwebtoken')
-const{User,Role}= require('../bd.js')
+const{User,Role}= require('../bd')
 
 const signupadmin =async (req, res, next) => {
     // checks if email already exists
