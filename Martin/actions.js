@@ -4,8 +4,8 @@ import { IP }from "./env"
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const USER_ROLE = 'USER_ROLE'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const PLUS_QUANTITY = 'PLUS_QUANTITY'
-export const LESS_QUANTITY = 'LESS_QUANTITY'
+// export const PLUS_QUANTITY = 'PLUS_QUANTITY'
+// export const LESS_QUANTITY = 'LESS_QUANTITY'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const USER = "USER"
 export const POST_ORDER = 'POST_ORDER'
@@ -30,16 +30,16 @@ export function addOrder(orderProduct){
     payload: orderProduct
   }
 }
-export function plusQuantity(){
-  return{
-    type: PLUS_QUANTITY,
-  }
-}
-export function lessQuantity(){
-  return{
-    type: LESS_QUANTITY,
-  }
-}
+// export function plusQuantity(){
+//   return{
+//     type: PLUS_QUANTITY,
+//   }
+// }
+// export function lessQuantity(){
+//   return{
+//     type: LESS_QUANTITY,
+//   }
+// }
 
 export function deleteProduct(id){
   return{

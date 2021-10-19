@@ -57,7 +57,7 @@ export default function Home({navigation}) {
                <Text >{item.name}</Text>
                </ImageBackground>
                </TouchableOpacity>
-                <Text >USD {item.price}</Text>
+                <Text >${item.price}</Text>
             </View>
           }
         />

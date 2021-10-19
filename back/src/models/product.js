@@ -28,6 +28,10 @@ const Product= (sequelize)=>{
         type:DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
+     },
+     salePercent:{
+        type:DataTypes.INTEGER,
+        defaultValue: 0
      }
 
   });

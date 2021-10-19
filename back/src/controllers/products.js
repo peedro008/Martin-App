@@ -14,7 +14,7 @@ const products=async(req,res)=>{
             res.status(404).send("Product not found");
         }else{
             let productsBd= await Product.findAll({
-                attributes:['name','id','description','img','price',"sale"],
+                attributes:['name','id','description','img','price',"sale","salePercent"],
                 include:{
                  model:Category,
                  attributes:["id","name"]
@@ -40,7 +40,7 @@ const productsCat=async(req,res)=>{
     let categor = req.query
     try{
         let productsBd= await Product.findAll({
-            attributes:['name','id','description','img','price', "sale"],
+            attributes:['name','id','description','img','price', "sale","salePercent"],
             include:{
              model:Category,
              attributes:["id","name", "description"]
@@ -59,7 +59,7 @@ const productsCat=async(req,res)=>{
 const productsSale=async(req,res)=>{
     try{
         let productsBd= await Product.findAll({
-            attributes:['name','id','description','img','price', "sale"],
+            attributes:['name','id','description','img','price', "sale","salePercent"],
             include:{
              model:Category,
              attributes:["id","name", "description"]
@@ -102,11 +102,14 @@ const putProductSale=async(req,res)=>{
       
     try{
         let sale = req.body.sale
+        let salePercent = req.body.salePercent
         let id = req.body.id
        if(sale==true){
         var orderBd=await Product.update(
             
-            {sale:false},
+            {sale:false,
+            salePercent:salePercent
+            },
             {where:{id:id}},
             
         )}
@@ -114,7 +117,8 @@ const putProductSale=async(req,res)=>{
             {
                 var orderBd=await Product.update(
                     
-                    {sale:true},
+                    {sale:true,
+                    sale:salePercent},
                     {where:{id:id}},
                     
                 )}

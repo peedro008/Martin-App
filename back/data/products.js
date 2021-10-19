@@ -31,7 +31,8 @@ const {Product} = require ('../src/bd.js')
     description: "Chicken meat is high and protein and low in fat, which varies in white and dark meat. Boneless, skinless chicken breast meat is one of the only types of meat that doesn't contain saturated fat. ",
     img:"https://solidstarts.com/wp-content/uploads/chicken-drumstick_edited-scaled.jpg",
     price:2.25,
-    sale: true
+    sale: true,
+    salePercent: 20
   });
   WholeChicken.addCategory([1])
    
@@ -54,7 +55,8 @@ const {Product} = require ('../src/bd.js')
     description: "Pork is a rich source of certain vitamins and minerals your body needs to function, like iron and zinc. It’s also an excellent source of high-quality protein.",
     img:"https://cdn.shopify.com/s/files/1/0028/0235/2172/products/LegRoast_1200x1200.png?v=1568872025",
     price:4.85,
-    sale:true
+    sale:true,
+    salePercent: 10
   });
   PorkLeg.addCategory([1])
   var Bacon = await Product.create({
@@ -76,7 +78,8 @@ const {Product} = require ('../src/bd.js')
     description: "cacium",
     img:"https://brazilfrozenfoodsuppliers.com/wp-content/uploads/2020/12/Pork-Crown-Roast.jpg",
     price:4.75,
-    sale:true
+    sale:true,
+    salePercent: 15
   });
   PorkCrownRoast.addCategory([1])
   var ChikenBreast = await Product.create({
@@ -84,7 +87,9 @@ const {Product} = require ('../src/bd.js')
     description: "This type of poultry is an excellent source of lean protein. Chicken is also a good source of vitamin B, vitamin D, calcium, iron, zinc, and trace amounts of vitamin A and vitamin C.",
     img:"https://brazilfrozenfoodsuppliers.com/wp-content/uploads/2020/12/Skinless-Chicken-Breast.jpg",
     price:3.50,
-    sale:true
+    sale:true,
+    salePercent: 5
+
   });
   ChikenBreast.addCategory([1])
   var BeefStriploinSteak = await Product.create({

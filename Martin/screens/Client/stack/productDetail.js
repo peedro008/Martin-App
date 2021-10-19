@@ -34,7 +34,9 @@ export default function ProductDetail({route,navigation}) {
             let order={
                 name:product.name,
                 id:product.id,
-                price: product.price,
+                price: product.price -(product.price * product.salePercent / 100),
+                sale:product.sale,
+                salePercent: product.salePercent,
                 img: product.img,
                 quantity:count,
                 total: product.price * count
@@ -54,15 +56,16 @@ export default function ProductDetail({route,navigation}) {
     return (
         <View>
             <Text>{product.name}</Text>
-          <Image source={{uri: product.img}} />
+          <Image  source={{uri: product.img}} />
             <Text>{product.description}</Text>
-            <View>
+            <View> 
                 <Button title="+" onPress={()=> setCount(count + 1)}/>
                 <Text>{count}</Text>
                 <Button title="-" onPress={()=> handleCount()}/>
             </View>
-            <Text>Price: USD {product.price} {product.sale && "(On sale)"}</Text>
-            <Text>TOTAL: USD {product.price * count}</Text>
+
+            <Text>Price: ${product.price -(product.price * product.salePercent / 100)} {product.sale && "(On sale)"+ "$"+ product.price + " " + "%"+product.salePercent}</Text>
+            <Text>TOTAL: ${(product.price -(product.price * product.salePercent / 100))*count}</Text>
             {!added ? <Button title="Add to cart" onPress={()=>handleAddProduct()}/>
             
             :             <View>

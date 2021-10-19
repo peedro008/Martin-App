@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var IP = \"http://192.168.0.12:5000\";","map":{"version":3,"sources":["C:/Users/tobia/App-----Martin-Food/Martin-App/Martin/env.js"],"names":["IP"],"mappings":"AAAA,OAAO,IAAIA,EAAE,GAAG,0BAAT","sourcesContent":["export var IP = \"http://192.168.0.12:5000\""]},"metadata":{},"sourceType":"module"}

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { useEffect } from 'react'
-import IP from "../../env"
+import {IP} from "../../env"
 
 export default function clientUser() {
     const user = useSelector(state => state.user)
