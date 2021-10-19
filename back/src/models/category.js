@@ -15,6 +15,10 @@ const Category= (sequelize)=>{
      description: {
         type: DataTypes.TEXT,
      },
+     img: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+     }
 
   });
 };

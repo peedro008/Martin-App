@@ -33,7 +33,8 @@ export default function clientCart() {
 
     
     return (
-        <View>
+        <View
+        style={{flex:1}}>
             {  <FlatList
                 keyExtractor={item => item.id.toString()}
                 data={order}
@@ -41,13 +42,14 @@ export default function clientCart() {
                         <View style={styles.container}>
                             <View style={styles.contImage}>
                                 <ImageBackground source={{uri: item.img}} style={styles.image}>
-                                    <TouchableOpacity
+                                    <Button
                                     onPress={() => handleDelete(item.id)} 
+                                    title="X"
                                     >  
                                         <View style={styles.buttonX}>
-                                            <Text>X</Text>
+                                            
                                         </View>
-                                    </TouchableOpacity>
+                                    </Button>
                                 </ImageBackground>
                             </View>
                             {/* <Button title="+" onPress={()=>handlePlus()}/>
@@ -66,7 +68,16 @@ export default function clientCart() {
             /> 
                     
             }
-            {order.length>0 ? (<View style={styles.contTotalOrder}><Text style={styles.totalOrder}>Total order ${totalPrice}  </Text> <View style={styles.buttonOrder}><Button color="#F15A4D" title="place order" onPress={()=>handlePostOrder()}/></View> </View>) :
+            {order.length>0 ? (
+            <View style={styles.contTotalOrder}>
+                <Text style={styles.totalOrder}>
+                    Total order ${totalPrice}  
+                </Text> 
+            <View style={styles.buttonOrder}>
+                <Button color="#F15A4D" title="place order" onPress={()=>handlePostOrder()}/>
+            </View> 
+            </View>)
+             :
              <Text>EMPTY</Text>
             }
            
@@ -118,9 +129,9 @@ const styles = StyleSheet.create({
       left:5,
       color:"#151522",
       fontStyle: "normal",
-      fontWeight: 600,
+      fontWeight: "bold",
       fontSize: 15,
-      lineheight: 20,
+     // lineheight: 20,
       
   },
   price:{
@@ -132,7 +143,7 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 15,
-    lineheight: 20,
+    //lineheight: 20,
     
   },
   contQuantity:{
@@ -145,23 +156,24 @@ const styles = StyleSheet.create({
       fontStyle: "normal",
       fontWeight: "normal",
       fontSize: 11,
-      lineheight: 13,
+     // lineheight: 13,
   },
   contTotalOrder:{
-  marginTop:40
+  marginTop:15,
+  backgroundColor:"beige"
   },
   totalOrder:{
     color:"#151522",
     fontStyle: "normal",
-    fontWeight: 600,
+    fontWeight: "bold",
     fontSize: 15,
-    lineheight: 20,
+    alignSelf:"center"
+    //lineheight: 20,
 
   },
   buttonOrder:{
       width:325,
       height:50,
-      display:"flex",
-      margin:"auto"
+      alignSelf:"center"
   }
 })

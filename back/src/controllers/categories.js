@@ -4,7 +4,7 @@ const categories=async(req,res)=>{
     try{
         let categoriesBd= await Category.findAll({
             
-            attributes:['name','id','description'],
+            attributes:['name','id','description', 'img'],
     
         });
         categoriesBd ? res.status(200).json(categoriesBd):

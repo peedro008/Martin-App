@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Button,TouchableOpacity,ImageBackground } from 'react-native'
+import { SearchBar } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { TextInput } from 'react-native-gesture-handler'
+import { FlatList, TextInput } from 'react-native-gesture-handler'
 import { IP } from '../../../env';
 
 
@@ -37,25 +38,55 @@ export default function Categories({navigation}) {
             
      }
 
+    
+
     return (
-        <View>
-            <TextInput 
-            placeholder="Search product"
-          
-            onChangeText={handleSearch}
-            value={name}/>
+        <View
+        style={{ alignItems:"center", flex: 1}}>
+            <View style={{marginTop:30}}>
+                <View
+                style={{alignItems:"center",height:50, width:400, backgroundColor:"white"}}>
+                    <Text style={Styles.search}>
+                        Search
+                    </Text>
+                </View>
+                <SearchBar 
+                inputContainerStyle={{backgroundColor:"white"}}
+                inputStyle={{backgroundColor: 'white'}}
+                containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+                onChangeText={handleSearch}
+                value={name}/>
+            </View >
+            <Text style={Styles.categories}>
+            Categories
+            </Text>
             
             
             {
-             !name ? categories?.map(el=>{
-                    return(
-                    <Button
-                        key={el.id}
-                        title={el.name}
-                        onPress={() => navigation.navigate("Products", {params: el})}
-                    />
-                    )
-                })
+             !name? 
+             <FlatList
+                keyExtractor={item => item.id.toString()}
+                numColumns={2}
+                data={categories}
+                renderItem={({item})=>
+                    <View>
+                        <TouchableOpacity  onPress={() => navigation.navigate("Products", {params: item})}>
+                            <ImageBackground 
+                            source={{uri:item.img}}
+                            style={Styles.image}>
+                            <Text style={Styles.cardText}>
+                            {item.name}
+                            </Text>
+                        </ImageBackground>
+                        </TouchableOpacity>
+                    </View>
+          }
+        />
+                   
+                     
+                    
+                    
+                
                 : product.map(el=>{
                     return(
                         <TouchableOpacity
@@ -84,11 +115,38 @@ export default function Categories({navigation}) {
 
 
 
-// const styles = StyleSheet.create({
-//     input: {
-//         height: 40,
-//         margin: 12,
-//         borderWidth: 1,
-//         padding: 10,
-//       },
-// })
+// // const styles = StyleSheet.create({
+// //     input: {
+// //         height: 40,
+// //         margin: 12,
+// //         borderWidth: 1,
+// //         padding: 10,
+// //       },
+// // })
+// {/* <View>
+                        
+const Styles= StyleSheet.create({
+    cardText:{
+        fontSize:25,
+                color: "white",
+                marginTop: 80,
+                flex:1,
+                alignSelf:"center",
+                fontWeight: "bold"
+    },
+    image:{
+        width: 206,
+         height:200
+    },
+    search:{
+        marginTop:5,
+        fontSize: 25,
+        fontWeight: "bold"
+    },
+    categories:{
+        marginTop:15,
+        marginBottom:15,
+        fontSize:25,
+        fontWeight: "bold"
+    }
+})        
