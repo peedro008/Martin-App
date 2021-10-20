@@ -2,13 +2,23 @@ import React, { useEffect } from 'react'
 import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground} from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
-import { plusQuantity,lessQuantity,deleteProduct,postOrder} from '../../actions.js'
+import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../../actions.js'
+import axios from 'axios'
+import { IP } from '../../env.js'
 
 export default function clientCart() {
     const order= useSelector(state=> state.PreOrder) 
     const user= useSelector(state=> state.User) 
     const totalPrice= useSelector(state=> state.TotalPrice) 
     const dispatch= useDispatch()
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     // const handlePlus=()=>{    //resto cant de un producto en cart 
@@ -25,16 +35,18 @@ export default function clientCart() {
     }
 
     const handlePostOrder=()=>{
-    //    let msj=  confirm("Are you sure?")
-    //    if(msj === true){
-           dispatch(postOrder(order,user))
-    //    }
+        axios.post(`${IP}/orderItems`,[order,user])
+        .then(response=>{
+          console.log(response.data)
+        })
+        dispatch(postDelete())
     }
+    
 
     
     return (
         <View
-        style={{flex:1}}>
+        style={{flex:1, backgroundColor: "white"}}>
             {  <FlatList
                 keyExtractor={item => item.id.toString()}
                 data={order}
@@ -45,7 +57,7 @@ export default function clientCart() {
                                     <View style={styles.buttonX}>
                                         <Button
                                         onPress={() => handleDelete(item.id)} 
-                                        title="X"
+                                        title="x"
                                         color="#F15A4D"
                                         />
                                     </View>
@@ -96,14 +108,13 @@ const styles = StyleSheet.create({
       
   },
   buttonX:{
-      padding:5,
-      width:7,
-      height:10,
-      justifyContent:"center",
-      alignItems:"center",
+      
+      width:35,
+      
+     
       position:"absolute",
-      top:12,  
-      right:7,
+      top:0,  
+      right:0,
       borderRadius:3
   },
   contImage:{

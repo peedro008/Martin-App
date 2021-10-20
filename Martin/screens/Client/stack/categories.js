@@ -174,7 +174,7 @@ const Styles= StyleSheet.create({
     },
     nombre:{
         fontStyle: "normal",
-        fontWeight: 500,
+       fontWeight: "500",
         fontSize: 20,
         marginTop:15,
         marginBottom:15,
@@ -190,7 +190,7 @@ const Styles= StyleSheet.create({
         paddingVertical:10,
         textAlign:"center",
         fontStyle: "normal",
-        fontWeight: 500,
+        fontWeight: "500",
         fontSize: 20, 
        color:"white"
     },

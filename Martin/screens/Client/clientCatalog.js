@@ -10,9 +10,9 @@ export default function clientCatalog() {
     return (
       
       <Stack.Navigator>
-        <Stack.Screen name="Categories" component={Categories} />
-        <Stack.Screen name="Products" component={Products} />
-        <Stack.Screen name="ProductDetail" component={ProductDetail} />
+        <Stack.Screen name="Categories" component={Categories} options={{headerShown: false}}/>
+        <Stack.Screen name="Products" component={Products} options={{headerShown: false}}/>
+        <Stack.Screen name="ProductDetail" component={ProductDetail}options={{headerShown: false}} />
       </Stack.Navigator>
     )
 }

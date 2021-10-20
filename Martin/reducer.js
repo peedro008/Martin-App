@@ -4,7 +4,7 @@ import {
   // LESS_QUANTITY,
   // PLUS_QUANTITY,
   DELETE_PRODUCT,
-  USER,POST_ORDER,
+  USER,POST_ORDER, POST_DELETE,
    } from './actions'
 
 const initialState = {
@@ -66,16 +66,18 @@ export default function reducer(state = initialState, action) {
         //     PreOrder: plus
         //   }
         case DELETE_PRODUCT:
-          let deleted= state.PreOrder.filter(el=> el.id !== action.payload)
+          let filter= state.PreOrder.filter(el=> el.id !== action.payload)
+          let deleted= state.PreOrder.find(el=> el.id == action.payload)
           return{
             ...state,
-            PreOrder: deleted
+            PreOrder: filter,
+            TotalPrice: state.TotalPrice - deleted.total
           }
-          case POST_ORDER:
-            return{
-              ...state,
-              PreOrder:[]
-            }
+        case POST_DELETE:
+          return{
+            ...state, 
+            PreOrder: []
+          }
          
      default: return state  
   }

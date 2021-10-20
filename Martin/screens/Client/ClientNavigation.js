@@ -18,7 +18,7 @@ const ClientNavigation = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
           let iconName;
-          if (route.name === 'home') {
+          if (route.name === 'Home') {
             iconName = "ios-home"
           } 
           else if (route.name === 'Catalog') {

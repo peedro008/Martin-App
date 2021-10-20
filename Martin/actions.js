@@ -11,6 +11,7 @@ export const USER = "USER"
 export const POST_ORDER = 'POST_ORDER'
 export const GET_SALES = 'GET_SALES'
 export const EDIT_PRICE = 'EDIT_PRICE'
+export const POST_DELETE = "POST_DELETE"
 
 
 
@@ -54,17 +55,10 @@ export function User(user){
   }
 }
 
-export function postOrder(order,user){
-  return (dispatch)=>{
-      axios.post(`${IP}/orderItems`,[order,user])
-      .then(response=>{
-        console.log(response.data)
-          dispatch({
-            type:POST_ORDER,
-            payload: response.data
-          })
-      })
-  }
+export function postDelete(){
+  return {
+     type: POST_DELETE
+  }    
 }
 
 // ADMIN ACTIONS

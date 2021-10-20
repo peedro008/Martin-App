@@ -72,7 +72,7 @@ export default  function  Products ({route, navigation}) {
                         
                          
                         <TouchableOpacity
-                        key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
+                        key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:category.name})}>
                         <View style={styles.product}>
                         <ImageBackground
                         key={item.id}
@@ -101,7 +101,7 @@ export default  function  Products ({route, navigation}) {
             renderItem={({item})=>{
                 return(
                     <TouchableOpacity
-                    key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
+                    key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:el.categories})}>
                     <View >
                     <ImageBackground
                     key={item.id}
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     },
     nombre:{
         fontStyle: "normal",
-        fontWeight: 500,
+        fontWeight: "500",
         fontSize: 20,
         marginTop:15,
         marginBottom:15,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
         paddingVertical:10,
         textAlign:"center",
         fontStyle: "normal",
-        fontWeight: 500,
+        fontWeight: "500",
         fontSize: 20, 
        color:"white"
     },
