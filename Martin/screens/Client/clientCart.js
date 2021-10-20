@@ -90,11 +90,14 @@ const styles = StyleSheet.create({
       display:"flex",
       flexDirection:"row",
       marginBottom:15,
-      marginTop:10
+      marginTop:10,
+      borderBottomWidth:1,
+      borderBottomColor:"#E0E0E0",
+      
   },
   buttonX:{
       padding:5,
-      width:10,
+      width:7,
       height:10,
       justifyContent:"center",
       alignItems:"center",

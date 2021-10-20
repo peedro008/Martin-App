@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button,TouchableOpacity,ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Button,TouchableOpacity,ImageBackground,Dimensions } from 'react-native'
 import { SearchBar } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -42,7 +42,7 @@ export default function Categories({navigation}) {
 
     return (
         <View
-        style={{ alignItems:"center", flex: 1}}>
+        style={{backgroundColor:"#fff", alignItems:"center", flex: 1}}>
             <View style={{marginTop:30}}>
                 <View
                 style={{alignItems:"center",height:50, width:400, backgroundColor:"white"}}>
@@ -87,24 +87,31 @@ export default function Categories({navigation}) {
                     
                     
                 
-                : product.map(el=>{
+                : <FlatList
+                keyExtractor={item => item.id.toString()}
+                numColumns={2}
+                data={product}
+                renderItem={({item})=>{
                     return(
                         <TouchableOpacity
-                        key={el.id} onPress={() => navigation.navigate("ProductDetail",{id:el.id})}>
+                        key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
                         <View>
                         <ImageBackground
-                        key={el.id}
-                        source={{ uri:el.img}}
-                        style={{ width: 100, height: 100 }}     
+                        key={item.id}
+                        source={{ uri:item.img}}
+                        style={Styles.imageProduct}      
                         >
                             
-                          <Text>{el.name}</Text>
-                       
+                          <Text style={Styles.nombre}>{item.name}</Text>
+                          <View style={Styles.contPrice}>
+                            <Text style={ Styles.price}> ${item.price}</Text>
+                          </View>
                           </ImageBackground>
                             </View>
                       </TouchableOpacity>
                     )
-                })
+                }}
+                />
                 
             }
 
@@ -127,7 +134,7 @@ export default function Categories({navigation}) {
                         
 const Styles= StyleSheet.create({
     cardText:{
-        fontSize:25,
+               fontSize:25,
                 color: "white",
                 marginTop: 80,
                 flex:1,
@@ -135,8 +142,24 @@ const Styles= StyleSheet.create({
                 fontWeight: "bold"
     },
     image:{
-        width: 206,
-         height:200
+      
+        height:200,
+        width:Dimensions.get('window').width /2,
+    
+    },
+    imageProduct:{
+        marginHorizontal:5,
+        marginVertical:5, 
+        borderRadius:15,
+        overflow: 'hidden', 
+        height:200,
+        width:(Dimensions.get('window').width /2)-10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        elevation: 1,
+        position:"relative"
     },
     search:{
         marginTop:5,
@@ -148,5 +171,27 @@ const Styles= StyleSheet.create({
         marginBottom:15,
         fontSize:25,
         fontWeight: "bold"
-    }
+    },
+    nombre:{
+        fontStyle: "normal",
+        fontWeight: 500,
+        fontSize: 20,
+        marginTop:15,
+        marginBottom:15,
+        alignSelf:"center"
+    },
+    contPrice:{
+        position:"absolute",
+        bottom:0,
+        width:"100%"
+    },
+    price:{
+        backgroundColor: 'rgba(52, 52, 52, 0.4)',
+        paddingVertical:10,
+        textAlign:"center",
+        fontStyle: "normal",
+        fontWeight: 500,
+        fontSize: 20, 
+       color:"white"
+    },
 })        
