@@ -21,14 +21,6 @@ export default function clientCart() {
     
     
     
-    // const handlePlus=()=>{    //resto cant de un producto en cart 
-    //     dispatch(plusQuantity())
-    // }
-    // const handleLess=(quantity)=>{   //sumo cant de un producto en cart
-    //     if(quantity>1){
-    //         dispatch(lessQuantity())
-    //     }
-    // }
 
     const handleDelete=(id)=>{     //elimino producto del carrito de compras
         dispatch(deleteProduct(id))
@@ -64,16 +56,17 @@ export default function clientCart() {
                                    
                                 </ImageBackground>
                             </View>
-                            {/* <Button title="+" onPress={()=>handlePlus()}/>
-                              <Text>{el.quantity}</Text>
-                            <Button title="-" onPress={()=> handleLess(el.quantity)} disabled={el.quantity>1 ? false : true} /> */}
+                            
+                             
+                            
                             <View style={styles.info}>
                                 <Text style={styles.name}>{item.name}</Text>
                                 <Text style={styles.price}>${item.price.toFixed(2)}</Text>
                                 <View style={styles.contQuantity}>
                                     <Text>Quantity:</Text>
-                                    <Text style={{color:"#777777"}}> x{item.quantity}</Text>
+                                    <Text style={{color:"#777777"}}> x{item.quantity} </Text>
                                 </View>
+                                
                             </View>
                         </View>
                 } 
@@ -108,10 +101,7 @@ const styles = StyleSheet.create({
       
   },
   buttonX:{
-      
-      width:35,
-      
-     
+      width:25,
       position:"absolute",
       top:0,  
       right:0,
@@ -170,6 +160,7 @@ const styles = StyleSheet.create({
       fontStyle: "normal",
       fontWeight: "normal",
       fontSize: 11,
+      paddingBottom:5
      // lineheight: 13,
   },
   contTotalOrder:{
