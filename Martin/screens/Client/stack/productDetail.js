@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import { StyleSheet,ScrollView, Text, View, Image, Button,TouchableOpacity } from 'react-native'
+import { Icon } from 'react-native-elements'
 import {addOrder} from '../../../actions.js'
 import { IP } from '../../../env.js'
 import { useDispatch, useSelector } from 'react-redux'
@@ -64,7 +65,14 @@ export default function ProductDetail({route,navigation}) {
                 <Text style={styles.products}>
                     Product Card
                 </Text>
-
+                <View style={{position:"absolute", right:25, top:35}}>
+                <Icon
+                name='shopping-bag'
+                type="feather"
+                color='gray'
+                size={25 }
+                />
+            </View>
                 <Image  
                 source={{uri: product.img}}
                 style={styles.image}/>

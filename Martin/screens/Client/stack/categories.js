@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Button,TouchableOpacity,ImageBackground,Dimensions } from 'react-native'
+import { Icon } from 'react-native-elements'
 import { SearchBar } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -57,11 +58,19 @@ export default function Categories({navigation}) {
                 onChangeText={handleSearch}
                 value={name}/>
             </View >
-            <Text style={Styles.categories}>
-            Categories
-            </Text>
-            
-            
+            <View style={{display:"flex", width:Dimensions.get("window").width, flexDirection:"row"}}>
+                <Text style={Styles.categories}>
+                Categories
+                </Text>
+                <View style={{position:"absolute", right:18, top:19}}>
+                <Icon
+                name='shopping-bag'
+                type="feather"
+                color='gray'
+                size={25 }
+                />
+                </View>
+            </View>
             {
              !name? 
              <FlatList
@@ -167,10 +176,13 @@ const Styles= StyleSheet.create({
         fontWeight: "bold"
     },
     categories:{
+        paddingLeft:20,
         marginTop:15,
         marginBottom:15,
         fontSize:25,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        alignSelf:"center",
+        textAlign:"center"
     },
     nombre:{
         fontStyle: "normal",

@@ -19,28 +19,28 @@ export default function Controller() {
 
      
     
-    if(UserRole==null){
-        return (
-            <NavigationContainer>
-                <AuthScreen />
-            </NavigationContainer>
+    // if(UserRole==null){
+    //     return (
+    //         <NavigationContainer>
+    //             <AuthScreen />
+    //         </NavigationContainer>
            
-        )
-    }
-    else if(UserRole=="Client" ){
-        return(
+    //     )
+    // }
+    // else if(UserRole=="Client" ){
+          return(
             <NavigationContainer>
                 <ClientNavigation />
             </NavigationContainer>
-        )
-    }
-    else if(UserRole== "Admin"){
-        return(
-            <NavigationContainer>
-                <AdminNavigation />
-            </NavigationContainer>
-        )
-    }
+           )
+    // }
+    // else if(UserRole== "Admin"){
+    //     return(
+    //         <NavigationContainer>
+    //             <AdminNavigation />
+    //         </NavigationContainer>
+    //     )
+    // }
     
 }
 

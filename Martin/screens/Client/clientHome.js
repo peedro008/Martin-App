@@ -15,9 +15,9 @@ export default function clientHome({navigation}) {
     return (
       <Stack.Navigator
      >
-      <Stack.Screen name="Home" component={Home}  />
-      <Stack.Screen name="Products" component={Products} />
-      <Stack.Screen name="ProductDetail" component={ProductDetail}  />
+      <Stack.Screen name="Home" component={Home} options={{headerShown: false}}  />
+      <Stack.Screen name="Products" component={Products} options={{headerShown: false}}/>
+      <Stack.Screen name="ProductDetail" component={ProductDetail} options={{headerShown: false}}  />
     </Stack.Navigator>
         
     )

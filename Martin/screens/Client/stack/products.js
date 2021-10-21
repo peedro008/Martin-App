@@ -58,13 +58,13 @@ export default  function  Products ({route, navigation}) {
                     value={name}/>
             </View>
                 <View style={{display:"flex", width:Dimensions.get("window").width, flexDirection:"row"}}>  
-                    <Text style={styles.products}>Products</Text>
-                    <View style={{position:"absolute", right:18, top:11}}>
+                    <Text style={styles.products}>{category.name}</Text>
+                    <View style={{position:"absolute", right:18, top:19}}>
                     <Icon
                     name='shopping-bag'
                     type="feather"
                     color='gray'
-                    size={40}
+                    size={25}
                     />
                    </View> 
                 </View>
@@ -165,11 +165,13 @@ const styles = StyleSheet.create({
         
     },
     products:{
+        paddingLeft:20,
         marginTop:15,
         marginBottom:15,
         fontSize:25,
         fontWeight: "bold",
-        justifyContent:"center",
+        alignSelf:"center",
+        textAlign:"center"
     
     },
     nombre:{
