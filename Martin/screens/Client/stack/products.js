@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         flex:1,
         backgroundColor:"#fff",
+          
     },
     search:{
         marginTop:5,

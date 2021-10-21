@@ -44,6 +44,7 @@ export default function Home({navigation}) {
  
     return (
         <View style={{flex:1, backgroundColor:"#fff"}}>
+          <View>
           <View style={{display:"flex", flexDirection:"row",width:Dimensions.get("window").width}}>
             <Text style={styles.header} >Deals Of The Week</Text>
             <View style={{position:"absolute", right:25, top:35}}>
@@ -81,12 +82,13 @@ export default function Home({navigation}) {
           
         />
         <Paginator data={sales}/>
+        </View>
       </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container:{
+  container:{
         flex:1,
         justifyContent:"center",
         alignItems:"center",
