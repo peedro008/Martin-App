@@ -110,7 +110,7 @@ export default  function  Products ({route, navigation}) {
             renderItem={({item})=>{
                 return(
                     <TouchableOpacity
-                    key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:el.categories})}>
+                    key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
                     <View >
                     <ImageBackground
                     key={item.id}

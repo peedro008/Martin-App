@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button,TouchableOpacity,ImageBackground,Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Button,TouchableOpacity,ImageBackground,Dimensions, } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { SearchBar } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { FlatList, TextInput } from 'react-native-gesture-handler'
+import { FlatList, ScrollView, TextInput } from 'react-native-gesture-handler'
 import { IP } from '../../../env';
 
 
@@ -42,6 +42,7 @@ export default function Categories({navigation}) {
     
 
     return (
+    
         <View
         style={{backgroundColor:"#fff", alignItems:"center", flex: 1}}>
             <View style={{marginTop:30}}>
@@ -73,6 +74,7 @@ export default function Categories({navigation}) {
             </View>
             {
              !name? 
+             
              <FlatList
                 keyExtractor={item => item.id.toString()}
                 numColumns={2}
@@ -89,8 +91,10 @@ export default function Categories({navigation}) {
                         </ImageBackground>
                         </TouchableOpacity>
                     </View>
-          }
-        />
+                    
+                }
+                />
+                
                    
                      
                     
@@ -126,6 +130,7 @@ export default function Categories({navigation}) {
 
             
         </View>
+      
     )
 }
 
