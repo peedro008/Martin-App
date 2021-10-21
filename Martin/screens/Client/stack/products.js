@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
         width:"100%"
     },
     price:{
-        backgroundColor: 'rgba(52, 52, 52, 0.4)',
+        backgroundColor: 'rgba(52, 52, 52, 0.3)',
         paddingVertical:10,
         textAlign:"center",
         fontStyle: "normal",

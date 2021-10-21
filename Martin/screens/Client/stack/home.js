@@ -57,6 +57,7 @@ export default function Home({navigation}) {
           </View>         
         <FlatList
          keyExtractor={item => item.id.toString()}
+         showsHorizontalScrollIndicator={false}
           horizontal
           data={sales}
           pagingEnabled
@@ -110,13 +111,11 @@ const styles = StyleSheet.create({
 //       },
       image:{
         width:Dimensions.get("window").width -50,
-        height:250 ,
+        height:300 ,
         justifyContent:"center",
         resizeMode:"cover",
         alignSelf:"center",
-        borderTopRightRadius:15,
-        borderTopLeftRadius:15,
-        
+        borderRadius:15
       },
       title:{
         fontWeight:"bold",
@@ -152,16 +151,17 @@ const styles = StyleSheet.create({
         height:50,
         paddingHorizontal:40,
         alignItems:"center",
-        backgroundColor: 'rgba(52, 52, 52, 0.4)',
+        backgroundColor: 'rgba(52, 52, 52, 0.1)',
         width:Dimensions.get("window").width -50,
         alignSelf:"center",
+        marginTop:-50,
         borderBottomRightRadius:15,
-        borderBottomLeftRadius:15
+        borderBottomLeftRadius:15,
       },
       buttonSale:{
         width:(Dimensions.get("window").width -50)/2,
         alignSelf:"center",
-        marginTop:3
+        marginTop:-5
       },
     
 })
