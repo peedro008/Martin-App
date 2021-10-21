@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground} from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions} from 'react-native'
+import { Icon } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../../actions.js'
@@ -83,7 +84,9 @@ export default function clientCart() {
             </View> 
             </View>)
              :
-             <Text>EMPTY</Text>
+             <View style={{justifyContent:"center", alignItems:"center", position:"absolute", top:50, left:Dimensions.get("screen").width*0.25}}>
+                <Icon name="shopping-cart" color="gray" size={Dimensions.get("screen").width/2}/>
+             </View>
             }
            
         </View>
