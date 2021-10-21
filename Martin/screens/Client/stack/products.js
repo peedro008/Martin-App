@@ -4,8 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Dimensions,}
 import { IP } from '../../../env';
 import { FlatList } from 'react-native-gesture-handler';
 import { SearchBar } from 'react-native-elements';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import { Icon } from 'react-native-elements'
 
 
 export default  function  Products ({route, navigation}) {
@@ -58,7 +57,17 @@ export default  function  Products ({route, navigation}) {
                     onChangeText={handleSearch}
                     value={name}/>
             </View>
-                <Text style={styles.products}>Products</Text>
+                <View style={{display:"flex", width:Dimensions.get("window").width, flexDirection:"row"}}>  
+                    <Text style={styles.products}>Products</Text>
+                    <View style={{position:"absolute", right:18, top:11}}>
+                    <Icon
+                    name='shopping-bag'
+                    type="feather"
+                    color='gray'
+                    size={40}
+                    />
+                   </View> 
+                </View>
             {  
                 !name ?
 
@@ -159,7 +168,9 @@ const styles = StyleSheet.create({
         marginTop:15,
         marginBottom:15,
         fontSize:25,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        justifyContent:"center",
+    
     },
     nombre:{
         fontStyle: "normal",

@@ -59,7 +59,7 @@ export default function ProductDetail({route,navigation}) {
     return (
        <ScrollView>
         <View>
-            <View style={{flex:1}}> 
+            <View style={{flex:1, backgroundColor:"#fff"}}> 
 
                 <Text style={styles.products}>
                     Product Card
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
         width: 30,
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row',
+        
     },
     category:{
         marginLeft:17,
@@ -211,7 +211,8 @@ const styles = StyleSheet.create({
     countText:{
         color:"blue",
         width:20, 
-        alignSelf:"center"
+        alignSelf:"center",
+        
     },
     buttonStyle:{
         color:"#FFFFFF" ,
