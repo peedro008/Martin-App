@@ -84,7 +84,7 @@ export default function ProductDetail({route,navigation}) {
                 </Text>
 
                 <View style={styles.category}>
-                    <Text style={{fontSize:width*0.06}}>
+                    <Text style={{fontSize:width*0.06, fontWeight:"600", color:"#6979F8"}}>
                         {category}
                     </Text>
                 </View>
@@ -129,7 +129,7 @@ export default function ProductDetail({route,navigation}) {
                 </View>
             : 
                 <View>
-                    <View style={styles.buttonView}>
+                    <View style={[styles.buttonView,{backgroundColor:"#00bb2d"}]}>
                         <TouchableOpacity onPress={()=>navigation.navigate("Cart")}>
                             <Text style={styles.buttonStyle}>
                                 GO TO CART 
@@ -207,11 +207,14 @@ const styles = StyleSheet.create({
         fontWeight:"600", 
         fontSize:width*0.10,
         marginLeft:width*0.05, 
-        marginBottom:10
+        marginBottom:10,
+        textTransform:"uppercase"
     },
     desc:{
         fontSize:width*0.04,
-        marginLeft:width*0.05
+        marginLeft:width*0.05,
+        marginRight:width*0.05,
+        textAlign:"justify"
     },
     buttonContainer:{
         marginTop:50,
@@ -229,7 +232,6 @@ const styles = StyleSheet.create({
     buttonStyle:{
         color:"#FFFFFF" ,
         alignSelf:"center", 
-       
         fontSize:width*0.05
     },
     buttonView:{

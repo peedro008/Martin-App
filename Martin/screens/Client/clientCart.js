@@ -7,6 +7,8 @@ import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../
 import axios from 'axios'
 import { IP } from '../../env.js'
 
+const width=Dimensions.get("window").width
+
 export default function clientCart() {
     const order= useSelector(state=> state.PreOrder) 
     const user= useSelector(state=> state.User) 
@@ -78,9 +80,11 @@ export default function clientCart() {
             <View style={styles.contTotalOrder}>
                 <Text style={styles.totalOrder}>
                     Total order: ${totalPrice.toFixed(2)}  
-                </Text> 
+                </Text>
             <View style={styles.buttonOrder}>
-                <Button color="#F15A4D" title="place order" onPress={()=>handlePostOrder()}/>
+                <TouchableOpacity onPress={()=>handlePostOrder()}> 
+                  <Text style={{color:"#FFFFFF",alignSelf:"center",fontSize:width*0.05}}>Place order</Text>
+                 </TouchableOpacity> 
             </View> 
             </View>)
              :
@@ -167,8 +171,8 @@ const styles = StyleSheet.create({
      // lineheight: 13,
   },
   contTotalOrder:{
-  marginTop:15,
-  backgroundColor:"beige"
+    marginTop:15,
+    backgroundColor:"beige"
   },
   totalOrder:{
     color:"#151522",
@@ -180,8 +184,12 @@ const styles = StyleSheet.create({
 
   },
   buttonOrder:{
-      width:325,
-      height:50,
-      alignSelf:"center"
+      width:width,
+      height:width*0.11,
+      alignSelf:"center",
+      justifyContent:"center",
+      borderRadius:5,
+      backgroundColor:"#F15A4D"
+
   }
 })

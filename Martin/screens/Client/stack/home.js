@@ -167,15 +167,17 @@ const styles = StyleSheet.create({
         width:width -50,
         alignSelf:"center",
         marginTop:-110,
+        marginBottom:4
         
       },
       buttonSale:{
         width:(width -50)/2,
-        height:width*0.11,
+        height:width*0.08 ,
         alignSelf:"center",
-        marginTop:-5,
+        marginTop:-4,
         backgroundColor:"#F15A4D",
-        justifyContent:"center"
+        justifyContent:"center",
+        borderRadius:5
       },
       buttonStyle:{
         color:"#FFFFFF" ,
