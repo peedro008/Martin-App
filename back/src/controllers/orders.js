@@ -23,9 +23,10 @@ const postOrderItems=async(req,res)=>{
                     price: e.price,
                     total: e.total,
                     name: e.name,
-                    orderId: Order.id
+                    orderId: Order.id,
+                    img: e.img
                 })
-                
+             res.status(200).send("Order Added")   
             }
             catch(e){
                 console.log("Error in Order items controller "+ e)
@@ -65,7 +66,7 @@ const getUserOrders=async(req,res)=>{
         
         let orderBd=await Order.findAll({
             where:{email:email},
-            attributes:['email','id','status','total'],
+            attributes:['email','id','status','total',"createdAt"],
             include:{
                 model:OrderItems,
                 
@@ -125,7 +126,26 @@ const updateOrderStatus=async(req,res)=>{
  
 
 }
-
+const getOrderId=async(req,res)=>{
+    try{
+        let id = req.query.id
+        let orderBd=await Order.findAll({
+            where:{
+                id:id
+            },
+         attributes:['email','id','status','total', "createdAt"],
+         include:{
+             model:OrderItems,
+             
+            }
+        })
+     orderBd?res.status(200).json(orderBd):
+     res.status(404).send("order not found");
+    }
+    catch(e){
+     console.log("Error in products controller"+ e)
+ }
+ }
  
 
 
@@ -134,5 +154,6 @@ module.exports={
     getOrders,
     getUserOrders,
     updateOrderStatus,
-    getPendingOrders
+    getPendingOrders,
+    getOrderId
 }

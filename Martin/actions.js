@@ -32,7 +32,6 @@ export function addOrder(orderProduct){
   }
 }
 
-
 export function deleteProduct(id){
   return{
     type: DELETE_PRODUCT,

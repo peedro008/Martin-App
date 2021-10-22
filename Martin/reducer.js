@@ -2,7 +2,7 @@ import {
   ADD_PRODUCT, 
   USER_ROLE, 
   DELETE_PRODUCT,
-  USER,POST_ORDER, POST_DELETE,
+  USER,POST_ORDER, POST_DELETE
    } from './actions'
 
 const initialState = {
@@ -48,7 +48,10 @@ export default function reducer(state = initialState, action) {
             ...state, 
             PreOrder: []
           }
-         
+       
+      
+       
+                
      default: return state  
   }
 }

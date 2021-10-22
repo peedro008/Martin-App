@@ -109,9 +109,7 @@ export default function ProductDetail({route,navigation}) {
                     <TouchableOpacity
                     onPress={()=>handleCount() }
                     style={ styles.minibutton  }>
-                        <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>
-                            -
-                        </Text>
+                        <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>+</Text>
                     </TouchableOpacity>
                     
                     <View style={styles.count}>
@@ -156,19 +154,19 @@ const styles = StyleSheet.create({
     minibutton:{
         borderRadius:8,
         shadowColor: 'rgba(0,0,0, .2)',
-        marginTop:5, 
+        //marginTop:5, 
         shadowOffset: { 
         height: 1, width: 1 },
         shadowOpacity: 1,
         shadowRadius: 1,
         backgroundColor: '#fff',
         elevation: 4,
-        height: width*0.06,
-        width: width*0.06,
+        height: width*0.08,
+        width: width*0.08,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        padding:width*0.04
+       
     },
     products:{
         alignSelf:"center",
