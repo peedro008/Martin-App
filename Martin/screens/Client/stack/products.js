@@ -6,6 +6,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SearchBar } from 'react-native-elements';
 import { Icon } from 'react-native-elements'
 
+const width=Dimensions.get("window").width
 
 export default  function  Products ({route, navigation}) {
     let category = route.params.params
@@ -53,7 +54,7 @@ export default  function  Products ({route, navigation}) {
                 <SearchBar 
                     inputContainerStyle={{backgroundColor:"white"}}
                     inputStyle={{backgroundColor: 'white'}}
-                    containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+                    containerStyle={{marginTop:20, alignSelf:"center", backgroundColor: 'white', borderWidth: 1, borderRadius: 5, width:width-10}}
                     onChangeText={handleSearch}
                     value={name}/>
             </View>
@@ -64,7 +65,7 @@ export default  function  Products ({route, navigation}) {
                     name='shopping-bag'
                     type="feather"
                     color='gray'
-                    size={25}
+                    size={width*0.07}
                     />
                    </View> 
                 </View>
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     },
     search:{
         marginTop:5,
-        fontSize: 25,
+        fontSize: width*0.07,
         fontWeight: "bold",
         
     },
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
         paddingLeft:20,
         marginTop:15,
         marginBottom:15,
-        fontSize:25,
+        fontSize:width*0.07,
         fontWeight: "bold",
         alignSelf:"center",
         textAlign:"center"
@@ -178,7 +179,7 @@ const styles = StyleSheet.create({
     nombre:{
         fontStyle: "normal",
         fontWeight: "500",
-        fontSize: 20,
+        fontSize: width*0.05,
         marginTop:15,
         marginBottom:15,
         alignSelf:"center"
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
         textAlign:"center",
         fontStyle: "normal",
         fontWeight: "500",
-        fontSize: 20, 
+        fontSize: width*0.05, 
        color:"white"
     },
     image:{
@@ -202,8 +203,8 @@ const styles = StyleSheet.create({
         marginVertical:5, 
         borderRadius:15,
         overflow: 'hidden', 
-        height:200,
-        width:(Dimensions.get('window').width /2)-10,
+        height:width*0.5,
+        width:(width /2)-10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,

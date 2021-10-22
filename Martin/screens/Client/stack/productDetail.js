@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
-import { StyleSheet,ScrollView, Text, View, Image, Button,TouchableOpacity } from 'react-native'
+import { StyleSheet,ScrollView, Text, View, Image, Button,TouchableOpacity,Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
 import {addOrder} from '../../../actions.js'
 import { IP } from '../../../env.js'
 import { useDispatch, useSelector } from 'react-redux'
+
+const width=Dimensions.get("window").width
 
 export default function ProductDetail({route,navigation}) {
     let {id} = route.params
@@ -70,7 +72,7 @@ export default function ProductDetail({route,navigation}) {
                 name='shopping-bag'
                 type="feather"
                 color='gray'
-                size={25 }
+                size={width*0.07 }
                 />
             </View>
                 <Image  
@@ -164,7 +166,7 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         marginTop:30,
         marginBottom:15,
-        fontSize:25,
+        fontSize:width*0.07,
         fontWeight: "bold"
     },
     count:{
@@ -191,23 +193,23 @@ const styles = StyleSheet.create({
         height: 22
     },
     price:{
-        fontSize:48,
+        fontSize:width*0.13,
         marginLeft:15,
         fontWeight:"bold"
     },
     image:{
-        height:375,
-        width:439,
+        height:width*0.9,
+        width:width,
         alignSelf:"center"
     },
     name:{
         fontWeight:"600", 
-        fontSize:34,
+        fontSize:width*0.10,
         marginLeft:15, 
         marginBottom:10
     },
     desc:{
-        fontSize:15,
+        fontSize:width*0.04,
         marginLeft:15
     },
     buttonContainer:{
@@ -225,15 +227,16 @@ const styles = StyleSheet.create({
     buttonStyle:{
         color:"#FFFFFF" ,
         alignSelf:"center", 
-        marginTop:13
+       
+        fontSize:width*0.05
     },
     buttonView:{
         marginTop:35,
-        width:380, 
-        height:50, 
+        width:width, 
+        height:width*0.11, 
         borderRadius:5, 
         backgroundColor:"#F15A4D", 
-        alignSelf:"center"
+        justifyContent:"center"
     }
    
 })

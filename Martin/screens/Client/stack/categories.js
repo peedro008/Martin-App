@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { FlatList, ScrollView, TextInput } from 'react-native-gesture-handler'
 import { IP } from '../../../env';
 
+const width=Dimensions.get("window").width
 
 export default function Categories({navigation}) {
     const [name,setName] = useState("")
@@ -55,7 +56,7 @@ export default function Categories({navigation}) {
                 <SearchBar 
                 inputContainerStyle={{backgroundColor:"white"}}
                 inputStyle={{backgroundColor: 'white'}}
-                containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+                containerStyle={{marginTop:20, alignSelf:"center", backgroundColor: 'white', borderWidth: 1, borderRadius: 5, width:width-10}}
                 onChangeText={handleSearch}
                 value={name}/>
             </View >
@@ -68,7 +69,7 @@ export default function Categories({navigation}) {
                 name='shopping-bag'
                 type="feather"
                 color='gray'
-                size={25 }
+                size={width*0.07 }
                 />
                 </View>
             </View>
@@ -148,7 +149,7 @@ export default function Categories({navigation}) {
                         
 const Styles= StyleSheet.create({
     cardText:{
-               fontSize:25,
+                fontSize:width*0.07,
                 color: "white",
                 marginTop: 80,
                 flex:1,
@@ -166,8 +167,8 @@ const Styles= StyleSheet.create({
         marginVertical:5, 
         borderRadius:15,
         overflow: 'hidden', 
-        height:200,
-        width:(Dimensions.get('window').width /2)-10,
+        height:width*0.4,
+        width:(width /2)-10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
@@ -177,14 +178,14 @@ const Styles= StyleSheet.create({
     },
     search:{
         marginTop:5,
-        fontSize: 25,
+        fontSize: width*0.07,
         fontWeight: "bold"
     },
     categories:{
         paddingLeft:20,
         marginTop:15,
         marginBottom:15,
-        fontSize:25,
+        fontSize:width*0.07,
         fontWeight: "bold",
         alignSelf:"center",
         textAlign:"center"

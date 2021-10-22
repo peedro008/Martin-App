@@ -76,7 +76,7 @@ const {Product} = require ('../src/bd')
   var PorkCrownRoast = await Product.create({
     name: "Pork Crown Roast",
     description: "cacium",
-    img:"https://brazilfrozenfoodsuppliers.com/wp-content/uploads/2020/12/Pork-Crown-Roast.jpg",
+    img:"https://www.simplyrecipes.com/thmb/AMibX4FCk8bM44qt1_OO5RmFqRM=/800x533/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2008__12__crown-roast-pork-horiz-raw-c36e48c691134cada7339ebb8890f98e.jpg",
     price:4.75,
     sale:true,
     salePercent: 15
@@ -85,7 +85,7 @@ const {Product} = require ('../src/bd')
   var ChikenBreast = await Product.create({
     name: "Skinless Chicken Breast",
     description: "This type of poultry is an excellent source of lean protein. Chicken is also a good source of vitamin B, vitamin D, calcium, iron, zinc, and trace amounts of vitamin A and vitamin C.",
-    img:"https://brazilfrozenfoodsuppliers.com/wp-content/uploads/2020/12/Skinless-Chicken-Breast.jpg",
+    img:"https://mytbones.com/wp-content/uploads/2018/11/Boneless-Skinless-Chicken-Breasts-3KG.jpg",
     price:3.50,
     sale:true,
     salePercent: 5

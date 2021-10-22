@@ -6,14 +6,14 @@ import { useSelector } from 'react-redux'
 import { IP } from '../../../env'
 import Paginator from './homeComponents/paginator'
 
-
+const width=Dimensions.get("window").width
 
 
 export default function Home({navigation}) {
     const email =  useSelector(state=> state.User)
     const [sales,setSales]= useState([])
     const [orders,setOrders]= useState([])
-    const {width}=useWindowDimensions()
+    
    
 
      useEffect(()=>{    //traigo los productos en ofertas
@@ -52,7 +52,7 @@ export default function Home({navigation}) {
               name='shopping-bag'
               type="feather"
               color='gray'
-              size={25 }
+              size={width*0.07 }
               />
             </View>
           </View>         
@@ -69,13 +69,18 @@ export default function Home({navigation}) {
               <Image  style={styles.image} source={{uri:item.img}}/>
                 <View style={styles.footer}>
                   <Text style={ item.name.length<15 ? styles.title : styles.title2}>{item.name}</Text>
-                  
-                    <Text  style={styles.price}>${item.price}</Text>
-                    <Text  style={ styles.prevPrice}>${((item.price*100)/(100 - item.salePercent)).toFixed(2) }</Text>
-            
+                    <View style={{ flexDirection:"row" , alignItems:"center"}}>
+                        <Text  style={styles.price}>${item.price}</Text>
+                        <Text  style={ styles.prevPrice}>${((item.price*100)/(100 - item.salePercent)).toFixed(2) }</Text>
+                    </View>
                 </View>
                 <View style={styles.buttonSale}>
-                  <Button title="Shop now" color="#F15A4D"  onPress={() => navigation.navigate("ProductDetail",{id:item.id})}/>
+                        <TouchableOpacity onPress={()=>navigation.navigate("ProductDetail",{id:item.id})}>
+                            <Text style={styles.buttonStyle}>
+                            Shop now
+                            </Text>
+                        </TouchableOpacity>
+                
                 </View>
             </View>
           }
@@ -87,6 +92,7 @@ export default function Home({navigation}) {
     )
 }
 
+
 const styles = StyleSheet.create({
   container:{
         flex:1,
@@ -97,11 +103,11 @@ const styles = StyleSheet.create({
       header:{
         textAlign:"center",
         alignSelf:"center",
-        fontSize: 25,
+        fontSize: width*0.07,
         fontWeight: "bold",
         marginBottom:15,
         marginTop:30,
-        paddingLeft: Dimensions.get("window").width*0.22
+        paddingLeft: Dimensions.get("window").width*0.17
       },
 //       title:{
 //         display:"flex",
@@ -112,22 +118,25 @@ const styles = StyleSheet.create({
 //         color:"fff"
 //       },
       image:{
-        width:Dimensions.get("window").width -50,
-        height:300 ,
+        width:width -50,
+        height:width -40 ,
         justifyContent:"center",
         resizeMode:"cover",
         alignSelf:"center",
-        borderRadius:15
+        borderRadius:5,
+        borderBottomRightRadius:5
       },
       title:{
         fontWeight:"bold",
-        fontSize:18,
-       
+        fontSize:width*0.05,
+        textAlign:"justify"
         
       },
       title2:{
         fontWeight:"bold",
-        fontSize:15,
+        fontSize:width*0.04,
+        
+    
       },
 //       text:{
 //         display:"flex",
@@ -137,33 +146,41 @@ const styles = StyleSheet.create({
 //       },
       price:{
         fontWeight:"bold",
-        fontSize:22,
-        color:"#00bb2d"
+        fontSize:width*0.07,
+        color:"#00bb2d",
+        marginHorizontal:8
         //color:"#FF0808"
       },
       prevPrice:{
         fontWeight:"bold",
-        fontSize:18,
+        fontSize:width*0.05,
         color:"red",
         textDecorationLine:"line-through"
       },
       footer:{
         flexDirection:"row",
         justifyContent:"space-between",
-        height:50,
+        height:width*0.14,
         paddingHorizontal:40,
         alignItems:"center",
         backgroundColor: 'rgba(52, 52, 52, 0.1)',
-        width:Dimensions.get("window").width -50,
+        width:width -50,
         alignSelf:"center",
-        marginTop:-50,
-        borderBottomRightRadius:15,
-        borderBottomLeftRadius:15,
+        marginTop:-110,
+        
       },
       buttonSale:{
-        width:(Dimensions.get("window").width -50)/2,
+        width:(width -50)/2,
+        height:width*0.11,
         alignSelf:"center",
-        marginTop:-5
+        marginTop:-5,
+        backgroundColor:"#F15A4D",
+        justifyContent:"center"
       },
+      buttonStyle:{
+        color:"#FFFFFF" ,
+        alignSelf:"center", 
+        fontSize:width*0.05
+      }
     
 })
