@@ -84,7 +84,7 @@ export default function ProductDetail({route,navigation}) {
                 </Text>
 
                 <View style={styles.category}>
-                    <Text style={{fontSize:17}}>
+                    <Text style={{fontSize:width*0.06}}>
                         {category}
                     </Text>
                 </View>
@@ -99,24 +99,23 @@ export default function ProductDetail({route,navigation}) {
                 
                 <View style={styles.buttonContainer}> 
                     <TouchableOpacity
-                    onPress={()=> handleCount()}
+                    onPress={()=>setCount(count + 1) }
                     style={ styles.minibutton  }>
-                        <Text style={{alignSelf:"center"}}>
-                            -
+                        <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>
+                            +
                         </Text>
                     </TouchableOpacity>
                     
                     <View style={styles.count}>
-                        <Text style={styles.countText}>  {count}
-                        </Text>
+                        <Text style={styles.countText}>{count}</Text>
                     </View>
                     <TouchableOpacity
-                    onPress={()=> setCount(count + 1)}
+                    onPress={()=>handleCount() }
                     style={ styles.minibutton  }
                     >
                         <Text
-                        style={{alignSelf:"center"}}>
-                            +
+                        style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>
+                            -
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -147,8 +146,8 @@ export default function ProductDetail({route,navigation}) {
 const styles = StyleSheet.create({
     
     minibutton:{
-         
-        shadowColor: 'rgba(0,0,0, .4)',
+        borderRadius:8,
+        shadowColor: 'rgba(0,0,0, .2)',
         marginTop:5, 
         shadowOffset: { 
         height: 1, width: 1 },
@@ -156,11 +155,12 @@ const styles = StyleSheet.create({
         shadowRadius: 1,
         backgroundColor: '#fff',
         elevation: 4,
-        height: 20,
-        width: 20,
+        height: width*0.06,
+        width: width*0.06,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
+        padding:width*0.04
     },
     products:{
         alignSelf:"center",
@@ -172,29 +172,30 @@ const styles = StyleSheet.create({
     count:{
         marginLeft:9,
         marginRight:9,
-        borderRadius:5,
+        borderRadius:8,
         shadowColor: 'rgba(0,0,0, .4)',
         shadowOffset: { height: 1, width: 1 },
         shadowOpacity: 1,
         shadowRadius: 1,
         backgroundColor: '#fff',
-        elevation: 4,
-        height: 30,
-        width: 30,
+        elevation: 2,
+        height:width*0.08,
+        width:width*0.08,
         justifyContent: 'center',
         alignItems: 'center',
         
+        
     },
     category:{
-        marginLeft:17,
+        marginLeft:width*0.05,
         marginTop:8,
         marginBottom:8,
-        width: 47, 
-        height: 22
+        
+        
     },
     price:{
         fontSize:width*0.13,
-        marginLeft:15,
+        marginLeft:width*0.05,
         fontWeight:"bold"
     },
     image:{
@@ -205,24 +206,25 @@ const styles = StyleSheet.create({
     name:{
         fontWeight:"600", 
         fontSize:width*0.10,
-        marginLeft:15, 
+        marginLeft:width*0.05, 
         marginBottom:10
     },
     desc:{
         fontSize:width*0.04,
-        marginLeft:15
+        marginLeft:width*0.05
     },
     buttonContainer:{
         marginTop:50,
         display:"flex", 
         flexDirection:"row", 
-        alignSelf:"center"
+        alignSelf:"center",
+        justifyContent:"center"
     },
     countText:{
-        color:"blue",
-        width:20, 
+        color:"#6979F8",
+        fontWeight:"600",
         alignSelf:"center",
-        
+        fontSize:width*0.05
     },
     buttonStyle:{
         color:"#FFFFFF" ,

@@ -77,7 +77,7 @@ export default function clientCart() {
             {order.length>0 ? (
             <View style={styles.contTotalOrder}>
                 <Text style={styles.totalOrder}>
-                    Total order ${totalPrice.toFixed(2)}  
+                    Total order: ${totalPrice.toFixed(2)}  
                 </Text> 
             <View style={styles.buttonOrder}>
                 <Button color="#F15A4D" title="place order" onPress={()=>handlePostOrder()}/>

@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:"center",
         alignItems:"center",
-
+        
       },
       header:{
         textAlign:"center",
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         resizeMode:"cover",
         alignSelf:"center",
         borderRadius:5,
-        borderBottomRightRadius:5
+        
       },
       title:{
         fontWeight:"bold",
