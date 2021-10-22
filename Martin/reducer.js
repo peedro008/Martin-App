@@ -46,7 +46,8 @@ export default function reducer(state = initialState, action) {
         case POST_DELETE:
           return{
             ...state, 
-            PreOrder: []
+            PreOrder: [],
+            TotalPrice:0
           }
        
       
