@@ -1,31 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { useSelector } from 'react-redux'
-import axios from 'axios'
-import { useEffect } from 'react'
-import {IP} from "../../env"
+import { createStackNavigator } from '@react-navigation/stack';
+import user from './stack/user';
+import orderDetail from './stack/orderDetail';
+
+
+const Stack = createStackNavigator();
 
 export default function clientUser() {
-    const user = useSelector(state => state.user)
-    const [orders, setOrders]= useState([])
-    useEffect(()=>{
-        axios.get(`${IP}/orderuser?email=${user}`)    //traigo los ultimos pedidos del usuario 
-                .then(function(response){
-                setOrders(response.data)
-              
-
-             })
-            
-       console.log(user)
-    console.log(orders)      
-
-    },[])
-    
-    
     return (
-        <View>
-            <Text>User</Text>
-        </View>
+      
+      <Stack.Navigator>
+        <Stack.Screen name="user" component={user} options={{headerShown: false}}/>
+        <Stack.Screen name="order detail" component={orderDetail} options={{headerShown: false}}/>
+     </Stack.Navigator>
     )
 }
 

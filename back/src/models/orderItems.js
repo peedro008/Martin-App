@@ -25,7 +25,10 @@ const OrderItems= (sequelize)=>{
         allowNull: false,
         field: 'orderId',
     },
-   
+    img:{
+        type: DataTypes.STRING,
+        allowNull: false   
+    }
 
 
   });
