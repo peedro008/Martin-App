@@ -109,7 +109,7 @@ export default function ProductDetail({route,navigation}) {
                     <TouchableOpacity
                     onPress={()=>handleCount() }
                     style={ styles.minibutton  }>
-                        <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>+</Text>
+                        <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>-</Text>
                     </TouchableOpacity>
                     
                     <View style={styles.count}>

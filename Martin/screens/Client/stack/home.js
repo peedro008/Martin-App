@@ -1,5 +1,5 @@
 import React,{useEffect, useRef, useState} from 'react'
-import { StyleSheet, Text,Button, View,FlatList,ImageBackground,TouchableOpacity, useWindowDimensions, Image, Dimensions, Animated} from 'react-native'
+import { StyleSheet, Text,Button, View,FlatList,ImageBackground,TouchableOpacity, useWindowDimensions, Image, Dimensions, Animated, ScrollView} from 'react-native'
 import { Icon } from 'react-native-elements'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
@@ -24,7 +24,7 @@ export default function Home({navigation}) {
           .catch(error=>{
               console.log(error)  
               })
-  },[orders])
+  },[])
   
   let handleAddProduct=(order)=>{
        order.map(e=>{
@@ -69,7 +69,7 @@ export default function Home({navigation}) {
          if(orders.length>0){
          orr=orders.reverse()}
     return (
-        <View style={{flex:1, backgroundColor:"#fff"}}>
+        <ScrollView style={{flex:1, backgroundColor:"#fff"}}>
           <View>
           <View style={{display:"flex", flexDirection:"row",width:Dimensions.get("window").width, marginTop:20}}>
             <Text style={styles.header} >Deals Of The Week</Text>
@@ -114,11 +114,11 @@ export default function Home({navigation}) {
         />
         <Paginator data={sales}/>
         
-        <View
+       <View
         style={{  height:300}}>
         <Text style={styles.OrderHeader} >Last Orders</Text> 
 
-      {orders.length>0?
+        {orders.length>0?
         <FlatList
         
         horizontal={true}
@@ -179,7 +179,7 @@ export default function Home({navigation}) {
                   </View>}
       </View>
         </View>
-      </View>
+      </ScrollView>
     )
 }
 

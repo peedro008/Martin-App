@@ -53,27 +53,36 @@ export default function Cart({order}){
 const styles= StyleSheet.create({
     container:{
         display:"flex",
+        alignSelf:"center",
+        width: width-30,
         flexDirection:"row",
         marginBottom:12,
         marginTop:10,
-        borderBottomWidth:0.5,
-        borderBottomColor:"#E0E0E0",
-        borderTopColor: "#E0E0E0",
-        borderTopWidth:0.5
+        borderWidth:0.5,
+        borderColor:"#E0E0E0",
+        borderRadius:8,
+        borderTopWidth:0.5,
+        shadowColor:"black",
+        shadowOffset: { width: 3, height: 10},
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        elevation:1,
+
     },
     contImage:{
-        width: 100,
-        height: 100,
+        width: width*0.20,
+        height: width*0.25,
         flexGrow:1,
-        margin:0,
-  
+        margin:width*0.03,
+        backgroundColor:"yellow"
+        
     },
     image:{
-        width: "100%",
-        height: "100%",
+        width: width*0.26,
+        height: width*0.25,
         flexGrow:1,
-        margin:0
-        
+        margin:0,
+      
   },
   buttonX:{
     width:25,
@@ -91,23 +100,24 @@ info:{
 name:{
     display:"flex",
     position:"absolute",
-    top:0,
-    left:5,
     fontStyle: "normal",
     fontWeight: "600",
     fontSize: width*0.04,
+    paddingVertical:width*0.03,
+    flexWrap:"wrap",
+    width:width*0.4
    // lineheight: 20,
     
 },
 price:{
   display:"flex",
   position:"absolute",
-  top:0,
-  right:0,
+  top:width*0.02,
+  right:width*0.05,
   color:"#151522",
   fontStyle: "normal",
   fontWeight: "normal",
-  fontSize: 15,
+  fontSize: width*0.06,
   //lineheight: 20,
   
 },
@@ -120,7 +130,7 @@ contQuantity:{
     flexDirection:"row",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 11,
+    fontSize: width*0.04,
     paddingBottom:5
    // lineheight: 13,
 },
