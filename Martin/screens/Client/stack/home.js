@@ -56,7 +56,7 @@ export default function Home({navigation}) {
               />
             </View>
           </View>         
-        <FlatList
+        <FlatList  
          keyExtractor={item => item.id.toString()}
          showsHorizontalScrollIndicator={false}
           horizontal
@@ -70,8 +70,8 @@ export default function Home({navigation}) {
                 <View style={styles.footer}>
                   <Text style={ item.name.length<15 ? styles.title : styles.title2}>{item.name}</Text>
                     <View style={{ flexDirection:"row" , alignItems:"center"}}>
-                        <Text  style={styles.price}>${item.price}</Text>
-                        <Text  style={ styles.prevPrice}>${((item.price*100)/(100 - item.salePercent)).toFixed(2) }</Text>
+                        <Text  style={styles.price}>${item.sale ? ((item.price*(100-item.salePercent))/100).toFixed(2) : item.price}</Text>
+                        <Text  style={ styles.prevPrice}>${item.price.toFixed(2) }</Text>
                     </View>
                 </View>
                 <View style={styles.buttonSale}>
@@ -109,14 +109,7 @@ const styles = StyleSheet.create({
         marginTop:30,
         paddingLeft: Dimensions.get("window").width*0.17
       },
-//       title:{
-//         display:"flex",
-//         fontWeight:"500",
-//         //fontSize:"25px",
-//         backgroundColor:"#4F505E",
-//         justifyContent:"center",
-//         color:"fff"
-//       },
+
       image:{
         width:width -50,
         height:width -40 ,
@@ -127,23 +120,17 @@ const styles = StyleSheet.create({
         
       },
       title:{
-        fontWeight:"bold",
+        fontWeight:"600",
         fontSize:width*0.05,
         textAlign:"justify"
         
       },
       title2:{
-        fontWeight:"bold",
+        fontWeight:"600",
         fontSize:width*0.04,
         
     
       },
-//       text:{
-//         display:"flex",
-//         textAlign:"center",
-//         fontWeight:"500",
-//         fontSize:"20px"
-//       },
       price:{
         fontWeight:"bold",
         fontSize:width*0.07,
@@ -154,7 +141,7 @@ const styles = StyleSheet.create({
       prevPrice:{
         fontWeight:"bold",
         fontSize:width*0.05,
-        color:"red",
+        color:"#F15A4D",
         textDecorationLine:"line-through"
       },
       footer:{

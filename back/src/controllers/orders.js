@@ -13,7 +13,7 @@ const postOrderItems=async(req,res)=>{
     try{
         await Order.create({
             total:count,
-            email: user[0]
+            email: user[0],
         })
         .then(Order => order.map(e=>{
             try{

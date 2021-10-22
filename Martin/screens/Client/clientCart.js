@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions} from 'react-native'
 import { Icon } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../../actions.js'
 import axios from 'axios'
-import { IP } from '../../env.js'
+import { IP } from '../../env'
+import Checkout from './stack/clientCartComponents/checkout.js'
+import Cart from './stack/clientCartComponents/cart.js'
 
 const width=Dimensions.get("window").width
 
@@ -13,21 +15,10 @@ export default function clientCart() {
     const order= useSelector(state=> state.PreOrder) 
     const user= useSelector(state=> state.User) 
     const totalPrice= useSelector(state=> state.TotalPrice) 
+    const [render,setRender]=useState(true)
     const dispatch= useDispatch()
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-
-    const handleDelete=(id)=>{     //elimino producto del carrito de compras
-        dispatch(deleteProduct(id))
-    }
 
     const handlePostOrder=()=>{
         axios.post(`${IP}/orderItems`,[order,user])
@@ -37,45 +28,44 @@ export default function clientCart() {
         dispatch(postDelete())
     }
     
+    const handleOrderRender=()=>{
+        setRender(true)
+    }
+    const handleCheckRender=()=>{
+        setRender(false)
+    }
+
 
     
     return (
         <View
         style={{flex:1, backgroundColor: "white"}}>
-            {  <FlatList
-                keyExtractor={item => item.id.toString()}
-                data={order}
-                renderItem={({item})=>
-                        <View style={styles.container}>
-                            <View style={styles.contImage}>
-                                <ImageBackground source={{uri: item.img}} style={styles.image}>
-                                    <View style={styles.buttonX}>
-                                        <Button
-                                        onPress={() => handleDelete(item.id)} 
-                                        title="x"
-                                        color="#F15A4D"
-                                        />
-                                    </View>
-                                   
-                                </ImageBackground>
-                            </View>
-                            
-                             
-                            
-                            <View style={styles.info}>
-                                <Text style={styles.name}>{item.name}</Text>
-                                <Text style={styles.price}>${item.price.toFixed(2)}</Text>
-                                <View style={styles.contQuantity}>
-                                    <Text>Quantity:</Text>
-                                    <Text style={{color:"#777777"}}> x{item.quantity} </Text>
-                                </View>
-                                
-                            </View>
-                        </View>
-                } 
-            /> 
+          <View style={{display:order.length<1 && "none"}}>
+            <View style={{alignSelf:"center", alignItems:"center",height:width*0.1, width:width*0.3,  marginTop:30, marginBottom:20}}>
+                <Text style={styles.cart}>Cart</Text>
+            </View> 
+            <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4 }}>
+                <TouchableOpacity onPress={()=>handleOrderRender()}>
+                 <View style={[styles.renderButton,{borderBottomWidth:render?5:0,borderBottomColor:"#6979F8"}]}>
+                    <Text style={{ color:!render ? "gray" : "#6979F8",fontWeight:"400",}}>CART</Text>
+                </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>handleCheckRender()}>
+                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:5, borderBottomColor:"#6979F8"}]}>
+                    <Text  style={{ color:render ? "gray" : "#6979F8",fontWeight:"400"}}>CHECKOUT</Text>
+                </View>
+                </TouchableOpacity>
+            </View>
+
+         </View>
+         
+          
+           { 
+           render ?  <Cart order={order}/>
+                  :  <Checkout order={order}/>
                     
             }
+
             {order.length>0 ? (
             <View style={styles.contTotalOrder}>
                 <Text style={styles.totalOrder}>
@@ -93,82 +83,23 @@ export default function clientCart() {
              </View>
             }
            
+           
         </View>
         )
 }
 
 const styles = StyleSheet.create({
-  container:{
-      display:"flex",
-      flexDirection:"row",
-      marginBottom:15,
-      marginTop:10,
-      borderBottomWidth:1,
-      borderBottomColor:"#E0E0E0",
-      
+  
+  cart:{
+    marginTop:5,
+    fontSize: width*0.07,
+    fontWeight: "bold",
   },
-  buttonX:{
-      width:25,
-      position:"absolute",
-      top:0,  
-      right:0,
-      borderRadius:3
-  },
-  contImage:{
-      width: 100,
-      height: 100,
-      flexGrow:1,
-      margin:0,
-
-  },
-  image:{
-      width: "100%",
-      height: "100%",
-      flexGrow:1,
-      margin:0
-      
-},
-  info:{
-      display:"flex",
-      position:"relative",
-      flexGrow:10,
-  },
-  name:{
-      display:"flex",
-      position:"absolute",
-      top:0,
-      left:5,
-      color:"#151522",
-      fontStyle: "normal",
-      fontWeight: "bold",
-      fontSize: 15,
-     // lineheight: 20,
-      
-  },
-  price:{
-    display:"flex",
-    position:"absolute",
-    top:0,
-    right:0,
-    color:"#151522",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 15,
-    //lineheight: 20,
+  renderButton:{
+    alignItems:"center",
+    width:(width*0.4)/2,
+    fontSize:width*0.06,
     
-  },
-  contQuantity:{
-      display:"flex",
-      alignSelf:"flex-end",
-      position:"absolute",
-      bottom:30,
-      left:5,
-      flexDirection:"row",
-      fontStyle: "normal",
-      fontWeight: "normal",
-      fontSize: 11,
-      paddingBottom:5
-     // lineheight: 13,
   },
   contTotalOrder:{
     marginTop:15,

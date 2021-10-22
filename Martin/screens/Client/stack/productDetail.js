@@ -78,11 +78,19 @@ export default function ProductDetail({route,navigation}) {
                 <Image  
                 source={{uri: product.img}}
                 style={styles.image}/>
-
-                <Text style={styles.price}>
-                    ${product.price}
-                </Text>
-
+                <View style={styles.contPrice}>
+                    {  
+                        product.sale   && <Text style={styles.discount}>{ "$" + product.price}</Text>
+                    }
+                    <View style={{flexDirection:"row"}}>
+                        <Text style={styles.price}>
+                            ${product.sale ? ((product.price*(100-product.salePercent))/100).toFixed(2) : product.price} 
+                        </Text>
+                       {product.sale && <View style={{justifyContent:"center", marginLeft:width*0.04}}>
+                            <Text style={styles.salePercent}>{product.salePercent + "% OFF"}</Text>
+                        </View>}    
+                    </View>  
+                </View>
                 <View style={styles.category}>
                     <Text style={{fontSize:width*0.06, fontWeight:"600", color:"#6979F8"}}>
                         {category}
@@ -99,10 +107,10 @@ export default function ProductDetail({route,navigation}) {
                 
                 <View style={styles.buttonContainer}> 
                     <TouchableOpacity
-                    onPress={()=>setCount(count + 1) }
+                    onPress={()=>handleCount() }
                     style={ styles.minibutton  }>
                         <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>
-                            +
+                            -
                         </Text>
                     </TouchableOpacity>
                     
@@ -110,12 +118,12 @@ export default function ProductDetail({route,navigation}) {
                         <Text style={styles.countText}>{count}</Text>
                     </View>
                     <TouchableOpacity
-                    onPress={()=>handleCount() }
+                    onPress={()=>setCount(count + 1) }
                     style={ styles.minibutton  }
                     >
                         <Text
                         style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>
-                            -
+                            +
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -193,10 +201,31 @@ const styles = StyleSheet.create({
         
         
     },
+    contPrice:{
+      
+    },
     price:{
         fontSize:width*0.13,
         marginLeft:width*0.05,
         fontWeight:"bold"
+    },
+    discount:{
+        textAlign:"center",
+        fontSize:width*0.06,
+        marginLeft:width*0.01,
+        marginBottom:- width*0.04,
+        fontWeight:"400",
+        width:width*0.29,
+        textDecorationLine:"line-through",
+        color:"gray"
+    },
+    salePercent:{
+        fontSize:width*0.06,
+        color:"#00bb2d",
+        fontWeight:"400",
+        height:width*0.08,
+        // backgroundColor:"#F15A4D",
+        borderRadius:5
     },
     image:{
         height:width*0.9,
