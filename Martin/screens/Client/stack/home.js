@@ -177,7 +177,7 @@ export default function Home({navigation}) {
                       <View
                        style={{flexDirection: 'row'}}>
                         <Text
-                        style={{fontWeight:"bold"}}>VALUE OF ITEMS: ${item.total}         QUANTITY: {item.orderItems.length}</Text>
+                        style={{fontWeight:"bold"}}>VALUE OF ITEMS: ${item.total.toFixed(2)}         QUANTITY: {item.orderItems.length}</Text>
                         
                       </View>
                     
