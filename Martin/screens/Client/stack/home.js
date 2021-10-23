@@ -16,6 +16,10 @@ export default function Home({navigation}) {
     const [sales,setSales]= useState([])
     const [orders,setOrders]= useState([]) 
     const dispatch= useDispatch();  
+    
+    
+    
+    
     useEffect(()=>{
       axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
           .then(function(response){
@@ -200,6 +204,16 @@ const styles = StyleSheet.create({
         marginTop:30,
         paddingLeft: Dimensions.get("window").width*0.17
       },
+      OrderHeader:{
+     
+        alignSelf:"center",
+        fontSize: width*0.07,
+        fontWeight: "bold",
+        marginBottom:15,
+        
+        
+      },
+
       image:{
         width:width -50,
         height:width -40 ,

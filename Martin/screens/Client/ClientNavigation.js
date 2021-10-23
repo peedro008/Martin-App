@@ -38,7 +38,9 @@ const ClientNavigation = () => {
     })
       }
    >
-        <Tab.Screen name="Home" component={clientHome} options={{headerShown: false}} />
+        <Tab.Screen name="Home" component={clientHome} options={{headerShown: false}} options={{ unmountOnBlur: true }} listeners={({ navigation }) => ({
+        blur: () => navigation.setParams({ screen: undefined }),
+      })} />
         <Tab.Screen name="Catalog" component={clientCatalog} options={{headerShown: false}} />
         <Tab.Screen name="Cart" component={clientCart} options={{headerShown: false}} />
         <Tab.Screen name="User" component={clientUser} />

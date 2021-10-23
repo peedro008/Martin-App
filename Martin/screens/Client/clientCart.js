@@ -40,7 +40,7 @@ export default function clientCart() {
     return (
         <View
         style={{flex:1, backgroundColor: "white"}}>
-          <View style={{display:order.length<1 && "none"}}>
+          <View style={{display:/*order.length<1 && "none"*/"flex"}}>
             <View style={{alignSelf:"center", alignItems:"center",height:width*0.1, width:width*0.3,  marginTop:30, marginBottom:20}}>
                 <Text style={styles.cart}>Cart</Text>
             </View> 
@@ -78,7 +78,7 @@ export default function clientCart() {
             </View> 
             </View>)
              :
-             <View style={{justifyContent:"center", alignItems:"center", position:"absolute", top:50, left:Dimensions.get("screen").width*0.25}}>
+             <View style={{marginTop:Dimensions.get("screen").width*0.50, justifyContent:"center", alignItems:"center", position:"absolute", top:50, left:Dimensions.get("screen").width*0.25}}>
                 <Icon name="shopping-cart" color="gray" size={Dimensions.get("screen").width/2}/>
              </View>
             }
@@ -111,11 +111,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 15,
     alignSelf:"center"
-    //lineheight: 20,
+  //  lineheight: 20,
 
   },
   buttonOrder:{
-      width:width,
+       width:width,
       height:width*0.11,
       alignSelf:"center",
       justifyContent:"center",
