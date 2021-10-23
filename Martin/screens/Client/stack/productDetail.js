@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const width=Dimensions.get("window").width
 
+const height=Dimensions.get("window").height
+
 export default function ProductDetail({route,navigation}) {
     let {id} = route.params
     
@@ -40,12 +42,12 @@ export default function ProductDetail({route,navigation}) {
             let order={
                 name:product.name,
                 id:product.id,
-                price:(product.price*(100-product.salePercent))/100,
-                sale:product.sale,  
+                price: product.price-(product.price * product.salePercent / 100),
+                sale:product.sale,
                 salePercent: product.salePercent,
                 img: product.img,
                 quantity:count,
-                total: ((product.price*(100-product.salePercent))/100) * count
+                total: (product.price-(product.price * product.salePercent / 100)) * count
             }
                 let aux= preOrder.filter(el=> el.name == order.name)
                 if(aux.length <1 && count>0){
@@ -60,8 +62,9 @@ export default function ProductDetail({route,navigation}) {
     
      
     return (
-       <ScrollView>
-        <View style={{flex:1}}> 
+       
+        <View
+         style={{flex:1}}>
             <View style={{flex:1, backgroundColor:"#fff"}}> 
 
                 <Text style={styles.products}>
@@ -75,6 +78,7 @@ export default function ProductDetail({route,navigation}) {
                 size={width*0.07 }
                 />
             </View>
+            
                 <Image  
                 source={{uri: product.img}}
                 style={styles.image}/>
@@ -101,9 +105,12 @@ export default function ProductDetail({route,navigation}) {
                 <Text style={styles.name}>
                     {product.name}
                 </Text>
-                <Text style={styles.desc}>
-                    {product.description}
-                </Text>
+               <ScrollView>
+                    <Text style={styles.desc }>
+                        {product.description}
+                    </Text>
+                
+                </ScrollView>
                 
                 <View style={styles.buttonContainer}> 
                     <TouchableOpacity
@@ -146,7 +153,7 @@ export default function ProductDetail({route,navigation}) {
                 }
             </View>
         </View>
-        </ScrollView>)
+        )
 }
 
 const styles = StyleSheet.create({
@@ -226,7 +233,7 @@ const styles = StyleSheet.create({
         borderRadius:5
     },
     image:{
-        height:width*0.9,
+        height:height*0.4,
         width:width,
         alignSelf:"center"
     },
@@ -241,14 +248,21 @@ const styles = StyleSheet.create({
         fontSize:width*0.04,
         marginLeft:width*0.05,
         marginRight:width*0.05,
-        textAlign:"justify"
+        textAlign:"justify",
+        overflow: "visible",
+      
+      
+       
     },
     buttonContainer:{
-        marginTop:50,
+       
+       
         display:"flex", 
         flexDirection:"row", 
         alignSelf:"center",
-        justifyContent:"center"
+        justifyContent:"center",
+       
+        marginVertical:20        
     },
     countText:{
         color:"#6979F8",
@@ -259,10 +273,13 @@ const styles = StyleSheet.create({
     buttonStyle:{
         color:"#FFFFFF" ,
         alignSelf:"center", 
-        fontSize:width*0.05
+        fontSize:width*0.05,
+        
+
+
     },
     buttonView:{
-        marginTop:35,
+        
         width:width, 
         height:width*0.11, 
         borderRadius:5, 
