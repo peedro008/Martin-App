@@ -177,10 +177,10 @@ const styles = StyleSheet.create({
     },
     products:{
         alignSelf:"center",
-        marginTop:30,
+        marginTop:width*0.08,
         marginBottom:15,
         fontSize:width*0.07,
-        fontWeight: "bold"
+        fontWeight: "600"
     },
     count:{
         marginLeft:9,
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     price:{
         fontSize:width*0.13,
         marginLeft:width*0.05,
-        fontWeight:"bold"
+        fontWeight:"600"
     },
     discount:{
         textAlign:"center",
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
     buttonView:{
         
         width:width, 
-        height:width*0.11, 
+        height: width*0.12, 
         borderRadius:5, 
         backgroundColor:"#F15A4D", 
         justifyContent:"center"

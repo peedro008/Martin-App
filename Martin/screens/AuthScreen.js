@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     },
     heading: {
         fontSize: width*0.07,
-        fontWeight: 'bold',
+        fontWeight: '600',
         marginLeft:width*0.1,
         marginTop: width*0.13,
         color: 'black',
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     button: {
         width: '100%',
         backgroundColor: '#F15A4D',
-        height: 40,
+        height: width*0.12,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',

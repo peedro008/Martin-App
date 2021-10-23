@@ -98,10 +98,18 @@ export default function Home({navigation}) {
               
               <Image  style={styles.image} source={{uri:item.img}}/>
                 <View style={styles.footer}>
-                  <Text style={ item.name.length<15 ? styles.title : styles.title2}>{item.name}</Text>
-                    <View style={{ flexDirection:"row" , alignItems:"center"}}>
-                        <Text  style={styles.price}>${item.sale ? ((item.price*(100-item.salePercent))/100).toFixed(2) : item.price}</Text>
+                  <View style={{width:width*0.45, flexWrap:"wrap"}}>
+                    <Text style={ styles.title }>{item.name}</Text>
+                  </View>
+                    <View style={{ alignItems:"center", alignSelf:"flex-end"}}>
                         <Text  style={ styles.prevPrice}>${item.price.toFixed(2) }</Text>
+                      <View style={{flexDirection:"row",alignItems:"flex-start", paddingVertical:0}}>
+                        <Text  style={styles.price}>${item.sale ? ((item.price*(100-item.salePercent))/100).toFixed(2) : item.price}</Text>
+                        <View style={{flexDirection:"row",alignItems:"flex-end"}}>
+                          <Text style={{color:"#00bb2d", fontSize:width*0.05}}>{item.salePercent}</Text>
+                          <Text style={{color:"#00bb2d", fontSize:width*0.05}}>"% OFF </Text>
+                        </View>
+                      </View>
                     </View>
                 </View>
                 <View style={styles.buttonSale}>
@@ -178,8 +186,8 @@ export default function Home({navigation}) {
                     }>
                 </FlatList>:
                 <View>
-                  <ImageBackground source={{uri:"https://icons.iconarchive.com/icons/iconsmind/outline/512/Inbox-Empty-icon.png"}}
-                  style={{width:300, height:250, alignSelf:"center"}}/>
+                  <Icon name="file-text" type="feather" size= {width*0.2} />
+      
                   </View>}
       </View>
         </View>
@@ -190,16 +198,15 @@ export default function Home({navigation}) {
 
 const styles = StyleSheet.create({
   container:{
-        flex:1,
         justifyContent:"center",
         alignItems:"center",
-        
+
       },
       header:{
         textAlign:"center",
         alignSelf:"center",
         fontSize: width*0.07,
-        fontWeight: "bold",
+        fontWeight: "600",
         marginBottom:15,
         marginTop:30,
         paddingLeft: Dimensions.get("window").width*0.17
@@ -208,17 +215,17 @@ const styles = StyleSheet.create({
      
         alignSelf:"center",
         fontSize: width*0.07,
-        fontWeight: "bold",
+        fontWeight: "600",
         marginBottom:15,
         
         
       },
 
       image:{
-        width:width -50,
-        height:width -40 ,
+        width:width*0.9,
+        height:width*0.8  ,
         justifyContent:"center",
-        resizeMode:"cover",
+        // resizeMode:"cover",
         alignSelf:"center",
         borderRadius:5,
         
@@ -226,24 +233,25 @@ const styles = StyleSheet.create({
       title:{
         fontWeight:"600",
         fontSize:width*0.05,
-        textAlign:"justify"
-        
+        textAlign:"justify",
+        marginLeft: width*0.03,
+      
       },
       title2:{
         fontWeight:"600",
         fontSize:width*0.04,
-        
-    
+        marginLeft: width*0.03,
+      
       },
       price:{
-        fontWeight:"bold",
+        fontWeight:"600",
         fontSize:width*0.07,
-        color:"#00bb2d",
-        marginHorizontal:8
+        marginRight:width*0.03
         //color:"#FF0808"
       },
       prevPrice:{
-        fontWeight:"bold",
+        fontWeight:"400",
+        alignSelf:"flex-start",
         fontSize:width*0.05,
         color:"#F15A4D",
         textDecorationLine:"line-through"
@@ -251,25 +259,25 @@ const styles = StyleSheet.create({
       footer:{
         flexDirection:"row",
         justifyContent:"space-between",
-        height:width*0.14,
-        paddingHorizontal:40,
+        height:width*0.16,
         alignItems:"center",
-        backgroundColor: 'rgba(52, 52, 52, 0.1)',
-        width:width -50,
+        backgroundColor:'rgba(255,255,255, 0.4)',
+        width:width*0.9,
         alignSelf:"center",
-        marginTop:-110,
-        marginBottom:4
+        marginTop:-width*0.16,
+        marginBottom:4,
+        borderBottomLeftRadius:5,
+        borderBottomRightRadius:5
         
       },
       buttonSale:{
         width:(width -50)/2,
-        height:width*0.08 ,
+        height: width*0.12 ,
         alignSelf:"center",
-        marginTop:-4,
-        marginBottom:10,
         backgroundColor:"#F15A4D",
         justifyContent:"center",
-        borderRadius:5
+        borderRadius:5,
+        marginTop:-width*0.015
       },
       buttonStyle:{
         color:"#FFFFFF" ,

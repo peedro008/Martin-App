@@ -163,7 +163,7 @@ const Styles= StyleSheet.create({
     
     },
     searchBar:{
-        marginTop:20,
+        marginTop:width*0.053,
         alignSelf:"center", 
         backgroundColor: 'white', 
         borderWidth: 1, 
@@ -188,16 +188,16 @@ const Styles= StyleSheet.create({
         position:"relative"
     },
     search:{
-        marginTop:5,
+        marginTop:width*0.018,
         fontSize: width*0.07,
-        fontWeight: "bold"
+        fontWeight: "600"
     },
     categories:{
         paddingLeft:20,
         marginTop:15,
         marginBottom:15,
         fontSize:width*0.07,
-        fontWeight: "bold",
+        fontWeight: "600",
         alignSelf:"center",
         textAlign:"center"
     },
