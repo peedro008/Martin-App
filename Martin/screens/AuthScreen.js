@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ImageBackground, View, Text, StyleSheet, TouchableOpacity, TextInput, Platform } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, TextInput, Platform,Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import ClientNavigation from "./Client/ClientNavigation"
 import { useEffect} from 'react';
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { IP } from '../env';
 
 
+const width=Dimensions.get("window").width
 
 
 const AuthScreen = () => {
@@ -82,12 +83,14 @@ const AuthScreen = () => {
              
         //<ImageBackground source={require('../image/logo.png')} style={styles.image}>
             <View style={styles.card}>
+                 <Image style={styles.image} source={require('../assets/logo.png')}/>
                 <Text style={styles.heading}>{isLogin ? 'Login' : 'Signup'}</Text>
+                <Text style={styles.description}>Enter your email and password for {"\n"}signing in. Thanks.</Text>
                 <View style={styles.form}>
-                    <View style={styles.inputs}>
-                        <TextInput style={styles.input} placeholder="Email" autoCapitalize="none" onChangeText={setEmail}></TextInput>
-                        {!isLogin && <TextInput style={styles.input} placeholder="Name" onChangeText={setName}></TextInput>}
-                        <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" onChangeText={setPassword}></TextInput>
+                  
+                        <TextInput underlineColorAndroid='transparent' style={styles.input} placeholder="Email" autoCapitalize="none" onChangeText={setEmail}></TextInput>
+                        {!isLogin && <TextInput underlineColorAndroid='transparent' style={[styles.input,{marginTop:width*0.055}]} placeholder="Name" onChangeText={setName}></TextInput>}
+                        <TextInput secureTextEntry={true} style={[styles.input,{marginTop:width*0.055}]} placeholder="Password" onChangeText={setPassword}></TextInput>
                         <Text style={[styles.message, {color: isError ? 'red' : 'green'}]}>{message ? getMessage() : null}</Text>
                         <TouchableOpacity style={styles.button} onPress={onSubmitHandler}>
                             <Text style={styles.buttonText}>Done</Text>
@@ -95,7 +98,7 @@ const AuthScreen = () => {
                         <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
                             <Text style={styles.buttonAltText}>{isLogin ? 'Sign Up' : 'Log In'}</Text>
                         </TouchableOpacity>
-                    </View>    
+                     
                 </View>
             </View>
         //</ImageBackground>
@@ -107,77 +110,76 @@ const AuthScreen = () => {
 
 const styles = StyleSheet.create({
     image: {
-        flex: 1,
-        width: '100%',
-        height:"50",
+        width: width*0.8,
+        height:width*0.6,
         alignItems: 'center',
-
+        marginTop:width*0.25
     },  
     card: {
         flex: 1,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        width: '80%',
-        marginTop: '40%',
-        borderRadius: 20,
-        maxHeight: 380,
-        paddingBottom: '30%',
+        alignItems:"center"
     },
     heading: {
-        fontSize: 30,
+        fontSize: width*0.07,
         fontWeight: 'bold',
-        marginLeft: '10%',
-        marginTop: '5%',
-        marginBottom: '30%',
+        marginLeft:width*0.1,
+        marginTop: width*0.13,
         color: 'black',
+        alignSelf:"flex-start"
+    },
+    description:{
+        // backgroundColor:"green",
+        marginTop:width*0.02,
+        alignSelf:"flex-start",
+        marginLeft:width*0.1,
+        color:"gray",
+        fontWeight:"400",
+        fontSize:width*0.05
     },
     form: {
-        flex: 1,
-        //justifyContent: 'space-between',
-        paddingBottom: '5%',
-    },
-    inputs: {
-        width: '100%',
+        width: width*0.8,
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: '10%',
-    },  
+        justifyContent:"flex-start",
+        // backgroundColor:"orange",
+        marginTop: width*0.1
+      
+    }, 
     input: {
-        width: '80%',
+        width: '100%',
         borderBottomWidth: 1,
         borderBottomColor: 'black',
-        paddingTop: 10,
-        fontSize: 16, 
-        minHeight: 40,
+        fontSize:width*0.04, 
+        height:width*0.14,
+        borderWidth:1,
+        borderColor:"rgba(228, 228, 228, 0.6)",
+        borderRadius:5
     },
     button: {
-        width: '80%',
-        backgroundColor: 'black',
+        width: '100%',
+        backgroundColor: '#F15A4D',
         height: 40,
-        borderRadius: 50,
+        borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 5,
+        marginTop:-width*0.01,
+      
     },
     buttonText: {
         color: 'white',
-        fontSize: 16,
-        fontWeight: '400'
+        fontSize: width*0.05,
+       
     },
     buttonAlt: {
         width: '80%',
-        borderWidth: 1,
-        height: 40,
-        borderRadius: 50,
-        borderColor: 'black',
+        height: width*0.1,
         justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 5,
     },
     buttonAltText: {
-        color: 'black',
-        fontSize: 16,
-        fontWeight: '400',
+        color: '#6979F8',
+        fontSize: width*0.05,
     },
     message: {
         fontSize: 16,

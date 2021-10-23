@@ -54,7 +54,7 @@ export default  function  Products ({route, navigation}) {
                 <SearchBar 
                     inputContainerStyle={{backgroundColor:"white"}}
                     inputStyle={{backgroundColor: 'white'}}
-                    containerStyle={{marginTop:20, alignSelf:"center", backgroundColor: 'white', borderWidth: 1, borderRadius: 5, width:width-10}}
+                    containerStyle={styles.searchBar}
                     onChangeText={handleSearch}
                     value={name}/>
             </View>
@@ -165,6 +165,17 @@ const styles = StyleSheet.create({
         fontSize: width*0.07,
         fontWeight: "bold",
         
+    },
+    searchBar:{
+        marginTop:20,
+        alignSelf:"center", 
+        backgroundColor: 'white', 
+        borderWidth: 1, 
+        borderRadius: 5,
+        borderColor:"rgba(228, 228, 228, 0.6)", 
+        borderTopColor:"rgba(228, 228, 228, 0.6)",
+        borderBottomColor:"rgba(228, 228, 228, 0.6)",
+        width:width-10
     },
     products:{
         paddingLeft:20,

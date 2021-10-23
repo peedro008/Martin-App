@@ -47,12 +47,12 @@ export default function clientCart() {
             <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4 }}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
                  <View style={[styles.renderButton,{borderBottomWidth:render?5:0,borderBottomColor:"#6979F8"}]}>
-                    <Text style={{ color:!render ? "gray" : "#6979F8",fontWeight:"400",}}>CART</Text>
+                    <Text style={{ color:!render ? "#999999" : "#6979F8",fontWeight:"400",}}>CART</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>handleCheckRender()}>
                  <View style={[styles.renderButton,{borderBottomWidth:render? 0:5, borderBottomColor:"#6979F8"}]}>
-                    <Text  style={{ color:render ? "gray" : "#6979F8",fontWeight:"400"}}>CHECKOUT</Text>
+                    <Text  style={{ color:render ? "#999999" : "#6979F8",fontWeight:"400"}}>CHECKOUT</Text>
                 </View>
                 </TouchableOpacity>
             </View>

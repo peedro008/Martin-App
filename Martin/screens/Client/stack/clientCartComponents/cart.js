@@ -59,7 +59,7 @@ const styles= StyleSheet.create({
         marginBottom:12,
         marginTop:10,
         borderWidth:0.5,
-        borderColor:"#E0E0E0",
+        borderColor:"rgba(228, 228, 228, 0.6)",
         borderRadius:8,
         borderTopWidth:0.5,
         shadowColor:"black",
@@ -74,7 +74,7 @@ const styles= StyleSheet.create({
         height: width*0.25,
         flexGrow:1,
         margin:width*0.03,
-        backgroundColor:"yellow"
+       
         
     },
     image:{

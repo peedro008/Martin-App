@@ -21,7 +21,7 @@ const styles= StyleSheet.create({
     dot:{
         height:10,
         borderRadius:5,
-        backgroundColor:"gray",
+        backgroundColor:"#999999",
         marginHorizontal:8,
         marginTop:10
       }

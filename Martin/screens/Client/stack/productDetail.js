@@ -40,12 +40,12 @@ export default function ProductDetail({route,navigation}) {
             let order={
                 name:product.name,
                 id:product.id,
-                price: product.price -(product.price * product.salePercent / 100),
-                sale:product.sale,
+                price:(product.price*(100-product.salePercent))/100,
+                sale:product.sale,  
                 salePercent: product.salePercent,
                 img: product.img,
                 quantity:count,
-                total: product.price * count
+                total: ((product.price*(100-product.salePercent))/100) * count
             }
                 let aux= preOrder.filter(el=> el.name == order.name)
                 if(aux.length <1 && count>0){
@@ -61,7 +61,7 @@ export default function ProductDetail({route,navigation}) {
      
     return (
        <ScrollView>
-        <View>
+        <View style={{flex:1}}> 
             <View style={{flex:1, backgroundColor:"#fff"}}> 
 
                 <Text style={styles.products}>
