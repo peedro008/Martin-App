@@ -75,7 +75,7 @@ export default function Home({navigation}) {
     return (
         <ScrollView style={{flex:1, backgroundColor:"#fff"}}>
           <View>
-          <View style={{display:"flex", flexDirection:"row",width:Dimensions.get("window").width, marginTop:20}}>
+          <View style={{display:"flex", flexDirection:"row",width:Dimensions.get("window").width, marginTop:width*0.018}}>
             <Text style={styles.header} >Deals Of The Week</Text>
             <View style={{position:"absolute", right:25, top:35}}>
               <Icon
@@ -274,10 +274,16 @@ const styles = StyleSheet.create({
         width:(width -50)/2,
         height: width*0.12 ,
         alignSelf:"center",
+        marginBottom:width*0.03,
         backgroundColor:"#F15A4D",
         justifyContent:"center",
         borderRadius:5,
-        marginTop:-width*0.015
+        marginTop:-width*0.015,
+        shadowColor:"black",
+        shadowOffset: { width: 0, height: 12},
+        shadowOpacity: 0.08,
+        shadowRadius: 5,
+        elevation:15,
       },
       buttonStyle:{
         color:"#FFFFFF" ,
