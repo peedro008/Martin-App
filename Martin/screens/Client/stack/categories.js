@@ -46,7 +46,7 @@ export default function Categories({navigation}) {
     
         <View
         style={{backgroundColor:"#fff", alignItems:"center", flex: 1}}>
-            <View style={{marginTop:30}}>
+            <View style={{marginTop:width*0.08}}>
                 <View
                 style={{alignItems:"center",height:50, width:400, backgroundColor:"white"}}>
                     <Text style={Styles.search}>

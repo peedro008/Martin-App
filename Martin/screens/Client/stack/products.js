@@ -10,7 +10,7 @@ const width=Dimensions.get("window").width
 
 export default  function  Products ({route, navigation}) {
     let category = route.params.params
-    let iconName = "shopping-bag"
+    let iconName = "shopping-bag" 
     const [cate, setCate]= useState([])
     const [name, setName]= useState("")
     const [product,setProduct] = useState([])
@@ -44,7 +44,7 @@ export default  function  Products ({route, navigation}) {
   
     return (
         <View style={styles.container}>
-            <View style={{marginTop:30}}>
+            <View style={{marginTop:width*0.08}}>
                 <View
                     style={{alignItems:"center",height:50, width:400, backgroundColor:"white"}}>
                         <Text style={styles.search}>

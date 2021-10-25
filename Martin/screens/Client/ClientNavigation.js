@@ -38,6 +38,7 @@ const ClientNavigation = () => {
     })
       }
    >
+     <Tab.Screen name="User" component={clientUser} options={{headerShown: false}} />
         <Tab.Screen name="Home" component={clientHome} 
         
          options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
@@ -45,7 +46,6 @@ const ClientNavigation = () => {
       })} />
         <Tab.Screen name="Catalog" component={clientCatalog} options={{headerShown: false}} />
         <Tab.Screen name="Cart" component={clientCart} options={{headerShown: false}} />
-        <Tab.Screen name="User" component={clientUser} />
     </Tab.Navigator>
     
   );
