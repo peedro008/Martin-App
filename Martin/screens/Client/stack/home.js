@@ -44,7 +44,7 @@ export default function Home({navigation}) {
      useEffect(()=>{    //traigo los productos en ofertas
          axios.get(`${IP}/productsSale`)
              .then(function(response){
-                 console.log(response.data)
+                 
                  setSales(response.data)
                   
  

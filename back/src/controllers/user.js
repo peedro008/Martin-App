@@ -1,7 +1,7 @@
 
 const bcrypt = require ('bcryptjs')
 const jwt = require ('jsonwebtoken')
-const{User,Role}= require('../bd')
+const{User,Role, UserInfo}= require('../bd')
 
 const signupadmin =async (req, res, next) => {
     // checks if email already exists
@@ -99,7 +99,7 @@ const login = (req, res, next) => {
                     res.status(502).json({message: "error while checking user password"});
                 } else if (compareRes) { // password match
                     const token = jwt.sign({ email: req.body.email }, 'secret', { expiresIn: '1h' });
-                    res.status(200).json({message: "user logged in", "token": token, role: dbUser.role});
+                    res.status(200).json({message: "user logged in", "token": token, role: dbUser.role, userId:dbUser.id});
                 } else { // password doesnt match
                     res.status(401).json({message: "invalid credentials"});
                 };
@@ -129,9 +129,46 @@ const isAuth = (req, res, next) => {
         res.status(200).json({ message: 'here is your resource' });
     };
 };
+
+const infoGet = async (req, res) => {
+    try{
+        let userId=req.query.userId
+        let info=await UserInfo.findOne({
+         where:{
+             userId:userId
+         },
+         attributes:['id','fullName','address','apt_Suite_', "postalCode", "phone"],
+         
+        })
+     info?res.status(200).json(info):
+     res.status(404).send("no address");
+    }
+    catch(e){
+     console.log("Error in info controller"+ e)
+ }
+}
+const infoPost = async (req, res) =>{
+    try{
+        await UserInfo.create({
+            userId: req.body.userId,
+            fullName: req.body.fullName,
+            address: req.body.address,
+            apt_Suite_: req.body.apt_Suite_,
+            postalCode: req.body.postalCode,
+            phone: req.body.phone
+        })
+    
+    res.status(200).send("Order Added") 
+}
+    catch(e){
+    console.log("Error in products controller"+ e)
+}}
+
 module.exports={
     signup,
     login,
     isAuth,
-    signupadmin
+    signupadmin,
+    infoGet, 
+    infoPost
 }
