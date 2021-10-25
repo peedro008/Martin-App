@@ -47,12 +47,12 @@ const signupadmin =async (req, res, next) => {
 
 const userGet = async (req, res) => {
     try{
-        let userId=req.query.userId
-        let info=await UserInfo.findOne({
+        let id=req.query.id
+        let info=await User.findOne({
          where:{
-             userId:userId
+             id:id
          },
-         attributes:['id','name','LastName'],
+         attributes:['id','name','lastName'],
          
         })
      info?res.status(200).json(info):
@@ -80,6 +80,7 @@ const signup =async (req, res, next) => {
                     let userBd= User.create(({
                         email: req.body.email,
                         name: req.body.name,
+                        lastName:req.body.lastName,
                         password: passwordHash,
                         
                     }))
@@ -156,7 +157,7 @@ const infoGet = async (req, res) => {
          where:{
              userId:userId
          },
-         attributes:['id','fullName','address','apt_Suite_', "postalCode", "phone"],
+         attributes:['id','fullName','address','apt_Suite_', "postalCode", "phone", "default"],
          
         })
      info?res.status(200).json(info):
@@ -174,7 +175,8 @@ const infoPost = async (req, res) =>{
             address: req.body.address,
             apt_Suite_: req.body.apt_Suite_,
             postalCode: req.body.postalCode,
-            phone: req.body.phone
+            phone: req.body.phone,
+            default:req.body.default
         })
     
     res.status(200).send("Order Added") 

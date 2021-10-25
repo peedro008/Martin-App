@@ -1,10 +1,11 @@
 import { StyleSheet, Text,Button, View,FlatList,ImageBackground,TouchableOpacity, useWindowDimensions, Image, Dimensions, Animated, ScrollView} from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Card } from 'react-native-elements'
+import { Card,Icon } from 'react-native-elements'
 import {addOrder} from "../../../../actions"
 import axios from 'axios'
 import React,{useEffect,  useState} from 'react'
 import { IP } from '../../../../env'
+
 const width=Dimensions.get("window").width
 
 export default function orders() {
@@ -45,7 +46,7 @@ export default function orders() {
                 style={{width:325, height:180, backgroundColor:"grey",}}>
                 <View style={{flexDirection: 'row', marginBottom:13}}>
 
-                        <Text style={{color:"orange", fontSize:20}}>{item.status}</Text>
+                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="received" ? "#6979F8" : "#00bb2d" , fontSize:20}}>{item.status}</Text>
                         <Text style={{ fontWeight:"bold",paddingLeft:100,fontSize:16 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                         </View>
                         <Card.Divider/>
@@ -87,12 +88,12 @@ export default function orders() {
                         
                     </Card> 
                     </View>
-                        }>
-                    </FlatList>:
-                    <View>
-                    <Text>sdf</Text>
-        
-                    </View>}
+                        }/>
+                      :
+                      <View>
+                      <Icon name="file-text" type="feather" size= {width*0.2} />
+          
+                      </View>}
         </View>
         )
 }

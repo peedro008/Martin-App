@@ -16,9 +16,13 @@ const UserInfo= (sequelize)=>{
      address: {
         type: DataTypes.STRING,
      },
-     apt_Suite_: {
+     apt_Suite: {
         type: DataTypes.STRING,
         allowNull: true,
+     },
+     city: {
+        type:DataTypes.STRING,
+        allowNull:false,
      },
      postalCode: {
         type:DataTypes.STRING,
@@ -28,7 +32,9 @@ const UserInfo= (sequelize)=>{
          type:DataTypes.STRING(50),
          allowNull:false
      },
-  
+     default:{
+        type:DataTypes.BOOLEAN,
+     }
 
     
 

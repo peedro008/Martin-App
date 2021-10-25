@@ -5,18 +5,20 @@ import { useState } from 'react'
 import axios from 'axios'
 import {IP} from '../../../env'
 import { useSelector } from 'react-redux'
+import Orders from './homeComponents/orders'
+
+const width=Dimensions.get("window").width
 
 
 
-
-export default function user() {
+export default function user({navigation}) {
     const [name,setName]=useState("");
     const [lastName,setLastName]=useState("")
     const [render,setRender]=useState(true)
     const id=useSelector(state=>state.UserId)
 
     useEffect(()=>{
-       axios.get(`${IP}/user?=${id}`)
+       axios.get(`${IP}/user?id=${id}`)
     .then(res=>{
         setName(res.data.name);
         setLastName(res.data.lastName);
@@ -39,12 +41,12 @@ export default function user() {
           <Text style={styles.profile}>Profile</Text>
           <View style={styles.header}>
               <View style={styles.contInitials}>
-                <Text style={styles.initials}>TM</Text>
+                <Text style={styles.initials}>{name.charAt(0)+lastName.charAt(0)}</Text>
               </View>
               <Text style={styles.name}>{name + " " + lastName }</Text>
               <Text style={styles.address}>Larrea 719 Mendoza, Lujan de Cuyo</Text>
               <View style={styles.buttonEdit}>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => navigation.navigate("edit address",{name, lastName})}>
                       <Text>Edit Shipping Address</Text>
                   </TouchableOpacity>
               </View>
@@ -61,6 +63,7 @@ export default function user() {
                 </View>
                 </TouchableOpacity>
             </View>
+            <Orders/>
         </View>
     )}
   
@@ -93,17 +96,20 @@ const styles = StyleSheet.create({
         textAlign:"center",
         textAlignVertical:"center",
         fontSize:width*0.10,
-        fontWeight:"400"
+        fontWeight:"400",
+        textTransform:"uppercase"
+
     },
     name:{
         fontSize: width*0.07,
+        textTransform:"capitalize"
     },
     address:{
         width:width*0.7,
         color:"#666666",
         fontSize:width*0.04,
         textAlign:"center",
-        fontWeight:"400"
+        fontWeight:"400",
     },
     buttonEdit:{
         width:width*0.44,
