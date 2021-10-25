@@ -41,8 +41,11 @@ Category.belongsToMany(Product,{ through: 'product_category' });
 User.belongsToMany(Role,{ through: 'user_role' });
 Role.belongsToMany(User,{ through: 'user_role' });
 
-User.hasOne(Order);
+User.hasMany(Order);
 Order.belongsTo(User);
+
+UserInfo.hasMany(Order);
+Order.belongsTo(UserInfo)
 
 User.hasOne(UserInfo);
 UserInfo.belongsTo(User)

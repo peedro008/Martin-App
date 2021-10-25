@@ -7,7 +7,7 @@ import {IP} from '../../../env'
 import { useSelector } from 'react-redux'
 
 
-const width=Dimensions.get("window").width
+
 
 export default function user() {
     const [name,setName]=useState("");
