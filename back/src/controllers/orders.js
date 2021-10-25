@@ -1,9 +1,16 @@
 
-const {Order, OrderItems} = require("../bd") 
+const {Order, OrderItems, UserInfo} = require("../bd") 
 
 const postOrderItems=async(req,res)=>{
     let order = req.body[0]
     let user = req.body[1]
+    let fullName = req.body[2]
+    let address = req.body[3]
+    let apt_Suite_ = req.body[4]
+    let postalCode = req.body[5]
+    let phone = req.body[6]
+    let city = req.body[7]
+
     console.log( user)
      let count =0
      for(let i=0; i<order.length; i++){
@@ -11,10 +18,30 @@ const postOrderItems=async(req,res)=>{
      }
          
     try{
-        await Order.create({
-            total:count,
-            email: user[0],
+        await UserInfo.create({
+            
+            city:city,
+            fullName: fullName,
+            address:address,
+            apt_Suite_: apt_Suite_,
+            postalCode: postalCode,
+            phone: phone,
+             
         })
+        
+        
+        
+        
+        
+        
+        .then(UserInfo =>
+            Order.create({
+            total:count,
+            email: user[0] ,
+            userInfoId: UserInfo.id 
+        }))
+        
+        
         .then(Order => order.map(e=>{
             try{
                 OrderItems.create({
@@ -26,8 +53,10 @@ const postOrderItems=async(req,res)=>{
                     orderId: Order.id,
                     img: e.img
                 })
-             res.status(200).send("Order Added")   
+                
+                res.status(200).send("Order Added")   
             }
+        
             catch(e){
                 console.log("Error in Order items controller "+ e)
             }
@@ -36,6 +65,7 @@ const postOrderItems=async(req,res)=>{
         })
 
         )
+        
     }
     catch(e){
         console.log("Error in Order controller "+ e)

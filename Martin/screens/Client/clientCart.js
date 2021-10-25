@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions} from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions, ScrollView} from 'react-native'
 import { Icon } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,20 +8,43 @@ import axios from 'axios'
 import { IP } from '../../env'
 import Checkout from './stack/clientCartComponents/checkout.js'
 import Cart from './stack/clientCartComponents/cart.js'
+import { Input } from "react-native-elements";
 
 const width=Dimensions.get("window").width
 
 export default function clientCart() {
     const order= useSelector(state=> state.PreOrder) 
     const user= useSelector(state=> state.User) 
+    const id= useSelector(state=> state.UserId)
     const totalPrice= useSelector(state=> state.TotalPrice) 
     const [render,setRender]=useState(true)
     const dispatch= useDispatch()
-    
+    const [fullName, setFullName]= useState("")
+    const [address, setAddress]= useState("")
+    const [apt_Suite_, setApt_Suite_]= useState("")
+    const [postalCode, setPostalCode]= useState("")
+    const [phone, setPhone]= useState("")
+    const [city, setStateCity]= useState("")
     
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const handlePostOrder=()=>{
-        axios.post(`${IP}/orderItems`,[order,user])
+        axios.post(`${IP}/orderItems`,[order,user,fullName,address,apt_Suite_,postalCode,phone,city])
         .then(response=>{
           console.log(response.data)
         })
@@ -62,9 +85,55 @@ export default function clientCart() {
           
            { 
            render ?  <Cart order={order}/>
-                  :  <Checkout order={order}/>
+                  :  <ScrollView style={{flex:1, }}>
+                  
+                      <View>
+                      <View style={styles.container}>
+                          <Text style={styles.text}>Full Name</Text>
+                          <Input  leftIcon={{type:"font-awesome", name:"user"}} onChangeText={setFullName}/>
+                      </View>
+                      <View style={styles.container}> 
+                          <Text style={styles.text}>Street Address</Text>
+                          <Input leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={setAddress}/>
+                      </View>
+                      <View style={styles.container}> 
+                          <Text style={styles.text}>Apt / Suite / Other</Text>
+                          <Input leftIcon={{type:"font-awesome", name:"home"}} onChangeText={setApt_Suite_}/>
+                      </View>
+                      <View style={styles.container}> 
+                          <Text style={styles.text}>State / City</Text>
+                          <Input leftIcon={{type:"font-awesome", name:"building"}}onChangeText={setStateCity}/>
+                      </View>
+                      <View style={styles.container}> 
+                          <Text style={styles.text}>Postal Code</Text>
+                          <Input leftIcon={{type:"font-awesome", name:"clipboard"}}onChangeText={setPostalCode}/>
+                      </View>
+                      <View style={styles.container}> 
+                          <Text style={styles.text}>Phone</Text>
+                          <Input leftIcon={{type:"font-awesome", name:"phone"}}onChangeText={setPhone}/>
+                      </View>
+                      </View>
+          
+                      
+                  </ScrollView>
                     
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             {order.length>0 ? (
             <View style={styles.contTotalOrder}>
@@ -122,5 +191,16 @@ const styles = StyleSheet.create({
       borderRadius:5,
       backgroundColor:"#F15A4D"
 
-  }
+  },
+  container:{
+    width:width-50,
+    flex:1,
+    alignSelf:"center"
+},
+text:{
+   
+    fontWeight:"600",
+    fontSize:width*0.04,
+    textAlign:"justify"
+},
 })

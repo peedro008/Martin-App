@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet,ScrollView, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions} from 'react-native'
 import axios from 'axios'
 import { TextInput } from "react-native-gesture-handler";
@@ -18,7 +18,12 @@ export default function Checkout({order}){
     useEffect(()=>{
         axios.get(`${IP}/userinfo?=${id}`)
     })
-
+    const [fullName, setFullName]= useState("")
+    const [address, setAddress]= useState("")
+    const [apt_Suite_, setApt_Suite_]= useState("")
+    const [postalCode, setPostalCode]= useState("")
+    const [phone, setPhone]= useState("")
+    const [city, setStateCity]= useState("")
 
     return(
         <ScrollView style={{flex:1, }}>
@@ -26,27 +31,27 @@ export default function Checkout({order}){
             <View>
             <View style={styles.container}>
                 <Text style={styles.text}>Full Name</Text>
-                <Input leftIcon={{type:"font-awesome", name:"user"}}/>
+                <Input  leftIcon={{type:"font-awesome", name:"user"}} onChangeText={setFullName}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Street Address</Text>
-                <Input leftIcon={{type:"font-awesome", name:"map-pin"}}/>
+                <Input leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={setAddress}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Apt / Suite / Other</Text>
-                <Input leftIcon={{type:"font-awesome", name:"home"}}/>
+                <Input leftIcon={{type:"font-awesome", name:"home"}} onChangeText={setApt_Suite_}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>State / City</Text>
-                <Input leftIcon={{type:"font-awesome", name:"building"}}/>
+                <Input leftIcon={{type:"font-awesome", name:"building"}} onChangeText={setStateCity}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Postal Code</Text>
-                <Input leftIcon={{type:"font-awesome", name:"clipboard"}}/>
+                <Input leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={setPostalCode}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Phone</Text>
-                <Input leftIcon={{type:"font-awesome", name:"phone"}}/>
+                <Input leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={setPhone}/>
             </View>
             </View>
 
