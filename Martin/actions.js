@@ -11,6 +11,7 @@ export const USER = "USER"
 export const POST_ORDER = 'POST_ORDER'
 export const GET_SALES = 'GET_SALES'
 export const EDIT_PRICE = 'EDIT_PRICE'
+export const USER_ID = "USER_ID"
 export const POST_DELETE = "POST_DELETE"
 
 
@@ -21,6 +22,12 @@ export function userRole(role){
   return{
     type: USER_ROLE,
     payload: role
+  } 
+}
+export function userId(id){ 
+  return{
+    type: USER_ID,
+    payload: id
   } 
 }
 // CLIENT ACTIONS

@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, TextInput, Platform,Di
 import { NavigationContainer } from '@react-navigation/native';
 import ClientNavigation from "./Client/ClientNavigation"
 import { useEffect} from 'react';
-import {logIn, userRole, User} from "../actions";
+import {logIn, userRole, User, userId} from "../actions";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { IP } from '../env';
@@ -50,6 +50,7 @@ const AuthScreen = () => {
         .then(async res => { 
             try {
                 const jsonRes = await res.json();
+                const id = jsonRes.userId
                 if (res.status !== 200) {
                     setIsError(true);
                     setMessage(jsonRes.message);
@@ -58,7 +59,9 @@ const AuthScreen = () => {
                     setIsError(false);
                     setMessage(jsonRes.message);
                     dispatch(userRole(jsonRes.role));
-                    dispatch(User(payload.email))
+                    dispatch(User(payload.email));
+                    
+                    dispatch(userId(id))
                 }
             } catch (err) {
                 console.log(err);

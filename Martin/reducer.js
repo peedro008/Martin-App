@@ -2,7 +2,7 @@ import {
   ADD_PRODUCT, 
   USER_ROLE, 
   DELETE_PRODUCT,
-  USER,POST_ORDER, POST_DELETE
+  USER,POST_ORDER, POST_DELETE, USER_ID
    } from './actions'
 
 const initialState = {
@@ -10,6 +10,7 @@ const initialState = {
   PreOrder:[],
   TotalPrice:0,
   User:null,
+  UserId:null
 
 }
 
@@ -26,7 +27,11 @@ export default function reducer(state = initialState, action) {
           ...state,
           User: [action.payload]
         }
-
+        case USER_ID:
+          return{
+            ...state,
+            UserId: action.payload
+          }
 
       case ADD_PRODUCT:
         return{
