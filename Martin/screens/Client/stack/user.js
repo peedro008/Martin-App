@@ -6,7 +6,7 @@ import { useState } from 'react'
 const width=Dimensions.get("window").width
 
 
-const width=Dimensions.get("window").width
+
 
 export default function user() {
     const [render,setRender]=useState(true)

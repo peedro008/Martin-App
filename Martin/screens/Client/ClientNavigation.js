@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View ,Dimensions} from 'react-native';
+import { StyleSheet, Text,Button, View,FlatList,ImageBackground,TouchableOpacity, useWindowDimensions, Image, Dimensions, Animated, ScrollView} from 'react-native'
 import { TabNavigationState } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import clientHome from "./clientHome";
@@ -38,7 +38,7 @@ const ClientNavigation = () => {
     })
       }
    >
-     <Tab.Screen name="User" component={clientUser} options={{headerShown: false}} />
+     
         <Tab.Screen name="Home" component={clientHome} 
         
          options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
@@ -46,6 +46,9 @@ const ClientNavigation = () => {
       })} />
         <Tab.Screen name="Catalog" component={clientCatalog} options={{headerShown: false}} />
         <Tab.Screen name="Cart" component={clientCart} options={{headerShown: false}} />
+        <Tab.Screen name="User" component={clientUser} options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
+        blur: () => navigation.setParams({ screen: undefined }),
+      })}  />
     </Tab.Navigator>
     
   );
