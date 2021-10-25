@@ -44,7 +44,7 @@ Role.belongsToMany(User,{ through: 'user_role' });
 User.hasOne(Order);
 Order.belongsTo(User);
 
-UserInfo.hasOne(Order);
+UserInfo.hasMany(Order);
 Order.belongsTo(UserInfo)
 
 User.hasOne(UserInfo);
