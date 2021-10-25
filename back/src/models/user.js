@@ -16,6 +16,9 @@ const User= (sequelize)=>{
      name: {
         type: DataTypes.STRING,
      },
+     lastName: {
+        type: DataTypes.STRING,
+     },
      password: {
         type: DataTypes.STRING,
         allowNull: false,

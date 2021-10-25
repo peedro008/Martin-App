@@ -19,6 +19,7 @@ const AuthScreen = () => {
     const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
 
     const [isError, setIsError] = useState(false);
@@ -33,9 +34,11 @@ const AuthScreen = () => {
    
 
     const onSubmitHandler = () => {
+     
         const payload = {
             email,
             name,
+            lastName,
             password,
         };
         fetch(`${IP}/${isLogin ? 'login' : 'signup'}`, {
@@ -92,7 +95,11 @@ const AuthScreen = () => {
                 <View style={styles.form}>
                   
                         <TextInput underlineColorAndroid='transparent' style={styles.input} placeholder="Email" autoCapitalize="none" onChangeText={setEmail}></TextInput>
-                        {!isLogin && <TextInput underlineColorAndroid='transparent' style={[styles.input,{marginTop:width*0.055}]} placeholder="Name" onChangeText={setName}></TextInput>}
+                        {!isLogin && <TextInput underlineColorAndroid='transparent' style={[styles.input,{marginTop:width*0.055}]} placeholder="Name" onChangeText={setName}></TextInput>
+                        }
+                        {!isLogin && <TextInput underlineColorAndroid='transparent' style={[styles.input,{marginTop:width*0.055}]} placeholder="LastName" onChangeText={setLastName}></TextInput>
+
+                        }
                         <TextInput secureTextEntry={true} style={[styles.input,{marginTop:width*0.055}]} placeholder="Password" onChangeText={setPassword}></TextInput>
                         <Text style={[styles.message, {color: isError ? 'red' : 'green'}]}>{message ? getMessage() : null}</Text>
                         <TouchableOpacity style={styles.button} onPress={onSubmitHandler}>

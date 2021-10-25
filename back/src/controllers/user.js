@@ -17,9 +17,10 @@ const signupadmin =async (req, res, next) => {
                 if (err) {
                     return res.status(500).json({message: "couldnt hash the password"}); 
                 } else if (passwordHash) {
-                    let userBd= User.create(({
+                     User.create(({
                         email: req.body.email,
                         name: req.body.name,
+                        lastName:req.body.lastName,
                         password: passwordHash,
                         role: req.body.role
                         
@@ -43,6 +44,24 @@ const signupadmin =async (req, res, next) => {
         console.log('error', err);
     });
 };
+
+const userGet = async (req, res) => {
+    try{
+        let userId=req.query.userId
+        let info=await UserInfo.findOne({
+         where:{
+             userId:userId
+         },
+         attributes:['id','name','LastName'],
+         
+        })
+     info?res.status(200).json(info):
+     res.status(404).send("not found");
+    }
+    catch(e){
+     console.log("Error in userGet controller"+ e)
+ }
+}
 
 const signup =async (req, res, next) => {
     // checks if email already exists
@@ -166,6 +185,7 @@ const infoPost = async (req, res) =>{
 
 module.exports={
     signup,
+    userGet,
     login,
     isAuth,
     signupadmin,

@@ -38,14 +38,14 @@ const ClientNavigation = () => {
     })
       }
    >
-     <Tab.Screen name="User" component={clientUser} options={{headerShown: false}} />
         <Tab.Screen name="Home" component={clientHome} 
         
          options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
-        blur: () => navigation.setParams({ screen: undefined }),
-      })} />
+           blur: () => navigation.setParams({ screen: undefined }),
+          })} />
         <Tab.Screen name="Catalog" component={clientCatalog} options={{headerShown: false}} />
         <Tab.Screen name="Cart" component={clientCart} options={{headerShown: false}} />
+          <Tab.Screen name="User" component={clientUser} options={{headerShown: false}} />
     </Tab.Navigator>
     
   );

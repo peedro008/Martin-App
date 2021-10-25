@@ -1,15 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, Dimensions } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useState } from 'react'
-
-const width=Dimensions.get("window").width
+import axios from 'axios'
+import {IP} from '../../../env'
+import { useSelector } from 'react-redux'
 
 
 const width=Dimensions.get("window").width
 
 export default function user() {
+    const [name,setName]=useState("");
+    const [lastName,setLastName]=useState("")
     const [render,setRender]=useState(true)
+    const id=useSelector(state=>state.UserId)
+
+    useEffect(()=>{
+       axios.get(`${IP}/user?=${id}`)
+    .then(res=>{
+        setName(res.data.name);
+        setLastName(res.data.lastName);
+        console.log(res.data)
+    })
+            
+        
+    },[])
 
     const handleOrderRender=()=>{
         setRender(true)
@@ -17,6 +32,8 @@ export default function user() {
     const handleCheckRender=()=>{
         setRender(false)
     }
+
+
     return (
         <View style={{flex:1, backgroundColor:"#fff"}}>
           <Text style={styles.profile}>Profile</Text>
@@ -24,7 +41,7 @@ export default function user() {
               <View style={styles.contInitials}>
                 <Text style={styles.initials}>TM</Text>
               </View>
-              <Text style={styles.name}>Tobias Marroquin</Text>
+              <Text style={styles.name}>{name + " " + lastName }</Text>
               <Text style={styles.address}>Larrea 719 Mendoza, Lujan de Cuyo</Text>
               <View style={styles.buttonEdit}>
                   <TouchableOpacity>
@@ -67,7 +84,9 @@ const styles = StyleSheet.create({
         backgroundColor:"#F15A4D",
         justifyContent:"center",
         borderRadius:100,
-        marginBottom:25
+        marginBottom:25,
+        borderWidth:1,
+        borderColor:"#6979F8"
     },
     initials:{
         color:"#fff",

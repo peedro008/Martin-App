@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet,ScrollView, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions} from 'react-native'
+import axios from 'axios'
 import { TextInput } from "react-native-gesture-handler";
 import { Input } from "react-native-elements";
 import { Icon } from 'react-native-elements'
+import {IP} from "../../../../env"
+import { useSelector } from "react-redux";
 
 
 const width=Dimensions.get("window").width
 
 
 export default function Checkout({order}){
+
+    const id= useSelector(state=> state.UserId)
+
+    useEffect(()=>{
+        axios.get(`${IP}/userinfo?=${id}`)
+    })
+
+
     return(
         <ScrollView style={{flex:1, }}>
         { order.length>0 &&
             <View>
             <View style={styles.container}>
                 <Text style={styles.text}>Full Name</Text>
-                <Input style={styles.input} leftIcon={{type:"font-awesome", name:"user"}}/>
+                <Input leftIcon={{type:"font-awesome", name:"user"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Street Address</Text>
