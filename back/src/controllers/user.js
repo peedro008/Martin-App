@@ -169,21 +169,68 @@ const infoGet = async (req, res) => {
 }
 const infoPost = async (req, res) =>{
     try{
-        await UserInfo.create({
-            userId: req.body.userId,
-            fullName: req.body.fullName,
-            address: req.body.address,
-            apt_Suite_: req.body.apt_Suite_,
-            postalCode: req.body.postalCode,
-            phone: req.body.phone,
-            default:req.body.default
+        UserInfo.findOne({ where: { userId:req.query.id} })
+        .then(res=> {
+            // update
+            if(res){
+                res.update({
+                    userId: req.query.id,
+                    fullName: req.body.fullName,
+                    address: req.body.address,
+                    apt_Suite: req.body.apt_Suite.toString(),
+                    city:req.body.city,
+                    postalCode: req.body.postalCode.toString(),
+                    phone: req.body.phone.toString(),
+                    default:req.body.default
+
+                });
+            }else{
+                UserInfo.create({
+                   userId: req.query.id,
+                   fullName: req.body.fullName,
+                   address: req.body.address,
+                   city:req.body.city,
+                   apt_Suite: req.body.apt_Suite.toString(),
+                   postalCode: req.body.postalCode.toString(),
+                   phone: req.body.phone.toString(),
+                   default:req.body.default
+                });
+            }
+            // insert
         })
-    
-    res.status(200).send("Order Added") 
+        res.status(200).send("Order Added") 
+    }
+catch(e){
+console.log("Error in infoPost controller"+ e)
 }
+    
+}
+const updateInfo=async(req,res)=>{
+      
+    try{
+        let boolDefault = req.body.boolDefault
+        let id = req.query.id
+        let user= await UserInfo.findOne({
+                where:{userId:id}
+            })
+            if(user){
+                user.update(
+                    {default:boolDefault}
+                )
+                res.status(200).send("Success")
+            }
+            else{
+                res.status(404).send("user not found");
+            }
+       
+  
+     
+    }
     catch(e){
-    console.log("Error in products controller"+ e)
-}}
+     console.log("Error in updateInfo controller"+ e)
+ }
+}
+
 
 module.exports={
     signup,
@@ -192,5 +239,6 @@ module.exports={
     isAuth,
     signupadmin,
     infoGet, 
-    infoPost
+    infoPost,
+    updateInfo
 }

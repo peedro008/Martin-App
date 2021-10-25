@@ -22,7 +22,6 @@ export default function user({navigation}) {
     .then(res=>{
         setName(res.data.name);
         setLastName(res.data.lastName);
-        console.log(res.data)
     })
             
         
@@ -63,7 +62,7 @@ export default function user({navigation}) {
                 </View>
                 </TouchableOpacity>
             </View>
-            <Orders/>
+            <Orders name={name} lastName={lastName}/>
         </View>
     )}
   

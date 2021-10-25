@@ -5,7 +5,7 @@ const categories = require('../controllers/categories.js');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const router = Router();
-const{signup, login, isAuth, signupadmin, infoGet, userGet, infoPost}=require ('../controllers/user.js');
+const{signup, login, isAuth, signupadmin, infoGet, userGet, infoPost,updateInfo}=require ('../controllers/user.js');
 const { getOrders, postOrderItems, getUserOrders, getPendingOrders,getOrderId, updateOrderStatus } = require('../controllers/orders.js');
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -25,6 +25,8 @@ router.get('/user', userGet);
 router.get('/userinfo', infoGet);
 
 router.post('/userinfo', infoPost);
+
+router.put('/userinfo', updateInfo);
 
 //PRODUCT
 

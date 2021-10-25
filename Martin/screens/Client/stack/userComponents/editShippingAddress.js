@@ -12,7 +12,7 @@ import { setStatusBarBackgroundColor } from "expo-status-bar";
 const width=Dimensions.get("window").width
 
 
-export default function EditShippingAddress({route}){
+export default function EditShippingAddress(){
     // const {name,lastName}=route.params
 
     const [address,setAddress]=useState("")
@@ -20,13 +20,39 @@ export default function EditShippingAddress({route}){
     const [city,setCity]=useState("")
     const [postalCode,setPostalCode]=useState("")
     const [phone,setPhone]=useState("")
+    const [boolDefault,setBoolDefault]=useState(true)
+    const [name,setName]=useState("");
+    const [lastName,setLastName]=useState("")
 
     const id= useSelector(state=> state.UserId)
 
     useEffect(()=>{
-        axios.get(`${IP}/userinfo?=${id}`)
-    })
+        axios.get(`${IP}/user?id=${id}`)
+     .then(res=>{
+         setName(res.data.name);
+         setLastName(res.data.lastName);
+     })
+             
+         
+     },[])
 
+    const handleDefault=()=>{
+        setBoolDefault(!boolDefault)
+    }
+
+    const handleSave=()=>{
+        
+          axios.post(`${IP}/userinfo?id=${id}`,{
+                       fullName:name +" "+ lastName ,
+                       address: address,
+                       apt_Suite: apt_Suite,
+                       postalCode: postalCode,
+                       city:city,
+                       phone: phone,
+                       default:boolDefault
+          })
+        alert("Saved")
+    }
 
     return(
         <ScrollView style={{flex:1, backgroundColor:"#fff" }}>
@@ -45,21 +71,27 @@ export default function EditShippingAddress({route}){
                 <Input onChangeText={setCity} leftIcon={{type:"font-awesome", name:"building"}}/>
             </View>
             <View style={styles.container}> 
-                <Text onChangeText={setPostalCode} style={styles.text}>Postal Code</Text>
-                <Input leftIcon={{type:"font-awesome", name:"clipboard"}}/>
+                <Text style={styles.text}>Postal Code</Text>
+                <Input onChangeText={setPostalCode}  leftIcon={{type:"font-awesome", name:"clipboard"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Phone</Text>
-                <Input leftIcon={{type:"font-awesome", name:"phone"}}/>
+                <Input onChangeText={setPhone} leftIcon={{type:"font-awesome", name:"phone"}}/>
             </View>
             </View>
             <View style={styles.containerButtonDefault}>
+                <TouchableOpacity onPress={()=>handleDefault()}>
                 <View style={styles.contButtonDefault}>
-                    <View style={styles.buttonDefault}></View>
+                    <View style={boolDefault ? styles.buttonDefault1 : styles.buttonDefault2}></View>
                 </View>
+                </TouchableOpacity>
                 <Text style={styles.defaultText}>SET AS DEFAULT</Text>
             </View>
-
+            <TouchableOpacity onPress={()=>handleSave()}>
+                <View style={styles.buttonSave}>
+                    <Text style={styles.buttonSaveText}>Save</Text>
+                </View>
+            </TouchableOpacity>
         </ScrollView>
     )
 }
@@ -103,7 +135,14 @@ const styles= StyleSheet.create({
         elevation:1,
         justifyContent:"center"
     },
-    buttonDefault:{
+    buttonDefault1:{
+        height:width*0.06,
+        width:width*0.06,
+        backgroundColor:"#6979F8",
+        borderRadius:100,
+        alignSelf:"flex-end"
+    },
+    buttonDefault2:{
         height:width*0.06,
         width:width*0.06,
         backgroundColor:"#E4E4E4",
@@ -113,6 +152,21 @@ const styles= StyleSheet.create({
         fontSize:width*0.035,
         marginLeft:width*0.03,
         fontWeight:"400"
+    },
+    buttonSave:{
+        width:(width -50)/2,
+        height: width*0.12 ,
+        alignSelf:"center",
+        marginBottom:width*0.03,
+        backgroundColor:"#F15A4D",
+        borderRadius:5,
+        justifyContent:"center",
+        marginTop:37.5
+    },
+    buttonSaveText:{
+        color:"#FFFFFF" ,
+        alignSelf:"center", 
+        fontSize:width*0.05
     }
   
 })
