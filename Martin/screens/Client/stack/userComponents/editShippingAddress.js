@@ -23,6 +23,7 @@ export default function EditShippingAddress(){
     const [boolDefault,setBoolDefault]=useState(true)
     const [name,setName]=useState("");
     const [lastName,setLastName]=useState("")
+    const [saved,setSaved]=useState(false)
 
     const id= useSelector(state=> state.UserId)
 
@@ -51,7 +52,10 @@ export default function EditShippingAddress(){
                        phone: phone,
                        default:boolDefault
           })
-        alert("Saved")
+          setSaved(true)
+          setTimeout(()=>{
+              setSaved(false)
+          },2000)
     }
 
     return(
@@ -87,11 +91,16 @@ export default function EditShippingAddress(){
                 </TouchableOpacity>
                 <Text style={styles.defaultText}>SET AS DEFAULT</Text>
             </View>
-            <TouchableOpacity onPress={()=>handleSave()}>
-                <View style={styles.buttonSave}>
-                    <Text style={styles.buttonSaveText}>Save</Text>
-                </View>
-            </TouchableOpacity>
+            <View style={{alignItems: "center",justifyContent:"center",height: width*0.17}}>
+                <TouchableOpacity onPress={()=>handleSave()}>
+                    <View style={styles.buttonSave}>
+                        <Text style={styles.buttonSaveText}>Save</Text>
+                    </View>
+                </TouchableOpacity>
+                {
+                    saved && <Text style={{color:"#00bb2d",  fontSize:width*0.04}}>Successfully saved</Text>
+                }
+            </View>
         </ScrollView>
     )
 }
@@ -156,12 +165,10 @@ const styles= StyleSheet.create({
     buttonSave:{
         width:(width -50)/2,
         height: width*0.12 ,
-        alignSelf:"center",
-        marginBottom:width*0.03,
         backgroundColor:"#F15A4D",
         borderRadius:5,
         justifyContent:"center",
-        marginTop:37.5
+       
     },
     buttonSaveText:{
         color:"#FFFFFF" ,

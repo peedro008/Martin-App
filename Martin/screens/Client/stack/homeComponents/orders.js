@@ -8,14 +8,31 @@ import { IP } from '../../../../env'
 
 const width=Dimensions.get("window").width
 
+// const handleCompare=(item,compare)=>{
+//     var result=[];
+//     for(let i=0; i<compare.length; i++){
+//         for(let j=0; j<item.length; j++){
+//             if(compare[i].name===item[j].name){
+//                 result.push(item[j])
+//             }
+//         }
+//     }
+//     return result.length == item.length ? true : false;
+        
+    
+// }
+
+
 export default function orders() {
     const [orders,setOrders]= useState([]) 
     const email =  useSelector(state=> state.User)
+    const compare=useSelector(state=> state.PreOrder)
+    const dispatch=useDispatch()
  
     useEffect(()=>{
         axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
             .then(function(response){
-            setOrders(response.data)
+            setOrders(response.data.reverse())
             })
             .catch(error=>{
                 console.log(error)  
@@ -27,9 +44,7 @@ export default function orders() {
            dispatch(addOrder(e))
         }) }
 
-        let orr
-        if(orders.length>0){
-        orr=orders.reverse()}
+      
         return (
             <View
             style={{  marginTop:width*.06,      height:300}}>
@@ -39,7 +54,7 @@ export default function orders() {
             <FlatList
             
             horizontal={true}
-            data={orr}
+            data={orders}
             renderItem={({item})=> 
             <View>
                 <Card  
@@ -58,14 +73,19 @@ export default function orders() {
                         
                         <View
                         style={{marginBottom:15}}>
-                        <TouchableOpacity
+                           {
+                              
+                        <TouchableOpacity 
                         onPress={() => handleAddProduct(item.orderItems)}
                         style={{borderRadius:5, width:80, height:25, backgroundColor:"green", marginLeft:90}}>
-                            <Text
+                           <Text
                             style={{fontSize:10, alignSelf:"center",fontWeight:"bold", color:"#fff", marginTop:4}}>
                             ADD TO CART
                             </Text>
-                        </TouchableOpacity>
+                            </TouchableOpacity>
+                         
+                            
+                            }
                         <TouchableOpacity
                         onPress={() => navigation.navigate("order detail",{id:item.id})}
                         style={{borderRadius:5, width:80, height:25, marginTop:2, backgroundColor:"#F15A4D", marginLeft:90}}>
