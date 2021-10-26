@@ -128,7 +128,7 @@ export default function Home({navigation}) {
         <Paginator data={sales}/>
         
        
-          <Orders/>
+          <Orders navigation={navigation}/>
          
       
         </View>

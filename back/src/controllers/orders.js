@@ -1,15 +1,14 @@
-
 const {Order, OrderItems, UserInfo} = require("../bd") 
 
 const postOrderItems=async(req,res)=>{
     let order = req.body[0]
     let user = req.body[1]
-    let fullName = req.body[2]
-    let address = req.body[3]
-    let apt_Suite_ = req.body[4]
-    let postalCode = req.body[5]
-    let phone = req.body[6]
-    let city = req.body[7]
+    let fullName = req.body[2].fullName
+    let address = req.body[2].address
+    let apt_Suite_ = req.body[2].apt_Suite_
+    let postalCode = req.body[2].phone
+    let phone = req.body[2].phone
+    let city = req.body[2].city
 
     console.log( user)
      let count =0
@@ -77,10 +76,12 @@ const getOrders=async(req,res)=>{
    try{
        let orderBd=await Order.findAll({
         attributes:['email','id','status','total', "createdAt"],
-        include:{
-            model:OrderItems,
+        include:[{
+            model:OrderItems},
+            {model:UserInfo
+          
             
-           }
+           }]
        })
     orderBd?res.status(200).json(orderBd):
     res.status(404).send("order not found");

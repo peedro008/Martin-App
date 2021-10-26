@@ -62,7 +62,7 @@ export default function user({navigation}) {
                 </View>
                 </TouchableOpacity>
             </View>
-            <Orders name={name} lastName={lastName}/>
+            <Orders name={name} lastName={lastName} navigation={navigation}/>
         </View>
     )}
   

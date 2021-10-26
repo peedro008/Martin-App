@@ -23,7 +23,7 @@ const width=Dimensions.get("window").width
 // }
 
 
-export default function orders() {
+export default function orders({navigation}) {
     const [orders,setOrders]= useState([]) 
     const email =  useSelector(state=> state.User)
     const compare=useSelector(state=> state.PreOrder)
@@ -52,7 +52,9 @@ export default function orders() {
 
             {orders.length>0?
             <FlatList
+            showsHorizontalScrollIndicator={false}
             
+          bounces={false}
             horizontal={true}
             data={orders}
             renderItem={({item})=> 

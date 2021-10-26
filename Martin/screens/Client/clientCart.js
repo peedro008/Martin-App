@@ -19,13 +19,7 @@ export default function clientCart() {
     const totalPrice= useSelector(state=> state.TotalPrice) 
     const [render,setRender]=useState(true)
     const dispatch= useDispatch()
-    const [fullName, setFullName]= useState("")
-    const [address, setAddress]= useState("")
-    const [apt_Suite_, setApt_Suite_]= useState("")
-    const [postalCode, setPostalCode]= useState("")
-    const [phone, setPhone]= useState("")
-    const [city, setStateCity]= useState("")
-    
+    const [info, setInfo]= useState({fullName:"", city:"", phone:"", postalCode:"", apt_Suite_:"",address:""})
 
 
 
@@ -44,10 +38,11 @@ export default function clientCart() {
 
 
     const handlePostOrder=()=>{
-        axios.post(`${IP}/orderItems`,[order,user,fullName,address,apt_Suite_,postalCode,phone,city])
+        axios.post(`${IP}/orderItems`,[order,user, info])
         .then(response=>{
           console.log(response.data)
         })
+        
         dispatch(postDelete())
     }
     
@@ -86,33 +81,34 @@ export default function clientCart() {
            { 
            render ?  <Cart order={order}/>
                   :  <ScrollView style={{flex:1, }}>
-                  
-                      <View>
-                      <View style={styles.container}>
-                          <Text style={styles.text}>Full Name</Text>
-                          <Input  leftIcon={{type:"font-awesome", name:"user"}} onChangeText={setFullName}/>
-                      </View>
-                      <View style={styles.container}> 
-                          <Text style={styles.text}>Street Address</Text>
-                          <Input leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={setAddress}/>
-                      </View>
-                      <View style={styles.container}> 
-                          <Text style={styles.text}>Apt / Suite / Other</Text>
-                          <Input leftIcon={{type:"font-awesome", name:"home"}} onChangeText={setApt_Suite_}/>
-                      </View>
-                      <View style={styles.container}> 
-                          <Text style={styles.text}>State / City</Text>
-                          <Input leftIcon={{type:"font-awesome", name:"building"}}onChangeText={setStateCity}/>
-                      </View>
-                      <View style={styles.container}> 
-                          <Text style={styles.text}>Postal Code</Text>
-                          <Input leftIcon={{type:"font-awesome", name:"clipboard"}}onChangeText={setPostalCode}/>
-                      </View>
-                      <View style={styles.container}> 
-                          <Text style={styles.text}>Phone</Text>
-                          <Input leftIcon={{type:"font-awesome", name:"phone"}}onChangeText={setPhone}/>
-                      </View>
-                      </View>
+                        
+                        <View>
+                            <View style={styles.container}>
+                                <Text style={styles.text}>Full Name</Text>
+                                <Input  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
+                            </View>
+                            <View style={styles.container}> 
+                                <Text style={styles.text}>Street Address</Text>
+                                <Input leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
+                            </View>
+                            <View style={styles.container}> 
+                                <Text style={styles.text}>Apt / Suite / Other</Text>
+                                <Input leftIcon={{type:"font-awesome", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite_:value})}/>
+                            </View>
+                            <View style={styles.container}> 
+                                <Text style={styles.text}>State / City</Text>
+                                <Input leftIcon={{type:"font-awesome", name:"building"}} onChangeText={value=>setInfo({...info,city:value})}/>
+                            </View>
+                            <View style={styles.container}> 
+                                <Text style={styles.text}>Postal Code</Text>
+                                <Input leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
+                            </View>
+                            <View style={styles.container}> 
+                                <Text style={styles.text}>Phone</Text>
+                                <Input leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
+                            </View>
+                        </View>
+                
           
                       
                   </ScrollView>
@@ -156,6 +152,27 @@ export default function clientCart() {
         </View>
         )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   

@@ -44,8 +44,12 @@ const ClientNavigation = () => {
          options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
            blur: () => navigation.setParams({ screen: undefined }),
           })} />
-        <Tab.Screen name="Catalog" component={clientCatalog} options={{headerShown: false}} />
-        <Tab.Screen name="Cart" component={clientCart} options={{headerShown: false}} />
+        <Tab.Screen name="Catalog" component={clientCatalog} options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
+           blur: () => navigation.setParams({ screen: undefined }),
+          })}  />
+        <Tab.Screen name="Cart" component={clientCart} options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
+           blur: () => navigation.setParams({ screen: undefined }),
+          })}  />
            <Tab.Screen name="User" component={clientUser} options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
            blur: () => navigation.setParams({ screen: undefined }),
          })}  />

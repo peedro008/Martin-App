@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, TextInput, Platform,Dimensions } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, TextInput, Platform,Dimensions, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import ClientNavigation from "./Client/ClientNavigation"
 import { useEffect} from 'react';
@@ -87,7 +87,7 @@ const AuthScreen = () => {
        
          return (
              
-        //<ImageBackground source={require('../image/logo.png')} style={styles.image}>
+            <ScrollView>
             <View style={styles.card}>
                  <Image style={styles.image} source={require('../assets/logo.png')}/>
                 <Text style={styles.heading}>{isLogin ? 'Login' : 'Signup'}</Text>
@@ -111,7 +111,7 @@ const AuthScreen = () => {
                      
                 </View>
             </View>
-        //</ImageBackground>
+        </ScrollView>
     );}
 
     
