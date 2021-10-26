@@ -63,7 +63,7 @@ export default function orders({navigation}) {
                 style={{width:325, height:180, backgroundColor:"grey",}}>
                 <View style={{flexDirection: 'row', marginBottom:13}}>
 
-                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="received" ? "#6979F8" : "#00bb2d" , fontSize:20}}>{item.status}</Text>
+                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#6979F8" : "#00bb2d" , fontSize:20}}>{item.status}</Text>
                         <Text style={{ fontWeight:"bold",paddingLeft:100,fontSize:16 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                         </View>
                         <Card.Divider/>
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
           alignSelf:"center",
           fontSize: width*0.07,
           fontWeight: "600",
-          marginBottom:15,
+          marginBottom:40,
           
           
         },})

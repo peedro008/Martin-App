@@ -13,7 +13,7 @@ const Order= (sequelize)=>{
          
      },
      status:{
-         type: DataTypes.ENUM("Pending", "received", "dispatched"),
+         type: DataTypes.ENUM("Pending", "Received", "Dispatched"),
          defaultValue: "Pending",
          allowNull: false
      },

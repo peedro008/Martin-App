@@ -62,8 +62,9 @@ export default function user({navigation}) {
                 </View>
                 </TouchableOpacity>
             </View>
+            <View style={styles.orders}>
             <Orders name={name} lastName={lastName} navigation={navigation}/>
-        </View>
+        </View></View>
     )}
   
 
@@ -128,4 +129,7 @@ const styles = StyleSheet.create({
         fontSize:width*0.06,
         
       },
+      orders:{
+          marginTop:width*0.1
+      }
 })

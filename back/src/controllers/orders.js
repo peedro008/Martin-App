@@ -143,7 +143,7 @@ const updateOrderStatus=async(req,res)=>{
         let id = req.body.id
         console.log(id)
         let orderBd=await Order.update(
-            {status:"received"},
+            {status:"Received"},
             {where:{id:id}},
             
         )
@@ -165,10 +165,12 @@ const getOrderId=async(req,res)=>{
                 id:id
             },
          attributes:['email','id','status','total', "createdAt"],
-         include:{
-             model:OrderItems,
-             
-            }
+         include:[{
+            model:OrderItems},
+            {model:UserInfo
+          
+            
+           }]
         })
      orderBd?res.status(200).json(orderBd):
      res.status(404).send("order not found");

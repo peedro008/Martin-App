@@ -22,8 +22,10 @@ export default function Cart({order}){
         <FlatList
         keyExtractor={item => item.id.toString()}
         data={order}
+        
         renderItem={({item})=>
-                <View style={styles.container}>
+               <View style={styles.shadow}>
+               <View style={styles.container}>
                     <View style={styles.contImage}>
                         <ImageBackground source={{uri: item.img}} style={styles.image}>
                             <View style={styles.buttonX}>
@@ -44,13 +46,28 @@ export default function Cart({order}){
                             <Text style={{color:"#777777"}}> x{item.quantity} </Text>
                         </View>
                         
-                    </View>
+                    </View></View>
                 </View>
          }/>
     )
 }
 
 const styles= StyleSheet.create({
+  
+
+    shadow:{
+        borderRadius:8,
+        marginHorizontal:5,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 8,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        
+        elevation: 3,
+    },
     container:{
         display:"flex",
         alignSelf:"center",
@@ -62,11 +79,7 @@ const styles= StyleSheet.create({
         borderColor:"rgba(228, 228, 228, 0.6)",
         borderRadius:8,
         borderTopWidth:0.5,
-        shadowColor:"black",
-        shadowOffset: { width: 3, height: 10},
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation:1,
+      
 
     },
     contImage:{
@@ -102,7 +115,7 @@ name:{
     position:"absolute",
     fontStyle: "normal",
     fontWeight: "600",
-    fontSize: width*0.04,
+    fontSize: width*0.05,
     paddingVertical:width*0.03,
     flexWrap:"wrap",
     width:width*0.4
@@ -110,14 +123,15 @@ name:{
     
 },
 price:{
+
   display:"flex",
   position:"absolute",
-  top:width*0.02,
   right:width*0.05,
   color:"#151522",
   fontStyle: "normal",
   fontWeight: "normal",
   fontSize: width*0.06,
+  paddingVertical:width*0.1,
   //lineheight: 20,
   
 },
@@ -126,7 +140,7 @@ contQuantity:{
     alignSelf:"flex-end",
     position:"absolute",
     bottom:30,
-    left:5,
+    left:1,
     flexDirection:"row",
     fontStyle: "normal",
     fontWeight: "normal",

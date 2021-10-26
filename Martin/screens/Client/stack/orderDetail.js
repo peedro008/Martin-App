@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity,Dimensions } from 'react-native'
 import { useState,useEffect  } from 'react';
 import axios from 'axios';
 import { IP } from '../../../env';
 import { Card } from 'react-native-elements/dist/card/Card';
-
+const width=Dimensions.get("window").width
 
 export default function orderDetail({route}) {
     let {id} = route.params
@@ -25,18 +25,21 @@ export default function orderDetail({route}) {
            
              
         },[id])
-       
+       let userInfo
        let items   
       if(order.length>0)  {
+          userInfo=order[0].userInfo
          items = order[0].orderItems} 
         //console.log(items)
         
     return (
-        <View >
+        <View
+        style={{backgroundColor:"white"}} >
             <Text style={{ textAlign:"center",
         alignSelf:"center",
         fontSize: 25,
-        fontWeight: "bold",}} >ORDER DETAILS</Text>
+        fontWeight: "bold",
+        marginTop:width*0.1,}} >ORDER DETAILS</Text>
             <Card>
             
             {order.length>0 &&   
@@ -47,6 +50,7 @@ export default function orderDetail({route}) {
                         <Text style={{fontSize:20, fontWeight:"900"}}>Date: {order[0].createdAt.substring(0,9)}</Text>
                         <Text style={{fontSize:20, fontWeight:"900"}}>Time: {order[0].createdAt.substring(11,16)}</Text>
                     </View> 
+                    
                    <View
                     style={{paddingLeft:"20%", alignItems:"flex-end"}}>
                         <Text style={{fontSize:20, fontWeight:"900"}}>Total: ${order[0].total}</Text>
@@ -57,11 +61,13 @@ export default function orderDetail({route}) {
           </Card>
               <FlatList
             data={items}
+            s
             renderItem={({item})=>
             
                    
                     <Card
-                    containerStyle={{ height:100, width:380, flexDirection: 'row',padding:0}}>
+                   
+                    containerStyle={styles.shadow,{ height:100, width:380, flexDirection: 'row',padding:0}}>
                         <View
                         style={{flexDirection: 'row'}}>                        
                             <Image source={{uri:item.img}}
@@ -89,4 +95,18 @@ export default function orderDetail({route}) {
     )
         }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    shadow:{
+        borderRadius:8,
+        marginHorizontal:5,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 8,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        
+        elevation: 3,
+    },
+})

@@ -127,9 +127,9 @@ export default function Home({navigation}) {
         />
         <Paginator data={sales}/>
         
-       
+         <View style={styles.orders}>
           <Orders navigation={navigation}/>
-         
+         </View>
       
         </View>
       </ScrollView>
@@ -141,7 +141,11 @@ const styles = StyleSheet.create({
   container:{
         justifyContent:"center",
         alignItems:"center",
+      
 
+      },
+      orders:{
+        marginTop:-width*0.14
       },
       header:{
         textAlign:"center",
