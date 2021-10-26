@@ -44,9 +44,9 @@ export default  function  Products ({route, navigation}) {
   
     return (
         <View style={styles.container}>
-            <View style={{marginTop:width*0.08}}>
+            <View style={{marginTop:width*0.044}}>
                 <View
-                    style={{alignItems:"center",height:50, width:400, backgroundColor:"white"}}>
+                    style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
                         <Text style={styles.search}>
                             Search
                         </Text>
@@ -58,9 +58,9 @@ export default  function  Products ({route, navigation}) {
                     onChangeText={handleSearch}
                     value={name}/>
             </View>
-                <View style={{display:"flex", width:Dimensions.get("window").width, flexDirection:"row"}}>  
+                <View style={{alignItems:"center",justifyContent:"center", width:width*0.9, flexDirection:"row"}}>  
                     <Text style={styles.products}>{category.name}</Text>
-                    <View style={{position:"absolute", right:18, top:19}}>
+                    <View style={{position:"absolute", right:0}}>
                     <Icon
                     name='shopping-bag'
                     type="feather"
@@ -178,9 +178,7 @@ const styles = StyleSheet.create({
         width:width-10
     },
     products:{
-        paddingLeft:20,
-        marginTop:15,
-        marginBottom:15,
+        marginVertical:width*0.04,
         fontSize:width*0.07,
         fontWeight: "600",
         alignSelf:"center",

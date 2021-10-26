@@ -76,9 +76,9 @@ export default function Home({navigation}) {
     return (
         <ScrollView style={{flex:1, backgroundColor:"#fff"}}>
           <View>
-          <View style={{display:"flex", flexDirection:"row",width:Dimensions.get("window").width, marginTop:width*0.018}}>
+          <View style={{justifyContent:"center", alignItems:"center", flexDirection:"row",width:width*0.9, marginTop:width*0.06}}>
             <Text style={styles.header} >Deals Of The Week</Text>
-            <View style={{position:"absolute", right:25, top:35}}>
+            <View style={{position:"absolute", right:0}}>
               <Icon
               name='shopping-bag'
               type="feather"
@@ -145,12 +145,9 @@ const styles = StyleSheet.create({
       },
       header:{
         textAlign:"center",
-        alignSelf:"center",
+        marginVertical:width*0.04,
         fontSize: width*0.07,
         fontWeight: "600",
-        marginBottom:15,
-        marginTop:30,
-        paddingLeft: Dimensions.get("window").width*0.17
       },
       OrderHeader:{
      

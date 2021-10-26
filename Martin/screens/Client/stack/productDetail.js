@@ -65,20 +65,20 @@ export default function ProductDetail({route,navigation}) {
        
         <View
          style={{flex:1}}>
-            <View style={{flex:1, backgroundColor:"#fff"}}> 
-
+            <View style={{flex:1, }}> 
+              <View style={{flexDirection:"row", width:width*0.9, alignItems:"center", justifyContent:"center", marginTop:width*0.06, alignSelf:"center",}}>
                 <Text style={styles.products}>
                     Product Card
                 </Text>
-                <View style={{position:"absolute", right:25, top:35}}>
+                <View style={{position:"absolute", right:0}}>
                 <Icon
                 name='shopping-bag'
                 type="feather"
                 color='gray'
                 size={width*0.07 }
                 />
+               </View>
             </View>
-            
                 <Image  
                 source={{uri: product.img}}
                 style={styles.image}/>
@@ -177,10 +177,9 @@ const styles = StyleSheet.create({
     },
     products:{
         alignSelf:"center",
-        marginTop:width*0.08,
-        marginBottom:15,
         fontSize:width*0.07,
-        fontWeight: "600"
+        fontWeight: "600",
+        marginVertical:width*0.04,
     },
     count:{
         marginLeft:9,

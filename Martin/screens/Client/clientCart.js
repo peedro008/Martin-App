@@ -64,7 +64,7 @@ export default function clientCart() {
         <View
         style={{flex:1, backgroundColor: "white"}}>
           <View style={{display:/*order.length<1 && "none"*/"flex"}}>
-            <View style={{alignSelf:"center", alignItems:"center",height:width*0.1, width:width*0.3,  marginTop:width*0.03, marginBottom:width*0.053}}>
+            <View style={{alignSelf:"center", alignItems:"center",height:width*0.1, width:width*0.3,  marginTop:width*0.08, marginBottom:width*0.053}}>
                 <Text style={styles.cart}>Cart</Text>
             </View> 
             <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4 }}>

@@ -46,9 +46,9 @@ export default function Categories({navigation}) {
     
         <View
         style={{backgroundColor:"#fff", alignItems:"center", flex: 1}}>
-            <View style={{marginTop:width*0.08}}>
+            <View style={{marginTop:width*0.044}}>
                 <View
-                style={{alignItems:"center",height:50, width:400, backgroundColor:"white"}}>
+                style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
                     <Text style={Styles.search}>
                         Search
                     </Text>
@@ -60,12 +60,12 @@ export default function Categories({navigation}) {
                 onChangeText={handleSearch}
                 value={name}/>
             </View >
-            <View style={{display:"flex", width:Dimensions.get("window").width, flexDirection:"row"}}>
+            <View style={{alignItems:"center",justifyContent:"center", width:width*0.9, flexDirection:"row"}}>
                 <Text style={Styles.categories}>
                 Categories
                 </Text>
-                <View style={{position:"absolute", right:18, top:19}}>
-                <Icon
+                <View style={{position:"absolute", right:0}}>
+                <Icon 
                 name='shopping-bag'
                 type="feather"
                 color='gray'
@@ -193,13 +193,12 @@ const Styles= StyleSheet.create({
         fontWeight: "600"
     },
     categories:{
-        paddingLeft:20,
-        marginTop:15,
-        marginBottom:15,
+        marginVertical:width*0.04,
         fontSize:width*0.07,
         fontWeight: "600",
         alignSelf:"center",
-        textAlign:"center"
+        textAlign:"center",
+        
     },
     nombre:{
         fontStyle: "normal",

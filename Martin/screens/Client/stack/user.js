@@ -70,7 +70,7 @@ export default function user({navigation}) {
 
 const styles = StyleSheet.create({
     profile:{
-        marginTop:width*0.08,
+        marginTop:width*0.1,
         marginBottom:width*0.06,
         fontSize: width*0.07,
         fontWeight: "600",
