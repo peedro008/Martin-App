@@ -1,1 +1,1 @@
-export var IP = "http://10.0.0.104:5000"
+export var IP = "http://192.168.0.102:5000"

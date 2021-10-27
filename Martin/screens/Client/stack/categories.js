@@ -50,28 +50,31 @@ export default function Categories({navigation}) {
                 <View
                 style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
                     <Text style={Styles.search}>
-                        Search
+                        Categories
                     </Text>
+                    <View style={{position:"absolute", right:0}}>
+
+                        <Icon 
+                        name='shopping-bag'
+                        type="feather"
+                        color='gray'
+                        size={width*0.07 }
+                        style={{marginTop:width*0.035, marginRight:width*0.04}}
+                        />
+                    </View>
                 </View>
+                
                 <SearchBar 
                 inputContainerStyle={{backgroundColor:"white"}}
                 inputStyle={{backgroundColor: 'white'}}
                 containerStyle={Styles.searchBar}
                 onChangeText={handleSearch}
-                value={name}/>
+                placeholder="Search..."
+                value={name}/> 
             </View >
             <View style={{alignItems:"center",justifyContent:"center", width:width*0.9, flexDirection:"row"}}>
-                <Text style={Styles.categories}>
-                Categories
-                </Text>
-                <View style={{position:"absolute", right:0}}>
-                <Icon 
-                name='shopping-bag'
-                type="feather"
-                color='gray'
-                size={width*0.07 }
-                />
-                </View>
+               
+               
             </View>
             {
              !name? 
@@ -163,7 +166,8 @@ const Styles= StyleSheet.create({
     
     },
     searchBar:{
-        marginTop:width*0.053,
+        marginVertical:width*0.01,
+        marginBottom: width*0.05,
         alignSelf:"center", 
         backgroundColor: 'white', 
         borderWidth: 1, 

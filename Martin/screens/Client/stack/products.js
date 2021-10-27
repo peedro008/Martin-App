@@ -47,9 +47,16 @@ export default  function  Products ({route, navigation}) {
             <View style={{marginTop:width*0.044}}>
                 <View
                     style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
-                        <Text style={styles.search}>
-                            Search
-                        </Text>
+                        <Text style={styles.products}>{category.name}</Text>
+                        <View style={{position:"absolute", right:0}}>
+                            <Icon 
+                            name='shopping-bag'
+                            type="feather"
+                            color='gray'
+                            size={width*0.07 }
+                            style={{marginTop:width*0.025, marginRight:width*0.03}}
+                            />
+                        </View>
                 </View>
                 <SearchBar 
                     inputContainerStyle={{backgroundColor:"white"}}
@@ -59,14 +66,9 @@ export default  function  Products ({route, navigation}) {
                     value={name}/>
             </View>
                 <View style={{alignItems:"center",justifyContent:"center", width:width*0.9, flexDirection:"row"}}>  
-                    <Text style={styles.products}>{category.name}</Text>
+                    
                     <View style={{position:"absolute", right:0}}>
-                    <Icon
-                    name='shopping-bag'
-                    type="feather"
-                    color='gray'
-                    size={width*0.07}
-                    />
+                    
                    </View> 
                 </View>
             {  
@@ -167,7 +169,8 @@ const styles = StyleSheet.create({
         
     },
     searchBar:{
-        marginTop:width*0.053,
+        marginVertical:width*0.01,
+        marginBottom: width*0.05,
         alignSelf:"center", 
         backgroundColor: 'white', 
         borderWidth: 1, 
@@ -178,7 +181,8 @@ const styles = StyleSheet.create({
         width:width-10
     },
     products:{
-        marginVertical:width*0.04,
+        marginVertical:width*0.01,
+        marginBottom:-width*0.001,
         fontSize:width*0.07,
         fontWeight: "600",
         alignSelf:"center",
