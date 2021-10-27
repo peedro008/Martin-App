@@ -28,12 +28,12 @@ export default function Cart({order}){
                <View style={styles.container}>
                     <View style={styles.contImage}>
                         <ImageBackground source={{uri: item.img}} style={styles.image}>
-                            <View style={styles.buttonX}>
-                                <Button
+                        <View>
+                                <TouchableOpacity
+                                style={styles.buttonX}
                                 onPress={() => handleDelete(item.id)} 
-                                title="x"
-                                color="#F15A4D"
-                                />
+                             
+                                ><Text style={{color:"white", textAlign:"center"}}>x</Text></TouchableOpacity>
                             </View>
                            
                         </ImageBackground>
@@ -55,19 +55,7 @@ export default function Cart({order}){
 const styles= StyleSheet.create({
   
 
-    shadow:{
-        borderRadius:8,
-        marginHorizontal:5,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 8,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        
-        elevation: 3,
-    },
+   
     container:{
         display:"flex",
         alignSelf:"center",
@@ -79,19 +67,20 @@ const styles= StyleSheet.create({
         borderColor:"rgba(228, 228, 228, 0.6)",
         borderRadius:8,
         borderTopWidth:0.5,
-      
+        height:width*0.25,
+        backgroundColor:"#fffff9"
 
     },
     contImage:{
         width: width*0.20,
         height: width*0.25,
         flexGrow:1,
-        margin:width*0.03,
+        //margin:width*0.03,
        
         
     },
     image:{
-        width: width*0.26,
+        width: width*0.25,
         height: width*0.25,
         flexGrow:1,
         margin:0,
@@ -99,16 +88,21 @@ const styles= StyleSheet.create({
   },
   buttonX:{
     width:25,
+    
+    height:25,
     position:"absolute",
     top:0,  
     right:0,
-    borderRadius:3
+    borderRadius:3,
+    backgroundColor:"#F15A4D"
+    
 },
 
 info:{
     display:"flex",
     position:"relative",
     flexGrow:10,
+    marginLeft:width*0.03
 },
 name:{
     display:"flex",
@@ -119,7 +113,7 @@ name:{
     paddingVertical:width*0.03,
     flexWrap:"wrap",
     width:width*0.4
-   // lineheight: 20,
+
     
 },
 price:{
@@ -131,22 +125,22 @@ price:{
   fontStyle: "normal",
   fontWeight: "normal",
   fontSize: width*0.06,
-  paddingVertical:width*0.1,
-  //lineheight: 20,
+  paddingVertical:width*0.08,
+ 
   
 },
 contQuantity:{
     display:"flex",
     alignSelf:"flex-end",
     position:"absolute",
-    bottom:30,
+    bottom:10,
     left:1,
     flexDirection:"row",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: width*0.04,
     paddingBottom:5
-   // lineheight: 13,
+
 },
   
 })
