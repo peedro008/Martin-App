@@ -4,7 +4,7 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://z5-hd7.anonymous.martin.exp.direct",
+  "packagerNgrokUrl": "https://packager.z5-hd7.anonymous.martin.exp.direct",
+  "ngrokPid": 16888
 }

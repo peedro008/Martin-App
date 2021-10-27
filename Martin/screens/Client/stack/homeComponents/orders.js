@@ -26,7 +26,8 @@ const width=Dimensions.get("window").width
 export default function orders({navigation}) {
     const [orders,setOrders]= useState([]) 
     const email =  useSelector(state=> state.User)
-    const compare=useSelector(state=> state.PreOrder)
+    const preOrder=useSelector(state=> state.PreOrder)
+    
     const dispatch=useDispatch()
  
     useEffect(()=>{
@@ -41,7 +42,13 @@ export default function orders({navigation}) {
 
     let handleAddProduct=(order)=>{
         order.map(e=>{
-           dispatch(addOrder(e))
+            let aux= true
+            for(let i=0; i<preOrder.length;i++){
+                if(preOrder[i].name == e.name) aux=false
+            }
+            if(aux){
+                dispatch(addOrder(e))
+            }
         }) }
 
       

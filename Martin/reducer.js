@@ -34,9 +34,10 @@ export default function reducer(state = initialState, action) {
           }
 
       case ADD_PRODUCT:
+    
         return{
           ...state,
-          PreOrder: [...state.PreOrder, action.payload],
+          PreOrder: [...state.PreOrder,action.payload],
           TotalPrice: state.TotalPrice + action.payload.total
         }
        
