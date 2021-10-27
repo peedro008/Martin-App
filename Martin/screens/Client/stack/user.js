@@ -14,17 +14,22 @@ const width=Dimensions.get("window").width
 export default function user({navigation}) {
     const [name,setName]=useState("");
     const [lastName,setLastName]=useState("")
+    const [address,setAddress]=useState("")
+    const [city,setCity]=useState("")
     const [render,setRender]=useState(true)
-    const id=useSelector(state=>state.UserId)
+    const userId=useSelector(state=>state.UserId)
 
     useEffect(()=>{
-       axios.get(`${IP}/user?id=${id}`)
+       axios.get(`${IP}/user?id=${userId}`)
     .then(res=>{
         setName(res.data.name);
         setLastName(res.data.lastName);
     })
-            
-        
+    axios.get(`${IP}/userinfo?userId=${userId}`)
+    .then(res=>{ 
+         setAddress(res.data.address);
+         setCity(res.data.city)}
+    )        
     },[])
 
     const handleOrderRender=()=>{
@@ -43,7 +48,7 @@ export default function user({navigation}) {
                 <Text style={styles.initials}>{name.charAt(0)+lastName.charAt(0)}</Text>
               </View>
               <Text style={styles.name}>{name + " " + lastName }</Text>
-              <Text style={styles.address}>Larrea 719 Mendoza, Lujan de Cuyo</Text>
+              <Text style={styles.address}>{address + ", " + city}</Text>
               <View style={styles.buttonEdit}>
                   <TouchableOpacity onPress={() => navigation.navigate("edit address",{name, lastName})}>
                       <Text>Edit Shipping Address</Text>
@@ -110,6 +115,7 @@ const styles = StyleSheet.create({
         fontSize:width*0.04,
         textAlign:"center",
         fontWeight:"400",
+        textTransform:"capitalize"
     },
     buttonEdit:{
         width:width*0.44,

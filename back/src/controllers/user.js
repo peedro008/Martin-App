@@ -157,7 +157,7 @@ const infoGet = async (req, res) => {
          where:{
              userId:userId
          },
-         attributes:['id','fullName','address','apt_Suite_', "postalCode", "phone", "default"],
+         attributes:['id','fullName','address','apt_Suite',"city", "postalCode", "phone", "default"],
          
         })
      info?res.status(200).json(info):

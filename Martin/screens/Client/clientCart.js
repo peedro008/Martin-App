@@ -15,25 +15,29 @@ const width=Dimensions.get("window").width
 export default function clientCart() {
     const order= useSelector(state=> state.PreOrder) 
     const user= useSelector(state=> state.User) 
-    const id= useSelector(state=> state.UserId)
+    const userId= useSelector(state=> state.UserId)
     const totalPrice= useSelector(state=> state.TotalPrice) 
     const [render,setRender]=useState(true)
     const dispatch= useDispatch()
-    const [info, setInfo]= useState({fullName:"", city:"", phone:"", postalCode:"", apt_Suite_:"",address:""})
+    const [info, setInfo]= useState({fullName:"", city:"", phone:"", postalCode:"", apt_Suite:"",address:"", default:false})
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+    useEffect(()=>{
+        axios.get(`${IP}/userinfo?userId=${userId}`)
+        .then(res=>{ 
+            setInfo({
+                fullName:res.data.fullName,
+                city:res.data.city,
+                phone:res.data.phone,
+                postalCode:res.data.postalCode,
+                apt_Suite:res.data.apt_Suite,
+                address:res.data.address,
+                default:res.data.default
+            })
+         console.log(res.data)}
+        )
+    },[])
 
 
 
@@ -80,32 +84,32 @@ export default function clientCart() {
           
            { 
            render ?  <Cart order={order}/>
-                  :  <ScrollView style={{flex:1, }}>
+                  :   order.length>0 && <ScrollView style={{flex:1, }}>
                         
                         <View>
                             <View style={styles.container}>
                                 <Text style={styles.text}>Full Name</Text>
-                                <Input  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.fullName : ""}  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Street Address</Text>
-                                <Input leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.address : ""} leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Apt / Suite / Other</Text>
-                                <Input leftIcon={{type:"font-awesome", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite_:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.apt_Suite : ""} leftIcon={{type:"font-awesome", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>State / City</Text>
-                                <Input leftIcon={{type:"font-awesome", name:"building"}} onChangeText={value=>setInfo({...info,city:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.city : ""} leftIcon={{type:"font-awesome", name:"building"}} onChangeText={value=>setInfo({...info,city:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Postal Code</Text>
-                                <Input leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.postalCode : ""} leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Phone</Text>
-                                <Input leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.phone : ""} leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
                             </View>
                         </View>
                 
@@ -114,21 +118,6 @@ export default function clientCart() {
                   </ScrollView>
                     
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             {order.length>0 ? (

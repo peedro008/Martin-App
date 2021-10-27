@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet,ScrollView, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions} from 'react-native'
+import { StyleSheet,ScrollView, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions, ImagePropTypes} from 'react-native'
 import axios from 'axios'
 import { TextInput } from "react-native-gesture-handler";
 import { Input } from "react-native-elements";
@@ -24,18 +24,31 @@ export default function EditShippingAddress(){
     const [name,setName]=useState("");
     const [lastName,setLastName]=useState("")
     const [saved,setSaved]=useState(false)
-
-    const id= useSelector(state=> state.UserId)
+    const userId=useSelector(state=>state.UserId)
 
     useEffect(()=>{
-        axios.get(`${IP}/user?id=${id}`)
+        axios.get(`${IP}/user?id=${userId}`)
      .then(res=>{
          setName(res.data.name);
          setLastName(res.data.lastName);
+         console
      })
              
          
      },[])
+     useEffect(()=>{
+        axios.get(`${IP}/userinfo?userId=${userId}`)
+        .then(res=>{
+
+            setCity(res.data.city)
+            setPhone(res.data.phone) 
+            setPostalCode(res.data.postalCode) 
+            setApt_Suite(res.data.apt_Suite) 
+            setAddress(res.data.address) 
+            console.log(res.data)
+ }
+        )
+    },[])
 
     const handleDefault=()=>{
         setBoolDefault(!boolDefault)
@@ -43,7 +56,7 @@ export default function EditShippingAddress(){
 
     const handleSave=()=>{
         
-          axios.post(`${IP}/userinfo?id=${id}`,{
+          axios.post(`${IP}/userinfo?id=${userId}`,{
                        fullName:name +" "+ lastName ,
                        address: address,
                        apt_Suite: apt_Suite,
@@ -64,23 +77,23 @@ export default function EditShippingAddress(){
             <View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Street Address</Text>
-                <Input onChangeText={setAddress} leftIcon={{type:"font-awesome", name:"map-pin"}}/>
+                <Input value={address} style={{textTransform:"capitalize"}} onChangeText={value=>setAddress(value)} leftIcon={{type:"font-awesome", name:"map-pin"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Apt / Suite / Other</Text>
-                <Input onChangeText={setApt_Suite} leftIcon={{type:"font-awesome", name:"home"}}/>
+                <Input value={apt_Suite} style={{textTransform:"capitalize"}} onChangeText={value=>setApt_Suite(value)} leftIcon={{type:"font-awesome", name:"home"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>State / City</Text>
-                <Input onChangeText={setCity} leftIcon={{type:"font-awesome", name:"building"}}/>
+                <Input value={city} style={{textTransform:"capitalize"}} onChangeText={value=>setCity(value)} leftIcon={{type:"font-awesome", name:"building"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Postal Code</Text>
-                <Input onChangeText={setPostalCode}  leftIcon={{type:"font-awesome", name:"clipboard"}}/>
+                <Input value={postalCode} style={{textTransform:"capitalize"}} onChangeText={value=>setPostalCode(value)}  leftIcon={{type:"font-awesome", name:"clipboard"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Phone</Text>
-                <Input onChangeText={setPhone} leftIcon={{type:"font-awesome", name:"phone"}}/>
+                <Input value={phone} style={{textTransform:"capitalize"}} onChangeText={value=>setPhone(value)} leftIcon={{type:"font-awesome", name:"phone"}}/>
             </View>
             </View>
             <View style={styles.containerButtonDefault}>

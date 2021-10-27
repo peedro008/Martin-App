@@ -82,13 +82,13 @@ export default function editProduct({route}) {
     )
 }
 
-// const styles = StyleSheet.create({
-//     textInput:{
-//        borderBottomWidth:1,
-//        borderColor: 'gray'
-//     },
-//     editProduct:{
-//         display:"flex",
-//         flexDirection:"row"
-//     }
-// })
+const styles = StyleSheet.create({
+    textInput:{
+       borderBottomWidth:1,
+       borderColor: 'gray'
+    },
+    editProduct:{
+        display:"flex",
+        flexDirection:"row"
+    }
+})
