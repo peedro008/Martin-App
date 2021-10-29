@@ -52,7 +52,8 @@ export default  function  Products ({route, navigation}) {
     useEffect(() => {
          let pes = {}
         for(let i=0;i<cate.length;i++){
-        pes[i]=0     
+        pes[i]=0    
+       
         }
         setCount(pes)
     }, [cate])
@@ -92,12 +93,12 @@ export default  function  Products ({route, navigation}) {
 
               <View style={styles.contProduct}>
                 <FlatList
-                keyExtractor={(item, index) => index.toString()}
+                keyExtractor={item => cate.indexOf(item)}
                 numColumns={1}
                 data={cate}
                 renderItem={({item})=>{
                    
-                    let id=item.id-1
+                    let id=cate.indexOf(item)
 
                     return(
                          
