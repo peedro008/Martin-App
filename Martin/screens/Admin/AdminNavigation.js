@@ -21,7 +21,7 @@ const AdminNavigation = () => {
     })
       }
    >
-        <Tab.Screen name="Home" component={adminHome} />
+        <Tab.Screen name="Home" component={adminHome}options={{headerShown: false}} />
         <Tab.Screen name="Control Panel" component={adminControlPanel}options={{headerShown: false}} />
         <Tab.Screen name="Sales" component={Sales}/>
         

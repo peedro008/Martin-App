@@ -3,10 +3,12 @@ import axios from 'axios'
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Dimensions,} from 'react-native'
 import { IP } from '../../../env';
 import { FlatList } from 'react-native-gesture-handler';
-import { SearchBar } from 'react-native-elements';
-import { Icon } from 'react-native-elements'
+import { Icon, Card, Image, SearchBar } from 'react-native-elements';
+import { set } from 'react-native-reanimated';
+
 
 const width=Dimensions.get("window").width
+const height=Dimensions.get("window").height
 
 export default  function  Products ({route, navigation}) {
     let category = route.params.params
@@ -14,6 +16,13 @@ export default  function  Products ({route, navigation}) {
     const [cate, setCate]= useState([])
     const [name, setName]= useState("")
     const [product,setProduct] = useState([])
+    const [count, setCount] = useState({});
+
+    const handleCount=(id)=>{
+        if(count[id]>0){
+            setCount(count[id] - 1);
+        } 
+    }
 
     useEffect(()=>{
         axios.get(`${IP}/productsCat?id=${category.id}`)
@@ -39,8 +48,15 @@ export default  function  Products ({route, navigation}) {
             })
         
  }
-
-    
+  
+    useEffect(() => {
+         let pes = {}
+        for(let i=0;i<cate.length;i++){
+        pes[i]=0     
+        }
+        setCount(pes)
+    }, [cate])
+   
   
     return (
         <View style={styles.container}>
@@ -76,30 +92,76 @@ export default  function  Products ({route, navigation}) {
 
               <View style={styles.contProduct}>
                 <FlatList
-                keyExtractor={item => item.id.toString()}
-                numColumns={2}
+                keyExtractor={(item, index) => index.toString()}
+                numColumns={1}
                 data={cate}
                 renderItem={({item})=>{
+                   
+                    let id=item.id-1
+
                     return(
-                        
                          
-                        <TouchableOpacity
-                        key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:category.name})}>
-                        <View style={styles.product}>
-                        <ImageBackground
+                    
+                         <Card
                         key={item.id}
-                        source={{ uri:item.img}}
+                        containerStyle={{elevation: 10,width:width*0.9, height:width*0.33 }}>
+                          <View
+                          style={{flexDirection:"row"}}>
+                            <Image 
+                            source={{uri: item.img}}
+                            style={styles.image}
+                            />
+                            <View style={{marginLeft:width*0.04}}
+                            >
+                                <Text style={{fontSize:22, fontWeight:"bold"}}>{item.name}</Text>
+                                <Text style={{marginTop:height*0.001}}>Price: $ {item.price}</Text>
+                                <Text>Quantity: 1</Text>
+                                <Text>Total: {(item.price*count[id]).toFixed(2)}</Text>
+                            </View>
+                            <View style={{position:"absolute", display:"flex", right:0}}> 
+                                <TouchableOpacity 
+                                onPress={() => setCount({...count, [id]:count[id]+1  }) }
+                                style={ styles.minibutton  }>
+                                    <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>+</Text>
+                                </TouchableOpacity>
+                                
+                                <View style={styles.count}>
+                                    <Text style={styles.countText}>{count[id]}</Text>
+                                </View>
+                                <TouchableOpacity
+                                 onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
+                                style={ styles.minibutton  }
+                                >
+                                    <Text
+                                    style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"bold"}}>
+                                        -
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                                        
+                            </View>
+                        </Card>
+
+
+
+
+                    //     <TouchableOpacity
+                    //     key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:category.name})}>
+                    //     <View style={styles.product}>
+                    //     <ImageBackground
+                    //     key={item.id}
+                    //     source={{ uri:item.img}}
                         
-                        style={styles.image}     
-                        >
+                    //     style={styles.image}     
+                    //     >
                             
-                          <Text style={ styles.nombre}>{item.name}</Text>
-                          <View style={styles.contPrice}>
-                            <Text style={ styles.price}> ${item.price}</Text>
-                          </View>
-                          </ImageBackground>
-                          </View> 
-                      </TouchableOpacity>
+                    //       <Text style={ styles.nombre}>{item.name}</Text>
+                    //       <View style={styles.contPrice}>
+                    //         <Text style={ styles.price}> ${item.price}</Text>
+                    //       </View>
+                    //       </ImageBackground>
+                    //       </View> 
+                    //   </TouchableOpacity>
                   
                     )
                 }}
@@ -202,6 +264,24 @@ const styles = StyleSheet.create({
         bottom:0,
         width:"100%"
     },
+    count:{
+        //marginLeft:9,
+       // marginRight:9,
+       marginVertical:6, 
+       borderRadius:8,
+        shadowColor: 'rgba(0,0,0, .4)',
+        shadowOffset: { height: 1, width: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1,
+        backgroundColor: '#fff',
+        elevation: 2,
+        height:width*0.07,
+        width:width*0.07,
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+        
+    },
     price:{
         backgroundColor: 'rgba(52, 52, 52, 0.3)',
         paddingVertical:10,
@@ -214,19 +294,41 @@ const styles = StyleSheet.create({
     image:{
         marginHorizontal:5,
         marginVertical:5, 
-        borderRadius:15,
+        borderRadius:10,
         overflow: 'hidden', 
-        height:width*0.5,
-        width:(width /2)-10,
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 6},
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation: 1,
+        height:width*0.223,
+        width:width*0.223,
+  
         position:"relative"
     },
     product:{
        elevation:100
-    }
+    },
+    buttonContainer:{
+       
+        paddingRight:1,
+        
+        flexDirection:"column", 
+       
+       
+     
+    },
+    minibutton:{
+        borderRadius:8,
+        shadowColor: 'rgba(0,0,0, .2)',
+        //marginTop:5, 
+        shadowOffset: { 
+        height: 1, width: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1,
+        backgroundColor: '#fff',
+        elevation: 4,
+        height: width*0.07,
+        width: width*0.07,
+        justifyContent: 'center',
+        alignItems: 'center',
+      
+       
+    },
    
 })

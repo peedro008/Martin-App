@@ -1,10 +1,10 @@
 {
-  "webpackServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "expoServerPort": 19000,
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": "https://z5-hd7.anonymous.martin.exp.direct",
-  "packagerNgrokUrl": "https://packager.z5-hd7.anonymous.martin.exp.direct",
-  "ngrokPid": 16888
+  "packagerPort": 19000,
+  "webpackServerPort": 19006,
+  "packagerPid": null
 }
