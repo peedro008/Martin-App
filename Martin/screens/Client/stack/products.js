@@ -3,8 +3,9 @@ import axios from 'axios'
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Dimensions,} from 'react-native'
 import { IP } from '../../../env';
 import { FlatList } from 'react-native-gesture-handler';
-import { Icon, Card, Image, SearchBar } from 'react-native-elements';
-import { set } from 'react-native-reanimated';
+import { Icon, Card, Image, SearchBar, Button } from 'react-native-elements';
+import { addOrder } from '../../../actions';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const width=Dimensions.get("window").width
@@ -13,16 +14,14 @@ const height=Dimensions.get("window").height
 export default  function  Products ({route, navigation}) {
     let category = route.params.params
     let iconName = "shopping-bag" 
+    const dispatch= useDispatch();
     const [cate, setCate]= useState([])
     const [name, setName]= useState("")
     const [product,setProduct] = useState([])
     const [count, setCount] = useState({});
+    const preOrder= useSelector(state=>state.PreOrder)
 
-    const handleCount=(id)=>{
-        if(count[id]>0){
-            setCount(count[id] - 1);
-        } 
-    }
+
 
     useEffect(()=>{
         axios.get(`${IP}/productsCat?id=${category.id}`)
@@ -48,6 +47,27 @@ export default  function  Products ({route, navigation}) {
             })
         
  }
+
+ let handleAddProduct=(product, count)=>{
+    let order={
+        name:product.name,
+        id:product.id,
+        price: product.price-(product.price * product.salePercent / 100),
+        sale:product.sale,
+        salePercent: product.salePercent,
+        img: product.img,
+        quantity:count,
+        total: (product.price-(product.price * product.salePercent / 100)) * count
+    }
+        let aux= preOrder.filter(el=> el.name == order.name)
+        if(aux.length <1 && count>0){
+            dispatch(addOrder(order))
+           
+            
+        }else if( count===0){
+            alert("Select the quantity")
+        }
+}
   
     useEffect(() => {
          let pes = {}
@@ -105,21 +125,39 @@ export default  function  Products ({route, navigation}) {
                     
                          <Card
                         key={item.id}
-                        containerStyle={{elevation: 10,width:width*0.9, height:width*0.33 }}>
+                        containerStyle={{elevation: 10,width:width*0.9, height:width*0.35, borderRadius:8 }}>
                           <View
                           style={{flexDirection:"row"}}>
+                            
+                            
+                            
+                            
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                               
+                            
                             <Image 
                             source={{uri: item.img}}
                             style={styles.image}
                             />
-                            <View style={{marginLeft:width*0.04}}
+
+                            </TouchableOpacity>
+                            <View style={{marginLeft:width*0.04, marginVertical:-3}}
                             >
-                                <Text style={{fontSize:22, fontWeight:"bold"}}>{item.name}</Text>
+                                <TouchableOpacity
+                                onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                                <Text style={{marginBottom: width*0.01, fontSize:20, fontWeight:"bold", }}>{item.name.substring(0, 16)}</Text>
+                                </TouchableOpacity>
+                              
                                 <Text style={{marginTop:height*0.001}}>Price: $ {item.price}</Text>
-                                <Text>Quantity: 1</Text>
+                                <Text>Quantity: {count[id]}</Text>
                                 <Text>Total: {(item.price*count[id]).toFixed(2)}</Text>
+                                
+                                
+                                <TouchableOpacity
+                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
                             </View>
-                            <View style={{position:"absolute", display:"flex", right:0}}> 
+                            <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
                                 <TouchableOpacity 
                                 onPress={() => setCount({...count, [id]:count[id]+1  }) }
                                 style={ styles.minibutton  }>
@@ -142,56 +180,82 @@ export default  function  Products ({route, navigation}) {
                                         
                             </View>
                         </Card>
-
-
-
-
-                    //     <TouchableOpacity
-                    //     key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:category.name})}>
-                    //     <View style={styles.product}>
-                    //     <ImageBackground
-                    //     key={item.id}
-                    //     source={{ uri:item.img}}
-                        
-                    //     style={styles.image}     
-                    //     >
-                            
-                    //       <Text style={ styles.nombre}>{item.name}</Text>
-                    //       <View style={styles.contPrice}>
-                    //         <Text style={ styles.price}> ${item.price}</Text>
-                    //       </View>
-                    //       </ImageBackground>
-                    //       </View> 
-                    //   </TouchableOpacity>
-                  
+               
                     )
                 }}
                 /> 
             </View> 
             :
-            <FlatList
-            keyExtractor={item => item.id.toString()}
-            numColumns={2}
-            data={product}
-            renderItem={({item})=>{
+            
+                <FlatList
+                keyExtractor={item => product.indexOf(item)}
+                numColumns={1}
+                data={product}
+                renderItem={({item})=>{
+                   
+                    let id=product.indexOf(item)
                 return(
-                    <TouchableOpacity
-                    key={item.id} onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
-                    <View >
-                    <ImageBackground
+                         
+                   
+                    <Card
                     key={item.id}
-                    source={{ uri:item.img}}
-                    style={styles.image}      
-                    >
+                    containerStyle={{elevation: 10,width:width*0.9, height:width*0.35, borderRadius:8 }}>
+                      <View
+                      style={{flexDirection:"row"}}>
                         
-                      <Text  style={ styles.nombre}>{item.name}</Text>
-                      <View style={styles.contPrice}>
-                            <Text style={ styles.price}> ${item.price}</Text>
-                      </View>
-                    </ImageBackground>
+                        
+                        
+                        
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                           
+                        
+                        <Image 
+                        source={{uri: item.img}}
+                        style={styles.image}
+                        />
+
+                        </TouchableOpacity>
+                        <View style={{marginLeft:width*0.04, marginVertical:-3}}
+                        >
+                            <TouchableOpacity
+                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                            <Text style={{marginBottom: width*0.01, fontSize:20, fontWeight:"bold", }}>{item.name.substring(0, 16)}</Text>
+                            </TouchableOpacity>
+                          
+                            <Text style={{marginTop:height*0.001}}>Price: $ {item.price}</Text>
+                            <Text>Quantity: {count[id]}</Text>
+                            <Text>Total: {(item.price*count[id]).toFixed(2)}</Text>
+                            
+                            
+                            <TouchableOpacity
+                            onPress={()=>handleAddProduct(item, count[id])} ><Text style={{marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
                         </View>
-                  </TouchableOpacity>
-                )
+                        <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
+                            <TouchableOpacity 
+                            onPress={() => setCount({...count, [id]:count[id]+1  }) }
+                            style={ styles.minibutton  }>
+                                <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>+</Text>
+                            </TouchableOpacity>
+                            
+                            <View style={styles.count}>
+                                <Text style={styles.countText}>{count[id]}</Text>
+                            </View>
+                            <TouchableOpacity
+                             onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
+                            style={ styles.minibutton  }
+                            >
+                                <Text
+                                style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"bold"}}>
+                                    -
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                                    
+                        </View>
+                    </Card>
+
+               )
             }}
             />
             
@@ -296,10 +360,9 @@ const styles = StyleSheet.create({
         marginHorizontal:5,
         marginVertical:5, 
         borderRadius:10,
-        overflow: 'hidden', 
-        height:width*0.223,
-        width:width*0.223,
-  
+        height:width*0.245,
+        width:width*0.245,
+      //  shadowRadius:45,
         position:"relative"
     },
     product:{
@@ -317,7 +380,9 @@ const styles = StyleSheet.create({
     minibutton:{
         borderRadius:8,
         shadowColor: 'rgba(0,0,0, .2)',
-        //marginTop:5, 
+        position:"relative",
+        display:"flex",
+        
         shadowOffset: { 
         height: 1, width: 1 },
         shadowOpacity: 1,

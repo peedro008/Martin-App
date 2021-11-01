@@ -4,14 +4,28 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './store';
 import Controller from './Controller';
+import { useFonts } from 'expo-font';
+
+
 
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'OpenSans-SemiBold': require('./assets/fonts/OpenSans-SemiBold.ttf'),
+  });
+
+
+  if (!fontsLoaded) {
+    return <View />;
+  } else {
   return (
     <Provider store={store}>
        <Controller />
     </Provider>
   );
+}
 }
 
 const styles = StyleSheet.create({

@@ -3,18 +3,36 @@ import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity,Dimensions, S
 import { useState,useEffect  } from 'react';
 import axios from 'axios';
 import { IP } from '../../../env';
-import { Card } from 'react-native-elements/dist/card/Card';
+import { Card, Icon } from 'react-native-elements';
+import * as Font from "expo-font"
 
 
 
 
 const width=Dimensions.get("window").width
-
+const height=Dimensions.get("window").height
 export default function orderDetail({route}) {
+    const [fontsLoaded, setFontsLoaded]= useState(false)
+    
+    useEffect(() => {
+      if (!fontsLoaded){
+        loadFonts()
+      }
+      
+    })
+    const loadFonts = async()=>{
+      await Font.loadAsync({
+        "OpenSans-Regular": require("../../../assets/fonts/OpenSans-Regular.ttf")
+      })
+      setFontsLoaded(true)
+    }
+ 
+    
     let {id} = route.params
     
 
     const [order, setOrder]= useState([]);
+    console.log(order)
 
    
    
@@ -46,67 +64,86 @@ export default function orderDetail({route}) {
         //console.log(items)
         
     return (
-        
-        <View
-        style={{backgroundColor:"white"}} >
-
-            <ScrollView>
-            <Text style={{ textAlign:"center",
-        alignSelf:"center",
-        fontSize: 25,
-        fontWeight: "bold",
-        marginTop:width*0.1,}} >ORDER DETAILS</Text>
+          <ScrollView>
+        <View style={{backgroundColor:"#FFFFFFFF"}}>
+            <Text style={styles.header}>Order Details</Text>
+            {order.length>0 && 
+            <View>
             <Card
-            containerStyle={{ alignSelf:"center", height:130, width:380, flexDirection: 'row',padding:0}}>
-            
-            {order.length>0 &&   
-            <View
-               style={{paddingHorizontal:15 ,paddingVertical:9,display:"flex",justifyContent:"space-between" ,flexDirection: 'row',alignSelf:"center", width:377 }}>
+            containerStyle={{paddingLeft:width*0.07}}>
+                <View style={{flexDirection:"row",marginBottom:height*0.015 }}>
+                                    <Text style={{fontSize:16, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Date: {order[0].createdAt.substring(0,9)}  </Text>
+                                    <Text style={{fontSize:16, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Time: {order[0].createdAt.substring(11,16)}</Text>  
+                </View>
+                <Card.Divider/>
+                <Text style={{fontSize:23,fontFamily:"OpenSans-Bold", color:"#6979F8", marginBottom:height*0.015}}>Order N° {order[0].id}</Text>
+                
+                <Card.Divider/>
+                
+                
+                <View style={{flexDirection:"row", marginBottom:height*0.02}}>
+                
+                    <View style={{width:"50%",}}>
+                        <Text style={{color:"#999999", fontSize:14,fontFamily:"OpenSans-Regular"}}>VALUE OF ITEMS</Text>
+                        <Text>$ {order[0].total}</Text>
+                    </View>
                     <View>
-                        <Text style={{ fontSize:20, fontWeight:"900"}}>Order ID: {order[0].id}</Text>
-                        <Text style={{fontSize:20, fontWeight:"900"}}>Status: {order[0].status}</Text>
-                        
-                        <Text style={{fontSize:20, fontWeight:"900"}}>Items: {items.length}</Text>
-                        <Text style={{fontSize:20, fontWeight:"900"}}>Total: ${order[0].total}</Text>
-                    </View> 
-                    
-                   <View
-                   style={{display:"flex" ,alignItems:"flex-end"}}
-                    >
-                        <Text style={{fontSize:20, fontWeight:"900"}}> {order[0].userInfo.fullName}</Text>
-                        <Text style={{fontSize:20, fontWeight:"900"}}>{order[0].userInfo.address}</Text>
-                        <Text style={{fontSize:20, fontWeight:"900"}}>Date: {order[0].createdAt.substring(0,9)}</Text>
-                        <Text style={{fontSize:20, fontWeight:"900"}}>Time: {order[0].createdAt.substring(11,16)}</Text>
-                         
-                         
-                    </View> 
-            </View>}
-            
-          </Card>
-             
-            
-              <FlatList
-                data={items}
+                        <Text style={{color:"#999999", fontSize:14,fontFamily:"OpenSans-Regular"}}>QUANTITY  </Text>
+                        <Text style={{fontFamily:"OpenSans-Regular"}}>{order[0].orderItems.length} products</Text>
+                    </View>
+
+                </View>
+                <Card.Divider/>
+                <Text style={{fontSize:17, fontFamily:"OpenSans-Regular"}}>SHIPPING PROGRESS</Text>
+                <View style={{flexDirection:"row", alignItems:"center"}}>
+                <Icon type="feather" name="truck" color="black" size={35}/>
+               
+                <Text  style={{fontSize:20, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
+                <Text  style={{fontSize:17, color:"grey", fontFamily:"OpenSans-Regular"}}> - 3 day shipping</Text>
+                               
+                </View>
+                <View style={{width:200, flexDirection:"row", alignItems:"center", justifyContent:"space-between", marginVertical:height*0.015}}>
+                    <View style={{width:44, height:3, backgroundColor:"#6979F8"}}/>
+                    <View style={{width:44, height:3, backgroundColor:"#CDD2FD"}}/>
+                    <View style={{width:44, height:3, backgroundColor:"#CDD2FD"}}/>
+                    <View style={{width:44, height:3, backgroundColor:"#CDD2FD"}}/>
+                </View>
+
+                <Card.Divider/>
+                <Text style={{fontSize:20, fontFamily:"OpenSans-Bold"}}>Shipping Address</Text>
+                <View style={{marginTop:height*0.01}}>
+                    <Text style={{fontSize:18,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.fullName}, {order[0].userInfo.address} </Text>
+                    <Text style={{fontSize:18,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.city}, {order[0].userInfo.postalCode} </Text>
+                    <Text style={{fontSize:18,fontFamily:"OpenSans-Regular"}}>TEL:  {order[0].userInfo.phone}</Text>
+                </View>
+            </Card>
+          
+            <FlatList
+                data={order[0].orderItems}
                 s
                 renderItem={({item})=>
             
                    
                     <Card
-                   
-                    containerStyle={{ height:100, width:380, flexDirection: 'row',padding:0}}>
+                    containerStyle={{ height:78, width:380, flexDirection: 'row',padding:0}}>
                         <View
                         style={{flexDirection: 'row',width:380}}>                        
                             <Image source={{uri:item.img}}
-                            style={{width:90, height:90, padding:0, borderRadius:50, marginTop:3  }}/>
+                            style={{width:70, height:70, padding:0, borderRadius:8, marginTop:3,   }}/>
                             
                             <View
-                            style={{paddingLeft:75, alignSelf:"center"}}>
-                            <Text
-                            style={{fontSize:25, fontWeight:"bold",marginBottom:15}}>{item.name} x{item.quantity} </Text>
+                            style={{paddingLeft:20 ,  width:290,  }}>
+                            <View style={{flexDirection:"row", alignItems:"center", width:290}}>
+                                <Text
+                                style={{fontSize:20, fontFamily:"OpenSans-SemiBold"}}>{item.name}</Text>
+                               
+                                <Text style={{fontSize:15,  position:"absolute", right:0, fontFamily:"OpenSans-Bold" }}>$ {item.total}   </Text>
+                                
+                            </View>
+
+                            <Text>Price:  ${item.price}</Text>
+                            <Text>Quantity:  {item.quantity}</Text>
                             
-                            <Text
-                            style={{fontSize:15
-                            }}>TOTAL: $ {item.total}   </Text>
                             </View>
                         
                         </View>
@@ -116,12 +153,38 @@ export default function orderDetail({route}) {
                 
         }
             />
+            </View>}
+            </View>
+            </ScrollView>
 
-</ScrollView>
-        </View> 
-        
     )
-        }
+    }
+
+
+          
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
     shadow:{
@@ -136,6 +199,13 @@ const styles = StyleSheet.create({
         shadowRadius: 2.22,
         
         elevation: 3,
+    },
+    header:{
+        alignSelf:"center",
+        fontSize:width*0.07,
+        fontWeight: "600",
+        marginTop:width*0.09,
+        fontFamily:"OpenSans-Regular"
     },
   
 })

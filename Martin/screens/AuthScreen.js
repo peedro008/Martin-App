@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: width*0.07,
         fontWeight: '600',
+        fontFamily:"OpenSans-Bold",
         marginLeft:width*0.1,
         marginTop: width*0.13,
         color: 'black',
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
         // backgroundColor:"green",
         marginTop:width*0.02,
         alignSelf:"flex-start",
+        fontFamily:"OpenSans-Regular",
         marginLeft:width*0.1,
         color:"gray",
         fontWeight:"400",
