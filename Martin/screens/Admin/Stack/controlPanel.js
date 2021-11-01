@@ -9,7 +9,7 @@ export default function controlPanel({navigation}) {
            <Button 
           
            title="Catalog"
-           onPress={() => navigation.navigate("Catalog Screen")}> 
+           onPress={() => navigation.navigate("Admin Categories")}> 
            
             
             </Button>
