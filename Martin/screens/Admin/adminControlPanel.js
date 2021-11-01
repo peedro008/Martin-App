@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 export default function adminControlPanel() {
     return (
        <Stack.Navigator>
-        <Stack.Screen name="_Control Panel" component={controlPanel} />
+        <Stack.Screen name="_Control Panel" component={controlPanel} options={{headerShown: false}}/>
         <Stack.Screen name="Admin Categories" component={AdminCategories} />
         <Stack.Screen name="Order Register" component={orderRegister} />
         <Stack.Screen name="Order" component={editOrder}/>
