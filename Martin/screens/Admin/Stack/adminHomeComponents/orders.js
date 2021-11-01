@@ -74,27 +74,29 @@ export default function orders({navigation}) {
           
                 <View style={styles.card} >
                 <View style={{margin:width*0.03}}>
-                   <View style={{flexDirection: 'row', marginBottom:13, alignItems:'center'}}>
+                   <View style={{flexDirection: 'row', marginBottom:width*0.029, alignItems:'center'}}>
                     
                         <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#6979F8" : "#00bb2d" , fontSize:width*0.04, textTransform:"uppercase"}}>{item.status}</Text>
-                        <Text style={{color:"#999999", fontWeight:"300",paddingLeft:100,fontSize:width*0.05 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
+                        <Text style={{color:"#999999", fontWeight:"300",paddingLeft:width*0.265,fontSize:width*0.05 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
                         style={{flexDirection: 'row', alignItems:"center"}}>
-                        <Text style={{margin:10, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
+                        <Text style={{margin:width*0.05, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
                         
-                        <View>
+                        <View style={{borderRadius:5, width:width*0.21, height:width*0.07, backgroundColor:"#F15A4D", marginLeft:width*0.24, justifyContent:"center"}}>
 
                         <TouchableOpacity
                         onPress={() => navigation.navigate("order detail",{id:item.id})}
-                        style={{borderRadius:5, width:80, height:25, marginTop:2, backgroundColor:"#F15A4D", marginLeft:90}}>
+                        >
+                           
                             <Text
-                            style={{fontSize:10, alignSelf:"center",fontWeight:"500", color:"#fff", marginTop:4,}}>
+                            style={{fontSize:width*0.03, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
                             DETAILS
                             </Text>
+                         
                         </TouchableOpacity>
                         </View>
                       
@@ -127,14 +129,7 @@ export default function orders({navigation}) {
 }
 
 const styles = StyleSheet.create({
-        OrderHeader:{
-          alignSelf:"flex-start",
-          fontSize: width*0.07,
-          fontWeight: "400",
-          marginBottom:33,
-          
-          
-        },
+       
         card:{
             borderRadius:5, 
             borderWidth:1, 
@@ -147,5 +142,6 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
             elevation: 16,
+            marginBottom:width*0.05
         }
     })
