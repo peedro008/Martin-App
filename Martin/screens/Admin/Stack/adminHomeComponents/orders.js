@@ -32,13 +32,13 @@ export default function orders({navigation}) {
  
         
     useEffect(()=>{
-        axios.get(axios.get(`${IP}/orderpending`)
+        axios.get(`${IP}/orderpending`)
         .then(function(response){
            setOrders(response.data)
         })
         .catch(error=>{
             console.log(error)  
-            }))
+            })
     },[])
 
  
