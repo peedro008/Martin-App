@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text,Dimensions, View, Image } from 'react-native'
 import { Card, Divider } from 'react-native-elements'
+
+
 const width=Dimensions.get("window").width
 const heigth=Dimensions.get("window").height
 let card=width*0.87

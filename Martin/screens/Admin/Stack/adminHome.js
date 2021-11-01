@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text,Dimensions, View, Image } from 'react-native'
 import { Card } from 'react-native-elements'
-import Balance from './Stack/adminHomeComponents/balanceCard'
-import Orders from '../Client/stack/homeComponents/orders'
+import Balance from './adminHomeComponents/balanceCard'
+import Orders from './adminHomeComponents/orders'
 import axios from 'axios'
-import { IP } from '../../env'
 
 const width=Dimensions.get("window").width
 const heigth=Dimensions.get("window").height
 
-export default function adminHome() {
-    const [orders,SetOrders]= useState([])
+export default function admindHome({navigation}) {
+    
 
-
-    useEffect(()=>{
-        axios.get(axios.get(`${IP}/orderpending`)
-        .then(function(response){
-           SetOrders(response.data)
-        })
-        .catch(error=>{
-            console.log(error)  
-            }))
-    })
 
 
 
@@ -30,8 +19,10 @@ export default function adminHome() {
            
             <Text style={styles.header}>Welcome Admin</Text>
             <Balance/>
-            <Text style={[styles.header, {marginTop:44}]} >Latest Orders</Text>
-            <Orders orders={orders}/>
+            <View style={{width:width*0.9}}>   
+                    <Text style={styles.header} >Last Orders</Text> 
+            </View>
+            <Orders navigation={navigation}/>
         </View>
     )
 }

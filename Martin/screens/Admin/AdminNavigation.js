@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { TabNavigationState } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import adminHome from "./adminHome"
+import adminHomeNavigation from "./adminHomeNavigation"
 import Sales from "./sales"
 import adminControlPanel from "./adminControlPanel"
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,8 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 const Tab = createBottomTabNavigator();
-
-const AdminNavigation = () => {
+ const AdminNavigation = () => {
   return (
     <Tab.Navigator
     
@@ -21,7 +20,7 @@ const AdminNavigation = () => {
     })
       }
    >
-        <Tab.Screen name="Home" component={adminHome}options={{headerShown: false}} />
+        <Tab.Screen name="Home" component={adminHomeNavigation}options={{headerShown: false}} />
         <Tab.Screen name="Control Panel" component={adminControlPanel}options={{headerShown: false}} />
         <Tab.Screen name="Sales" component={Sales}/>
         

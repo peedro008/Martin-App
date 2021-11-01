@@ -97,7 +97,7 @@ const getUserOrders=async(req,res)=>{
         
         let orderBd=await Order.findAll({
             where:{email:email},
-            attributes:['email','id','status','total',"createdAt"],
+          
             include:{
                 model:OrderItems,
                 
@@ -121,7 +121,7 @@ const getPendingOrders=async(req,res)=>{
         
         let orderBd=await Order.findAll({
             where:{status:"Pending"},
-            attributes:['email','id','status','total'],
+            attributes:['email','id','status','total',"createdAt"],
             include:{
                 model:OrderItems,
                 
