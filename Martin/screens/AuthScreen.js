@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
         // backgroundColor:"green",
         marginTop:width*0.02,
         alignSelf:"flex-start",
+        fontFamily:"OpenSans-Regular",
         marginLeft:width*0.1,
         color:"gray",
         fontWeight:"400",
