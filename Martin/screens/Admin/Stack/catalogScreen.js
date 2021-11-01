@@ -11,7 +11,7 @@ const width=Dimensions.get("window").width
 const height=Dimensions.get("window").height
 
 export default  function  Products ({route, navigation}) {
-    // let category = route.params.params
+    let category = route.params.params
     let iconName = "shopping-bag" 
     const dispatch= useDispatch();
     const [cate, setCate]= useState([])
@@ -23,7 +23,7 @@ export default  function  Products ({route, navigation}) {
 
 
     useEffect(()=>{
-        axios.get(`${IP}/productsCat?id=${1}`)
+        axios.get(`${IP}/productsCat?id=${category.id}`)
             .then(function(response){
                 setCate(response.data)
             })
@@ -91,7 +91,7 @@ export default  function  Products ({route, navigation}) {
                         return(
                             <View style={styles.containerProduct}>
                                 <View style={styles.circle}>
-                                    <Icon name="clipboard" type="feather" color="#fff"/>
+                                    <Icon name="edit-3" type="feather" color="#fff"/>
                                 </View>
                                 <View  style={{marginLeft:18.35, width:width*0.41}}>
                                     <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
@@ -119,7 +119,7 @@ export default  function  Products ({route, navigation}) {
                         return(
                             <View style={styles.containerProduct}>
                                 <View style={styles.circle}>
-                                    <Icon name="clipboard" type="feather" color="#fff"/>
+                                    <Icon name="edit-3" type="feather" color="#fff"/>
                                 </View>
                                 <View  style={{marginLeft:18.35, width:width*0.41}}>
                                     <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>

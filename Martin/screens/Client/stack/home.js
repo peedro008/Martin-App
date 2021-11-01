@@ -100,7 +100,7 @@ export default function Home({navigation}) {
               <Image  style={styles.image} source={{uri:item.img}}/>
                 <View style={styles.footer}>
                   <View style={{width:width*0.45, flexWrap:"wrap"}}>
-                    <Text style={ styles.title }>{item.name}</Text>
+                    <Text numberOfLines={1} ellipsizeMode="tail" style={ styles.title }>{item.name}</Text>
                   </View>
                     <View style={{ alignItems:"center", alignSelf:"flex-end"}}>
                         <Text  style={ styles.prevPrice}>${item.price.toFixed(2) }</Text>

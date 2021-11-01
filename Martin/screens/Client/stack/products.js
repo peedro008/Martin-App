@@ -142,20 +142,20 @@ export default  function  Products ({route, navigation}) {
                             />
 
                             </TouchableOpacity>
-                            <View style={{marginLeft:width*0.04, marginVertical:-3}}
-                            >
+                            <View style={{marginLeft:width*0.04, marginVertical:-3}}>
                                 <TouchableOpacity
                                 onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
-                                <Text style={{marginBottom: width*0.01, fontSize:20, fontWeight:"bold", }}>{item.name.substring(0, 16)}</Text>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
                                 </TouchableOpacity>
                               
-                                <Text style={{marginTop:height*0.001}}>Price: $ {item.price}</Text>
+                                <Text style={{marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
                                 <Text>Quantity: {count[id]}</Text>
-                                <Text>Total: {(item.price*count[id]).toFixed(2)}</Text>
+                                <Text>Total: ${ (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                                 
-                                
+                                <View style={{flexDirection:"row"}}>
                                 <TouchableOpacity
                                 onPress={()=>handleAddProduct(item, count[id])} ><Text style={{marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
+                                </View>
                             </View>
                             <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
                                 <TouchableOpacity 
@@ -220,12 +220,12 @@ export default  function  Products ({route, navigation}) {
                         >
                             <TouchableOpacity
                             onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
-                            <Text style={{marginBottom: width*0.01, fontSize:20, fontWeight:"bold", }}>{item.name.substring(0, 16)}</Text>
+                            <Text numberOfLines={1} ellipsizeMode="tail" style={{marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
                             </TouchableOpacity>
                           
-                            <Text style={{marginTop:height*0.001}}>Price: $ {item.price}</Text>
+                            <Text style={{marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
                             <Text>Quantity: {count[id]}</Text>
-                            <Text>Total: {(item.price*count[id]).toFixed(2)}</Text>
+                            <Text>Total: ${ (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                             
                             
                             <TouchableOpacity
