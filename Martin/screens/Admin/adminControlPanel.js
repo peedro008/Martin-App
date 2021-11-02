@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
-import orderRegister from './Stack/orderRegister';
+import adminOrderRegister from './adminOrderRegister';
 import controlPanel from './Stack/controlPanel';
 import catalogScreen from "./Stack/catalogScreen"
 import editProduct from './Stack/editProduct';
@@ -14,7 +14,7 @@ export default function adminControlPanel() {
        <Stack.Navigator>
         <Stack.Screen name="_Control Panel" component={controlPanel} options={{headerShown: false}}/>
         <Stack.Screen name="Admin Categories" component={AdminCategories} options={{headerShown: false}}/>
-        <Stack.Screen name="Order Register" component={orderRegister} options={{headerShown: false}} />
+        <Stack.Screen name="Order Register" component={adminOrderRegister} options={{headerShown: false}} />
         <Stack.Screen name="Order" component={editOrder} options={{headerShown: false}}/>
         <Stack.Screen name="Catalog Screen" component={catalogScreen} options={{headerShown: false}} />
         <Stack.Screen name="Edit Product" component={editProduct} options={{headerShown: false}}/>

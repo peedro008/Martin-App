@@ -65,7 +65,7 @@ export default function orderDetail({route}) {
         
     return (
           <ScrollView>
-        <View style={{backgroundColor:"#FFFFFFFF", height:height}}>
+        <View style={{backgroundColor:"#FFFFFFFF", height:width*0.95}}>
             <Text style={styles.header}>Order Details</Text>
             {order.length>0 && 
             <View>

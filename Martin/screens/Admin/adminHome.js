@@ -1,7 +1,7 @@
  import  { useEffect, useState } from 'react'
 
 import Balance from './Stack/adminHomeComponents/balanceCard'
- import Orders from '../Client/stack/homeComponents/orders'
+import Orders from './Stack/adminHomeComponents/orders'
  import axios from 'axios'
  import { IP } from '../../env'
 
@@ -20,24 +20,28 @@ const heigth=Dimensions.get("window").height
 
 export default function adminHome() {
     const [orders,SetOrders]= useState([])
-
+    
 
     useEffect(()=>{
         axios.get(`${IP}/orderpending`)
         .then(function(response){
            SetOrders(response.data)
+           console.log(response.data)
         })
         .catch(error=>{
             console.log(error)  
             })
-    })
+    },[])
+    
+    
+   
     return (
-        <View style={{flex:1, backgroundColor:"#fff"}}>
+        <View style={{flex:1, backgroundColor:"#fff",}}>
            
             <Text style={styles.header}>Welcome Admin</Text>
              <Balance/>
             <Text style={[styles.header, {marginTop:44}]} >Latest Orders</Text>
-            <Orders orders={orders}/>
+            <Orders data={orders}/>
         </View>
     )
 }
