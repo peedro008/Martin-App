@@ -12,12 +12,24 @@ const width=Dimensions.get("window").width
 
 
 export default function user({navigation}) {
+    const email =  useSelector(state=> state.User)
     const [name,setName]=useState("");
     const [lastName,setLastName]=useState("")
     const [address,setAddress]=useState("")
     const [city,setCity]=useState("")
     const [render,setRender]=useState(true)
+    const [orders, setOrders] = useState([])
     const userId=useSelector(state=>state.UserId)
+
+    useEffect(()=>{
+        axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
+            .then(function(response){
+            setOrders(response.data)
+            })
+            .catch(error=>{
+                console.log(error)  
+                })
+    },[])
 
     useEffect(()=>{
        axios.get(`${IP}/user?id=${userId}`)
@@ -68,7 +80,7 @@ export default function user({navigation}) {
                 </TouchableOpacity>
             </View>
             <View style={styles.orders}>
-            <Orders name={name} lastName={lastName} navigation={navigation}/>
+            <Orders name={name} lastName={lastName} navigation={navigation} data={orders}/>
         </View></View>
     )}
   
@@ -80,11 +92,13 @@ const styles = StyleSheet.create({
         marginBottom:width*0.06,
         fontSize: width*0.07,
         fontWeight: "600",
-        alignSelf:"center"
+        alignSelf:"center",
+        fontFamily:"OpenSans-Regular"
     },
     header:{
         alignItems:"center",
-        alignSelf:"center"
+        alignSelf:"center",
+        
     },
     contInitials:{
         height:width*0.21,
@@ -94,7 +108,8 @@ const styles = StyleSheet.create({
         borderRadius:100,
         marginBottom:25,
         borderWidth:1,
-        borderColor:"#6979F8"
+        borderColor:"#6979F8",
+        
     },
     initials:{
         color:"#fff",
@@ -102,12 +117,14 @@ const styles = StyleSheet.create({
         textAlignVertical:"center",
         fontSize:width*0.10,
         fontWeight:"400",
-        textTransform:"uppercase"
+        textTransform:"uppercase",
+        fontFamily:"OpenSans-Regular"
 
     },
     name:{
         fontSize: width*0.07,
-        textTransform:"capitalize"
+        textTransform:"capitalize",
+        fontFamily:"OpenSans-Regular"
     },
     address:{
         width:width*0.7,
@@ -115,7 +132,8 @@ const styles = StyleSheet.create({
         fontSize:width*0.04,
         textAlign:"center",
         fontWeight:"400",
-        textTransform:"capitalize"
+        textTransform:"capitalize",
+        fontFamily:"OpenSans-Regular"
     },
     buttonEdit:{
         width:width*0.44,
@@ -127,12 +145,14 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         fontSize:width*0.05,
-        fontWeight:"300"
+        fontWeight:"300",
+        fontFamily:"OpenSans-Regular"
     },
     renderButton:{
         alignItems:"center",
         width:108.33,
         fontSize:width*0.06,
+        fontFamily:"OpenSans-Regular"
         
       },
       orders:{

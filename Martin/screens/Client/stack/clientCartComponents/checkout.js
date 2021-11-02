@@ -72,13 +72,15 @@ const styles= StyleSheet.create({
     container:{
         width:width-50,
         flex:1,
-        alignSelf:"center"
+        alignSelf:"center",
+        fontFamily:"OpenSans-Regular"
     },
     text:{
        
         fontWeight:"600",
         fontSize:width*0.04,
-        textAlign:"justify"
+        textAlign:"justify",
+        fontFamily:"OpenSans-Regular"
     },
   
 })

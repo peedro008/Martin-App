@@ -145,16 +145,16 @@ export default  function  Products ({route, navigation}) {
                             <View style={{marginLeft:width*0.04, marginVertical:-3}}>
                                 <TouchableOpacity
                                 onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
-                                <Text numberOfLines={1} ellipsizeMode="tail" style={{marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
                                 </TouchableOpacity>
                               
-                                <Text style={{marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
-                                <Text>Quantity: {count[id]}</Text>
-                                <Text>Total: ${ (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",}}>Quantity: {count[id]}</Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",}}>Total: ${ (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                                 
                                 <View style={{flexDirection:"row"}}>
                                 <TouchableOpacity
-                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
+                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold",marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
                                 </View>
                             </View>
                             <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
@@ -220,16 +220,16 @@ export default  function  Products ({route, navigation}) {
                         >
                             <TouchableOpacity
                             onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
-                            <Text numberOfLines={1} ellipsizeMode="tail" style={{marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
+                            <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4,  }}>{item.name}</Text>
                             </TouchableOpacity>
                           
-                            <Text style={{marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
-                            <Text>Quantity: {count[id]}</Text>
-                            <Text>Total: ${ (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
+                            <Text style={{fontFamily:"OpenSans-Regular",marginTop:height*0.001,}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
+                            <Text style={{fontFamily:"OpenSans-Regular"}}>Quantity: {count[id]}</Text>
+                            <Text style={{fontFamily:"OpenSans-Regular"}}>Total: ${ (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                             
                             
                             <TouchableOpacity
-                            onPress={()=>handleAddProduct(item, count[id])} ><Text style={{marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
+                            onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold",marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
                         </View>
                         <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
                             <TouchableOpacity 
@@ -293,6 +293,7 @@ const styles = StyleSheet.create({
         marginTop:width*0.018,
         fontSize: width*0.07,
         fontWeight: "600",
+        fontFamily:"OpenSans-Regular"
         
     },
     searchBar:{
@@ -313,7 +314,8 @@ const styles = StyleSheet.create({
         fontSize:width*0.07,
         fontWeight: "600",
         alignSelf:"center",
-        textAlign:"center"
+        textAlign:"center",
+        fontFamily:"OpenSans-Regular"
     
     },
     nombre:{
@@ -322,7 +324,8 @@ const styles = StyleSheet.create({
         fontSize: width*0.05,
         marginTop:15,
         marginBottom:15,
-        alignSelf:"center"
+        alignSelf:"center",
+        fontFamily:"OpenSans-Regular"
     },
     contPrice:{
         position:"absolute",
@@ -354,7 +357,8 @@ const styles = StyleSheet.create({
         fontStyle: "normal",
         fontWeight: "500",
         fontSize: width*0.05, 
-       color:"white"
+       color:"white",
+       fontFamily:"OpenSans-Regular"
     },
     image:{
         marginHorizontal:5,

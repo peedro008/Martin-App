@@ -69,12 +69,12 @@ export default function clientCart() {
             <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4 }}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
                  <View style={[styles.renderButton,{borderBottomWidth:render?5:0,borderBottomColor:"#6979F8"}]}>
-                    <Text style={{ color:!render ? "#999999" : "#6979F8",fontWeight:"400",}}>CART</Text>
+                    <Text style={{ color:!render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CART</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>handleCheckRender()}>
                  <View style={[styles.renderButton,{borderBottomWidth:render? 0:5, borderBottomColor:"#6979F8"}]}>
-                    <Text  style={{ color:render ? "#999999" : "#6979F8",fontWeight:"400"}}>CHECKOUT</Text>
+                    <Text  style={{ color:render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CHECKOUT</Text>
                 </View>
                 </TouchableOpacity>
             </View>
@@ -169,11 +169,13 @@ const styles = StyleSheet.create({
     marginTop:5,
     fontSize: width*0.07,
     fontWeight: "600",
+    fontFamily:"OpenSans-Regular"
   },
   renderButton:{
     alignItems:"center",
     width:(width*0.4)/2,
     fontSize:width*0.06,
+    fontFamily:"OpenSans-Regular"
     
   },
   contTotalOrder:{
@@ -183,9 +185,11 @@ const styles = StyleSheet.create({
   totalOrder:{
     color:"#151522",
     fontStyle: "normal",
-    fontWeight: "bold",
+    
     fontSize: 15,
-    alignSelf:"center"
+    alignSelf:"center",
+    fontFamily:"OpenSans-Bold"
+    
   //  lineheight: 20,
 
   },
@@ -195,7 +199,8 @@ const styles = StyleSheet.create({
       alignSelf:"center",
       justifyContent:"center",
       borderRadius:5,
-      backgroundColor:"#F15A4D"
+      backgroundColor:"#F15A4D",
+      fontFamily:"OpenSans-Regular"
 
   },
   container:{
@@ -207,6 +212,7 @@ text:{
    
     fontWeight:"600",
     fontSize:width*0.04,
-    textAlign:"justify"
+    textAlign:"justify",
+    fontFamily:"OpenSans-Regular"
 },
 })
