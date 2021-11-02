@@ -239,7 +239,8 @@ const Styles= StyleSheet.create({
                 marginTop: 80,
                 flex:1,
                 alignSelf:"center",
-                fontWeight: "bold"
+                fontWeight: "bold",
+                fontFamily:"OpenSans-Bold"
     },
     image:{
       
@@ -276,7 +277,8 @@ const Styles= StyleSheet.create({
     search:{
         marginTop:width*0.018,
         fontSize: width*0.07,
-        fontWeight: "600"
+        fontWeight: "600",
+        fontFamily:"OpenSans-Regular"
     },
     categories:{
         marginVertical:width*0.04,
@@ -284,6 +286,7 @@ const Styles= StyleSheet.create({
         fontWeight: "600",
         alignSelf:"center",
         textAlign:"center",
+        fontFamily:"OpenSans-Regular"
         
     },
     nombre:{
@@ -292,12 +295,14 @@ const Styles= StyleSheet.create({
         fontSize: 20,
         marginTop:15,
         marginBottom:15,
-        alignSelf:"center"
+        alignSelf:"center",
+        fontFamily:"OpenSans-Regular"
     },
     contPrice:{
         position:"absolute",
         bottom:0,
-        width:"100%"
+        width:"100%",
+        fontFamily:"OpenSans-Regular"
     },
     price:{
         backgroundColor: 'rgba(52, 52, 52, 0.4)',
@@ -306,7 +311,8 @@ const Styles= StyleSheet.create({
         fontStyle: "normal",
         fontWeight: "500",
         fontSize: 20, 
-       color:"white"
+       color:"white",
+       fontFamily:"OpenSans-Regular"
     },
     imageCard:{
         marginHorizontal:5,

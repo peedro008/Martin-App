@@ -128,7 +128,7 @@ export default function Home({navigation}) {
         <Paginator data={sales}/>
         
          <View style={styles.orders}>
-          <Orders navigation={navigation}/>
+          <Orders navigation={navigation} data={orders}/>
          </View>
       
         </View>
@@ -151,17 +151,10 @@ const styles = StyleSheet.create({
         textAlign:"center",
         marginVertical:width*0.04,
         fontSize: width*0.07,
-        fontWeight: "600",
+       
+        fontFamily:"OpenSans-Regular"
       },
-      OrderHeader:{
      
-        alignSelf:"center",
-        fontSize: width*0.07,
-        fontWeight: "600",
-        marginBottom:15,
-        
-        
-      },
 
       image:{
         width:width*0.9,
@@ -177,18 +170,21 @@ const styles = StyleSheet.create({
         fontSize:width*0.05,
         textAlign:"justify",
         marginLeft: width*0.03,
+        fontFamily:"OpenSans-Regular"
       
       },
       title2:{
         fontWeight:"600",
         fontSize:width*0.04,
         marginLeft: width*0.03,
+        fontFamily:"OpenSans-Regular"
       
       },
       price:{
         fontWeight:"600",
         fontSize:width*0.07,
-        marginRight:width*0.03
+        marginRight:width*0.03,
+        fontFamily:"OpenSans-Regular"
         //color:"#FF0808"
       },
       prevPrice:{
@@ -196,7 +192,8 @@ const styles = StyleSheet.create({
         alignSelf:"flex-start",
         fontSize:width*0.05,
         color:"#F15A4D",
-        textDecorationLine:"line-through"
+        textDecorationLine:"line-through",
+        fontFamily:"OpenSans-Regular"
       },
       footer:{
         flexDirection:"row",
@@ -230,7 +227,8 @@ const styles = StyleSheet.create({
       buttonStyle:{
         color:"#FFFFFF" ,
         alignSelf:"center", 
-        fontSize:width*0.05
+        fontSize:width*0.05,
+        fontFamily:"OpenSans-Regular"
       }
     
 })

@@ -42,7 +42,7 @@ export default function Cart({order}){
                         <Text style={styles.name}>{item.name}</Text>
                         <Text style={styles.price}>${item.price.toFixed(2)}</Text>
                         <View style={styles.contQuantity}>
-                            <Text>Quantity:</Text>
+                            <Text style={{fontFamily:"OpenSans-Regular"}}>Quantity:</Text>
                             <Text style={{color:"#777777"}}> x{item.quantity} </Text>
                         </View>
                         
@@ -102,17 +102,19 @@ info:{
     display:"flex",
     position:"relative",
     flexGrow:10,
-    marginLeft:width*0.03
+    marginLeft:width*0.03,
+    
 },
 name:{
     display:"flex",
     position:"absolute",
     fontStyle: "normal",
-    fontWeight: "600",
+   
     fontSize: width*0.05,
     paddingVertical:width*0.03,
     flexWrap:"wrap",
-    width:width*0.4
+    width:width*0.4,
+    fontFamily:"OpenSans-Regular"
 
     
 },
@@ -126,6 +128,7 @@ price:{
   fontWeight: "normal",
   fontSize: width*0.06,
   paddingVertical:width*0.08,
+  fontFamily:"OpenSans-Regular"
  
   
 },
@@ -136,10 +139,10 @@ contQuantity:{
     bottom:10,
     left:1,
     flexDirection:"row",
-    fontStyle: "normal",
-    fontWeight: "normal",
+ 
     fontSize: width*0.04,
-    paddingBottom:5
+    paddingBottom:5,
+    fontFamily:"OpenSans-Regular"
 
 },
   

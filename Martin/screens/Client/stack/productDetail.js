@@ -96,7 +96,7 @@ export default function ProductDetail({route,navigation}) {
                     </View>  
                 </View>
                 <View style={styles.category}>
-                    <Text style={{fontSize:width*0.06, fontWeight:"600", color:"#6979F8"}}>
+                    <Text style={{fontSize:width*0.06, fontWeight:"600", color:"#6979F8", fontFamily:"OpenSans-Regular"}}>
                         {category}
                     </Text>
                 </View>
@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
         fontSize:width*0.07,
         fontWeight: "600",
         marginVertical:width*0.04,
+        fontFamily:"OpenSans-Regular"
     },
     count:{
         marginLeft:9,
@@ -197,12 +198,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         
         
+        
     },
     category:{
         marginLeft:width*0.05,
         marginTop:8,
         marginBottom:8,
-        
+    
         
     },
     contPrice:{
@@ -211,7 +213,8 @@ const styles = StyleSheet.create({
     price:{
         fontSize:width*0.13,
         marginLeft:width*0.05,
-        fontWeight:"600"
+        fontWeight:"600",
+        fontFamily:"OpenSans-Regular"
     },
     discount:{
         textAlign:"center",
@@ -221,7 +224,8 @@ const styles = StyleSheet.create({
         fontWeight:"400",
         width:width*0.29,
         textDecorationLine:"line-through",
-        color:"gray"
+        color:"gray",
+        fontFamily:"OpenSans-Regular"
     },
     salePercent:{
         fontSize:width*0.06,
@@ -229,7 +233,8 @@ const styles = StyleSheet.create({
         fontWeight:"400",
         height:width*0.08,
         // backgroundColor:"#F15A4D",
-        borderRadius:5
+        borderRadius:5,
+        fontFamily:"OpenSans-Regular"
     },
     image:{
         height:height*0.4,
@@ -241,7 +246,8 @@ const styles = StyleSheet.create({
         fontSize:width*0.10,
         marginLeft:width*0.05, 
         marginBottom:10,
-        textTransform:"uppercase"
+        textTransform:"uppercase",
+        fontFamily:"OpenSans-Regular"
     },
     desc:{
         fontSize:width*0.04,
@@ -249,6 +255,7 @@ const styles = StyleSheet.create({
         marginRight:width*0.05,
         textAlign:"justify",
         overflow: "visible",
+        fontFamily:"OpenSans-Regular"
       
       
        
@@ -267,12 +274,14 @@ const styles = StyleSheet.create({
         color:"#6979F8",
         fontWeight:"600",
         alignSelf:"center",
-        fontSize:width*0.05
+        fontSize:width*0.05,
+        fontFamily:"OpenSans-Regular"
     },
     buttonStyle:{
         color:"#FFFFFF" ,
         alignSelf:"center", 
         fontSize:width*0.05,
+        fontFamily:"OpenSans-Regular"
         
 
 
