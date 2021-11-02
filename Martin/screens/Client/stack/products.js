@@ -67,6 +67,7 @@ export default  function  Products ({route, navigation}) {
         }else if( count===0){
             alert("Select the quantity")
         }
+        
 }
   
     useEffect(() => {
