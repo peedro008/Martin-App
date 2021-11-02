@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
         },
         card:{
             height:width*0.53,
+           
             borderRadius:5, 
             borderWidth:1, 
             borderColor:"rgba(228, 228, 228, 0.6)",
