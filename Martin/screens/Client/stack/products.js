@@ -67,6 +67,12 @@ export default  function  Products ({route, navigation}) {
         }else if( count===0){
             alert("Select the quantity")
         }
+        let pes = {}
+        for(let i=0;i<cate.length;i++){
+        pes[i]=0    
+       
+        }
+        setCount(pes)
         
 }
   

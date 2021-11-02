@@ -15,7 +15,7 @@ const height=Dimensions.get("window").height
 
 export default function Categories({navigation}) {
     const [name,setName] = useState("")
-    const [product,setProduct] = useState([])
+    const [products,setProducts] = useState([])
     const [categories, setCategories]= useState([])
     const [count, setCount] = useState({});
     const preOrder= useSelector(state=>state.PreOrder)
@@ -40,7 +40,7 @@ export default function Categories({navigation}) {
            
                 axios.get(`${IP}/products?name=${name}`)
                 .then(function(response){
-                    setProduct(response.data)
+                    setProducts(response.data)
                 })
                 .catch(error=>{
                   console.log(error)  
@@ -62,20 +62,25 @@ export default function Categories({navigation}) {
         let aux= preOrder.filter(el=> el.name == order.name)
         if(aux.length <1 && count>0){
             dispatch(addOrder(order))
-           
+       
             
         }else if( count===0){
             alert("Select the quantity")
         }
+        let pes = {}
+        for(let i=0;i<products.length;i++){
+        pes[i]=0    
+        }
+        setCount(pes)
  }
  useEffect(() => {
     let pes = {}
-   for(let i=0;i<product.length;i++){
+   for(let i=0;i<products.length;i++){
    pes[i]=0    
   
    }
    setCount(pes)
-}, [product])
+}, [products])
 
     
 
@@ -143,12 +148,12 @@ export default function Categories({navigation}) {
                 
                 : <FlatList
                 key={"_"}
-                keyExtractor={item => "_" + product.indexOf(item)}
+                keyExtractor={item => "_" + products.indexOf(item)}
                 numColumns={1}
-                data={product}
+                data={products}
                 renderItem={({item})=>{
                    
-                    let id=product.indexOf(item)
+                    let id=products.indexOf(item)
                 return(
                          
                    
