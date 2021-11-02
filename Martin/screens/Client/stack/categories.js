@@ -44,7 +44,7 @@ export default function Categories({navigation}) {
                 .catch(error=>{
                   console.log(error)  
                 })
-            
+         
      }
      
  let handleAddProduct=(product, count)=>{
