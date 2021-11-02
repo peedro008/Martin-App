@@ -57,7 +57,7 @@ export default  function  Products ({route, navigation}) {
             <View style={{marginTop:width*0.044}}>
                 <View
                     style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
-                        <Text style={styles.products}>Meet</Text>
+                        <Text style={styles.products}>{category.name}</Text>
                         <View style={{position:"absolute", right:0}}>
                             <Icon 
                             name='edit'
@@ -112,7 +112,8 @@ export default  function  Products ({route, navigation}) {
                     /> : 
                     
                     <FlatList
-                    keyExtractor={item => item.id.toString()}
+                    key={"_"}
+                    keyExtractor={item => "_" + item.id.toString()}
                     numColumns={1}
                     data={product}
                     renderItem={({item})=>{
@@ -181,8 +182,8 @@ const styles = StyleSheet.create({
         fontSize:width*0.07,
         fontWeight: "600",
         alignSelf:"center",
-        textAlign:"center"
-    
+        textAlign:"center",
+        textTransform:"capitalize"
     },
     containerProduct:{
         width:width,

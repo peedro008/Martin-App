@@ -100,7 +100,8 @@ export default function AdminCategories({navigation}) {
                 /> :  
 
                 <FlatList
-                keyExtractor={item => item.id.toString()}
+                key={"_"}
+                keyExtractor={item => "_" + item.id.toString()}
                 numColumns={1}
                 data={product}
                 renderItem={({item})=>{

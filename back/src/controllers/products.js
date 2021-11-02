@@ -8,7 +8,11 @@ const products=async(req,res)=>{
 
         if(id){
             let productBd= await Product.findOne({
-                where: { id: id } 
+                where: { id: id },
+                include:{
+                    model:Category,
+                    attributes:["id","name"]
+                   } 
             })
             productBd ? res.status(200).json(productBd):
             res.status(404).send("Product not found");
@@ -75,18 +79,29 @@ const productsSale=async(req,res)=>{
     }
 
 };
-const updateProductPrice=async(req,res)=>{
+const updateProduct=async(req,res)=>{
       
     try{
-        let price = req.body.price
         let id = req.body.id
+        // let idCat = req.body.idCat
+        let price = req.body.price
+        let description = req.body.description
+        let name = req.body.name
+        let sale = req.body.sale
+        let salePercent = req.body.salePercent
         console.log(id)
         console.log(price)
         let orderBd=await Product.update(
-            {price:price},
+            {price:price,
+             description:description,
+             name:name,
+             sale:sale,
+             salePercent:salePercent
+            },
             {where:{id:id}},
             
         )
+        // orderBd.setCategory([idCat])
         
      orderBd?res.status(200).send("Success"):
      res.status(404).send("product not found");
@@ -140,7 +155,7 @@ module.exports={
     products,
     productsCat,
     productsSale,
-    updateProductPrice,
+    updateProduct,
     putProductSale
     
     

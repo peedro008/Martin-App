@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {products, productsCat, productsSale, updateProductPrice, putProductSale} = require('../controllers/products.js')
+const {products, productsCat, productsSale, updateProduct, putProductSale} = require('../controllers/products.js')
 const categories = require('../controllers/categories.js');
 
 // Importar todos los routers;
@@ -30,7 +30,7 @@ router.put('/userinfo', updateInfo);
 
 //PRODUCT
 
-router.put("/updateproductprice", updateProductPrice)
+router.put("/updateProduct", updateProduct)
 
 router.get('/products',products)
 
