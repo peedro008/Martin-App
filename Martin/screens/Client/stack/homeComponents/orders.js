@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         OrderHeader:{
           alignSelf:"center",
           fontSize: width*0.07,
-          fontWeight: "600",
+          
           marginBottom:20,
           fontFamily:"OpenSans-Regular"
           

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button,TouchableOpacity,ImageBackground,Dimensions, } from 'react-native'
+import { StyleSheet, Text, View, Button,TouchableOpacity,ImageBackground,Dimensions, Image } from 'react-native'
 import { Icon } from 'react-native-elements'
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, Card } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { addOrder } from '../../../actions';
 
 const width=Dimensions.get("window").width
+const height=Dimensions.get("window").height
 
 export default function Categories({navigation}) {
     const [name,setName] = useState("")
@@ -141,7 +142,8 @@ export default function Categories({navigation}) {
                     
                 
                 : <FlatList
-                keyExtractor={item => product.indexOf(item)}
+                key={"_"}
+                keyExtractor={item => "_" + product.indexOf(item)}
                 numColumns={1}
                 data={product}
                 renderItem={({item})=>{
@@ -187,7 +189,7 @@ export default function Categories({navigation}) {
                         <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
                             <TouchableOpacity 
                             onPress={() => setCount({...count, [id]:count[id]+1  }) }
-                            style={ styles.minibutton  }>
+                            style={ Styles.minibutton  }>
                                 <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>+</Text>
                             </TouchableOpacity>
                             
