@@ -9,7 +9,7 @@ const sequelize = new Sequelize(
 
 
 
-  `postgres://postgres:Tobias123.@localhost/MartinApp`, {
+  `postgres://postgres:pesanmene@localhost:5432/MartinApp`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -35,7 +35,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { User,Product,Category,Order, OrderItems, Role, UserInfo} = sequelize.models;
 
-Category.hasOne(Product);
+Category.hasMany(Product);
 Product.belongsTo(Category);
 
 User.belongsToMany(Role,{ through: 'user_role' });
