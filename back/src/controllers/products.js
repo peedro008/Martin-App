@@ -8,22 +8,15 @@ const products=async(req,res)=>{
 
         if(id){
             let productBd= await Product.findOne({
+                attributes:['name','id','description','img','price',"sale","salePercent","categoryId"],
                 where: { id: id },
-                include:{
-                    model:Category,
-                    attributes:["id","name"]
-                   } 
+    
             })
             productBd ? res.status(200).json(productBd):
             res.status(404).send("Product not found");
         }else{
             let productsBd= await Product.findAll({
-                attributes:['name','id','description','img','price',"sale","salePercent"],
-                 include:{
-                 model:Category,
-                 attributes:["id","name"]
-                }
-            
+                attributes:['name','id','description','img','price',"sale","salePercent","categoryId"],
             });
             if(name){
                 productsBd=productsBd.filter(el=> el.name.toLowerCase().includes(name.toLowerCase()))
@@ -88,7 +81,7 @@ const updateProduct=async(req,res)=>{
         let name = req.body.name
         let sale = req.body.sale
         let salePercent = req.body.salePercent
-        
+    
         let orderBd=await Product.update(
             {price:price,
              description:description,
@@ -156,6 +149,5 @@ module.exports={
     productsSale,
     updateProduct,
     putProductSale
-    
     
 }
