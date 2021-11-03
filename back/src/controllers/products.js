@@ -44,16 +44,15 @@ const productsCat=async(req,res)=>{
     let categor = req.query
     try{
         let productsBd= await Product.findAll({
-            attributes:['name','id','description','img','price', "sale","salePercent"],
-            include:{
-             model:Category,
-             attributes:["id","name", "description"]
-            } })
-       let pes = await productsBd.filter(e=>e.categories[0].id == categor.id)
+            attributes:['name','id','description','img','price', "sale","salePercent","categoryId"]
+            })
+
+       let pes = await productsBd.filter(e=>e.categoryId == categor.id)
          
         //console.log(productfilter[0].categories)
-        pes ? res.status(200).json(pes):
-       res.status(404).send("Products not found");
+      
+         pes ? res.status(200).json(pes) :
+         res.status(404).send("Products not found");
     }
     catch(e){
         console.log("Error in products controller"+ e)
@@ -83,25 +82,25 @@ const updateProduct=async(req,res)=>{
       
     try{
         let id = req.body.id
-        // let idCat = req.body.idCat
+        let categoryID = req.body.categoryID
         let price = req.body.price
         let description = req.body.description
         let name = req.body.name
         let sale = req.body.sale
         let salePercent = req.body.salePercent
-        console.log(id)
-        console.log(price)
+        
         let orderBd=await Product.update(
             {price:price,
              description:description,
              name:name,
              sale:sale,
-             salePercent:salePercent
+             salePercent:salePercent,
+             categoryId:categoryID
             },
             {where:{id:id}},
             
         )
-        // orderBd.setCategory([idCat])
+        
         
      orderBd?res.status(200).send("Success"):
      res.status(404).send("product not found");

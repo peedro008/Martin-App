@@ -60,9 +60,9 @@ export function postDelete(){
 
 // ADMIN ACTIONS
 
-export function updateProduct(price,id,name,description,sale,salePercent){
+export function updateProduct(price,id,name,description,sale,salePercent,categoryID){
   return (dispatch)=>{
-    axios.put(`${IP}/updateproduct`,{price,id,name,description,sale,salePercent})
+    axios.put(`${IP}/updateproduct`,{price,id,name,description,sale,salePercent,categoryID})
     .then(response=>{
       console.log(response.data)
         dispatch({

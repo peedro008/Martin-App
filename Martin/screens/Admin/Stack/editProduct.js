@@ -1,5 +1,5 @@
 import React,{useState,useEffect}from 'react'
-import { StyleSheet, Text, View, Image, Button,Dimensions,ScrollView,TouchableOpacity, Touchable} from 'react-native'
+import { StyleSheet, Text, View, Image, Button,Dimensions,ScrollView,TouchableOpacity, Touchable, EdgeInsetsPropType} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import axios from 'axios';
 import { TextInput } from 'react-native-gesture-handler';
@@ -14,8 +14,8 @@ const width=Dimensions.get("window").width
 export default function editProduct({route}) {
     const {id}=route.params
     const [product, setProduct]= useState({});
-    const [category,setCategory]=useState("")
-    const [auxCategory,setAuxCategory]=useState("")
+    const [categoryID,setCategoryID]=useState(0)
+    const [categories,setCategories]=useState([])
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
     const [price,setPrice]=useState(0)
@@ -29,19 +29,23 @@ export default function editProduct({route}) {
 
     useEffect(()=>{
         axios.get(`${IP}/products?id=${id}`)
-            .then(function(response){
+            .then((response)=>{
                 setProduct(response.data)
                 setName(response.data.name)
                 setDescription(response.data.description)
                 setPrice(response.data.price)
                 setSale(response.data.sale)
                 setSalePercent(response.data.salePercent)
-                setCategory(response.data.categories[0].name)
-                setAuxCategory(response.data.categories[0].name)
-                console.log(response.data)
+               
+            
             })
             .catch(error=>{
               console.log(error)  
+            })
+            axios.get(`${IP}/categories`)
+            .then((response)=>{
+                setCategories(response.data)
+                console.log(response.data)
             })
              
         },[])
@@ -50,10 +54,13 @@ export default function editProduct({route}) {
             setSale(!sale)
         }
       
-       
+        const handlePicker=(value)=>{
+            if(value === "select") return;
+            else setCategoryID(value)
+        }
 
         const handleSave=()=>{
-                dispatch(updateProduct(price, product.id, name,description,sale,salePercent))
+                dispatch(updateProduct(price, product.id, name,description,sale,salePercent,categoryID))
                 setSaved(true)
                 setTimeout(()=>{
                     setSaved(false)
@@ -73,9 +80,17 @@ export default function editProduct({route}) {
                 <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  "+product.name} style={styles.input} value={name} onChangeText={(value)=>setName(value)}/>
             </View>
             <Text  style={styles.textInput}>Category</Text>
-            <View style={styles.contInput}>
-                <TextInput  placeholderTextColor="rgba(228, 228, 228, 0.6)"  placeholder={"  "+auxCategory} style={styles.input} value={category} onChangeText={(value)=>setCategory(value)}/>
-            </View>    
+
+            <Picker onValueChange={(value)=> handlePicker(value)} style={{height:width*0.1 ,marginBottom:width*0.04, borderRadius:5}}>
+                <Picker.Item  fontFamily="OpenSans-SemiBold" label="SELECT" value="select"/>
+                {
+                    categories?.map(e=>{
+                        return(
+                         <Picker.Item  fontFamily="OpenSans-SemiBold" label={e.name} value={e.id}/>
+                        )
+                    })
+                }
+            </Picker>
             <Text style={styles.textInput}>Description</Text>
             <View style={styles.contInput}>
                 <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  "+product.description} multiline={true} numberOfLines={10} style={[styles.input],{height:width*0.36}} value={description} onChangeText={(value)=>setDescription(value)} />
