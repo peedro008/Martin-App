@@ -18,7 +18,8 @@ const Product= (sequelize)=>{
      },
      img: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
+        defaultValue:"https://images.clarin.com/2015/03/21/ryM1k89TXx_340x340.jpg"
      },
      price:{
          type:DataTypes.FLOAT,

@@ -105,35 +105,29 @@ const updateProduct=async(req,res)=>{
 
 
 
-const putProductSale=async(req,res)=>{
+const postProduct=async(req,res)=>{
       
     try{
+        let categoryID = req.body.categoryID
+        let price = req.body.price
+        let description = req.body.description
+        let name = req.body.name
         let sale = req.body.sale
         let salePercent = req.body.salePercent
-        let id = req.body.id
-       if(sale==true){
-        var orderBd=await Product.update(
-            
-            {sale:false,
-            salePercent:salePercent
-            },
-            {where:{id:id}},
-            
-        )}
-        else{
-            {
-                var orderBd=await Product.update(
-                    
-                    {sale:true,
-                    sale:salePercent},
-                    {where:{id:id}},
-                    
-                )}
-
-        }
+      console.log(price)
+  
+      let product= await Product.create({
+          categoryId:categoryID,
+          price:price,
+          description:description,
+          name:name,
+          sale:sale,
+          salePercent,
+      })
+      
         
-     orderBd?res.status(200).send("Success"):
-     res.status(404).send("product not found");
+     product?res.status(200).send("Success"):
+     res.status(404).send("product not created");
     }
     catch(e){
      console.log("Error in products controller"+ e)
@@ -148,6 +142,6 @@ module.exports={
     productsCat,
     productsSale,
     updateProduct,
-    putProductSale
+    postProduct
     
 }

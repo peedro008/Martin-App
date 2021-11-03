@@ -72,9 +72,9 @@ export function updateProduct(price,id,salePercent,sale, name,description,catego
     })
 }
 }
-export function updateProductSale(id,sale,salePercent){
+export function createProduct(categoryID,price,description, name,sale,salePercent){
   return (dispatch)=>{
-    axios.put(`${IP}/updateProductSale`,{id,sale,salePercent})
+    axios.post(`${IP}/createProduct`,{categoryID,price,description, name,sale,salePercent})
     .then(response=>{
       console.log(response.data)
         dispatch({

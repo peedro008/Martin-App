@@ -1,9 +1,9 @@
-import React,{useState,useEffect}from 'react'
+import React,{useState,useEffect, createFactory}from 'react'
 import { StyleSheet, Text, View, Image, Button,Dimensions,ScrollView,TouchableOpacity, Touchable, EdgeInsetsPropType} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import axios from 'axios';
 import { TextInput } from 'react-native-gesture-handler';
-import {updateProduct} from '../../../actions'
+import {createProduct} from '../../../actions'
 import { useDispatch } from 'react-redux';
 import { IP } from '../../../env';
 import { set } from 'react-native-reanimated';
@@ -11,15 +11,14 @@ import { set } from 'react-native-reanimated';
 const width=Dimensions.get("window").width
 
 
-export default function editProduct({route}) {
-    const {id}=route.params
-    const [product, setProduct]= useState({});
+export default function addProduct() {
+    
     const [categoryID,setCategoryID]=useState(0)
     const [categories,setCategories]=useState([])
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
     const [price,setPrice]=useState(0)
-    const [sale,setSale]=useState(true)
+    const [sale,setSale]=useState(false)
     const [salePercent,setSalePercent]=useState(0)
     const [saved,setSaved]=useState(false)
 
@@ -28,20 +27,7 @@ export default function editProduct({route}) {
     const dispatch= useDispatch()
 
     useEffect(()=>{
-        axios.get(`${IP}/products?id=${id}`)
-            .then((response)=>{
-                setProduct(response.data)
-                setName(response.data.name)
-                setDescription(response.data.description)
-                setPrice(response.data.price)
-                setSale(response.data.sale)
-                setSalePercent(response.data.salePercent)
-                setCategoryID(response.data.categoryId)
-            
-            })
-            .catch(error=>{
-              console.log(error)  
-            })
+    
             axios.get(`${IP}/categories`)
             .then((response)=>{
                 setCategories(response.data)
@@ -60,26 +46,21 @@ export default function editProduct({route}) {
         }
 
         const handleSave=()=>{
-                dispatch(updateProduct(price, product.id,parseInt(salePercent),sale, name,description,categoryID))
-              
+                dispatch(createProduct(categoryID,parseInt(price),description,name,sale,salePercent))
                 setSaved(true)
 
                 setTimeout(()=>{
                     setSaved(false)
                 },2000)
         }
+        
     return (
         <ScrollView style={{backgroundColor:"#fff"}}>
         <ScrollView style={{flex:1, backgroundColor:"#fff", width:width*0.88, alignSelf:"center",}}>
                  <Text style={styles.header}>Product Detail</Text>
-              
-            <View>
-                <Text style={styles.name}>{product.name}</Text>
-                <Text style={styles.id}>Product number is #{product.id}</Text>
-            </View>
             <Text style={[styles.textInput,{marginTop:width*0.06}]}>Name</Text>
             <View style={styles.contInput}>
-                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  "+product.name} style={styles.input} value={name} onChangeText={(value)=>setName(value)}/>
+                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  Name"} style={styles.input} value={name} onChangeText={(value)=>setName(value)}/>
             </View>
             <Text  style={styles.textInput}>Category</Text>
 
@@ -88,18 +69,18 @@ export default function editProduct({route}) {
                 {
                     categories?.map(e=>{
                         return(
-                         <Picker.Item key={e.id}  fontFamily="OpenSans-SemiBold" label={e.name} value={e.id}/>
+                         <Picker.Item key={e.id} fontFamily="OpenSans-SemiBold" label={e.name} value={e.id}/>
                         )
                     })
                 }
             </Picker>
             <Text style={styles.textInput}>Description</Text>
             <View style={styles.contInput}>
-                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  "+product.description} multiline={true} numberOfLines={10} style={{textTransform:"capitalize",height:width*0.36}} value={description} onChangeText={(value)=>setDescription(value)} />
+                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  Description"} multiline={true} numberOfLines={10} style={{textTransform:"capitalize",height:width*0.36}} value={description} onChangeText={(value)=>setDescription(value)} />
             </View>   
             <Text  style={styles.textInput}>Price</Text>
             <View style={styles.contInput}>
-                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"   $"+product.price} style={styles.input} value={price} onChangeText={(value)=>setPrice(value)} />
+                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  Price"} style={styles.input} value={price} onChangeText={(value)=>setPrice(value)} />
             </View>
             <Text style={styles.textInput}>Sale</Text>
             <View style={styles.containerButtonDefault}>
@@ -113,8 +94,8 @@ export default function editProduct({route}) {
             <Text  style={styles.textInput}>Sale Percent</Text>
             <View style={styles.contInput}>
 
-                { sale ?<TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  "+product.salePercent+"% discount"} style={styles.input} value={salePercent} onChangeText={(value)=>setSalePercent(value)} /> :
-                <TextInput  editable={false} selectTextOnFocus={false} placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  "+product.salePercent+"% discount"} style={styles.input} value={salePercent} onChangeText={(value)=>setSalePercent(value)} />}
+                { sale ?<TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  % discount"} style={styles.input} value={salePercent} onChangeText={(value)=>setSalePercent(value)} /> :
+                <TextInput  editable={false} selectTextOnFocus={false} placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  % discount"}  style={styles.input} value={salePercent} onChangeText={(value)=>setSalePercent(value)} />}
             </View>
                 {
                     saved && <Text style={{alignSelf:"center", color:"#00bb2d",fontFamily:"OpenSans-Regular",fontSize:width*0.04}}>Successfully saved</Text>
@@ -142,8 +123,7 @@ const styles = StyleSheet.create({
   name:{
       fontSize: width*0.07,
       fontFamily:"OpenSans-Bold",
-      color:"#222222",
-      textTransform:"capitalize"
+      color:"#222222"
   },
   id:{
       fontSize:width*0.04,

@@ -32,7 +32,7 @@ export default function controlPanel({navigation}) {
                <Text style={styles.boton}>Order Register</Text>
            </TouchableOpacity>
            <Card.Divider style={{width:width*0.85, alignSelf:"center"}}/>
-           <TouchableOpacity>
+           <TouchableOpacity onPress={() => navigation.navigate("Add Product")}>
                <Text style={styles.boton}>Add Products</Text>
            </TouchableOpacity>
            <Card.Divider style={{width:width*0.85, alignSelf:"center"}}/>
