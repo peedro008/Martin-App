@@ -6,7 +6,7 @@ const categories = require('../controllers/categories.js');
 // Ejemplo: const authRouter = require('./auth.js');
 const router = Router();
 const{signup, login, isAuth, signupadmin, infoGet, userGet, infoPost,updateInfo}=require ('../controllers/user.js');
-const { getOrders, postOrderItems, getUserOrders, getPendingOrders,getOrderId, updateOrderStatus } = require('../controllers/orders.js');
+const { getOrders, postOrderItems, getUserOrders, getPendingOrders,getOrderId, setDispatchedStatus, setPendingStatus, setReceivedStatus } = require('../controllers/orders.js');
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
@@ -54,7 +54,11 @@ router.get("/orderpending", getPendingOrders)
 
 router.post("/orderItems", postOrderItems)
 
-router.put("/updateOrderStatus", updateOrderStatus)
+router.put("/setReceivedStatus", setReceivedStatus)
+
+router.put("/setPendingStatus", setPendingStatus)
+
+router.put("/setDispatchedStatus", setDispatchedStatus)
 
 router.get("/orderid", getOrderId)
 

@@ -37,6 +37,7 @@ export default function adminOrderRegister() {
     const onDispatched = function () {
         setButton(2)
     }
+    
 
 
     return (
@@ -45,22 +46,34 @@ export default function adminOrderRegister() {
            <View>
                  <Text style={styles.header}>Order Register</Text>
             </View> 
+          
             <View
             style={styles.containerButton}>
                 <TouchableOpacity
                 onPress= {onReceived}
-                style={styles.button}>
-                    <Text style={styles.textP}>RECEIVED</Text>
+                style={
+                    styles.button}>
+                    <Text style={ 
+                        button==0?
+                        styles.PtextP:
+                        styles.textP}>RECEIVED</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                  onPress= {onPending}
                 style={styles.button}>
-                    <Text style={styles.textR}>PENDING</Text>
+                    <Text style={
+                         button==1?
+                         styles.PtextR:
+                         styles.textR
+                        }>PENDING</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                 onPress= {onDispatched}
                 style={styles.button}>
-                    <Text style={styles.textD}>DISPATCHED</Text>
+                    <Text style={
+                        button==2?
+                        styles.PtextD:
+                        styles.textD}>DISPATCHED</Text>
                 </TouchableOpacity>
             </View>
             {
@@ -87,29 +100,55 @@ const styles = StyleSheet.create({
     containerButton:{
        flexDirection:"row",
        alignSelf:"center",
-       marginVertical:20
+       marginVertical:20,
+       
               
     },
     button:{
-        marginHorizontal:width*0.07,
-        marginVertical:5
+        marginHorizontal:width*0.045,
+        marginVertical:-5, 
+        
     },
     textP:{
         fontSize:17,
-        fontFamily:"OpenSans-SemiBold",
+        fontFamily:"OpenSans-Regular",
         color:"#00C48C"
         
     },
     textR:{
         fontSize:17,
-        fontFamily:"OpenSans-SemiBold",
+        fontFamily:"OpenSans-Regular",
         color:"#FFCF5C"
         
     },
     textD:{
         fontSize:17,
-        fontFamily:"OpenSans-SemiBold",
+        fontFamily:"OpenSans-Regular",
         color:"#0084F4"
         
     },
+    PtextP:{
+        fontSize:19,
+        fontFamily:"OpenSans-Bold",
+        color:"#00C48C",
+        textDecorationLine: 'underline'
+        
+    },
+    PtextR:{
+        fontSize:19,
+        fontFamily:"OpenSans-Bold",
+        color:"#FFCF5C",
+        textDecorationLine: 'underline'
+        
+    },
+    PtextD:{
+        fontSize:19,
+        fontFamily:"OpenSans-Bold",
+        color:"#0084F4",
+        textDecorationLine: 'underline'
+        
+    },
+    Card:{
+        height:heigth
+    }
 })

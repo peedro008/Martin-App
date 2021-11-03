@@ -5,6 +5,7 @@ import {addOrder} from "../../../../actions"
 import axios from 'axios'
 import React,{useEffect,  useState} from 'react'
 import { IP } from '../../../../env'
+import { useNavigation } from '@react-navigation/native';
 
 const width=Dimensions.get("window").width
 const height=Dimensions.get("window").height
@@ -24,7 +25,8 @@ const height=Dimensions.get("window").height
 // }
 
 
-export default function orders(data, {navigation}) {
+export default function orders(data) {
+    const navigation = useNavigation();
     const [orders,setOrders]= useState([]) 
     const preOrder=useSelector(state=> state.PreOrder)
     const [msj,setMsj]=useState(false)
@@ -84,7 +86,7 @@ export default function orders(data, {navigation}) {
                         <View style={{borderRadius:5, width:width*0.21, height:width*0.07, backgroundColor:"#F15A4D", marginLeft:width*0.25, justifyContent:"center"}}>
 
                         <TouchableOpacity
-                        onPress={() => navigation.navigate("order detail",{id:item.id})}
+                        onPress={() => navigation.navigate("Order Details",{id:item.id})}
                         >
                            
                             <Text

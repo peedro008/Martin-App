@@ -7,6 +7,7 @@ import catalogScreen from "./Stack/catalogScreen"
 import editProduct from './Stack/editProduct';
 import editOrder from './Stack/editOrder';
 import AdminCategories from './Stack/AdminCategories';
+import adminOrderDetail from './Stack/AdminOrderDetail';
 
 const Stack = createStackNavigator();
 export default function adminControlPanel() {
@@ -18,6 +19,7 @@ export default function adminControlPanel() {
         <Stack.Screen name="Order" component={editOrder} options={{headerShown: false}}/>
         <Stack.Screen name="Catalog Screen" component={catalogScreen} options={{headerShown: false}} />
         <Stack.Screen name="Edit Product" component={editProduct} options={{headerShown: false}}/>
+        <Stack.Screen name="Order Details" component={adminOrderDetail} options={{headerShown: false}}/>   
       </Stack.Navigator>
     )
 }

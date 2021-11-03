@@ -12,7 +12,7 @@ import { Icon } from 'react-native-elements/dist/icons/Icon'
 const width=Dimensions.get("window").width
 const heigth=Dimensions.get("window").height
 
-export default function adminHome() {
+export default function adminHome({navigation}) {
     const [orders,SetOrders]= useState([])
     
 

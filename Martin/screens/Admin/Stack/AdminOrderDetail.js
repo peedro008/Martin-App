@@ -11,21 +11,11 @@ import * as Font from "expo-font"
 
 const width=Dimensions.get("window").width
 const height=Dimensions.get("window").height
-export default function orderDetail({route}) {
+export default function adminOrderDetail({route}) {
     const [fontsLoaded, setFontsLoaded]= useState(false)
+    const [status, setStatus]= useState()
     
-    useEffect(() => {
-      if (!fontsLoaded){
-        loadFonts()
-      }
-      
-    })
-    const loadFonts = async()=>{
-      await Font.loadAsync({
-        "OpenSans-Regular": require("../../../assets/fonts/OpenSans-Regular.ttf")
-      })
-      setFontsLoaded(true)
-    }
+   
  
     
     let {id} = route.params
@@ -35,7 +25,42 @@ export default function orderDetail({route}) {
     console.log(order)
 
    
-   
+    const onPending = function () {
+        
+        axios.put(`${IP}/setPendingStatus`, {id:order[0].id})
+            .then(function(response){
+               
+                setStatus("Pending")
+            })
+            
+            .catch(error=>{
+              console.log(error)  
+            })
+    }
+    const onReceived = function () {
+       
+        axios.put(`${IP}/setReceivedStatus`, {id:order[0].id})
+            .then(function(response){
+               
+                setStatus("Received")
+            })
+            
+            .catch(error=>{
+              console.log(error)  
+            })
+    }
+    const onDispatched = function () {
+        axios.put(`${IP}/setDispatchedStatus`, {id:order[0].id})
+        .then(function(response){
+           
+            setStatus("Dispatched")
+        })
+        
+        .catch(error=>{
+          console.log(error)  
+        })
+    }
+    
             
     
 
@@ -43,7 +68,7 @@ export default function orderDetail({route}) {
         axios.get(`${IP}/orderid?id=${id}`)
             .then(function(response){
                 setOrder(response.data)
-               
+                setStatus(response.data[0].status)
             })
             
             .catch(error=>{
@@ -111,11 +136,44 @@ export default function orderDetail({route}) {
 
                 <Card.Divider/>
                 <Text style={{fontSize:20, fontFamily:"OpenSans-Bold"}}>Shipping Address</Text>
-                <View style={{marginTop:height*0.01}}>
+                <View style={{marginTop:height*0.01, marginBottom:width*0.05}}>
                     <Text style={{fontSize:18,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.fullName}, {order[0].userInfo.address} </Text>
                     <Text style={{fontSize:18,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.city}, {order[0].userInfo.postalCode} </Text>
                     <Text style={{fontSize:18,fontFamily:"OpenSans-Regular"}}>TEL:  {order[0].userInfo.phone}</Text>
                 </View>
+                <Card.Divider/>
+                <Text style={{fontSize:20, fontFamily:"OpenSans-Bold"}}>Set Status</Text>
+                <View
+            style={styles.containerButton}>
+                <TouchableOpacity
+                onPress={onReceived}
+                style={
+                    styles.button}>
+                    <Text style={ 
+                        status=="Received"?
+                        styles.PtextP:
+                        styles.textP}>RECEIVED</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                 onPress={onPending}
+                style={styles.button}>
+                    <Text style={
+                         status=="Pending"?
+                         styles.PtextR:
+                         styles.textR
+                        }>PENDING</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                onPress={onDispatched}
+                style={styles.button}>
+                    <Text style={
+                        status=="Dispatched"?
+                        styles.PtextD:
+                        styles.textD}>DISPATCHED</Text>
+                </TouchableOpacity>
+            </View>
+
+
             </Card>
           
             <FlatList
@@ -207,5 +265,56 @@ const styles = StyleSheet.create({
         marginTop:width*0.09,
         fontFamily:"OpenSans-Regular"
     },
+    containerButton:{
+        flexDirection:"row",
+        alignSelf:"center",
+        marginVertical:20,
+        
+               
+     },
+     button:{
+         marginHorizontal:width*0.035,
+         marginVertical:-5, 
+         
+     },
+     textP:{
+         fontSize:17,
+         fontFamily:"OpenSans-Regular",
+         color:"black"
+         
+     },
+     textR:{
+         fontSize:17,
+         fontFamily:"OpenSans-Regular",
+         color:"black"
+         
+     },
+     textD:{
+         fontSize:17,
+         fontFamily:"OpenSans-Regular",
+         color:"black"
+         
+     },
+     PtextP:{
+         fontSize:19,
+         fontFamily:"OpenSans-Bold",
+         color:"#00C48C",
+         textDecorationLine: 'underline'
+         
+     },
+     PtextR:{
+         fontSize:19,
+         fontFamily:"OpenSans-Bold",
+         color:"#FFCF5C",
+         textDecorationLine: 'underline'
+         
+     },
+     PtextD:{
+         fontSize:19,
+         fontFamily:"OpenSans-Bold",
+         color:"#0084F4",
+         textDecorationLine: 'underline'
+         
+     },
   
 })

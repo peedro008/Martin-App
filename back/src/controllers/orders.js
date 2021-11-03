@@ -137,13 +137,53 @@ const getPendingOrders=async(req,res)=>{
 
 }
 
-const updateOrderStatus=async(req,res)=>{
+const setReceivedStatus=async(req,res)=>{
       
     try{
         let id = req.body.id
         console.log(id)
         let orderBd=await Order.update(
             {status:"Received"},
+            {where:{id:id}},
+            
+        )
+        
+     orderBd?res.status(200).send("Seccess"):
+     res.status(404).send("order not found");
+    }
+    catch(e){
+     console.log("Error in products controller"+ e)
+ }
+ 
+
+}
+const setPendingStatus=async(req,res)=>{
+      
+    try{
+        let id = req.body.id
+        console.log(id)
+        let orderBd=await Order.update(
+            {status:"Pending"},
+            {where:{id:id}},
+            
+        )
+        
+     orderBd?res.status(200).send("Seccess"):
+     res.status(404).send("order not found");
+    }
+    catch(e){
+     console.log("Error in products controller"+ e)
+ }
+ 
+
+}
+const setDispatchedStatus=async(req,res)=>{
+      
+    try{
+        let id = req.body.id
+        console.log(id)
+        let orderBd=await Order.update(
+            {status:"Dispatched"},
             {where:{id:id}},
             
         )
@@ -186,7 +226,9 @@ module.exports={
     postOrderItems,
     getOrders,
     getUserOrders,
-    updateOrderStatus,
+    setPendingStatus,
+    setDispatchedStatus,
+    setReceivedStatus,
     getPendingOrders,
     getOrderId
 }
