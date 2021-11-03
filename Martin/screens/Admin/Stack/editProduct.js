@@ -36,7 +36,7 @@ export default function editProduct({route}) {
                 setPrice(response.data.price)
                 setSale(response.data.sale)
                 setSalePercent(response.data.salePercent)
-               
+                setCategoryID(response.data.categoryId)
             
             })
             .catch(error=>{
@@ -60,8 +60,10 @@ export default function editProduct({route}) {
         }
 
         const handleSave=()=>{
-                dispatch(updateProduct(price, product.id, name,description,sale,salePercent,categoryID))
+                dispatch(updateProduct(price, product.id,parseInt(salePercent),sale, name,description,categoryID))
+              console.log(price, product.id,parseInt(salePercent),sale, name,description,parseInt(categoryID))
                 setSaved(true)
+
                 setTimeout(()=>{
                     setSaved(false)
                 },2000)
