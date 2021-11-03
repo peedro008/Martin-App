@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {products, productsCat, productsSale, updateProduct,putProductSale} = require('../controllers/products.js')
+const {products, productsCat, productsSale, updateProduct,postProduct} = require('../controllers/products.js')
 const categories = require('../controllers/categories.js');
 
 // Importar todos los routers;
@@ -30,10 +30,6 @@ router.put('/userinfo', updateInfo);
 
 //PRODUCT
 
-router.put("/updateProduct", updateProduct)
-
-router.put("/updateProductSale", putProductSale)
-
 router.get('/products',products)
 
 router.get('/productsCat', productsCat)
@@ -42,7 +38,9 @@ router.get('/productsSale', productsSale)
 
 router.get('/categories',categories)
 
+router.put("/updateProduct", updateProduct)
 
+router.post("/createProduct", postProduct)
 
 //ORDER:
 
