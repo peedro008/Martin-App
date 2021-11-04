@@ -19,7 +19,7 @@ export default function ProductDetail({route,navigation}) {
     const [added,setAdded] = useState(false)
     const dispatch= useDispatch();
     const preOrder= useSelector(state=>state.PreOrder)
-  
+  console.log(category)
     useEffect(()=>{
         axios.get(`${IP}/products?id=${id}`)
             .then(function(response){
@@ -65,7 +65,8 @@ export default function ProductDetail({route,navigation}) {
        
         <View
          style={{flex:1}}>
-            <View style={{flex:1, }}> 
+            <View style={{flex:1, }}>
+                <ScrollView> 
               <View style={{flexDirection:"row", width:width*0.9, alignItems:"center", justifyContent:"center", marginTop:width*0.06, alignSelf:"center",}}>
                 <Text style={styles.products}>
                     Product Card
@@ -105,13 +106,13 @@ export default function ProductDetail({route,navigation}) {
                 <Text style={styles.name}>
                     {product.name}
                 </Text>
-               <ScrollView>
+               <View>
                     <Text style={styles.desc }>
                         {product.description}
                     </Text>
                 
-                </ScrollView>
-                
+                </View>
+                </ScrollView> 
                 <View style={styles.buttonContainer}> 
                     <TouchableOpacity
                     onPress={()=>handleCount() }
@@ -268,7 +269,7 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         justifyContent:"center",
        
-        marginVertical:20        
+        marginVertical:20    
     },
     countText:{
         color:"#6979F8",

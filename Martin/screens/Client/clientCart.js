@@ -28,11 +28,11 @@ export default function clientCart() {
         .then(res=>{ 
             setInfo({
                 fullName:res.data.fullName,
+                address:res.data.address,
+                apt_Suite:res.data.apt_Suite,
+                postalCode:res.data.postalCode,
                 city:res.data.city,
                 phone:res.data.phone,
-                postalCode:res.data.postalCode,
-                apt_Suite:res.data.apt_Suite,
-                address:res.data.address,
                 default:res.data.default
             })
          console.log(res.data)}

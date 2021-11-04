@@ -99,7 +99,7 @@ export default function Home({navigation}) {
               
               <Image  style={styles.image} source={{uri:item.img}}/>
                 <View style={styles.footer}>
-                  <View style={{width:width*0.45, flexWrap:"wrap"}}>
+                  <View style={{width:width*0.46,}}>
                     <Text numberOfLines={1} ellipsizeMode="tail" style={ styles.title }>{item.name}</Text>
                   </View>
                     <View style={{ alignItems:"center", alignSelf:"flex-end"}}>

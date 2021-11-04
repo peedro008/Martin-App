@@ -179,7 +179,7 @@ export default function Categories({navigation}) {
                         <View style={{marginLeft:width*0.04, marginVertical:-3}}
                         >
                             <TouchableOpacity
-                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
                             <Text numberOfLines={1} ellipsizeMode="tail" style={{marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
                             </TouchableOpacity>
                           

@@ -22,7 +22,7 @@ export default  function  Products ({route, navigation}) {
     const preOrder= useSelector(state=>state.PreOrder)
 
 
-
+  
     useEffect(()=>{
         axios.get(`${IP}/productsCat?id=${category.id}`)
             .then(function(response){
@@ -151,7 +151,7 @@ export default  function  Products ({route, navigation}) {
                             </TouchableOpacity>
                             <View style={{marginLeft:width*0.04, marginVertical:-3}}>
                                 <TouchableOpacity
-                                onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                                onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
                                 <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
                                 </TouchableOpacity>
                               
@@ -226,7 +226,7 @@ export default  function  Products ({route, navigation}) {
                         <View style={{marginLeft:width*0.04, marginVertical:-3}}
                         >
                             <TouchableOpacity
-                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
                             <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4,  }}>{item.name}</Text>
                             </TouchableOpacity>
                           

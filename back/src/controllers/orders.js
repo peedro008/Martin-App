@@ -6,7 +6,7 @@ const postOrderItems=async(req,res)=>{
     let fullName = req.body[2].fullName
     let address = req.body[2].address
     let apt_Suite_ = req.body[2].apt_Suite_
-    let postalCode = req.body[2].phone
+    let postalCode = req.body[2].postalCode
     let phone = req.body[2].phone
     let city = req.body[2].city
 

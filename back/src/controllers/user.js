@@ -169,6 +169,7 @@ const infoGet = async (req, res) => {
 }
 const infoPost = async (req, res) =>{
     try{
+        console.log(req.body.fullName)
         UserInfo.findOne({ where: { userId:req.query.id} })
         .then(res=> {
             // update
@@ -178,8 +179,8 @@ const infoPost = async (req, res) =>{
                     fullName: req.body.fullName,
                     address: req.body.address,
                     apt_Suite: req.body.apt_Suite.toString(),
-                    city:req.body.city,
                     postalCode: req.body.postalCode.toString(),
+                    city:req.body.city,
                     phone: req.body.phone.toString(),
                     default:req.body.default
 
@@ -189,9 +190,9 @@ const infoPost = async (req, res) =>{
                    userId: req.query.id,
                    fullName: req.body.fullName,
                    address: req.body.address,
-                   city:req.body.city,
                    apt_Suite: req.body.apt_Suite.toString(),
                    postalCode: req.body.postalCode.toString(),
+                   city:req.body.city,
                    phone: req.body.phone.toString(),
                    default:req.body.default
                 });

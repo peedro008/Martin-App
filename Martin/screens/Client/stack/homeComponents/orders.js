@@ -58,46 +58,45 @@ export default function orders({navigation, data}) {
             {data.length>0?
             <FlatList
             showsHorizontalScrollIndicator={false}
-            
-          bounces={false}
+            bounces={false}
             horizontal={true}
             data={data}
             renderItem={({item})=> 
           
                 <Card containerStyle={styles.card} >
-                <View style={{margin:width*0.03}}>
-                   <View style={{flexDirection: 'row', marginBottom:13, alignItems:'center'}}>
+                <View style={{margin:width*0.03, alignSelf:"center"}}>
+                   <View style={{flexDirection: 'row', marginBottom:width*0.03, alignItems:'center'}}>
                     
                         <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#6979F8" : "#00bb2d" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
-                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",paddingLeft:100,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
+                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",paddingLeft:width*0.25,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
                         style={{flexDirection: 'row'}}>
-                        <Text style={{fontFamily:"OpenSans-Regular",margin:5, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
+                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
                         
                         <View
-                        style={{marginBottom:15}}>
+                        style={{marginBottom:width*0.04}}>
                            
                         <View style={{flexDirection:"row"}}>  
-                            {msj && <View style={{alignSelf:'center', position:"absolute", right:width*0.24}}><Icon name="check" type="feather" color="#00bb2d" size={14}/></View>
+                            {msj && <View style={{alignSelf:'center', position:"absolute", right:width*0.24}}><Icon name="check" type="feather" color="#00bb2d" size={width*0.1}/></View>
                             }   
                             <TouchableOpacity 
                             onPress={() => handleAddProduct(item.orderItems)}
-                            style={{borderRadius:5, width:80, height:25, backgroundColor:"#00bb2d", marginLeft:90}}>
+                            style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:"#00bb2d",justifyContent:"center", marginLeft:width*0.23}}>
                             <Text
-                            style={{fontFamily:"OpenSans-Regular", fontSize:10, alignSelf:"center",fontWeight:"500", color:"#fff", marginTop:4}}>
+                            style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
                             ADD TO CART
                             </Text>
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity
                         onPress={() => navigation.navigate("order detail",{id:item.id})}
-                        style={{borderRadius:5, width:80, height:25, marginTop:2, backgroundColor:"#F15A4D", marginLeft:90}}>
+                        style={{borderRadius:5, width:width*0.2, height:width*0.065, marginTop:width*0.008,justifyContent:"center", backgroundColor:"#F15A4D", marginLeft:width*0.23}}>
                             <Text
-                            style={{fontFamily:"OpenSans-Regular",fontSize:10, alignSelf:"center",fontWeight:"500", color:"#fff", marginTop:4,}}>
+                            style={{fontFamily:"OpenSans-Regular",fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
                             DETAILS
                             </Text>
                         </TouchableOpacity>
@@ -133,17 +132,14 @@ export default function orders({navigation, data}) {
 
 const styles = StyleSheet.create({
         OrderHeader:{
+            marginTop:width*0.05,
           alignSelf:"center",
           fontSize: width*0.07,
-          
-          marginBottom:20,
           fontFamily:"OpenSans-Regular"
-          
-          
         },
         card:{
             height:width*0.53,
-           
+            width:width*0.9,
             borderRadius:5, 
             borderWidth:1, 
             borderColor:"rgba(228, 228, 228, 0.6)",
