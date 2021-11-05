@@ -4,7 +4,7 @@ import { TabNavigationState } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import clientHome from "./clientHome";
 import clientCatalog from "../Client/clientCatalog";
-import clientCart from "../Client/clientCart";
+import clienCart from "./stack/clientCart";
 import clientUser from "../Client/clientUser";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -47,7 +47,7 @@ const ClientNavigation = () => {
         <Tab.Screen name="Catalog" component={clientCatalog} options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
            blur: () => navigation.setParams({ screen: undefined }),
           })}  />
-        <Tab.Screen name="Cart" component={clientCart} options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
+        <Tab.Screen name="Cart" component={clienCart} options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({
            blur: () => navigation.setParams({ screen: undefined }),
           })}  />
            <Tab.Screen name="User" component={clientUser} options={{ unmountOnBlur: true , headerShown: false }} listeners={({ navigation }) => ({

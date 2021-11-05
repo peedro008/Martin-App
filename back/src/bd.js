@@ -3,9 +3,9 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize(
-
-  `postgres://postgres:Tobias123.@localhost/postgres`, {
+const sequelize = new Sequelize( "postgres", "postgres", "pesanmene",  {
+  host: "martinappproduce.cnudap9ls8sm.us-east-2.rds.amazonaws.com",
+  dialect:'postgres',
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });

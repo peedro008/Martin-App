@@ -1,4 +1,4 @@
-import { StyleSheet, Text,Button, View,FlatList,ImageBackground,TouchableOpacity, useWindowDimensions, Image, Dimensions, Animated, ScrollView} from 'react-native'
+import { StyleSheet, Text,Button, View,FlatList,ImageBackground,TouchableOpacity, useWindowDimensions, Image, Dimensions, Animated, ScrollView, SafeAreaView} from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { Card,Icon } from 'react-native-elements'
 import {addOrder} from "../../../../actions"
@@ -50,8 +50,8 @@ export default function orders({navigation, data}) {
       if(!orders){<View></View>}
       else{
         return (
-            <View
-            style={{  marginTop:width*.06, alignItems:'center', height:width}}>
+            <SafeAreaView
+            style={{  marginTop:width*.06,marginBottom:width*0.02, alignItems:'center'}}>
                 <View style={{width:width*0.9}}>   
                     <Text style={styles.OrderHeader} >Last Orders</Text> 
                 </View>
@@ -68,12 +68,12 @@ export default function orders({navigation, data}) {
                    <View style={{flexDirection: 'row', marginBottom:width*0.03, alignItems:'center'}}>
                     
                         <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#6979F8" : "#00bb2d" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
-                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",paddingLeft:width*0.25,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
+                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
                         style={{flexDirection: 'row'}}>
-                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
+                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
                         
@@ -109,12 +109,12 @@ export default function orders({navigation, data}) {
                             <View style={{flexDirection: 'row', alignItems:'center'}}>
                                 <Text
                                 style={{fontFamily:"OpenSans-Regular", fontSize: width*0.04, color:"#999999"}}>VALUE OF ITEMS: </Text>
-                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, fontWeight:"600", color:"#151522"}}>${item.total.toFixed(2)}</Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, fontWeight:"600", color:"#151522"}}>$ {item.total.toFixed(2)}</Text>
                             </View>
                             <View style={{flexDirection: 'row',alignItems:'center', position:"absolute", right:0}}>
                                 <Text
                                 style={{fontFamily:"OpenSans-Regular", fontWeight:"400", fontSize: width*0.04, color:"#999999"}}>QUANTITY: </Text>
-                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, fontWeight:"600", color:"#151522"}}>{item.orderItems.length}</Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, fontWeight:"600", color:"#151522"}}>x{item.orderItems.length}</Text>
                             </View>
                         </View>
                      </View>   
@@ -126,7 +126,7 @@ export default function orders({navigation, data}) {
                       <Icon name="file-text" type="feather" size= {width*0.2} />
           
                       </View>}
-          </View>
+          </SafeAreaView>
         )}
 }
 

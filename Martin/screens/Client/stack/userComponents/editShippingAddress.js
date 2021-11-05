@@ -104,7 +104,7 @@ export default function EditShippingAddress(){
                 </TouchableOpacity>
                 <Text style={styles.defaultText}>SET AS DEFAULT</Text>
             </View>
-            <View style={{alignItems: "center",justifyContent:"center",height: width*0.17}}>
+            <View style={{marginBottom:0,alignItems: "center",justifyContent:"center",height: width*0.17}}>
                 <TouchableOpacity onPress={()=>handleSave()}>
                     <View style={styles.buttonSave}>
                         <Text style={styles.buttonSaveText}>Save</Text>
@@ -121,10 +121,11 @@ export default function EditShippingAddress(){
 const styles= StyleSheet.create({
     header:{
         alignSelf:"center",
-        marginTop:width*0.08,
+        marginTop:width*0.1,
         fontSize: width*0.07,
         fontWeight: "600",
-        marginBottom:width*0.135
+        marginBottom:width*0.09,
+        fontFamily:"OpenSans-Regular"
     },
     container:{
         width:width-50,
@@ -135,7 +136,8 @@ const styles= StyleSheet.create({
     text:{
         fontWeight:"600",
         fontSize:width*0.04,
-        textAlign:"justify"
+        textAlign:"justify",
+        fontFamily:"OpenSans-Regular"
     },
     containerButtonDefault:{
         flexDirection:"row", 

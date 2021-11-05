@@ -3,38 +3,38 @@ import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimens
 import { Icon } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
-import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../../actions.js'
+import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../../../actions'
 import axios from 'axios'
-import { IP } from '../../env'
-import Checkout from './stack/clientCartComponents/checkout.js'
-import Cart from './stack/clientCartComponents/cart.js'
+import { IP } from '../../../env'
+import Cart from './clientCartComponents/cart'
 import { Input } from "react-native-elements";
 
 const width=Dimensions.get("window").width
 
-export default function clientCart() {
+export default function clienCart() {
     const order= useSelector(state=> state.PreOrder) 
     const user= useSelector(state=> state.User) 
     const userId= useSelector(state=> state.UserId)
     const totalPrice= useSelector(state=> state.TotalPrice) 
     const [render,setRender]=useState(true)
     const dispatch= useDispatch()
-    const [info, setInfo]= useState({fullName:"", city:"", phone:"", postalCode:"", apt_Suite:"",address:"", default:false})
+    const [info, setInfo]= useState({fullName:"", city:"", phone:"", postalCode:"", apt_Suite:"",address:""})
 
 
 
     useEffect(()=>{
         axios.get(`${IP}/userinfo?userId=${userId}`)
         .then(res=>{ 
-            setInfo({
-                fullName:res.data.fullName,
-                address:res.data.address,
-                apt_Suite:res.data.apt_Suite,
-                postalCode:res.data.postalCode,
-                city:res.data.city,
-                phone:res.data.phone,
-                default:res.data.default
-            })
+            if(res.data.default){
+                setInfo({
+                    fullName:res.data.fullName,
+                    address:res.data.address,
+                    apt_Suite:res.data.apt_Suite,
+                    postalCode:res.data.postalCode,
+                    city:res.data.city,
+                    phone:res.data.phone,
+                })
+            }
          console.log(res.data)}
         )
     },[])
@@ -46,8 +46,8 @@ export default function clientCart() {
         .then(response=>{
           console.log(response.data)
         })
-        
         dispatch(postDelete())
+        
     }
     
     const handleOrderRender=()=>{
@@ -68,13 +68,13 @@ export default function clientCart() {
             </View> 
             <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4 }}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
-                 <View style={[styles.renderButton,{borderBottomWidth:render?5:0,borderBottomColor:"#6979F8"}]}>
-                    <Text style={{ color:!render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CART</Text>
+                 <View style={[styles.renderButton,{borderBottomWidth:render?width*0.015:0,borderBottomColor:"#6979F8"}]}>
+                    <Text style={{fontSize:width*0.035, color:!render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CART</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>handleCheckRender()}>
-                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:5, borderBottomColor:"#6979F8"}]}>
-                    <Text  style={{ color:render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CHECKOUT</Text>
+                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:width*0.015, borderBottomColor:"#6979F8"}]}>
+                    <Text  style={{fontSize:width*0.035, color:render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CHECKOUT</Text>
                 </View>
                 </TouchableOpacity>
             </View>
@@ -89,27 +89,27 @@ export default function clientCart() {
                         <View>
                             <View style={styles.container}>
                                 <Text style={styles.text}>Full Name</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.fullName : ""}  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.fullName}  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Street Address</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.address : ""} leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.address} leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Apt / Suite / Other</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.apt_Suite : ""} leftIcon={{type:"font-awesome", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.apt_Suite} leftIcon={{type:"font-awesome", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>State / City</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.city : ""} leftIcon={{type:"font-awesome", name:"building"}} onChangeText={value=>setInfo({...info,city:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={info.city} leftIcon={{type:"font-awesome", name:"building"}} onChangeText={value=>setInfo({...info,city:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Postal Code</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.postalCode : ""} leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={ info.postalCode} leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Phone</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.default ? info.phone : ""} leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
+                                <Input style={{textTransform:"capitalize"}} value={ info.phone} leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
                             </View>
                         </View>
                 
@@ -127,8 +127,8 @@ export default function clientCart() {
                 </Text>
             <View style={styles.buttonOrder}>
                 <TouchableOpacity onPress={()=>handlePostOrder()}> 
-                  <Text style={{color:"#FFFFFF",alignSelf:"center",fontSize:width*0.05}}>Place order</Text>
-                 </TouchableOpacity> 
+                  <Text style={{color:"#FFFFFF",alignSelf:"center",fontSize:width*0.05,fontFamily:"OpenSans-Regular"}}>Place order</Text>
+                 </TouchableOpacity>
             </View> 
             </View>)
              :
@@ -144,29 +144,10 @@ export default function clientCart() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const styles = StyleSheet.create({
   
   cart:{
-    marginTop:5,
+    marginTop:width*0.02,
     fontSize: width*0.07,
     fontWeight: "600",
     fontFamily:"OpenSans-Regular"
@@ -179,14 +160,14 @@ const styles = StyleSheet.create({
     
   },
   contTotalOrder:{
-    marginTop:15,
+    
     backgroundColor:"beige"
   },
   totalOrder:{
     color:"#151522",
     fontStyle: "normal",
     
-    fontSize: 15,
+    fontSize: width*0.0385,
     alignSelf:"center",
     fontFamily:"OpenSans-Bold"
     

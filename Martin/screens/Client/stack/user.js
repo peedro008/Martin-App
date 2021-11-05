@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, SafeAreaView, ScrollView } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useState } from 'react'
 import axios from 'axios'
@@ -53,7 +53,7 @@ export default function user({navigation}) {
 
 
     return (
-        <View style={{flex:1, backgroundColor:"#fff"}}>
+        <ScrollView style={{flex:1, backgroundColor:"#fff",}}>
           <Text style={styles.profile}>Profile</Text>
           <View style={styles.header}>
               <View style={styles.contInitials}>
@@ -67,21 +67,20 @@ export default function user({navigation}) {
                   </TouchableOpacity>
               </View>
           </View>
-          <View style={{flexDirection:"row",alignSelf:"center",marginTop:width*0.099 }}>
+          <View style={{flexDirection:"row",alignSelf:"center",marginTop:width*0.099,}}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
-                 <View style={[styles.renderButton,{borderBottomWidth:render?5:0,borderBottomColor:"#6979F8"}]}>
-                    <Text style={{ color:!render ? "#999999" : "#6979F8",fontWeight:"400",}}>Recent Orders</Text>
+                 <View style={[styles.renderButton,{borderBottomWidth:render?width*0.015:0,borderBottomColor:"#6979F8"}]}>
+                    <Text style={{fontFamily:"OpenSans-Regular", color:!render ? "#999999" : "#6979F8",fontWeight:"400",}}>Recent Orders</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>handleCheckRender()}>
-                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:5, borderBottomColor:"#6979F8"}]}>
-                    <Text  style={{ color:render ? "#999999" : "#6979F8",fontWeight:"400"}}>Notifications</Text>
+                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:width*0.015, borderBottomColor:"#6979F8"}]}>
+                    <Text  style={{fontFamily:"OpenSans-Regular", color:render ? "#999999" : "#6979F8",fontWeight:"400"}}>Notifications</Text>
                 </View>
                 </TouchableOpacity>
             </View>
-            <View style={styles.orders}>
             <Orders name={name} lastName={lastName} navigation={navigation} data={orders}/>
-        </View></View>
+        </ScrollView>
     )}
   
 
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
         backgroundColor:"#F15A4D",
         justifyContent:"center",
         borderRadius:100,
-        marginBottom:25,
+        marginBottom:width*0.063,
         borderWidth:1,
         borderColor:"#6979F8",
         
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
     buttonEdit:{
         width:width*0.44,
         height:width*0.085,
-        marginTop:13.58,
+        marginTop:width*0.035,
         borderColor:'#6979F8',
         borderWidth:1,
         borderRadius:5,
@@ -150,12 +149,10 @@ const styles = StyleSheet.create({
     },
     renderButton:{
         alignItems:"center",
-        width:108.33,
+        width:width*0.27,
         fontSize:width*0.06,
         fontFamily:"OpenSans-Regular"
         
       },
-      orders:{
-          marginTop:width*0.1
-      }
+      
 })

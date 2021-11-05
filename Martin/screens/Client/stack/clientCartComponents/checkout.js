@@ -39,7 +39,7 @@ export default function Checkout({order}){
             <View>
             <View style={styles.container}>
                 <Text style={styles.text}>Full Name</Text>
-                <Input value={fullName} leftIcon={{type:"font-awesome", name:"user"}}/>
+                <Input value={fullName}  leftIcon={{type:"font-awesome", name:"user"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Street Address</Text>

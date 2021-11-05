@@ -59,7 +59,7 @@ export default function orderDetail({route}) {
          items = order[0].orderItems} 
         console.log(userInfo)
     return (
-          <ScrollView>
+          <ScrollView style={{backgroundColor:"#FFFFFFFF", }}>
         <View style={{backgroundColor:"#FFFFFFFF", }}>
             <Text style={styles.header}>Order Details</Text>
             {order.length>0 && 

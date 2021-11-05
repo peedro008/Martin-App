@@ -104,7 +104,7 @@ export default  function  Products ({route, navigation}) {
                 </View>
                 <SearchBar 
                     inputContainerStyle={{backgroundColor:"white"}}
-                    inputStyle={{backgroundColor: 'white'}}
+                    inputStyle={{height:width*0.1,backgroundColor: 'white'}}
                     containerStyle={styles.searchBar}
                     onChangeText={handleSearch}
                     value={name}/>
@@ -118,7 +118,7 @@ export default  function  Products ({route, navigation}) {
             {  
                 !name ?
 
-              <View style={styles.contProduct}>
+              <View style={{flex:1}}>
                 <FlatList
                 keyExtractor={item => cate.indexOf(item)}
                 numColumns={1}
@@ -132,7 +132,13 @@ export default  function  Products ({route, navigation}) {
                     
                          <Card
                         key={item.id}
-                        containerStyle={{elevation: 10,width:width*0.9, height:width*0.35, borderRadius:8 }}>
+                        containerStyle={{ marginBottom:width*0.05,marginTop:width*0.0005,elevation:10,shadowColor: "#000",
+                        shadowOffset: {
+                            width: 0,
+                            height: 5,
+                        },
+                        shadowOpacity: 0.34,
+                        shadowRadius: 6.27,width:width*0.9, height:width*0.35, borderRadius:8 }}>
                           <View
                           style={{flexDirection:"row"}}>
                             
@@ -149,19 +155,22 @@ export default  function  Products ({route, navigation}) {
                             />
 
                             </TouchableOpacity>
-                            <View style={{marginLeft:width*0.04, marginVertical:-3}}>
+                            <View style={{marginLeft:width*0.04}}>
                                 <TouchableOpacity
                                 onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
-                                <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:width*0.05, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
                                 </TouchableOpacity>
                               
-                                <Text style={{fontFamily:"OpenSans-Regular",marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
-                                <Text style={{fontFamily:"OpenSans-Regular",}}>Quantity: {count[id]}</Text>
-                                <Text style={{fontFamily:"OpenSans-Regular",}}>Total: ${ (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038,marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
+                            <View style={{flexDirection:"row"}}>
+                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038}}>Quantity:</Text>
+                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038, color:"gray"}}> x{count[id]}</Text>
+                            </View>
+                            <Text style={{fontSize:width*0.038}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                                 
                                 <View style={{flexDirection:"row"}}>
                                 <TouchableOpacity
-                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold",marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
+                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold",marginTop:width*0.01, fontSize:width*0.038, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
                                 </View>
                             </View>
                             <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
@@ -172,7 +181,7 @@ export default  function  Products ({route, navigation}) {
                                 </TouchableOpacity>
                                 
                                 <View style={styles.count}>
-                                    <Text style={styles.countText}>{count[id]}</Text>
+                                    <Text style={{fontSize:width*0.04}}>{count[id]}</Text>
                                 </View>
                                 <TouchableOpacity
                                  onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
@@ -193,7 +202,7 @@ export default  function  Products ({route, navigation}) {
                 /> 
             </View> 
             :
-            
+                <View style={{flex:1}}>
                 <FlatList
                 keyExtractor={item => product.indexOf(item)}
                 numColumns={1}
@@ -206,7 +215,7 @@ export default  function  Products ({route, navigation}) {
                    
                     <Card
                     key={item.id}
-                    containerStyle={{elevation: 10,width:width*0.9, height:width*0.35, borderRadius:8 }}>
+                    containerStyle={{ marginBottom:width*0.05,marginTop:width*0.0005,elevation: 10,width:width*0.9, height:width*0.35, borderRadius:8 }}>
                       <View
                       style={{flexDirection:"row"}}>
                         
@@ -214,7 +223,7 @@ export default  function  Products ({route, navigation}) {
                         
                         
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
                            
                         
                         <Image 
@@ -223,21 +232,25 @@ export default  function  Products ({route, navigation}) {
                         />
 
                         </TouchableOpacity>
-                        <View style={{marginLeft:width*0.04, marginVertical:-3}}
+                        <View style={{marginLeft:width*0.04}}
                         >
                             <TouchableOpacity
                             onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
-                            <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4,  }}>{item.name}</Text>
+                            <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:width*0.05, fontWeight:"600", width:width*0.4,  }}>{item.name}</Text>
                             </TouchableOpacity>
                           
-                            <Text style={{fontFamily:"OpenSans-Regular",marginTop:height*0.001,}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
-                            <Text style={{fontFamily:"OpenSans-Regular"}}>Quantity: {count[id]}</Text>
-                            <Text style={{fontFamily:"OpenSans-Regular"}}>Total: ${ (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
-                            
-                            
-                            <TouchableOpacity
-                            onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold",marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
-                        </View>
+                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038,marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
+                            <View style={{flexDirection:"row"}}>
+                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038}}>Quantity:</Text>
+                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038, color:"gray"}}> x{count[id]}</Text>
+                            </View>
+                            <Text style={{fontSize:width*0.038}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
+                                
+                                <View style={{flexDirection:"row"}}>
+                                <TouchableOpacity
+                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold",marginTop:width*0.01, fontSize:width*0.038, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
+                                </View>
+                            </View>
                         <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
                             <TouchableOpacity 
                             onPress={() => setCount({...count, [id]:count[id]+1  }) }
@@ -246,7 +259,7 @@ export default  function  Products ({route, navigation}) {
                             </TouchableOpacity>
                             
                             <View style={styles.count}>
-                                <Text style={styles.countText}>{count[id]}</Text>
+                                <Text style={{fontSize:width*0.04}}>{count[id]}</Text>
                             </View>
                             <TouchableOpacity
                              onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
@@ -265,7 +278,7 @@ export default  function  Products ({route, navigation}) {
                )
             }}
             />
-            
+            </View>
             
            
 
@@ -325,15 +338,15 @@ const styles = StyleSheet.create({
         fontFamily:"OpenSans-Regular"
     
     },
-    nombre:{
-        fontStyle: "normal",
-        fontWeight: "500",
-        fontSize: width*0.05,
-        marginTop:15,
-        marginBottom:15,
-        alignSelf:"center",
-        fontFamily:"OpenSans-Regular"
-    },
+    // nombre:{
+    //     fontStyle: "normal",
+    //     fontWeight: "500",
+    //     fontSize: width*0.05,
+    //     marginTop:15,
+    //     marginBottom:15,
+    //     alignSelf:"center",
+    //     fontFamily:"OpenSans-Regular"
+    // },
     contPrice:{
         position:"absolute",
         bottom:0,
@@ -342,7 +355,7 @@ const styles = StyleSheet.create({
     count:{
         //marginLeft:9,
        // marginRight:9,
-       marginVertical:6, 
+       marginVertical:width*0.01, 
        borderRadius:8,
         shadowColor: 'rgba(0,0,0, .4)',
         shadowOffset: { height: 1, width: 1 },
@@ -355,22 +368,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         
-        
     },
-    price:{
-        backgroundColor: 'rgba(52, 52, 52, 0.3)',
-        paddingVertical:10,
-        textAlign:"center",
-        fontStyle: "normal",
-        fontWeight: "500",
-        fontSize: width*0.05, 
-       color:"white",
-       fontFamily:"OpenSans-Regular"
-    },
+    // price:{
+    //     backgroundColor: 'rgba(52, 52, 52, 0.3)',
+    //     paddingVertical:10,
+    //     textAlign:"center",
+    //     fontStyle: "normal",
+    //     fontWeight: "500",
+    //     fontSize: width*0.05, 
+    //    color:"white",
+    //    fontFamily:"OpenSans-Regular"
+    // },
     image:{
-        marginHorizontal:5,
-        marginVertical:5, 
-        borderRadius:10,
+        marginHorizontal:width*0.01,
+        marginVertical:width*0.01, 
+        borderRadius:5,
         height:width*0.245,
         width:width*0.245,
       //  shadowRadius:45,

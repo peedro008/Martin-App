@@ -67,19 +67,7 @@ export default function ProductDetail({route,navigation}) {
          style={{flex:1}}>
             <View style={{flex:1, }}>
                 <ScrollView> 
-              <View style={{flexDirection:"row", width:width*0.9, alignItems:"center", justifyContent:"center", marginTop:width*0.06, alignSelf:"center",}}>
-                <Text style={styles.products}>
-                    Product Card
-                </Text>
-                <View style={{position:"absolute", right:0}}>
-                <Icon
-                name='shopping-bag'
-                type="feather"
-                color='gray'
-                size={width*0.07 }
-                />
-               </View>
-            </View>
+              
                 <Image  
                 source={{uri: product.img}}
                 style={styles.image}/>
@@ -117,7 +105,7 @@ export default function ProductDetail({route,navigation}) {
                     <TouchableOpacity
                     onPress={()=>handleCount() }
                     style={ styles.minibutton  }>
-                        <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>-</Text>
+                        <Text style={{fontFamily:"OpenSans-SemiBold",fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>-</Text>
                     </TouchableOpacity>
                     
                     <View style={styles.count}>
@@ -128,7 +116,7 @@ export default function ProductDetail({route,navigation}) {
                     style={ styles.minibutton  }
                     >
                         <Text
-                        style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>
+                        style={{fontFamily:"OpenSans-SemiBold", fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>
                             +
                         </Text>
                     </TouchableOpacity>
@@ -184,8 +172,7 @@ const styles = StyleSheet.create({
         fontFamily:"OpenSans-Regular"
     },
     count:{
-        marginLeft:9,
-        marginRight:9,
+        marginHorizontal:width*0.02,
         borderRadius:8,
         shadowColor: 'rgba(0,0,0, .4)',
         shadowOffset: { height: 1, width: 1 },
@@ -197,19 +184,13 @@ const styles = StyleSheet.create({
         width:width*0.08,
         justifyContent: 'center',
         alignItems: 'center',
-        
+        fontFamily:"OpenSans-SemiBold"
         
         
     },
     category:{
         marginLeft:width*0.05,
-        marginTop:8,
-        marginBottom:8,
-    
-        
-    },
-    contPrice:{
-      
+        marginVertical:width*0.026,
     },
     price:{
         fontSize:width*0.13,
@@ -246,7 +227,7 @@ const styles = StyleSheet.create({
         fontWeight:"600", 
         fontSize:width*0.10,
         marginLeft:width*0.05, 
-        marginBottom:10,
+        marginBottom:width*0.026,
         textTransform:"uppercase",
         fontFamily:"OpenSans-Regular"
     },
@@ -263,13 +244,12 @@ const styles = StyleSheet.create({
     },
     buttonContainer:{
        
-       
         display:"flex", 
         flexDirection:"row", 
         alignSelf:"center",
         justifyContent:"center",
        
-        marginVertical:20    
+        marginVertical:width*0.04    
     },
     countText:{
         color:"#6979F8",
@@ -283,9 +263,6 @@ const styles = StyleSheet.create({
         alignSelf:"center", 
         fontSize:width*0.05,
         fontFamily:"OpenSans-Regular"
-        
-
-
     },
     buttonView:{
         

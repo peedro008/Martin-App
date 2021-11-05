@@ -33,17 +33,17 @@ export default function Cart({order}){
                                 style={styles.buttonX}
                                 onPress={() => handleDelete(item.id)} 
                              
-                                ><Text style={{color:"white", textAlign:"center"}}>x</Text></TouchableOpacity>
+                                ><Text style={{fontSize:width*0.035, fontFamily:"OpenSans-SemiBold",color:"white", textAlign:"center"}}>x</Text></TouchableOpacity>
                             </View>
                            
                         </ImageBackground>
                     </View>
                     <View style={styles.info}>
                         <Text style={styles.name}>{item.name}</Text>
-                        <Text style={styles.price}>${item.price.toFixed(2)}</Text>
+                        <Text style={styles.price}>$ {item.price.toFixed(2)}</Text>
                         <View style={styles.contQuantity}>
-                            <Text style={{fontFamily:"OpenSans-Regular"}}>Quantity:</Text>
-                            <Text style={{color:"#777777"}}> x{item.quantity} </Text>
+                            <Text style={{fontSize:width*0.038,fontFamily:"OpenSans-Regular"}}>Quantity:</Text>
+                            <Text style={{fontSize:width*0.038,fontFamily:"OpenSans-Regular",color:"#777777"}}> x{item.quantity} </Text>
                         </View>
                         
                     </View></View>
@@ -61,8 +61,8 @@ const styles= StyleSheet.create({
         alignSelf:"center",
         width: width-30,
         flexDirection:"row",
-        marginBottom:12,
-        marginTop:10,
+        marginBottom:width*0.02,
+        marginTop:width*0.03,
         borderWidth:0.5,
         borderColor:"rgba(228, 228, 228, 0.6)",
         borderRadius:8,
@@ -87,13 +87,13 @@ const styles= StyleSheet.create({
       
   },
   buttonX:{
-    width:25,
+    width:width*0.055,
     
-    height:25,
+    height:width*0.055,
     position:"absolute",
     top:0,  
     right:0,
-    borderRadius:3,
+    borderRadius:5,
     backgroundColor:"#F15A4D"
     
 },
@@ -136,12 +136,12 @@ contQuantity:{
     display:"flex",
     alignSelf:"flex-end",
     position:"absolute",
-    bottom:10,
-    left:1,
+    bottom:width*0.03,
+    left:width*0.002,
     flexDirection:"row",
  
     fontSize: width*0.04,
-    paddingBottom:5,
+    paddingBottom:width*0.02,
     fontFamily:"OpenSans-Regular"
 
 },

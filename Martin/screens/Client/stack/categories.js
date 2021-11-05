@@ -108,7 +108,7 @@ export default function Categories({navigation}) {
                 
                 <SearchBar 
                 inputContainerStyle={{backgroundColor:"white"}}
-                inputStyle={{backgroundColor: 'white'}}
+                inputStyle={{height:width*0.1,backgroundColor: 'white'}}
                 containerStyle={Styles.searchBar}
                 onChangeText={handleSearch}
                 placeholder="Search..."
@@ -146,7 +146,9 @@ export default function Categories({navigation}) {
                     
                     
                 
-                : <FlatList
+                : 
+                <View style={{flex:1}}>
+                <FlatList
                 key={"_"}
                 keyExtractor={item => "_" + products.indexOf(item)}
                 numColumns={1}
@@ -159,7 +161,13 @@ export default function Categories({navigation}) {
                    
                     <Card
                     key={item.id}
-                    containerStyle={{elevation: 10,width:width*0.9, height:width*0.35, borderRadius:8 }}>
+                    containerStyle={{ marginBottom:width*0.05,marginTop:width*0.0005,elevation:10,shadowColor: "#000",
+                    shadowOffset: {
+                        width: 0,
+                        height: 5,
+                    },
+                    shadowOpacity: 0.34,
+                    shadowRadius: 6.27,width:width*0.9, height:width*0.35, borderRadius:8 }}>
                       <View
                       style={{flexDirection:"row"}}>
                         
@@ -167,7 +175,7 @@ export default function Categories({navigation}) {
                         
                         
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
                            
                         
                         <Image 
@@ -176,20 +184,22 @@ export default function Categories({navigation}) {
                         />
 
                         </TouchableOpacity>
-                        <View style={{marginLeft:width*0.04, marginVertical:-3}}
-                        >
+                        <View style={{marginLeft:width*0.04}}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
-                            <Text numberOfLines={1} ellipsizeMode="tail" style={{marginBottom: width*0.01, fontSize:20, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
+                            <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:width*0.05, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
                             </TouchableOpacity>
                           
-                            <Text style={{marginTop:height*0.001}}>Price: $ {item.price}</Text>
-                            <Text>Quantity: {count[id]}</Text>
-                            <Text>Total: {(item.price*count[id]).toFixed(2)}</Text>
+                            <Text style={{fontFamily:"OpenSans-Regular", fontSize:width*0.038,marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
+                            <View style={{flexDirection:"row"}}>
+                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038}}>Quantity:</Text>
+                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038, color:"gray"}}> x{count[id]}</Text>
+                            </View>
+                            <Text style={{fontSize:width*0.038}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                             
                             
                             <TouchableOpacity
-                            onPress={()=>handleAddProduct(item, count[id])} ><Text style={{marginTop:width*0.01, fontSize:15, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text></TouchableOpacity>
+                            onPress={()=>handleAddProduct(item, count[id])} ><Text style={{marginTop:width*0.01, fontSize:width*0.038, color:"green",textDecorationLine: 'underline',fontFamily:"OpenSans-Bold"}}>Add to Cart</Text></TouchableOpacity>
                         </View>
                         <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
                             <TouchableOpacity 
@@ -199,7 +209,7 @@ export default function Categories({navigation}) {
                             </TouchableOpacity>
                             
                             <View style={Styles.count}>
-                                <Text>{count[id]}</Text>
+                                <Text style={{fontSize:width*0.04}}>{count[id]}</Text>
                             </View>
                             <TouchableOpacity
                              onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
@@ -218,6 +228,7 @@ export default function Categories({navigation}) {
                )
             }}
             />
+            </View>
                 
             }
 
@@ -243,15 +254,14 @@ const Styles= StyleSheet.create({
     cardText:{
                 fontSize:width*0.07,
                 color: "white",
-                marginTop: 80,
+                marginTop:"40%",
                 flex:1,
                 alignSelf:"center",
                 fontWeight: "bold",
                 fontFamily:"OpenSans-Bold"
     },
     image:{
-      
-        height:200,
+        height:Dimensions.get('window').width /2,
         width:Dimensions.get('window').width /2,
     
     },
@@ -259,28 +269,29 @@ const Styles= StyleSheet.create({
         marginVertical:width*0.01,
         marginBottom: width*0.05,
         alignSelf:"center", 
-        backgroundColor: 'white', 
+        backgroundColor: '#fff', 
         borderWidth: 1, 
         borderRadius: 5,
         borderColor:"rgba(228, 228, 228, 0.6)", 
         borderTopColor:"rgba(228, 228, 228, 0.6)",
         borderBottomColor:"rgba(228, 228, 228, 0.6)",
-        width:width-10
+        width:width-10,
+        height:width*0.165
     },
-    imageProduct:{
-        marginHorizontal:5,
-        marginVertical:5, 
-        borderRadius:15,
-        overflow: 'hidden', 
-        height:width*0.4,
-        width:(width /2)-10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation: 1,
-        position:"relative"
-    },
+    // imageProduct:{
+    //     marginHorizontal:5,
+    //     marginVertical:5, 
+    //     borderRadius:15,
+    //     overflow: 'hidden', 
+    //     height:width*0.4,
+    //     width:(width /2)-10,
+    //     shadowColor: '#000',
+    //     shadowOffset: { width: 0, height: 2 },
+    //     shadowOpacity: 0.2,
+    //     shadowRadius: 5,
+    //     elevation: 1,
+    //     position:"relative"
+    // },
     search:{
         marginTop:width*0.018,
         fontSize: width*0.07,
@@ -296,15 +307,15 @@ const Styles= StyleSheet.create({
         fontFamily:"OpenSans-Regular"
         
     },
-    nombre:{
-        fontStyle: "normal",
-       fontWeight: "500",
-        fontSize: 20,
-        marginTop:15,
-        marginBottom:15,
-        alignSelf:"center",
-        fontFamily:"OpenSans-Regular"
-    },
+    // nombre:{
+    //     fontStyle: "normal",
+    //    fontWeight: "500",
+    //     fontSize: 20,
+    //     marginTop:15,
+    //     marginBottom:15,
+    //     alignSelf:"center",
+    //     fontFamily:"OpenSans-Regular"
+    // },
     contPrice:{
         position:"absolute",
         bottom:0,
@@ -322,9 +333,9 @@ const Styles= StyleSheet.create({
        fontFamily:"OpenSans-Regular"
     },
     imageCard:{
-        marginHorizontal:5,
-        marginVertical:5, 
-        borderRadius:10,
+        marginHorizontal:width*0.01,
+        marginVertical:width*0.01, 
+        borderRadius:5,
         height:width*0.245,
         width:width*0.245,
       //  shadowRadius:45,
@@ -333,7 +344,7 @@ const Styles= StyleSheet.create({
     count:{
         //marginLeft:9,
        // marginRight:9,
-       marginVertical:6, 
+       marginVertical:width*0.01, 
        borderRadius:8,
         shadowColor: 'rgba(0,0,0, .4)',
         shadowOffset: { height: 1, width: 1 },
@@ -345,6 +356,7 @@ const Styles= StyleSheet.create({
         width:width*0.07,
         justifyContent: 'center',
         alignItems: 'center',
+        
     },
     minibutton:{
         borderRadius:8,
