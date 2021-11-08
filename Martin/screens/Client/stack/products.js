@@ -332,7 +332,6 @@ const styles = StyleSheet.create({
         marginVertical:width*0.01,
         marginBottom:-width*0.001,
         fontSize:width*0.07,
-        fontWeight: "600",
         alignSelf:"center",
         textAlign:"center",
         fontFamily:"OpenSans-Regular"

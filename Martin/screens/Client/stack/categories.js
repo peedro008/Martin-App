@@ -303,7 +303,6 @@ const Styles= StyleSheet.create({
     search:{
         marginTop:width*0.018,
         fontSize: width*0.07,
-        fontWeight: "600",
         fontFamily:"OpenSans-Regular"
     },
     categories:{
