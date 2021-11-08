@@ -112,6 +112,30 @@ const getUserOrders=async(req,res)=>{
  
 
 }
+const getUserOrdersPending=async(req,res)=>{
+    let email= req.query.email
+   
+    try{
+        
+        let orderBd=await Order.findAll({
+            where:{email:email,
+            status:"Pending"
+            },
+          
+            include:{
+                model:OrderItems,
+                
+               }
+        })
+     orderBd?res.status(200).json(orderBd):
+     res.status(404).send("order not found");
+    }
+    catch(e){
+     console.log("Error in products controller"+ e)
+ }
+ 
+
+}
 
 
 const getPendingOrders=async(req,res)=>{
@@ -230,5 +254,6 @@ module.exports={
     setDispatchedStatus,
     setReceivedStatus,
     getPendingOrders,
-    getOrderId
+    getOrderId,
+    getUserOrdersPending
 }

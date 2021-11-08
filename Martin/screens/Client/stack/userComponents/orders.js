@@ -53,13 +53,12 @@ export default function orders({navigation, data}) {
             <SafeAreaView
             style={{  marginTop:width*.06,marginBottom:width*0.02, alignItems:'center'}}>
                 <View style={{width:width*0.9}}>   
-                    <Text style={styles.OrderHeader} >Last Orders</Text> 
+                    <Text style={styles.OrderHeader} >History Orders</Text> 
                 </View>
             {data.length>0?
             <FlatList
             showsHorizontalScrollIndicator={false}
             bounces={false}
-            horizontal={true}
             data={data}
             renderItem={({item})=> 
           

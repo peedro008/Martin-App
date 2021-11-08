@@ -157,7 +157,7 @@ export default  function  Products ({route, navigation}) {
                             </TouchableOpacity>
                             <View style={{marginLeft:width*0.04}}>
                                 <TouchableOpacity
-                                onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
+                                onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
                                 <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:width*0.05, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
                                 </TouchableOpacity>
                               

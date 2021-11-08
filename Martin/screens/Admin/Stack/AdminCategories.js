@@ -49,7 +49,7 @@ export default function AdminCategories({navigation}) {
             <View style={{marginTop:width*0.044}}>
                 <View
                 style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
-                    <Text style={Styles.search}>
+                    <Text style={Styles.header}>
                         Categories
                     </Text>
                     <View style={{position:"absolute", right:0}}>
@@ -66,16 +66,12 @@ export default function AdminCategories({navigation}) {
                 
                 <SearchBar 
                 inputContainerStyle={{backgroundColor:"white"}}
-                inputStyle={{backgroundColor: 'white'}}
+                inputStyle={{height:width*0.1,backgroundColor: 'white'}}
                 containerStyle={Styles.searchBar}
                 onChangeText={handleSearch}
                 placeholder="Search..."
                 value={name}/> 
             </View >
-            <View style={{alignItems:"center",justifyContent:"center", width:width*0.9, flexDirection:"row"}}>
-               
-               
-            </View>
             {
              !name? 
              
@@ -84,17 +80,23 @@ export default function AdminCategories({navigation}) {
                 numColumns={2}
                 data={categories}
                 renderItem={({item})=>
-                    <View>
-                        <TouchableOpacity  onPress={() => navigation.navigate("Catalog Screen", {params: item})}>
-                            <ImageBackground 
-                            source={{uri:item.img}}
-                            style={Styles.image}>
-                            <Text style={Styles.cardText}>
-                            {item.name}
-                            </Text>
-                        </ImageBackground>
-                        </TouchableOpacity>
+                <View>
+                <TouchableOpacity onPress={() => navigation.navigate("Catalog Screen", {params: item})}
+>
+                    <ImageBackground 
+                    source={{uri:item.img}}
+                    style={Styles.image}>
+                    <Text  style={Styles.cardText}>
+                    {item.name}
+                    </Text>
+                    <View style={{width:width*0.5,height:width*0.5, marginTop:-width*0.2,backgroundColor:"rgba(81, 90, 90 ,0.6)" }}>
+                        <Text numberOfLines={2} ellipsizeMode="tail" style={Styles.cardText}>
+                        {item.name}
+                        </Text>
                     </View>
+                </ImageBackground>
+                </TouchableOpacity>
+            </View>
                     
                 }
                 /> :  
@@ -108,18 +110,18 @@ export default function AdminCategories({navigation}) {
                     return(
                         <View style={Styles.containerProduct}>
                             <View style={Styles.circle}>
-                                <Icon name="edit-3" type="feather" color="#fff"/>
+                                <Icon size={width*0.06} name="edit-3" type="feather" color="#fff"/>
                             </View>
-                            <View  style={{marginLeft:18.35, width:width*0.41}}>
+                            <View  style={{marginLeft:width*0.05, width:width*0.41}}>
                                 <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
-                                <Text numberOfLines={1} ellipsizeMode='tail' style={{textTransform:"capitalize",fontWeight: "600",fontSize: width*0.05,color:"#151522"}}>{item.name}</Text>
+                                <Text numberOfLines={2} ellipsizeMode='tail' style={{textTransform:"capitalize",fontWeight: "600",fontSize: width*0.05,color:"#151522", fontFamily:"OpenSans-Regular"}}>{item.name}</Text>
                                 </TouchableOpacity>
-                                <Text style={{fontWeight:"600",fontSize:width*0.04, color:"#999999"}}>{item.sale ? item.salePercent+"% Off" : "No Offer" }</Text>
+                                <Text style={{fontWeight:"600",fontSize:width*0.04, color:"#999999",fontFamily:"OpenSans-Regular"}}>{item.sale ? item.salePercent+"% Off" : "No Offer" }</Text>
                             </View>
-                            <View style={{position:"absolute",right:0, flexDirection:"row", justifyContent:"flex-end",marginRight:25}}>
-                                <Text style={{fontSize:width*0.045, color:"#00C48C", fontWeight:"300", marginRight:16.14}}>{"$"+item.price}</Text>
+                            <View style={{position:"absolute",right:0, flexDirection:"row", justifyContent:"flex-end",marginRight:width*0.065}}>
+                                <Text style={{fontSize:width*0.045, color:"#00C48C", marginRight:width*0.03,fontFamily:"OpenSans-SemiBold"}}>{"$"+item.price.toFixed(2)}</Text>
                                 <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
-                                <Icon name="chevron-right" type="feather" color="#999999"/>
+                                <Icon size={width*0.06} name="chevron-right" type="feather" color="#999999"/>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -150,18 +152,20 @@ export default function AdminCategories({navigation}) {
                         
 const Styles= StyleSheet.create({
     cardText:{
-                fontSize:width*0.07,
-                color: "white",
-                marginTop: 80,
-                flex:1,
-                alignSelf:"center",
-                fontWeight: "bold"
+        fontSize:width*0.07,
+        color: "white",
+        marginTop:"40%",
+        flex:1,
+        alignSelf:"center",
+        textAlign:"center",
+        fontWeight: "bold",
+        fontFamily:"OpenSans-Bold",
+        width:width*0.45
     },
     image:{
       
-        height:200,
+        height:Dimensions.get('window').width /2,
         width:Dimensions.get('window').width /2,
-    
     },
     searchBar:{
         marginVertical:width*0.01,
@@ -175,70 +179,27 @@ const Styles= StyleSheet.create({
         borderBottomColor:"rgba(228, 228, 228, 0.6)",
         width:width-10
     },
-    imageProduct:{
-        marginHorizontal:5,
-        marginVertical:5, 
-        borderRadius:15,
-        overflow: 'hidden', 
-        height:width*0.4,
-        width:(width /2)-10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation: 1,
-        position:"relative"
-    },
-    search:{
+
+    header:{
         marginTop:width*0.018,
         fontSize: width*0.07,
-        fontWeight: "600"
-    },
-    categories:{
-        marginVertical:width*0.04,
-        fontSize:width*0.07,
         fontWeight: "600",
-        alignSelf:"center",
-        textAlign:"center",
-        
-    },
-    nombre:{
-        fontStyle: "normal",
-       fontWeight: "500",
-        fontSize: 20,
-        marginTop:15,
-        marginBottom:15,
-        alignSelf:"center"
-    },
-    contPrice:{
-        position:"absolute",
-        bottom:0,
-        width:"100%"
-    },
-    price:{
-        backgroundColor: 'rgba(52, 52, 52, 0.4)',
-        paddingVertical:10,
-        textAlign:"center",
-        fontStyle: "normal",
-        fontWeight: "500",
-        fontSize: 20, 
-       color:"white"
+        fontFamily:"OpenSans-Regular"
     },
     containerProduct:{
         width:width,
-        height:88,
+        marginVertical:width*0.035,
         flexDirection:"row",
-        alignItems:"center",
-          
+        alignItems:"center",   
     },
     
     circle:{
-        width:60,
-        height:60,
+        width:width*0.15,
+        height:width*0.15,
         backgroundColor:"rgba(61, 99, 157,0.7)",
         borderRadius:100,
         justifyContent:"center",
         alignItems:"center",
-        marginLeft:25
+        marginLeft:width*0.065
     }
 })        

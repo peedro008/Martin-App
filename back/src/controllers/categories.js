@@ -15,5 +15,25 @@ const categories=async(req,res)=>{
     }
 
 };
+const category=async(req,res)=>{
+    let id= req.query.id
+    try{
+        let categoriesBd= await Category.findOne({
+            
+            attributes:['name','id','description', 'img'],
+            where:{id:id}
+    
+        });
+        categoriesBd ? res.status(200).json(categoriesBd):
+       res.status(404).send("Category not found");
+    }
+    catch(e){
+        console.log("Error in category controller "+ e)
+    }
 
-module.exports= categories;
+};
+
+module.exports={ 
+    categories,
+    category
+};

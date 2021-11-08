@@ -45,12 +45,21 @@ const styles = StyleSheet.create({
                 fontSize:width*0.07,
                 fontWeight:"400",
                 marginTop:width*0.1,
-                marginLeft:width*0.06
+                marginLeft:width*0.06,
+                fontFamily:"OpenSans-Regular"
             },
    balanceCard:{
        width:width*0.95,
        alignSelf:"center",
        height:heigth*0.3,
-       elevation:15
+       shadowColor: "#000",
+       shadowOffset: {
+           width: 0,
+           height: 7,
+       },
+       shadowOpacity: 0.43,
+       shadowRadius: 9.51,
+       
+       elevation: 15
    }
 })

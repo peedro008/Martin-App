@@ -131,9 +131,14 @@ export default function Categories({navigation}) {
                             <ImageBackground 
                             source={{uri:item.img}}
                             style={Styles.image}>
-                            <Text style={Styles.cardText}>
-                            {item.name}
-                            </Text>
+            
+                            <View style={{width:Dimensions.get('window').width /2,height:Dimensions.get('window').width /2,backgroundColor:"rgba(81, 90, 90 ,0.6)",justifyContent:"center"}}>
+                                <View style={{alignItems:"center",alignSelf:"center", height:width*0.3,width:width*0.42}}>
+                                    <Text numberOfLines={2} ellipsizeMode="tail" style={Styles.cardText}>
+                                    {item.name}
+                                    </Text>
+                                </View>
+                            </View>
                         </ImageBackground>
                         </TouchableOpacity>
                     </View>
@@ -178,10 +183,12 @@ export default function Categories({navigation}) {
                             onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
                            
                         
-                        <Image 
+                        <ImageBackground 
                         source={{uri: item.img}}
                         style={Styles.imageCard}
-                        />
+                        >
+                            
+                            </ImageBackground>
 
                         </TouchableOpacity>
                         <View style={{marginLeft:width*0.04}}>
@@ -254,11 +261,12 @@ const Styles= StyleSheet.create({
     cardText:{
                 fontSize:width*0.07,
                 color: "white",
-                marginTop:"40%",
                 flex:1,
-                alignSelf:"center",
-                fontWeight: "bold",
-                fontFamily:"OpenSans-Bold"
+                textAlign:"center",
+                marginTop:width*0.07,
+                width:width*0.42,
+                fontFamily:"OpenSans-Bold",
+                
     },
     image:{
         height:Dimensions.get('window').width /2,

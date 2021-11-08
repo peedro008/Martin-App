@@ -5,7 +5,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import {IP} from '../../../env'
 import { useSelector } from 'react-redux'
-import Orders from './homeComponents/orders'
+import Orders from './userComponents/orders'
 
 const width=Dimensions.get("window").width
 

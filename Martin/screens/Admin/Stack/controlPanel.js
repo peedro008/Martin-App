@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         fontFamily:"OpenSans-SemiBold"
     },
     boton:{
-        fontSize:25,
+        fontSize:width*0.065,
         fontFamily:"OpenSans-Regular",
         marginVertical: width*0.04,
         marginHorizontal:width*0.08    

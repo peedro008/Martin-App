@@ -1,12 +1,12 @@
 const { Router } = require('express');
 const {products, productsCat, productsSale, updateProduct,postProduct} = require('../controllers/products.js')
-const categories = require('../controllers/categories.js');
+const {categories,category} = require('../controllers/categories.js');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const router = Router();
 const{signup, login, isAuth, signupadmin, infoGet, userGet, infoPost,updateInfo}=require ('../controllers/user.js');
-const { getOrders, postOrderItems, getUserOrders, getPendingOrders,getOrderId, setDispatchedStatus, setPendingStatus, setReceivedStatus } = require('../controllers/orders.js');
+const { getOrders, postOrderItems, getUserOrders,getUserOrdersPending, getPendingOrders,getOrderId, setDispatchedStatus, setPendingStatus, setReceivedStatus } = require('../controllers/orders.js');
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
@@ -38,6 +38,8 @@ router.get('/productsSale', productsSale)
 
 router.get('/categories',categories)
 
+router.get('/category',category)
+
 router.put("/updateProduct", updateProduct)
 
 router.post("/createProduct", postProduct)
@@ -47,6 +49,8 @@ router.post("/createProduct", postProduct)
 router.get("/orders", getOrders)
 
 router.get("/orderuser", getUserOrders)
+
+router.get("/orderuserPending", getUserOrdersPending)
 
 router.get("/orderpending", getPendingOrders)
 

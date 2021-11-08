@@ -93,7 +93,7 @@ export default function orderDetail({route}) {
                 <View style={{flexDirection:"row",paddingTop:width*0.03, alignItems:"center"}}>
                 <Icon type="feather" name="truck" color="black" size={width*0.08}/>
                
-                <Text  style={{fontSize:width*0.05, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
+                <Text  style={{fontSize:width*0.05,marginLeft:-width*0.02, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
                 <Text  style={{fontSize:width*0.045, color:"grey", fontFamily:"OpenSans-Regular"}}> - 3 day shipping</Text>
                                
                 </View>

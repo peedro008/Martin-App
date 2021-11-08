@@ -60,7 +60,7 @@ export default function addProduct() {
                  <Text style={styles.header}>Product Detail</Text>
             <Text style={[styles.textInput,{marginTop:width*0.06}]}>Name</Text>
             <View style={styles.contInput}>
-                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  Name"} style={styles.input} value={name} onChangeText={(value)=>setName(value)}/>
+                <TextInput placeholderTextColor="rgba(228, 228, 228,1)" placeholder={"  Name"} style={styles.input} value={name} onChangeText={(value)=>setName(value)}/>
             </View>
             <Text  style={styles.textInput}>Category</Text>
 
@@ -76,11 +76,11 @@ export default function addProduct() {
             </Picker>
             <Text style={styles.textInput}>Description</Text>
             <View style={styles.contInput}>
-                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  Description"} multiline={true} numberOfLines={10} style={{textTransform:"capitalize",height:width*0.36}} value={description} onChangeText={(value)=>setDescription(value)} />
+                <TextInput placeholderTextColor="rgba(228, 228, 228,1)" placeholder={"  Description"} multiline={true} numberOfLines={4} style={{textTransform:"capitalize"}} value={description} onChangeText={(value)=>setDescription(value)} />
             </View>   
             <Text  style={styles.textInput}>Price</Text>
             <View style={styles.contInput}>
-                <TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  Price"} style={styles.input} value={price} onChangeText={(value)=>setPrice(value)} />
+                <TextInput placeholderTextColor="rgba(228, 228, 228, 1)" placeholder={"  Price"} style={styles.input} value={price} onChangeText={(value)=>setPrice(value)} />
             </View>
             <Text style={styles.textInput}>Sale</Text>
             <View style={styles.containerButtonDefault}>
@@ -94,7 +94,7 @@ export default function addProduct() {
             <Text  style={styles.textInput}>Sale Percent</Text>
             <View style={styles.contInput}>
 
-                { sale ?<TextInput placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  % discount"} style={styles.input} value={salePercent} onChangeText={(value)=>setSalePercent(value)} /> :
+                { sale ?<TextInput placeholderTextColor="rgba(228, 228, 228, 1)" placeholder={"  % discount"} style={styles.input} value={salePercent} onChangeText={(value)=>setSalePercent(value)} /> :
                 <TextInput  editable={false} selectTextOnFocus={false} placeholderTextColor="rgba(228, 228, 228, 0.6)" placeholder={"  % discount"}  style={styles.input} value={salePercent} onChangeText={(value)=>setSalePercent(value)} />}
             </View>
                 {
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   header:{
       marginTop:width*0.1,
       fontSize:width*0.07,
-      fontFamily:"OpenSans-Bold",
+      fontFamily:"OpenSans-Regular",
       alignSelf:"center",
       textAlign:"center",
       marginBottom:width*0.09,
@@ -122,13 +122,10 @@ const styles = StyleSheet.create({
   },
   name:{
       fontSize: width*0.07,
-      fontFamily:"OpenSans-Bold",
+      fontFamily:"OpenSans-SemiBold",
       color:"#222222"
   },
-  id:{
-      fontSize:width*0.04,
-      fontFamily:"OpenSans-SemiBold"
-  },
+ 
   textInput:{
     fontSize:width*0.05,
     fontFamily:"OpenSans-SemiBold",
@@ -141,7 +138,7 @@ const styles = StyleSheet.create({
   },
    contInput:{
         borderWidth:0.5,
-        borderColor:"rgba(228, 228, 228, 0.6)",
+        borderColor:"gray",
         marginBottom:width*0.04,
         borderRadius:5
   },

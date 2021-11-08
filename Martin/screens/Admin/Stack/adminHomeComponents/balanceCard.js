@@ -13,8 +13,8 @@ export default function balanceCard() {
             <View>
                 <Card
                 containerStyle={styles.balanceCard}>
-                    <Text style={{color:"#999999",fontWeight:"400", fontSize:width*0.034}}>Last Month's Balance</Text>
-                    <Text style={{fontSize:width*0.057, fontWeight:"600"}}>$25.325,55</Text>
+                    <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontSize:width*0.034}}>Last Month's Balance</Text>
+                    <Text style={{fontFamily:"OpenSans-SemiBold",fontSize:width*0.057,}}>$25.325,55</Text>
                     <View style={styles.graphic}>
                         <View style={{backgroundColor:"#BE52F2", width:card*0.16, height:width*0.027, borderTopLeftRadius:16, borderBottomLeftRadius:16}}/>
                         <View style={{backgroundColor:"#6979F8", width:card*0.16, height:width*0.027}}/>
@@ -97,9 +97,11 @@ elevation: 11,
    city:{
        color:"#6979F8",
        fontSize:width*0.034,
+       fontFamily:"OpenSans-Bold",
        fontWeight:"400"
    },
    price:{
+    fontFamily:"OpenSans-SemiBold",
        color:"#151522",
        fontWeight:"500",
        fontSize:width*0.038,

@@ -29,7 +29,7 @@ export default function Home({navigation}) {
           .catch(error=>{
               console.log(error)  
               })
-  },[])
+  },[email])
   
   let handleAddProduct=(order)=>{
        order.map(e=>{
@@ -54,19 +54,11 @@ export default function Home({navigation}) {
                console.log( "Error in Home get ProductSales : " + error)  
              })
               
-                axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
-                .then(function(response){
-                setOrders(response.data)
-              
-
-             })
-            .catch(error=>{
-                 console.log( "Error in clientHome get OrdersUser : " + error)  
-            })
+          
            
             
 
-         },[email])
+         },[])
 
 
 

@@ -6,6 +6,8 @@ import {addOrder} from '../../../actions.js'
 import { IP } from '../../../env.js'
 import { useDispatch, useSelector } from 'react-redux'
 
+
+
 const width=Dimensions.get("window").width
 
 const height=Dimensions.get("window").height
@@ -13,24 +15,32 @@ const height=Dimensions.get("window").height
 export default function ProductDetail({route,navigation}) {
     let {id} = route.params
     
-    let {category} = route.params
+    
     const [product, setProduct]= useState([]);
+    const [category,setCategory]=useState("")
     const [count, setCount] = useState(0);
     const [added,setAdded] = useState(false)
     const dispatch= useDispatch();
     const preOrder= useSelector(state=>state.PreOrder)
-  console.log(category)
     useEffect(()=>{
         axios.get(`${IP}/products?id=${id}`)
-            .then(function(response){
+            .then((response)=>{
                 setProduct(response.data)
             })
             .catch(error=>{
               console.log(error)  
-            })
-           
-             
+            })  
         },[])
+
+    useEffect(()=>{
+        axios.get(`${IP}/category?id=${product.categoryId}`)
+        .then((response)=>{
+            setCategory(response.data.name)
+        })
+        .catch(error=>{
+            console.log(error)  
+          })
+    },[product])
 
     const handleCount=()=>{
             if(count>0){
