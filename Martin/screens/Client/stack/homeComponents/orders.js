@@ -65,7 +65,7 @@ export default function orders({navigation, data}) {
           
                 <Card containerStyle={styles.card} >
                 <View style={{margin:width*0.03, alignSelf:"center"}}>
-                   <View style={{flexDirection: 'row', marginBottom:width*0.03, alignItems:'center'}}>
+                   <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
                         <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#6979F8" : "#00bb2d" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
                         <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
@@ -108,13 +108,13 @@ export default function orders({navigation, data}) {
                         style={{flexDirection: 'row'}}>
                             <View style={{flexDirection: 'row', alignItems:'center'}}>
                                 <Text
-                                style={{fontFamily:"OpenSans-Regular", fontSize: width*0.04, color:"#999999"}}>VALUE OF ITEMS: </Text>
-                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, fontWeight:"600", color:"#151522"}}>$ {item.total.toFixed(2)}</Text>
+                                style={{fontFamily:"OpenSans-Regular", fontSize: width*0.035, color:"#999999"}}>VALUE OF ITEMS: </Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.04, fontWeight:"600", color:"#151522"}}>$ {item.total.toFixed(2)}</Text>
                             </View>
                             <View style={{flexDirection: 'row',alignItems:'center', position:"absolute", right:0}}>
                                 <Text
-                                style={{fontFamily:"OpenSans-Regular", fontWeight:"400", fontSize: width*0.04, color:"#999999"}}>QUANTITY: </Text>
-                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, fontWeight:"600", color:"#151522"}}>x{item.orderItems.length}</Text>
+                                style={{fontFamily:"OpenSans-Regular", fontWeight:"400", fontSize: width*0.035, color:"#999999"}}>QUANTITY: </Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.04, fontWeight:"600", color:"#151522"}}>x{item.orderItems.length}</Text>
                             </View>
                         </View>
                      </View>   
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
           fontFamily:"OpenSans-Regular"
         },
         card:{
-            height:width*0.53,
+            height:width*0.48,
             width:width*0.9,
             borderRadius:5, 
             borderWidth:1, 
@@ -151,5 +151,6 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
             elevation: 16,
+            marginBottom:30,
         }
     })
