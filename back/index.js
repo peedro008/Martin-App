@@ -7,13 +7,13 @@ const admin =require("./data/admin")
 
 
 // Syncing all the models at once.
-sequelize.sync({ force: false }).then(() => {
-  server.listen(5000,"10.0.0.104", async()=>{
+sequelize.sync({ force: true }).then(() => {
+  server.listen(5000,"192.168.0.102", async()=>{
     
     //aca cargo los productos y categorias a la base de datos
     try{
-      // Promise.all([categories(),products(),roles(),admin()])
-      // .then(res=> console.log("Datos cargados"))
+      Promise.all([categories(),products(),roles(),admin()])
+      .then(res=> console.log("Datos cargados"))
      
       console.log('%s listening at 5000'); // eslint-disable-line no-console
     }

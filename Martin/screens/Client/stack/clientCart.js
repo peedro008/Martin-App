@@ -11,7 +11,7 @@ import { Input } from "react-native-elements";
 
 const width=Dimensions.get("window").width
 
-export default function clienCart() {
+export default function clienCart({navigation}) {
     const order= useSelector(state=> state.PreOrder) 
     const user= useSelector(state=> state.User) 
     const userId= useSelector(state=> state.UserId)
@@ -46,6 +46,7 @@ export default function clienCart() {
         .then(response=>{
           console.log(response.data)
         })
+        .then(() => navigation.navigate("Check"))
         dispatch(postDelete())
         
     }

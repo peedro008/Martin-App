@@ -112,7 +112,7 @@ export default function orderDetail({route}) {
                     <Text numberOfLines={2} ellipsizeMode="tail"  style={{width:"100%",fontSize:width*0.048,fontFamily:"OpenSans-Regular"}}>TEL:  {order[0].userInfo.phone}</Text>
                 </View>
             </Card>
-          
+          <View style={{marginBottom:25}}>
             <FlatList
                 data={order[0].orderItems}
                 s
@@ -151,7 +151,7 @@ export default function orderDetail({route}) {
 
                 
         }
-            />
+            /></View>
             </View>}
             </View>
             </ScrollView>
