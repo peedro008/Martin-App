@@ -89,7 +89,7 @@ export default function AdminCategories({navigation}) {
                     <Text  style={Styles.cardText}>
                     {item.name}
                     </Text>
-                    <View style={{width:width*0.5,height:width*0.5, marginTop:-width*0.2,backgroundColor:"rgba(81, 90, 90 ,0.6)" }}>
+                    <View style={{width:width*0.5,height:width*0.5, marginTop:-width*0.2,backgroundColor:"rgba(81, 90, 90 ,0.35)" }}>
                         <Text numberOfLines={2} ellipsizeMode="tail" style={Styles.cardText}>
                         {item.name}
                         </Text>

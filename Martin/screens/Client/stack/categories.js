@@ -132,7 +132,7 @@ export default function Categories({navigation}) {
                             source={{uri:item.img}}
                             style={Styles.image}>
             
-                            <View style={{width:Dimensions.get('window').width /2,height:Dimensions.get('window').width /2,backgroundColor:"rgba(81, 90, 90 ,0.6)",justifyContent:"center"}}>
+                            <View style={{width:Dimensions.get('window').width /2,height:Dimensions.get('window').width /2,backgroundColor:"rgba(81, 90, 90 ,0.35)",justifyContent:"center"}}>
                                 <View style={{alignItems:"center",alignSelf:"center", height:width*0.3,width:width*0.42}}>
                                     <Text numberOfLines={2} ellipsizeMode="tail" style={Styles.cardText}>
                                     {item.name}

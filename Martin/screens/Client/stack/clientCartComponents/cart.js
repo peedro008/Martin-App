@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions} from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity,ImageBackground, Button,Image, Dimensions} from 'react-native'
 import { Icon } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import {deleteProduct} from '../../../../actions'
-
+import { Card } from 'react-native-elements/dist/card/Card'
 
 
 
@@ -24,7 +24,7 @@ export default function Cart({order}){
         data={order}
         
         renderItem={({item})=>
-               <View style={styles.shadow}>
+        <View style={styles.shadow}>
                <View style={styles.container}>
                     <View style={styles.contImage}>
                         <ImageBackground source={{uri: item.img}} style={styles.image}>
@@ -99,11 +99,9 @@ const styles= StyleSheet.create({
 },
 
 info:{
-    display:"flex",
-    position:"relative",
     flexGrow:10,
     marginLeft:width*0.03,
-    
+    backgroundColor:"yellow",
 },
 name:{
     display:"flex",
@@ -120,10 +118,10 @@ name:{
 },
 price:{
 
-  display:"flex",
   position:"absolute",
-  right:width*0.05,
+  right:width*0.01,
   color:"#151522",
+  bottom:-5,
   fontStyle: "normal",
   fontWeight: "normal",
   fontSize: width*0.06,
