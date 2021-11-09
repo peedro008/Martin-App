@@ -132,7 +132,8 @@ export default function orders({navigation, data}) {
 
 const styles = StyleSheet.create({
         OrderHeader:{
-            marginTop:width*0.05,
+          marginTop:width*0.05,
+          marginBottom:width*0.05,
           alignSelf:"center",
           fontSize: width*0.07,
           fontFamily:"OpenSans-Regular"
