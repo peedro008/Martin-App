@@ -54,7 +54,9 @@ export default function user({navigation}) {
 
     return (
         <ScrollView style={{flex:1, backgroundColor:"#fff",}}>
-          <Text style={styles.profile}>Profile</Text>
+          
+            <Text style={styles.profile}>Profile</Text>
+         
           <View style={styles.header}>
               <View style={styles.contInitials}>
                 <Text style={styles.initials}>{name.charAt(0)+lastName.charAt(0)}</Text>
@@ -90,9 +92,8 @@ const styles = StyleSheet.create({
         marginTop:width*0.1,
         marginBottom:width*0.06,
         fontSize: width*0.07,
-        fontWeight: "600",
         alignSelf:"center",
-        fontFamily:"OpenSans-Regular"
+        fontFamily:"OpenSans-Regular",
     },
     header:{
         alignItems:"center",

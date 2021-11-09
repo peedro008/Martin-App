@@ -150,7 +150,6 @@ const styles = StyleSheet.create({
   cart:{
     marginTop:width*0.02,
     fontSize: width*0.07,
-    fontWeight: "600",
     fontFamily:"OpenSans-Regular"
   },
   renderButton:{

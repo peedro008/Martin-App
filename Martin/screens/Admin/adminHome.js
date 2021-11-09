@@ -43,7 +43,6 @@ export default function adminHome({navigation}) {
 const styles = StyleSheet.create({
     header:{
                 fontSize:width*0.07,
-                fontWeight:"400",
                 marginTop:width*0.1,
                 marginLeft:width*0.06,
                 fontFamily:"OpenSans-Regular"

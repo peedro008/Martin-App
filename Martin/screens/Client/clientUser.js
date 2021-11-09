@@ -5,6 +5,7 @@ import user from './stack/user';
 import orderDetail from './stack/orderDetail';
 import orders from './stack/homeComponents/orders';
 import editShippingAddress from './stack/userComponents/editShippingAddress';
+import authScreen from '../AuthScreen'
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ export default function clientUser() {
         <Stack.Screen name="edit address" component={editShippingAddress} options={{headerShown: false}}/>
         <Stack.Screen name="orders" component={orders} options={{headerShown: false}}/>
         <Stack.Screen name="order detail" component={orderDetail} options={{headerShown: false}}/>
+        <Stack.Screen name="authScreen" component={authScreen} options={{headerShown: false}}/>
      </Stack.Navigator>
     )
 }
