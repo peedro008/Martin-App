@@ -4,8 +4,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useState } from 'react'
 import axios from 'axios'
 import {IP} from '../../../env'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Orders from './userComponents/orders'
+import { logOut } from '../../../actions'
+import { Icon } from 'react-native-elements/dist/icons/Icon'
 
 const width=Dimensions.get("window").width
 
@@ -19,7 +21,9 @@ export default function user({navigation}) {
     const [city,setCity]=useState("")
     const [render,setRender]=useState(true)
     const [orders, setOrders] = useState([])
+    const [config,setConfig] = useState(false)
     const userId=useSelector(state=>state.UserId)
+    const dispatch=useDispatch()
 
     useEffect(()=>{
         axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
@@ -51,12 +55,29 @@ export default function user({navigation}) {
         setRender(false)
     }
 
+    const handleLogOut=()=>{
+        dispatch(logOut())
+    }
 
     return (
+       
         <ScrollView style={{flex:1, backgroundColor:"#fff",}}>
-          
+             
+          <View style={{marginTop:width*0.1,
+        marginBottom:width*0.06,flexDirection:"row",justifyContent:"center"}}>
             <Text style={styles.profile}>Profile</Text>
-         
+            <View style={{position:"absolute", right:width*0.055,top:width*0.0125}}>
+                <TouchableOpacity onPress={()=>setConfig(!config)}>
+                    <Icon type="feather" name="settings" size={width*0.07} color="gray"/>
+                </TouchableOpacity>
+            </View>
+          </View>
+          
+          { config &&<View style={styles.logOut}>
+                        <TouchableOpacity onPress={()=>handleLogOut()}>
+                        <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.03}}>Log out</Text>
+                       </TouchableOpacity>
+                     </View>}
           <View style={styles.header}>
               <View style={styles.contInitials}>
                 <Text style={styles.initials}>{name.charAt(0)+lastName.charAt(0)}</Text>
@@ -69,6 +90,7 @@ export default function user({navigation}) {
                   </TouchableOpacity>
               </View>
           </View>
+        
           <View style={{flexDirection:"row",alignSelf:"center",marginTop:width*0.099,}}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
                  <View style={[styles.renderButton,{borderBottomWidth:render?width*0.015:0,borderBottomColor:"#6979F8"}]}>
@@ -83,14 +105,13 @@ export default function user({navigation}) {
             </View>
             <Orders name={name} lastName={lastName} navigation={navigation} data={orders}/>
         </ScrollView>
+        
     )}
   
 
 
 const styles = StyleSheet.create({
     profile:{
-        marginTop:width*0.1,
-        marginBottom:width*0.06,
         fontSize: width*0.07,
         alignSelf:"center",
         fontFamily:"OpenSans-Regular",
@@ -99,6 +120,22 @@ const styles = StyleSheet.create({
         alignItems:"center",
         alignSelf:"center",
         
+    },
+    logOut:{
+        borderRadius:3,alignSelf:"flex-end",
+        marginRight:width*0.04,
+        marginTop:-width*0.052,
+        backgroundColor:"#F5F5DC",
+        shadowColor: "#000",
+        shadowOffset: {
+	        width: 0,
+	        height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        width:width*0.3,
+        alignItems:"center"
     },
     contInitials:{
         height:width*0.21,

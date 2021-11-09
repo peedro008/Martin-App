@@ -13,6 +13,7 @@ export const GET_SALES = 'GET_SALES'
 export const EDIT_PRICE = 'EDIT_PRICE'
 export const USER_ID = "USER_ID"
 export const POST_DELETE = "POST_DELETE"
+export const LOG_OUT = "LOG_OUT"
 
 
 
@@ -28,6 +29,11 @@ export function userId(id){
   return{
     type: USER_ID,
     payload: id
+  } 
+}
+export function logOut(){ 
+  return{
+    type: LOG_OUT,
   } 
 }
 // CLIENT ACTIONS

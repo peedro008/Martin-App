@@ -51,7 +51,7 @@ export default function orders({navigation, data}) {
       else{
         return (
             <SafeAreaView
-            style={{  marginTop:width*.06,marginBottom:width*0.02, alignItems:'center'}}>
+            style={{marginTop:width*.06,marginBottom:width*0.02, alignItems:'center'}}>
                 <View style={{width:width*0.9}}>   
                     <Text style={styles.OrderHeader} >Last Orders</Text> 
                 </View>
@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
           fontFamily:"OpenSans-Regular"
         },
         card:{
+            
             height:width*0.48,
             width:width*0.9,
             borderRadius:5, 

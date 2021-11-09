@@ -2,7 +2,10 @@ import {
   ADD_PRODUCT, 
   USER_ROLE, 
   DELETE_PRODUCT,
-  USER,POST_ORDER, POST_DELETE, USER_ID
+  USER,POST_ORDER,
+  POST_DELETE,
+  USER_ID,
+  LOG_OUT
    } from './actions'
 
 const initialState = {
@@ -55,6 +58,11 @@ export default function reducer(state = initialState, action) {
             PreOrder: [],
             TotalPrice:0
           }
+        case LOG_OUT:
+          return{
+            ...state,
+            UserRole:null
+          }  
        
       
        

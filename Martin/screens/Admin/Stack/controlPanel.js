@@ -1,26 +1,42 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { StyleSheet, Text, View, Button, TouchableOpacity,Image, Dimensions } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { Card,   } from 'react-native-elements';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
+import { logOut } from '../../../actions';
+import { useDispatch } from 'react-redux';
 
 const width=Dimensions.get("window").width
 const height=Dimensions.get("window").height
 
 export default function controlPanel({navigation}) {
+    const [config,setConfig] = useState(false)
+    const dispatch=useDispatch()
+
+
+    const handleLogOut=()=>{
+        dispatch(logOut())
+    }
     return (
         
         
         <View style={{backgroundColor:"white", height:height}}>
             <View
-                style={{alignItems:"center",marginVertical:width*0.04, }}>
+                style={{alignItems:"center",marginTop:width*0.04,marginBottom:width*0.08 }}>
                     <Text style={styles.search}>
                         Control Panel
                     </Text>
-                    <View style={{position:"absolute", right:0}}>
-
-                        
-                    </View>
-                </View>
+                    <View style={{position:"absolute", right:width*0.055,top:width*0.065}}>
+                <TouchableOpacity onPress={()=>setConfig(!config)}>
+                    <Icon type="feather" name="settings" size={width*0.07} color="gray"/>
+                </TouchableOpacity>
+                    </View>  
+            </View>
+            { config &&<View style={styles.logOut}>
+                        <TouchableOpacity onPress={()=>handleLogOut()}>
+                        <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.03}}>Log out</Text>
+                       </TouchableOpacity>
+                     </View>}
         <View style={styles.card}  >
            <TouchableOpacity
            onPress={() => navigation.navigate("Admin Categories")}>
@@ -62,6 +78,23 @@ const styles = StyleSheet.create({
     
 
     },
+    logOut:{
+        borderRadius:3,alignSelf:"flex-end",
+        position:"absolute",
+        top:width*0.2,
+        right:width*0.04,
+        backgroundColor:"#F5F5DC",
+        shadowColor: "#000",
+        shadowOffset: {
+	        width: 0,
+	        height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        width:width*0.3,
+        alignItems:"center"
+    },
     search:{
         marginTop:width*0.05,
         fontSize: width*0.07,
@@ -76,6 +109,6 @@ const styles = StyleSheet.create({
         
     },
     card:{
-        marginVertical:width*0.11
+        marginBottom:width*0.11,
     }
 })
