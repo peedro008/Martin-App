@@ -56,26 +56,28 @@ export default function orders(data) {
 
       
         return (
-            <SafeAreaView
-            style={{  flex:1,marginBottom:width*0.02, marginTop:width*.06, alignItems:'center',maxHeight:height*5}}>
+            <View
+            style={{ flex:1, marginTop:width*0.03, alignItems:'center', }}>
+                
                
             {orders?
+           
             <FlatList
             showsHorizontalScrollIndicator={false}
             bounces={false}
             data={orders}
             renderItem={({item})=> 
-          
+                <View style={{marginVertical:width/1000, display:"flex", flex:1}}>
                 <Card containerStyle={styles.card} >
-                <View style={{margin:width*0.03, alignSelf:"center"}}>
-                   <View style={{flexDirection: 'row', marginBottom:width*0.029, alignItems:'center'}}>
+                <View style={{margin:width*0.03, alignSelf:"center",}}>
+                   <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
                         <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#6979F8" : "#00bb2d" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
                         <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04}}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
-                        style={{flexDirection: 'row'}}>
+                        style={{flexDirection: "row", marginBottom:width*0.047}}>
                         <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
@@ -100,17 +102,18 @@ export default function orders(data) {
                         style={{flexDirection: 'row'}}>
                             <View style={{flexDirection: 'row', alignItems:'center'}}>
                                 <Text
-                                style={{fontFamily:"OpenSans-Regular", fontSize: width*0.04, color:"#999999"}}>VALUE OF ITEMS: </Text>
-                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, fontWeight:"600", color:"#151522"}}>$ {item.total.toFixed(2)}</Text>
+                                style={{fontFamily:"OpenSans-Regular", fontSize: width*0.035, color:"#999999"}}>VALUE OF ITEMS: </Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.04, fontWeight:"600", color:"#151522"}}>$ {item.total.toFixed(2)}</Text>
                             </View>
                             <View style={{flexDirection: 'row',alignItems:'center', position:"absolute", right:0}}>
                                 <Text
-                                style={{fontFamily:"OpenSans-Regular", fontWeight:"400", fontSize: width*0.04, color:"#999999"}}>QUANTITY: </Text>
-                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, fontWeight:"600", color:"#151522"}}>x{item.orderItems.length}</Text>
+                                style={{fontFamily:"OpenSans-Regular", fontWeight:"400", fontSize: width*0.035, color:"#999999"}}>QUANTITY: </Text>
+                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.04, fontWeight:"600", color:"#151522"}}>x{item.orderItems.length}</Text>
                             </View>
                         </View>
                      </View>   
                     </Card> 
+                    </View>
          
                         }/>
                       :
@@ -118,7 +121,7 @@ export default function orders(data) {
                       <Icon name="file-text" type="feather" size= {width*0.2} />
           
                       </View>}
-          </SafeAreaView>
+          </View>
         )
 }
 
@@ -133,8 +136,8 @@ const styles = StyleSheet.create({
       
     },
     card:{
-        height:width*0.49,
-            width:width*0.9,
+        height:width*0.47,
+        width:width*0.9,
             borderRadius:5, 
             borderWidth:1, 
             borderColor:"rgba(228, 228, 228, 0.6)",
@@ -146,5 +149,8 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
             elevation: 16,
+
+            
+            
     }
 })
