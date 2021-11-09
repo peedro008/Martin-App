@@ -1,6 +1,6 @@
 import React,{useEffect, useRef, useState} from 'react'
 import { StyleSheet, Text,Button, View,FlatList,ImageBackground,TouchableOpacity, useWindowDimensions, Image, Dimensions, Animated, ScrollView} from 'react-native'
-import { Icon } from 'react-native-elements'
+import { Icon, Divider } from 'react-native-elements'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { IP } from '../../../env'
@@ -16,7 +16,8 @@ export default function Home({navigation}) {
     const email =  useSelector(state=> state.User)
     const [sales,setSales]= useState([])
     const [orders,setOrders]= useState([]) 
-    const dispatch= useDispatch();  
+    const dispatch= useDispatch(); 
+    const [saleState, setSaleState] = useState(false)
     
     
     
@@ -78,7 +79,30 @@ export default function Home({navigation}) {
               size={width*0.07 }
               />
             </View>
-          </View>         
+          </View>
+          <Divider style={{marginBottom:width*0.08}} orientation="horizontal" />
+          
+          
+          {saleState==false?
+            <View style={{marginBottom:width*0.12}}>  
+              <Text style={styles.saleheader}>Only today</Text>
+              <Text style={styles.saleheader}>-%40- OFF</Text>
+            <Image style={styles.imageSale} source={{uri:"http://ecuafruver.azurewebsites.net/wp-content/uploads/2020/09/canasta-verduras.png"}} />
+              <View style={styles.shopBotton}>
+             <TouchableOpacity
+          onPress={()=>setSaleState(true)}>
+            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.05, alignSelf:"center", marginVertical:width*0.01,fontWeight:"500", color:"#fff", }}>See more</Text>
+            </TouchableOpacity></View>
+            </View>  :    
+
+
+
+
+
+
+
+
+        <View>
         <FlatList  
          keyExtractor={item => item.id.toString()}
          showsHorizontalScrollIndicator={false}
@@ -116,9 +140,13 @@ export default function Home({navigation}) {
             </View>
           }
           
-        />
+        /> 
         <Paginator data={sales}/>
+        </View>
         
+       }
+ 
+         
          <View style={styles.orders}>
           <Orders navigation={navigation} data={orders}/>
          </View>
@@ -149,8 +177,8 @@ const styles = StyleSheet.create({
      
 
       image:{
-        width:width*0.9,
-        height:width*0.8  ,
+        width:width*0.8,
+        height:width*0.65  ,
         justifyContent:"center",
         // resizeMode:"cover",
         alignSelf:"center",
@@ -190,7 +218,7 @@ const styles = StyleSheet.create({
       footer:{
         flexDirection:"row",
         justifyContent:"space-between",
-        height:width*0.16,
+        height:width*0.148,
         alignItems:"center",
         backgroundColor:'rgba(255,255,255, 0.4)',
         width:width*0.9,
@@ -221,6 +249,29 @@ const styles = StyleSheet.create({
         alignSelf:"center", 
         fontSize:width*0.05,
         fontFamily:"OpenSans-Regular"
+      },
+      shopBotton:{
+        backgroundColor:"#F15A4D",
+        width:width*0.4,
+        height:width*0.1,
+        alignSelf:"center",
+        borderRadius:8,
+        elevation:16
+      },
+      imageSale:{
+        width:width*0.9,
+        height:width*0.5  ,
+        justifyContent:"center",
+        // resizeMode:"cover",
+        alignSelf:"center",
+        borderRadius:5,
+      },
+      saleheader:{
+        color:"#F15A4D", 
+        fontFamily:"OpenSans-SemiBold",
+        fontSize:width*0.08,
+        alignSelf:"center",
+       
       }
     
 })

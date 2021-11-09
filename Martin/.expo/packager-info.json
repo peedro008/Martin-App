@@ -1,10 +1,10 @@
 {
-  "webpackServerPort": 19006,
-  "expoServerPort": 19000,
-  "packagerPort": 19000,
-  "packagerPid": null,
-  "expoServerNgrokUrl": "https://6p-9xy.anonymous.martin.exp.direct",
-  "packagerNgrokUrl": "https://packager.6p-9xy.anonymous.martin.exp.direct",
-  "ngrokPid": 23904,
-  "devToolsPort": 19002
-}
+    "webpackServerPort": null,
+    "expoServerPort": null,
+    "packagerPort": null,
+    "packagerPid": null,
+    "expoServerNgrokUrl": null,
+    "packagerNgrokUrl": null,
+    "ngrokPid": null,
+    "devToolsPort": 19002
+  }
