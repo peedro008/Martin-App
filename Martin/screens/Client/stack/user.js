@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Orders from './userComponents/orders'
 import { logOut } from '../../../actions'
 import { Icon } from 'react-native-elements/dist/icons/Icon'
+import { Divider } from 'react-native-elements/dist/divider/Divider'
 
 const width=Dimensions.get("window").width
 
@@ -103,7 +104,9 @@ export default function user({navigation}) {
                 </View>
                 </TouchableOpacity>
             </View>
-            <Orders name={name} lastName={lastName} navigation={navigation} data={orders}/>
+            
+            <View style={{marginTop:width*-0.03}}>
+            <Orders name={name} lastName={lastName} navigation={navigation} data={orders}/></View>
         </ScrollView>
         
     )}

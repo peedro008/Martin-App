@@ -11,35 +11,30 @@ import * as Font from "expo-font"
 
 const width=Dimensions.get("window").width
 const height=Dimensions.get("window").height
-export default function orderDetail({route}) {
-    const [fontsLoaded, setFontsLoaded]= useState(false)
+export default function adminOrderDetail({route}) {
+
+ 
     
-    useEffect(() => {
-      if (!fontsLoaded){
-        loadFonts()
-      }
-      
-    })
-    const loadFonts = async()=>{
-      await Font.loadAsync({
-        "OpenSans-Regular": require("../../../assets/fonts/OpenSans-Regular.ttf")
-      })
-      setFontsLoaded(true)
-    }
+   
  
     
     let {id} = route.params
     
 
     const [order, setOrder]= useState([]);
+    console.log(order)
 
    
+ 
+    
+            
+    
 
     useEffect(()=>{
         axios.get(`${IP}/orderid?id=${id}`)
             .then(function(response){
                 setOrder(response.data)
-               
+                setStatus(response.data[0].status)
             })
             
             .catch(error=>{
@@ -52,14 +47,15 @@ export default function orderDetail({route}) {
 
 
 
-       let userInfo;
-       let items;
+       let userInfo
+       let items   
       if(order.length>0)  {
           userInfo=order[0].userInfo
          items = order[0].orderItems} 
-        console.log(userInfo)
+       
+        
     return (
-          <ScrollView style={{backgroundColor:"#FFFFFFFF", }}>
+        <ScrollView style={{backgroundColor:"#FFFFFFFF", }}>
         <View style={{backgroundColor:"#FFFFFFFF", }}>
             <Text style={styles.header}>Order Details</Text>
             {order.length>0 && 
@@ -89,30 +85,32 @@ export default function orderDetail({route}) {
 
                 </View>
                 <Card.Divider/>
-                <Text style={{fontSize:width*0.045, fontFamily:"OpenSans-Regular"}}>SHIPPING PROGRESS</Text>
-                <View style={{flexDirection:"row",paddingTop:width*0.03, alignItems:"center"}}>
-                <Icon type="feather" name="truck" color="black" size={width*0.08}/>
-               
-                <Text  style={{fontSize:width*0.05,marginLeft:-width*0.02, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
-                <Text  style={{fontSize:width*0.045, color:"grey", fontFamily:"OpenSans-Regular"}}> - 3 day shipping</Text>
-                               
+                <View style={{marginBottom:width*0.015}}>
+                    <Text style={{fontSize:width*0.045, fontFamily:"OpenSans-Regular"}}>SHIPPING PROGRESS</Text>
+                    <View style={{flexDirection:"row",paddingTop:width*0.03, alignItems:"center"}}>
+                        <Icon type="feather" name="truck" color="black" size={width*0.08}/>
+                    
+                        <Text  style={{fontSize:width*0.05,marginLeft:-width*0.02, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
+                        <Text  style={{fontSize:width*0.045, color:"grey", fontFamily:"OpenSans-Regular"}}> - 3 day shipping</Text>
+                                    
+                    </View>
+                    <View style={{width:width*0.5, flexDirection:"row", alignItems:"center", justifyContent:"space-between", marginVertical:height*0.015}}>
+                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#6979F8"}}/>
+                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
+                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
+                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
+                    </View>
                 </View>
-                <View style={{width:width*0.5, flexDirection:"row", alignItems:"center", justifyContent:"space-between", marginVertical:height*0.015}}>
-                    <View style={{width:"23%", height:width*0.008, backgroundColor:"#6979F8"}}/>
-                    <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
-                    <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
-                    <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
-                </View>
-
                 <Card.Divider/>
                 <Text style={{fontSize:width*0.05, fontFamily:"OpenSans-Bold"}}>Shipping Address</Text>
-                <View style={{marginTop:height*0.01}}>
+                <View style={{marginVertical:height*0.01}}>
                     <Text numberOfLines={4} ellipsizeMode="tail" style={{ width:"100%", fontSize:width*0.048,textTransform:"capitalize" ,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.fullName}, {order[0].userInfo.address} </Text>
                     <Text numberOfLines={2} ellipsizeMode="tail" style={{width:"100%", fontSize:width*0.048,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.city}, {order[0].userInfo.postalCode} </Text>
                     <Text numberOfLines={2} ellipsizeMode="tail"  style={{width:"100%",fontSize:width*0.048,fontFamily:"OpenSans-Regular"}}>TEL:  {order[0].userInfo.phone}</Text>
                 </View>
+             
             </Card>
-          <View style={{marginBottom:25}}>
+          
             <FlatList
                 data={order[0].orderItems}
                 s
@@ -120,7 +118,7 @@ export default function orderDetail({route}) {
             
                    
                     <Card
-                    containerStyle={{marginVertical:width*0.06, width:width*0.9,alignSelf:"center",padding:0}}>
+                    containerStyle={{marginVertical:width*0.018, width:width*0.9,alignSelf:"center",padding:0, elevation:5, borderRadius:5}}>
                         <View
                         style={{flexDirection: 'row',width:width*0.9}}>                        
                             <Image source={{uri:item.img}}
@@ -151,37 +149,13 @@ export default function orderDetail({route}) {
 
                 
         }
-            /></View>
+            />
             </View>}
             </View>
             </ScrollView>
 
     )
     }
-
-
-          
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -205,6 +179,55 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         marginTop:width*0.09,
         fontFamily:"OpenSans-Regular"
+    },
+    containerButton:{
+        flexDirection:"row",
+        alignSelf:"center",
+        marginVertical:width*0.015,
+        
+               
+     },
+     button:{
+       alignItems:"center" 
+     },
+     textP:{
+        fontSize:width*0.045,
+        fontFamily:"OpenSans-Regular",
+        color:"black"
+        
+    },
+    textR:{
+        fontSize:width*0.045,
+        fontFamily:"OpenSans-Regular",
+        color:"black"
+        
+    },
+    textD:{
+        fontSize:width*0.045,
+        fontFamily:"OpenSans-Regular",
+        color:"black"
+        
+    },
+    PtextR:{
+        fontSize:width*0.05,
+        fontFamily:"OpenSans-Bold",
+        color:"#00C48C",
+        textDecorationLine: 'underline'
+        
+    },
+    PtextP:{
+        fontSize:width*0.05,
+        fontFamily:"OpenSans-Bold",
+        color:"#FFCF5C",
+        textDecorationLine: 'underline'
+        
+    },
+    PtextD:{
+        fontSize:width*0.05,
+        fontFamily:"OpenSans-Bold",
+        color:"#0084F4",
+        textDecorationLine: 'underline'
+        
     },
   
 })

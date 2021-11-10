@@ -65,7 +65,7 @@ export default function orders(data) {
             <FlatList
             showsHorizontalScrollIndicator={false}
             bounces={false}
-            data={orders}
+            data={orders.reverse()}
             renderItem={({item})=> 
                 <View style={{marginVertical:width/1000, display:"flex", flex:1}}>
                 <Card containerStyle={styles.card} >

@@ -63,9 +63,7 @@ export default function Home({navigation}) {
 
 
 
-         let orr
-         if(orders.length>0){
-         orr=orders.reverse()}
+     
     return (
         <ScrollView style={{flex:1, backgroundColor:"#fff"}}>
           <View>

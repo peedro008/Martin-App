@@ -52,14 +52,14 @@ export default function orders({navigation, data}) {
         return (
             <SafeAreaView
             style={{  marginTop:width*.06,marginBottom:width*0.02, alignItems:'center',}}>
-                <View style={{width:width*0.9}}>   
+                <View style={{width:width*0.9, marginBottom:width*0.01}}>   
                     <Text style={styles.OrderHeader} >History Orders</Text> 
                 </View>
             {data.length>0?
             <FlatList
             showsHorizontalScrollIndicator={false}
             bounces={false}
-            data={data}
+            data={data.reverse()}
             renderItem={({item})=> 
           
                 <Card containerStyle={styles.card} >
