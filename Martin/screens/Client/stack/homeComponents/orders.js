@@ -47,8 +47,7 @@ export default function orders({navigation, data}) {
     
     }
 
-      if(!orders){<View></View>}
-      else{
+      
         return (
             <SafeAreaView
             style={{marginTop:width*.06,marginBottom:width*0.02, alignItems:'center'}}>
@@ -60,7 +59,7 @@ export default function orders({navigation, data}) {
             showsHorizontalScrollIndicator={false}
             bounces={false}
             horizontal={true}
-            data={data}
+            data={data.reverse()}
             renderItem={({item})=> 
           
                 <Card containerStyle={styles.card} >
@@ -128,7 +127,7 @@ export default function orders({navigation, data}) {
                       </View>}
           </SafeAreaView>
         )}
-}
+
 
 const styles = StyleSheet.create({
         OrderHeader:{
