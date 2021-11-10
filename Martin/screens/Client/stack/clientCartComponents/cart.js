@@ -5,6 +5,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import {deleteProduct} from '../../../../actions'
 import { Card } from 'react-native-elements/dist/card/Card'
+import { Divider } from 'react-native-elements/dist/divider/Divider'
 
 
 
@@ -19,6 +20,7 @@ export default function Cart({order}){
     }
 
     return(
+    <View style={{flex:1}}>
         <FlatList
         keyExtractor={item => item.id.toString()}
         data={order}
@@ -49,10 +51,9 @@ export default function Cart({order}){
                         </View>
                         
                     </View>
-                    {/* <Card.Divider/> */}
                 </View>
-              
          }/>
+    </View>        
     )
 }
 
@@ -63,32 +64,36 @@ const styles= StyleSheet.create({
     container:{
         display:"flex",
         alignSelf:"center",
-        width: width-30,
+        width: width*0.9,
         flexDirection:"row",
         marginBottom:width*0.02,
         marginTop:width*0.03,
-        borderWidth:0.5,
+        // borderWidth:0.5,
+        // borderBottomWidth:2,
         borderColor:"rgba(228, 228, 228, 0.6)",
         borderRadius:8,
-        borderTopWidth:0.5,
         height:width*0.25,
-        backgroundColor:"#fffff9"
-
+        backgroundColor:"#fffff9",
+        shadowColor: "#000",
+        shadowOffset: {
+              width: 0,
+              height: 5,
+         },
+        shadowOpacity: 0.34,
+        shadowRadius: 6.27, 
+        elevation: 10,
     },
     contImage:{
-        width: width*0.20,
-        height: width*0.25,
+        width: width*0.23,
+        height: width*0.23,
         flexGrow:1,
         //margin:width*0.03,
-       
-        
+        marginLeft:width*0.005,
+        marginTop:width*0.008
     },
     image:{
-        width: width*0.25,
-        height: width*0.25,
-        flexGrow:1,
-        margin:0,
-      
+        width: width*0.23,
+        height: width*0.23,
   },
   buttonX:{
     width:width*0.055,
@@ -104,7 +109,7 @@ const styles= StyleSheet.create({
 
 info:{
     flexGrow:10,
-    marginLeft:width*0.01,
+  
 },
 name:{
     display:"flex",

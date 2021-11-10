@@ -72,7 +72,7 @@ export default function ordersR(data) {
                 <View style={{margin:width*0.03, alignSelf:"center",}}>
                    <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
-                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#6979F8" : "#00bb2d" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
+                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#00bb2d" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
                         <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04}}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
@@ -126,15 +126,7 @@ export default function ordersR(data) {
 }
 
 const styles = StyleSheet.create({
-    OrderHeader:{
-      alignSelf:"center",
-      fontSize: width*0.07,
-      
-      marginBottom:20,
-      fontFamily:"OpenSans-Regular"
-      
-      
-    },
+   
     card:{
         height:width*0.47,
         width:width*0.9,

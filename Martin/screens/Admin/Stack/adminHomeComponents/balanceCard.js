@@ -27,42 +27,42 @@ export default function balanceCard() {
                         <View style={{ flexDirection:"row", marginRight:width*0.09}}>
                             <View style={{backgroundColor:"#BE52F2", width:width*0.018, height:width*0.068, borderRadius:40, marginTop:width*0.01}}/>
                             <View style={{marginLeft:width*0.024}}>
-                                <Text style={styles.city}>City 1</Text>
+                                <Text style={styles.city}>Meat</Text>
                                 <Text style={styles.price}>$320</Text>
                             </View>
                         </View>
                         <View style={{flexDirection:"row", marginRight:width*0.09}}>
                             <View style={{backgroundColor:"#6979F8", width:width*0.018, height:width*0.068, borderRadius:40, marginTop:width*0.01}}/>
                             <View style={{marginLeft:width*0.024}}>
-                                <Text style={styles.city}>City 2</Text>
+                                <Text style={styles.city}>Dairy</Text>
                                 <Text style={styles.price}>$320</Text>
                             </View>
                         </View>
                         <View style={{flexDirection:"row",marginRight:width*0.09}}>
                             <View style={{backgroundColor:"#FFCF5C", width:width*0.018, height:width*0.068, borderRadius:40, marginTop:width*0.01}}/>
                             <View style={{marginLeft:width*0.024}}>
-                                <Text style={styles.city}>City 3</Text>
+                                <Text style={styles.city}>Frozen</Text>
                                 <Text style={styles.price}>$320</Text>
                             </View>
                         </View>
                         <View style={{flexDirection:"row", marginRight:width*0.09, marginTop:width*0.079}}>
                             <View style={{backgroundColor:"#F2994A", width:width*0.018, height:width*0.068, borderRadius:40, marginTop:width*0.01}}/>
                             <View style={{marginLeft:width*0.024}}>
-                                <Text style={styles.city}>City 4</Text>
+                                <Text style={styles.city}>Beverages</Text>
                                 <Text style={styles.price}>$320</Text>
                             </View>
                         </View>
                         <View style={{flexDirection:"row",marginRight:width*0.09, marginTop:width*0.079}}>
                             <View style={{backgroundColor:"#0084F4", width:width*0.018, height:width*0.068, borderRadius:40, marginTop:width*0.01}}/>
                             <View style={{marginLeft:width*0.024}}>
-                                <Text style={styles.city}>City 5</Text>
+                                <Text style={styles.city}>Spice</Text>
                                 <Text style={styles.price}>$320</Text>
                             </View>
                         </View>
                         <View style={{flexDirection:"row", marginTop:width*0.079}}>
                             <View style={{backgroundColor:"#00C48C", width:width*0.018, height:width*0.068, borderRadius:40, marginTop:width*0.01}}/>
                             <View style={{marginLeft:width*0.024}}>
-                                <Text style={styles.city}>City 6</Text>
+                                <Text style={styles.city}>Grains</Text>
                                 <Text style={styles.price}>$320</Text>
                             </View>
                         </View>

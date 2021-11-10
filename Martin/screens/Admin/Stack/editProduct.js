@@ -99,19 +99,19 @@ export default function editProduct({route}) {
             <Text style={{fontSize:width*0.035,fontFamily:"OpenSans-Regular"}}>Current category : </Text>
             <Text style={{fontSize:width*0.035,fontFamily:"OpenSans-SemiBold"}}>{category}</Text>
             </View>
-            <Picker selectedValue={categoryID} onValueChange={(value)=> handlePicker(value)} style={{height:width*0.1 ,marginBottom:width*0.04, borderRadius:5}}>
+            <Picker  selectedValue={categoryID} onValueChange={(value)=> handlePicker(value)} style={{height:width*0.2,marginBottom:width*0.04, borderRadius:5}}>
                 
                 {
                     categories?.map(e=>{
                         return(
-                         <Picker.Item key={e.id}  fontFamily="OpenSans-SemiBold" label={e.name} value={e.id}/>
+                         <Picker.Item  key={e.id} style={{fontSize:width*0.05}} fontFamily="OpenSans-SemiBold" label={e.name} value={e.id}/>
                         )
                     })
                 }
             </Picker>
             <Text style={styles.textInput}>Description</Text>
             <View style={styles.contInput}>
-                <TextInput placeholderTextColor="rgba(228, 228, 228, 1)" placeholder={"  "+product.description} multiline={true} numberOfLines={4} style={{textTransform:"capitalize"}} value={description} onChangeText={(value)=>setDescription(value)} />
+                <TextInput placeholderTextColor="rgba(228, 228, 228, 1)" placeholder={"  "+product.description} multiline={true} numberOfLines={4} value={description} onChangeText={(value)=>setDescription(value)} />
             </View>   
             <Text  style={styles.textInput}>Price</Text>
             <View style={styles.contInput}>
@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
   },
   input:{
       height:width*0.12,
-      textTransform:"capitalize"
   },
    contInput:{
         borderWidth:0.5,

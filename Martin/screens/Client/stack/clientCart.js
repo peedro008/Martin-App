@@ -90,27 +90,27 @@ export default function clienCart({navigation}) {
                         <View>
                             <View style={styles.container}>
                                 <Text style={styles.text}>Full Name</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.fullName}  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
+                                <Input  value={info.fullName}  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Street Address</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.address} leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
+                                <Input  value={info.address} leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Apt / Suite / Other</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.apt_Suite} leftIcon={{type:"font-awesome", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite:value})}/>
+                                <Input  value={info.apt_Suite} leftIcon={{type:"font-awesome", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>State / City</Text>
-                                <Input style={{textTransform:"capitalize"}} value={info.city} leftIcon={{type:"font-awesome", name:"building"}} onChangeText={value=>setInfo({...info,city:value})}/>
+                                <Input  value={info.city} leftIcon={{type:"font-awesome", name:"building"}} onChangeText={value=>setInfo({...info,city:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Postal Code</Text>
-                                <Input style={{textTransform:"capitalize"}} value={ info.postalCode} leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
+                                <Input  value={ info.postalCode} leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Phone</Text>
-                                <Input style={{textTransform:"capitalize"}} value={ info.phone} leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
+                                <Input  value={ info.phone} leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
                             </View>
                         </View>
                 

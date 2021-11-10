@@ -243,7 +243,7 @@ export default  function  Products ({route, navigation}) {
                                             <View style={{flexDirection:"row"}}>
                                             
                                                 <TouchableOpacity
-                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
                                                 </TouchableOpacity>
                                                 
                                             </View>
@@ -392,8 +392,6 @@ const styles = StyleSheet.create({
     card:{ 
         width:width*0.9,
         height:width*0.34,
-        
-        
         marginBottom:width*0.02,
         marginTop:width*0.0005,
         elevation:10,
