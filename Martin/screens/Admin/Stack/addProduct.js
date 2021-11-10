@@ -20,6 +20,7 @@ export default function addProduct() {
     const [price,setPrice]=useState(0)
     const [sale,setSale]=useState(false)
     const [salePercent,setSalePercent]=useState(0)
+    const [category,setCategory] = useState("")
     const [saved,setSaved]=useState(false)
 
 
@@ -35,14 +36,23 @@ export default function addProduct() {
             })
              
         },[])
+        useEffect(()=>{
+            axios.get(`${IP}/category?id=${categoryID}`)
+            .then((response)=>{
+                console.log(response.data)
+                setCategory(response.data.name)
+            })
+            .catch(error=>{
+                console.log(error)  
+              })
+        },[categoryID])
 
         const handleDefault=()=>{
             setSale(!sale)
         }
       
         const handlePicker=(value)=>{
-            if(value === "select") return;
-            else setCategoryID(value)
+            setCategoryID(value)
         }
 
         const handleSave=()=>{
@@ -63,13 +73,16 @@ export default function addProduct() {
                 <TextInput placeholderTextColor="rgba(228, 228, 228,1)" placeholder={"  Name"} style={styles.input} value={name} onChangeText={(value)=>setName(value)}/>
             </View>
             <Text  style={styles.textInput}>Category</Text>
-
-            <Picker onValueChange={(value)=> handlePicker(value)} style={{height:width*0.1 ,marginBottom:width*0.04, borderRadius:5}}>
-                <Picker.Item  fontFamily="OpenSans-SemiBold" label="SELECT" value="select"/>
+            <View style={{flexDirection:"row"}}>
+            <Text style={{fontSize:width*0.035,fontFamily:"OpenSans-Regular"}}>Current category : </Text>
+            <Text style={{fontSize:width*0.035,fontFamily:"OpenSans-SemiBold"}}>{category}</Text>
+            </View>
+            <Picker selectedValue={categoryID} onValueChange={(value)=> handlePicker(value)} style={{height:width*0.1 ,marginBottom:width*0.04, borderRadius:5}}>
+                
                 {
                     categories?.map(e=>{
                         return(
-                         <Picker.Item key={e.id} fontFamily="OpenSans-SemiBold" label={e.name} value={e.id}/>
+                         <Picker.Item key={e.id}  fontFamily="OpenSans-SemiBold" label={e.name} value={e.id}/>
                         )
                     })
                 }

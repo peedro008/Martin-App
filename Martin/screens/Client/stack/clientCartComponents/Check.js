@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View,Dimensions, Image } from 'react-native'
+import { StyleSheet, Text, View,Dimensions, Image, ScrollView } from 'react-native'
 import { Icon,  } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -10,11 +10,18 @@ const height=Dimensions.get("window").height
 export default function Check({navigation}) {
     return (
         <View style={{height:height,flex:1, backgroundColor:"#FFFFFFFF" }}>
+            <ScrollView>
         <View style={styles.icon}>
+            
             <Image style={styles.image} source={require("../../../../assets/Check.png")}/></View>
+              
+              <View style={{marginBottom:width*0.35}}>
               <Text style={styles.congratulations}>Congratulations!</Text>
               <Text style={styles.text}>Your items are on the way and should arrive shortly</Text>
-              <View style={styles.button}><TouchableOpacity><Text style={styles.TextButton}>Track Your Order</Text></TouchableOpacity></View>
+              </View>
+              <View style={styles.button}><TouchableOpacity><Text style={styles.TextButton}>
+                  Track Your Order</Text></TouchableOpacity>
+                </View></ScrollView>
         </View>
     )
 }
@@ -47,9 +54,9 @@ const styles = StyleSheet.create({
         height:width*0.12,
         alignSelf:"center",
         borderRadius:5,
-        display:"flex",
-        position:"absolute",
+      
         bottom:width*0.1,
+        
      
         
         

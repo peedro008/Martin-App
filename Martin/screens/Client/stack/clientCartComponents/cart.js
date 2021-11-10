@@ -24,7 +24,7 @@ export default function Cart({order}){
         data={order}
         
         renderItem={({item})=>
-        <View style={styles.shadow}>
+       
                <View style={styles.container}>
                     <View style={styles.contImage}>
                         <ImageBackground source={{uri: item.img}} style={styles.image}>
@@ -39,15 +39,19 @@ export default function Cart({order}){
                         </ImageBackground>
                     </View>
                     <View style={styles.info}>
-                        <Text style={styles.name}>{item.name}</Text>
+                        <Text numberOfLines={3} ellipsizeMode="tail" style={styles.name}>
+                            {item.name}
+                        </Text>
                         <Text style={styles.price}>$ {item.price.toFixed(2)}</Text>
                         <View style={styles.contQuantity}>
                             <Text style={{fontSize:width*0.038,fontFamily:"OpenSans-Regular"}}>Quantity:</Text>
                             <Text style={{fontSize:width*0.038,fontFamily:"OpenSans-Regular",color:"#777777"}}> x{item.quantity} </Text>
                         </View>
                         
-                    </View></View>
+                    </View>
+                    {/* <Card.Divider/> */}
                 </View>
+              
          }/>
     )
 }
@@ -100,31 +104,29 @@ const styles= StyleSheet.create({
 
 info:{
     flexGrow:10,
-    marginLeft:width*0.03,
-    backgroundColor:"yellow",
+    marginLeft:width*0.01,
 },
 name:{
     display:"flex",
     position:"absolute",
     fontStyle: "normal",
-   
-    fontSize: width*0.05,
+    fontSize: width*0.04,
     paddingVertical:width*0.03,
-    flexWrap:"wrap",
     width:width*0.4,
-    fontFamily:"OpenSans-Regular"
-
-    
+    fontFamily:"OpenSans-SemiBold",
+   
+    paddingTop:0,
+    paddingBottom:0
 },
 price:{
 
   position:"absolute",
   right:width*0.01,
   color:"#151522",
-  bottom:-5,
+
   fontStyle: "normal",
   fontWeight: "normal",
-  fontSize: width*0.06,
+  fontSize: width*0.05,
   paddingVertical:width*0.08,
   fontFamily:"OpenSans-Regular"
  
@@ -134,7 +136,7 @@ contQuantity:{
     display:"flex",
     alignSelf:"flex-end",
     position:"absolute",
-    bottom:width*0.03,
+    bottom:width*0.02,
     left:width*0.002,
     flexDirection:"row",
  

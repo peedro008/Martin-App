@@ -4,7 +4,8 @@ import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-nati
 import axios from 'axios'
 import { IP } from '../../env'
 import { FlatList } from 'react-native-gesture-handler'
-import Orders from './Stack/adminHomeComponents/orders'
+import OrdersR from './Stack/adminHomeComponents/ordersR'
+import { Divider } from 'react-native-elements/dist/divider/Divider'
 
 
 const width=Dimensions.get("window").width
@@ -45,6 +46,7 @@ export default function adminOrderRegister() {
         <View style={{backgroundColor:"#FFFFFFFF", height:heigth}}>
            <View>
                  <Text style={styles.header}>Order Register</Text>
+                 
             </View> 
           
             <View
@@ -75,14 +77,16 @@ export default function adminOrderRegister() {
                         styles.PtextD:
                         styles.textD}>DISPATCHED</Text>
                 </TouchableOpacity>
+                
             </View>
+            <Divider/>
             {
-                button==1?<Orders data={Pending}/>
-                : button==0?<Orders data={Received}/>
-                : button==2&&<Orders data={Dispatched}/>
+                button==1?<OrdersR data={Pending}/>
+                : button==0?<OrdersR data={Received}/>
+                : button==2&&<OrdersR data={Dispatched}/>
         
             }
-        
+            
         
         </View>
     )

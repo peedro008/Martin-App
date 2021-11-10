@@ -75,7 +75,7 @@ export default function user({navigation}) {
           
           { config &&<View style={styles.logOut}>
                         <TouchableOpacity onPress={()=>handleLogOut()}>
-                        <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.03}}>Log out</Text>
+                        <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.04}}>Log out</Text>
                        </TouchableOpacity>
                      </View>}
           <View style={styles.header}>
