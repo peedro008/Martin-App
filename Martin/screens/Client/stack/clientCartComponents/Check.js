@@ -12,6 +12,7 @@ export default function Check({navigation}) {
         <View style={{height:height,flex:1, backgroundColor:"#FFFFFFFF" }}>
             <ScrollView>
         <View style={styles.icon}>
+        <Image style={styles.loading} source={{uri: "https://c.tenor.com/tEBoZu1ISJ8AAAAC/spinning-loading.gif"}}/>
             
             <Image style={styles.image} source={require("../../../../assets/Check.png")}/></View>
               

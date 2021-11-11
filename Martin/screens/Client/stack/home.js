@@ -25,7 +25,7 @@ export default function Home({navigation}) {
     useEffect(()=>{
       axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
           .then(function(response){
-          setOrders(response.data)
+          setOrders(response.data.reverse())
           })
           .catch(error=>{
               console.log(error)  
