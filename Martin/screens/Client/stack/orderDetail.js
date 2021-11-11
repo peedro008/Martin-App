@@ -113,7 +113,7 @@ export default function adminOrderDetail({route}) {
           
             <FlatList
                 data={order[0].orderItems}
-                s
+                
                 renderItem={({item})=>
             
                    

@@ -50,7 +50,7 @@ export default function balanceCard() {
                             <View style={{marginLeft:width*0.024}}>
                                 <Text style={styles.city}>Beverages</Text>
                                 <Text style={styles.price}>$320</Text>
-                            </View>
+                             </View>
                         </View>
                         <View style={{flexDirection:"row",marginRight:width*0.09, marginTop:width*0.079}}>
                             <View style={{backgroundColor:"#0084F4", width:width*0.018, height:width*0.068, borderRadius:40, marginTop:width*0.01}}/>

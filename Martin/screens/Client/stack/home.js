@@ -69,7 +69,7 @@ export default function Home({navigation}) {
           <View>
           <View style={{justifyContent:"center", alignItems:"center", flexDirection:"row",width:width*0.9, marginTop:width*0.06}}>
             <Text style={styles.header} >Deals Of The Week</Text>
-            <View style={{position:"absolute", right:0}}>
+            <View style={{position:"absolute", right:-width*0.046}}>
               <Icon
               name='shopping-bag'
               type="feather"

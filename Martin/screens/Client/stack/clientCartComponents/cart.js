@@ -24,7 +24,7 @@ export default function Cart({order}){
         <FlatList
         keyExtractor={item => item.id.toString()}
         data={order}
-        
+        contentContainerStyle={{paddingVertical:width*0.02}}
         renderItem={({item})=>
        
                <View style={styles.container}>
@@ -41,7 +41,7 @@ export default function Cart({order}){
                         </ImageBackground>
                     </View>
                     <View style={styles.info}>
-                        <Text numberOfLines={3} ellipsizeMode="tail" style={styles.name}>
+                        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.name}>
                             {item.name}
                         </Text>
                         <Text style={styles.price}>$ {item.price.toFixed(2)}</Text>
@@ -53,6 +53,7 @@ export default function Cart({order}){
                     </View>
                 </View>
          }/>
+        
     </View>        
     )
 }
@@ -62,14 +63,11 @@ const styles= StyleSheet.create({
 
    
     container:{
-        display:"flex",
+    
         alignSelf:"center",
         width: width*0.9,
         flexDirection:"row",
-        marginBottom:width*0.02,
-        marginTop:width*0.03,
-        // borderWidth:0.5,
-        // borderBottomWidth:2,
+        borderWidth:0.5,
         borderColor:"rgba(228, 228, 228, 0.6)",
         borderRadius:8,
         height:width*0.25,
@@ -112,28 +110,23 @@ info:{
   
 },
 name:{
-    display:"flex",
     position:"absolute",
-    fontStyle: "normal",
     fontSize: width*0.04,
-    paddingVertical:width*0.03,
-    width:width*0.4,
+    width:width*0.59,
     fontFamily:"OpenSans-SemiBold",
-   
-    paddingTop:0,
-    paddingBottom:0
+    marginTop:width*0.02
 },
 price:{
 
   position:"absolute",
   right:width*0.01,
   color:"#151522",
-
+  bottom:width*0.035,
   fontStyle: "normal",
   fontWeight: "normal",
   fontSize: width*0.05,
-  paddingVertical:width*0.08,
-  fontFamily:"OpenSans-Regular"
+//   paddingVertical:width*0.08,
+  fontFamily:"OpenSans-SemiBold"
  
   
 },

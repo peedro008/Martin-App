@@ -67,7 +67,8 @@ export default function clienCart({navigation}) {
             <View style={{alignSelf:"center", alignItems:"center",height:width*0.1, width:width*0.3,  marginTop:width*0.08, marginBottom:width*0.053}}>
                 <Text style={styles.cart}>Cart</Text>
             </View> 
-            <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4 }}>
+            
+            <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4,marginBottom:width*0.02 }}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
                  <View style={[styles.renderButton,{borderBottomWidth:render?width*0.015:0,borderBottomColor:"#6979F8"}]}>
                     <Text style={{fontSize:width*0.035, color:!render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CART</Text>
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
   totalOrder:{
     color:"#151522",
     fontStyle: "normal",
-    
+    marginVertical:width*0.02,
     fontSize: width*0.0385,
     alignSelf:"center",
     fontFamily:"OpenSans-Bold"

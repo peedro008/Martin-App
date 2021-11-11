@@ -45,7 +45,7 @@ export default function EditShippingAddress(){
             setPostalCode(res.data.postalCode) 
             setApt_Suite(res.data.apt_Suite) 
             setAddress(res.data.address) 
-            console.log(res.data)
+            setBoolDefault(res.data.default)
  }
         )
     },[])
