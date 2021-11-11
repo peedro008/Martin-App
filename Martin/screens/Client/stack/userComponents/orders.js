@@ -55,7 +55,7 @@ export default function orders({navigation, data}) {
                 <View style={{width:width*0.9, marginBottom:width*0.01}}>   
                     <Text style={styles.OrderHeader} >History Orders</Text> 
                 </View>
-                
+                {msj &&<Text style={{alignSelf:"center",marginTop:width*0.02,marginBottom:-width*0.02,fontSize:width*0.05,fontFamily:"OpenSans-Regular",color:"#00bb2d"}}>Added to cart</Text>}
             {data.length>0?
             <FlatList
             showsHorizontalScrollIndicator={false}
@@ -151,6 +151,6 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
             elevation: 16,
-            backgroundColor:"#F5F5DC"
+         
         }
     })

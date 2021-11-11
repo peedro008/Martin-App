@@ -17,12 +17,7 @@ const ClientNavigation = () => {
   return (
    
     <Tab.Navigator
-    tabBarOptions={{
-      activeTintColor: "#red",
-      activeBackgroundColor: "#FAEBD7",
-      inactiveTintColor: "red",
-      inactiveBackgroundColor: "#FAEBD7"
-    }}
+    
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
           let iconName;

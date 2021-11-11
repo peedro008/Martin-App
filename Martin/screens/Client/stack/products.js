@@ -90,7 +90,7 @@ export default  function  Products ({route, navigation}) {
         <View style={styles.container}>
             <View style={{marginTop:width*0.044}}>
                 <View
-                    style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"#FFFFF0"}}>
+                    style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"#FFF"}}>
                         <Text style={styles.products}>{category.name}</Text>
                         <View style={{position:"absolute", right:0}}>
                             <Icon 
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     container:{
         alignItems:"center",
         flex:1,
-        backgroundColor:"#FFFFF0",
+        backgroundColor:"#FFF",
           
     },
     search:{
@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
         marginTop:width*0.0005,
         elevation:10,
         shadowColor: "#000",
-        backgroundColor:"#FFFAFA",
+        
 
        shadowOffset: {
              width: 0,

@@ -55,8 +55,8 @@ export default function adminOrderDetail({route}) {
        
         
     return (
-        <ScrollView style={{backgroundColor:"#FFFFF0", }}>
-        <View style={{backgroundColor:"##FFFFF0", }}>
+        <ScrollView style={{backgroundColor:"#FFF", }}>
+        <View style={{backgroundColor:"##FFF", }}>
             <Text style={styles.header}>Order Details</Text>
             {order.length>0 && 
             <View>
@@ -118,7 +118,7 @@ export default function adminOrderDetail({route}) {
             
                    
                     <Card
-                    containerStyle={{marginVertical:width*0.018, width:width*0.9,alignSelf:"center",padding:0, elevation:5, borderRadius:5,backgroundColor:"#FFFAFA"}}>
+                    containerStyle={{marginVertical:width*0.018, width:width*0.9,alignSelf:"center",padding:0, elevation:5, borderRadius:5,backgroundColor:"#FFF"}}>
                         <View
                         style={{flexDirection: 'row',width:width*0.9}}>                        
                             <Image source={{uri:item.img}}

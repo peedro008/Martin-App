@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     card: {
         flex: 1,
         alignItems:"center",
-        backgroundColor:"#FFFFF0"
+      
     },
     heading: {
         fontSize: width*0.07,

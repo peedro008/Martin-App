@@ -75,7 +75,7 @@ export default function ProductDetail({route,navigation}) {
        
         <View
          style={{flex:1}}>
-            <View style={{flex:1,backgroundColor:"#FFFFF0" }}>
+            <View style={{flex:1,backgroundColor:"#FFF" }}>
                 <ScrollView> 
               
                 <Image  

@@ -67,6 +67,7 @@ export default function orders({navigation, data}) {
             renderItem={({item})=> 
           
                 <Card containerStyle={styles.card} >
+                    
                 <View style={{margin:width*0.03, alignSelf:"center"}}>
                    <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
@@ -154,6 +155,7 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
             elevation: 16,
-            backgroundColor:"#F5F5DC"
+        
+            
         }
     })

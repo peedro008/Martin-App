@@ -65,7 +65,7 @@ export default function Home({navigation}) {
 
      
     return (
-        <ScrollView style={{flex:1, backgroundColor:"#FFFFF0"}}>
+        <ScrollView style={{flex:1, backgroundColor:"#FFF"}}>
           <View>
           <View style={{justifyContent:"center", alignItems:"center", flexDirection:"row",width:width*0.9, marginTop:width*0.06}}>
             <Text style={styles.header} >Deals Of The Week</Text>
