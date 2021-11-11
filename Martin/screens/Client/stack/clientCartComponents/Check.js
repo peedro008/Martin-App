@@ -1,18 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View,Dimensions, Image, ScrollView } from 'react-native'
 import { Icon,  } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Overlay } from 'react-native-elements';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { IP } from '../../../../env';
 
 const width=Dimensions.get("window").width
 const height=Dimensions.get("window").height
 
 export default function Check({navigation}) {
+   
+    const email =  useSelector(state=> state.User)
+    const [orders,setOrders]= useState([]) 
+    useEffect(()=>{
+        axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
+            .then(function(response){
+            setOrders(response.data.reverse())
+            console.log(response.data)
+            })
+            .catch(error=>{
+                console.log(error)  
+                })
+    },[email])
+    
+    const order = orders.shift()
     return (
         <View style={{height:height,flex:1, backgroundColor:"#FFFFFFFF" }}>
             <ScrollView>
         <View style={styles.icon}>
-        <Image style={styles.loading} source={{uri: "https://c.tenor.com/tEBoZu1ISJ8AAAAC/spinning-loading.gif"}}/>
+ 
             
             <Image style={styles.image} source={require("../../../../assets/Check.png")}/></View>
               
@@ -20,8 +39,12 @@ export default function Check({navigation}) {
               <Text style={styles.congratulations}>Congratulations!</Text>
               <Text style={styles.text}>Your items are on the way and should arrive shortly</Text>
               </View>
-              <View style={styles.button}><TouchableOpacity><Text style={styles.TextButton}>
-                  Track Your Order</Text></TouchableOpacity>
+              <View style={styles.button}>
+                  <TouchableOpacity
+                  onPress={() => navigation.navigate("order detail",{id:order.id})}>
+                        <Text style={styles.TextButton}>
+                        Track Your Order</Text>
+                  </TouchableOpacity>
                 </View></ScrollView>
         </View>
     )
