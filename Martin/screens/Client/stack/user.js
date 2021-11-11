@@ -62,7 +62,7 @@ export default function user({navigation}) {
 
     return (
        
-        <ScrollView style={{flex:1, backgroundColor:"#fff",}}>
+        <ScrollView style={{flex:1, backgroundColor:"#FFFFF0",}}>
              
           <View style={{marginTop:width*0.1,
         marginBottom:width*0.06,flexDirection:"row",justifyContent:"center"}}>

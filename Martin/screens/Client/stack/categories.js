@@ -87,7 +87,7 @@ export default function Categories({navigation}) {
     return (
     
         <View
-        style={{backgroundColor:"#fff", alignItems:"center", flex: 1}}>
+        style={{backgroundColor:"#FFFFF0", alignItems:"center", flex: 1}}>
             <View style={{marginTop:width*0.044}}>
                 <View
                 style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>

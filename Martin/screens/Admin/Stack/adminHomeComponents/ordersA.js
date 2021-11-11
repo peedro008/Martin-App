@@ -64,7 +64,7 @@ export default function orders(data) {
            
             <FlatList
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom:50}}
+            contentContainerStyle={{paddingBottom:width*0.04}}
             bounces={false}
             data={orders}
             renderItem={({item})=> 

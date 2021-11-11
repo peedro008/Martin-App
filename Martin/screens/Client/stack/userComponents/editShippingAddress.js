@@ -72,7 +72,7 @@ export default function EditShippingAddress(){
     }
 
     return(
-        <ScrollView style={{flex:1, backgroundColor:"#fff" }}>
+        <ScrollView style={{flex:1, backgroundColor:"#FFFFF0" }}>
             <Text style={styles.header}>Add New Shipping Address</Text>
             <View>
             <View style={styles.container}> 

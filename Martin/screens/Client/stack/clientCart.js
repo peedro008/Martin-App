@@ -69,7 +69,7 @@ export default function clienCart({navigation}) {
     return (
         <View style={{flex:1, backgroundColor: "white"}}>{ loading?
 
-        <View style={{flex:1, backgroundColor: "white"}}
+        <View style={{flex:1, backgroundColor: "#FFFFF0"}}
         >
 
             

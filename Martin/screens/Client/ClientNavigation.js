@@ -4,7 +4,6 @@ import { TabNavigationState } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import clientHome from "./clientHome";
 import clientCatalog from "../Client/clientCatalog";
-
 import clientUser from "../Client/clientUser";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import clientCartStack from './stack/clientCartStack';
@@ -16,7 +15,14 @@ const Tab = createBottomTabNavigator();
 
 const ClientNavigation = () => {
   return (
+   
     <Tab.Navigator
+    tabBarOptions={{
+      activeTintColor: "#red",
+      activeBackgroundColor: "#FAEBD7",
+      inactiveTintColor: "red",
+      inactiveBackgroundColor: "#FAEBD7"
+    }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
           let iconName;
@@ -36,6 +42,7 @@ const ClientNavigation = () => {
         },
       tabBarActiveTintColor: 'tomato',
       tabBarInactiveTintColor: 'gray',
+     
     })
       }
    >

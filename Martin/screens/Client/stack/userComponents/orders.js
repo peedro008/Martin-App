@@ -55,10 +55,11 @@ export default function orders({navigation, data}) {
                 <View style={{width:width*0.9, marginBottom:width*0.01}}>   
                     <Text style={styles.OrderHeader} >History Orders</Text> 
                 </View>
+                
             {data.length>0?
             <FlatList
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom:50}}
+            contentContainerStyle={{paddingBottom:width*0.04}}
             bounces={false}
             data={data}
             renderItem={({item})=> 
@@ -80,9 +81,7 @@ export default function orders({navigation, data}) {
                         <View
                         style={{marginBottom:width*0.04}}>
                            
-                        <View style={{flexDirection:"row"}}>  
-                            {msj && <View style={{alignSelf:'center', position:"absolute", right:width*0.24}}><Icon name="check" type="feather" color="#00bb2d" size={width*0.1}/></View>
-                            }   
+                        <View style={{flexDirection:"row"}}>   
                             <TouchableOpacity 
                             onPress={() => handleAddProduct(item.orderItems)}
                             style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:"#00bb2d",justifyContent:"center", marginLeft:width*0.23}}>
@@ -152,5 +151,6 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
             elevation: 16,
+            backgroundColor:"#F5F5DC"
         }
     })

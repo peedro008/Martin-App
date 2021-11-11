@@ -55,12 +55,12 @@ export default function orders({navigation, data}) {
                     <Text style={styles.OrderHeader} >Last Orders</Text> 
                 </View>
 
-               
+               {msj && <Text style={{alignSelf:"center",marginTop:width*0.02,marginBottom:-width*0.02,fontSize:width*0.05,fontFamily:"OpenSans-Regular",color:"#00bb2d"}}>Added to cart</Text>}
             {data.length>0?
            
             <FlatList
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom:50}}
+            contentContainerStyle={{paddingBottom:width*0.04}}
             bounces={false}
             horizontal={true}
             data={data}
@@ -84,8 +84,6 @@ export default function orders({navigation, data}) {
                         style={{marginBottom:width*0.04}}>
                            
                         <View style={{flexDirection:"row"}}>  
-                            {msj && <View style={{alignSelf:'center', position:"absolute", right:width*0.24}}><Icon name="check" type="feather" color="#00bb2d" size={width*0.1}/></View>
-                            }   
                             <TouchableOpacity 
                             onPress={() => handleAddProduct(item.orderItems)}
                             style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:"#00bb2d",justifyContent:"center", marginLeft:width*0.23}}>
@@ -135,8 +133,8 @@ export default function orders({navigation, data}) {
 
 const styles = StyleSheet.create({
         OrderHeader:{
-          marginTop:width*0.05,
-          marginBottom:width*0.05,
+          marginTop:width*0.03,
+        //   marginBottom:width*0.01,
           alignSelf:"center",
           fontSize: width*0.07,
           fontFamily:"OpenSans-Regular"
@@ -156,6 +154,6 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
             elevation: 16,
-          
+            backgroundColor:"#F5F5DC"
         }
     })

@@ -55,16 +55,16 @@ export default function adminOrderDetail({route}) {
        
         
     return (
-        <ScrollView style={{backgroundColor:"#FFFFFFFF", }}>
-        <View style={{backgroundColor:"#FFFFFFFF", }}>
+        <ScrollView style={{backgroundColor:"#FFFFF0", }}>
+        <View style={{backgroundColor:"##FFFFF0", }}>
             <Text style={styles.header}>Order Details</Text>
             {order.length>0 && 
             <View>
             <Card
-            containerStyle={{width:width*0.9 ,alignSelf:"center", paddingHorizontal:width*0.04}}>
+            containerStyle={{width:width*0.9 ,alignSelf:"center", paddingHorizontal:width*0.04,backgroundColor:"##FFFFF0"}}>
                 <View style={{flexDirection:"row", alignItems:"center",marginBottom:height*0.015 }}>
-                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Date: {order[0].createdAt.substring(0,9)}  </Text>
-                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Time: {order[0].createdAt.substring(11,16)}</Text>  
+                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Date:  {order[0].createdAt.substring(0,9)}  </Text>
+                                   <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Time: {order[0].createdAt.substring(11,16)}</Text>  
                 </View>
                 <Card.Divider/>
                 <Text style={{fontSize:width*0.06,fontFamily:"OpenSans-Bold", color:"#6979F8", marginBottom:height*0.015}}>Order N° {order[0].id}</Text>
@@ -118,7 +118,7 @@ export default function adminOrderDetail({route}) {
             
                    
                     <Card
-                    containerStyle={{marginVertical:width*0.018, width:width*0.9,alignSelf:"center",padding:0, elevation:5, borderRadius:5}}>
+                    containerStyle={{marginVertical:width*0.018, width:width*0.9,alignSelf:"center",padding:0, elevation:5, borderRadius:5,backgroundColor:"#FFFAFA"}}>
                         <View
                         style={{flexDirection: 'row',width:width*0.9}}>                        
                             <Image source={{uri:item.img}}
