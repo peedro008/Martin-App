@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,  Suspense } from 'react'
 import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions, ScrollView} from 'react-native'
 import { Icon } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler'
@@ -7,7 +7,9 @@ import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../
 import axios from 'axios'
 import { IP } from '../../../env'
 import Cart from './clientCartComponents/cart'
+
 import { Input } from "react-native-elements";
+import Loading from './clientCartComponents/loading'
 
 const width=Dimensions.get("window").width
 
@@ -19,6 +21,7 @@ export default function clienCart({navigation}) {
     const [render,setRender]=useState(true)
     const dispatch= useDispatch()
     const [info, setInfo]= useState({fullName:"", city:"", phone:"", postalCode:"", apt_Suite:"",address:""})
+    const [loading, setLoading]=useState(true)
 
 
 
@@ -39,15 +42,18 @@ export default function clienCart({navigation}) {
         )
     },[])
 
+  
 
-
-    const handlePostOrder=()=>{
+    const  handlePostOrder=()=>{
+        setLoading(false)
         axios.post(`${IP}/orderItems`,[order,user, info])
         .then(response=>{
           console.log(response.data)
         })
-        .then(() => navigation.navigate("Check"))
+        .then(()=>navigation.navigate("Check"))
+        
         dispatch(postDelete())
+        
         
     }
     
@@ -61,8 +67,12 @@ export default function clienCart({navigation}) {
 
     
     return (
-        <View
-        style={{flex:1, backgroundColor: "white"}}>
+        <View style={{flex:1, backgroundColor: "white"}}>{ loading?
+
+        <View style={{flex:1, backgroundColor: "white"}}
+        >
+
+            
           <View style={{display:/*order.length<1 && "none"*/"flex"}}>
             <View style={{alignSelf:"center", alignItems:"center",height:width*0.1, width:width*0.3,  marginTop:width*0.08, marginBottom:width*0.053}}>
                 <Text style={styles.cart}>Cart</Text>
@@ -139,6 +149,10 @@ export default function clienCart({navigation}) {
             }
            
            
+        </View>
+        :<Loading/>
+        
+        }
         </View>
         )
 }

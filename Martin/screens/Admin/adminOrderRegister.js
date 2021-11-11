@@ -16,7 +16,7 @@ export default function adminOrderRegister() {
     useEffect(() => {
         axios.get(`${IP}/orders`)
         .then(function(response){
-            setOrder(response.data)
+            setOrder(response.data.reverse())
         })
         .catch(error=>{
         console.log(error)  

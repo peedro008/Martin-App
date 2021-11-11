@@ -1,7 +1,7 @@
  import  { useEffect, useState } from 'react'
 
 import Balance from './Stack/adminHomeComponents/balanceCard'
-import Orders from './Stack/adminHomeComponents/orders'
+import OrdersA from './Stack/adminHomeComponents/ordersA'
 import axios from 'axios'
 import { IP } from '../../env'
 import React from 'react'
@@ -20,7 +20,7 @@ export default function adminHome({navigation}) {
     useEffect(()=>{
         axios.get(`${IP}/orderpending`)
         .then(function(response){
-           SetOrders(response.data)
+           SetOrders(response.data.reverse())
            console.log(response.data)
         })
         .catch(error=>{
@@ -36,7 +36,7 @@ export default function adminHome({navigation}) {
             <Text style={styles.header}>Welcome Admin</Text>
              <Balance/>
             <Text style={[styles.header, {marginTop:44}]} >Latest Orders</Text>
-            { orders.length ?<Orders data={orders}/> : <Icon style={{marginTop:width*0.06,alignSelf:"flex-start",marginLeft:width*0.06}} name="file-text" type="feather"  size= {width*0.4}/>}
+            { orders.length ?<OrdersA data={orders}/> : <Icon style={{marginTop:width*0.06,alignSelf:"flex-start",marginLeft:width*0.06}} name="file-text" type="feather"  size= {width*0.4}/>}
         </ScrollView></View>
     )
 }

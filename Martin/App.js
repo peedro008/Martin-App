@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Controller from './Controller';
 import { useFonts } from 'expo-font';
-import { LogBox } from 'react-native';
-LogBox.ignoreAllLogs()
+// import { LogBox } from 'react-native';
+// LogBox.ignoreAllLogs()
 
 
 

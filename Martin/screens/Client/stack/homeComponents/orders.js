@@ -50,16 +50,20 @@ export default function orders({navigation, data}) {
       
         return (
             <SafeAreaView
-            style={{marginTop:width*.06,marginBottom:width*0.02, alignItems:'center'}}>
+            style={{marginTop:width*.06,marginBottom:width*0.02, alignItems:'center', flex:1}}>
                 <View style={{width:width*0.9}}>   
                     <Text style={styles.OrderHeader} >Last Orders</Text> 
                 </View>
+
+               
             {data.length>0?
+           
             <FlatList
             showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{paddingBottom:50}}
             bounces={false}
             horizontal={true}
-            data={data.reverse()}
+            data={data}
             renderItem={({item})=> 
           
                 <Card containerStyle={styles.card} >
@@ -152,6 +156,6 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
             elevation: 16,
-            marginBottom:30,
+          
         }
     })
