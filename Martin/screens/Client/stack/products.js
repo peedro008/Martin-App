@@ -80,9 +80,10 @@ export default  function  Products ({route, navigation}) {
          let pes = {}
         for(let i=0;i<cate.length;i++){
         pes[i]=0    
-       
+      
         }
-        setCount(pes)
+        setCount(pes) 
+        console.log(pes)
     }, [cate])
    
   
