@@ -60,7 +60,7 @@ export default function orders({navigation, data}) {
            
             <FlatList
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom:width*0.04}}
+            contentContainerStyle={{paddingBottom:width*0.7}}
             bounces={false}
             horizontal={true}
             data={data}
