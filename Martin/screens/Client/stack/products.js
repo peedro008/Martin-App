@@ -93,15 +93,7 @@ export default  function  Products ({route, navigation}) {
                 <View
                     style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"#FFF"}}>
                         <Text style={styles.products}>{category.name}</Text>
-                        <View style={{position:"absolute", right:0}}>
-                            <Icon 
-                            name='shopping-bag'
-                            type="feather"
-                            color='gray'
-                            size={width*0.07 }
-                            style={{marginTop:width*0.025, marginRight:width*0.03}}
-                            />
-                        </View>
+                        
                 </View>
                 <SearchBar 
                     inputContainerStyle={{backgroundColor:"white"}}
@@ -138,22 +130,22 @@ export default  function  Products ({route, navigation}) {
                                
                                
                                     <TouchableOpacity
-                                    onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                                    onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
                                         <Image 
                                             source={{uri: item.img}}
                                             style={styles.image}/>
                                     </TouchableOpacity>
                             
                                   
-                                    <View>
-                                        <View style={{marginLeft:width*0.03}}>
+                                    <View >
+                                        <View style={{marginLeft:width*0.03, marginTop:-width*0.02}}>
                                             <TouchableOpacity
                                             onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
                                                 <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{item.name}</Text>
                                             </TouchableOpacity>
                                         </View>
                                 
-                                        <View style={{marginLeft:width*0.03}}>
+                                        <View style={{marginLeft:width*0.03,}}>
                                         
                                             <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034,}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
                                             <View style={{flexDirection:"row"}}>
@@ -162,20 +154,20 @@ export default  function  Products ({route, navigation}) {
                                             </View>
                                             <Text style={{fontSize:width*0.034}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                                     
-                                            <View style={{flexDirection:"row"}}>
+                                            <View style={{flexDirection:"row", }}>
                                             
                                                 <TouchableOpacity
-                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"green",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
                                                 </TouchableOpacity>
                                                 
                                             </View>
                                         </View>
                                     </View>
-                                    <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
+                                    <View style={{position:"absolute", display:"flex", right:0, marginTop:-width*0.01}}> 
                                         <TouchableOpacity 
                                         onPress={() => setCount({...count, [id]:count[id]+1  }) }
                                         style={ styles.minibutton  }>
-                                            <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>+</Text>
+                                            <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"600"}}>+</Text>
                                         </TouchableOpacity>
                                         
                                         <View style={styles.count}>
@@ -187,7 +179,7 @@ export default  function  Products ({route, navigation}) {
                                         style={ styles.minibutton  }
                                         >
                                             <Text
-                                            style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"bold"}}>
+                                            style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"bold"}}>
                                                 -
                                             </Text>
                                         </TouchableOpacity>
@@ -217,22 +209,22 @@ export default  function  Products ({route, navigation}) {
                                
                                
                                     <TouchableOpacity
-                                    onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.categories.name})}>
+                                    onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
                                         <Image 
                                             source={{uri: item.img}}
                                             style={styles.image}/>
                                     </TouchableOpacity>
                             
                                   
-                                    <View>
-                                        <View style={{marginLeft:width*0.03}}>
+                                    <View >
+                                        <View style={{marginLeft:width*0.03, marginTop:-width*0.02}}>
                                             <TouchableOpacity
                                             onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
                                                 <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{item.name}</Text>
                                             </TouchableOpacity>
                                         </View>
                                 
-                                        <View style={{marginLeft:width*0.03}}>
+                                        <View style={{marginLeft:width*0.03,}}>
                                         
                                             <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034,}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
                                             <View style={{flexDirection:"row"}}>
@@ -241,7 +233,7 @@ export default  function  Products ({route, navigation}) {
                                             </View>
                                             <Text style={{fontSize:width*0.034}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                                     
-                                            <View style={{flexDirection:"row"}}>
+                                            <View style={{flexDirection:"row", }}>
                                             
                                                 <TouchableOpacity
                                                 onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
@@ -250,11 +242,11 @@ export default  function  Products ({route, navigation}) {
                                             </View>
                                         </View>
                                     </View>
-                                    <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
+                                    <View style={{position:"absolute", display:"flex", right:0, marginTop:-width*0.01}}> 
                                         <TouchableOpacity 
                                         onPress={() => setCount({...count, [id]:count[id]+1  }) }
                                         style={ styles.minibutton  }>
-                                            <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>+</Text>
+                                            <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"600"}}>+</Text>
                                         </TouchableOpacity>
                                         
                                         <View style={styles.count}>
@@ -266,7 +258,7 @@ export default  function  Products ({route, navigation}) {
                                         style={ styles.minibutton  }
                                         >
                                             <Text
-                                            style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"bold"}}>
+                                            style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"bold"}}>
                                                 -
                                             </Text>
                                         </TouchableOpacity>
@@ -318,12 +310,12 @@ const styles = StyleSheet.create({
         width:width-10
     },
     products:{
-        marginVertical:width*0.01,
-        marginBottom:-width*0.001,
-        fontSize:width*0.07,
-        alignSelf:"center",
         textAlign:"center",
-        fontFamily:"OpenSans-Regular"
+        marginTop:width*0.05,
+        marginBottom:width*0.005,
+        fontSize: width*0.06,
+       
+        fontFamily:"OpenSans-SemiBold"
     
     },
 
@@ -334,7 +326,7 @@ const styles = StyleSheet.create({
     },
     count:{
       
-       marginVertical:width*0.01, 
+       marginVertical:width*0.017, 
        borderRadius:8,
         shadowColor: 'rgba(0,0,0, .4)',
         shadowOffset: { height: 1, width: 1 },
@@ -342,8 +334,8 @@ const styles = StyleSheet.create({
         shadowRadius: 1,
         backgroundColor: '#fff',
         elevation: 2,
-        height:width*0.07,
-        width:width*0.07,
+        height:width*0.075,
+        width:width*0.075,
         justifyContent: 'center',
         alignItems: 'center',
         
@@ -351,8 +343,8 @@ const styles = StyleSheet.create({
  
     image:{
        
-        marginVertical:width*0.02,
-        marginHorizontal:width*0.015,
+        marginVertical:width*0.0008,
+        marginHorizontal:width*0.0008,
         borderRadius:5,
         height:width*0.236,
         width:width*0.236,
@@ -383,8 +375,8 @@ const styles = StyleSheet.create({
         shadowRadius: 1,
         backgroundColor: '#fff',
         elevation: 4,
-        height: width*0.07,
-        width: width*0.07,
+        height: width*0.075,
+        width: width*0.075,
         justifyContent: 'center',
         alignItems: 'center',
       
@@ -392,11 +384,12 @@ const styles = StyleSheet.create({
     },
     card:{ 
         width:width*0.9,
-        height:width*0.34,
-        marginBottom:width*0.02,
-        marginTop:width*0.0005,
-        elevation:10,
-        shadowColor: "#000",
+        height:width*0.315,
+        // marginBottom:width*0.02,
+        // marginTop:width*0.0005,
+        marginVertical:width*0.035,
+        elevation:8,
+        shadowColor: "grey",
         
 
        shadowOffset: {
@@ -407,7 +400,7 @@ const styles = StyleSheet.create({
          shadowRadius: 6.27, borderRadius:8 
     },
     title:{
-        fontFamily:"OpenSans-Regular",
+        fontFamily:"OpenSans-SemiBold",
         marginTop: width*0.005, 
         fontSize:width*0.045, 
         fontWeight:"600", 

@@ -72,8 +72,8 @@ export default function orders({navigation, data}) {
             {data.length>0?
            
             <FlatList
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom:width*0.7}}
+            showsHorizontalScrollIndicator={true}
+            contentContainerStyle={{paddingBottom:width*0.1}}
             bounces={false}
             horizontal={true}
             data={data}
@@ -86,13 +86,13 @@ export default function orders({navigation, data}) {
                 <View style={{margin:width*0.03, alignSelf:"center"}}>
                    <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
-                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#00bb2d" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
+                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#40D3A8" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
                         <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
                         style={{flexDirection: 'row'}}>
-                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
+                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#40D3A8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
                         
@@ -102,7 +102,7 @@ export default function orders({navigation, data}) {
                         <View style={{flexDirection:"row"}}>  
                             <TouchableOpacity 
                             onPress={() => handleAddProduct( item.orderItems, id )}
-                            style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#00bb2d",justifyContent:"center", marginLeft:width*0.23}}>
+                            style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
                             {card[id]?<Text
                             style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
                             ADDED
@@ -145,7 +145,7 @@ export default function orders({navigation, data}) {
                         }/>
                       :
                       <View>
-                      <Icon name="file-text" type="feather" size= {width*0.2} />
+                      <Text style={{color:"grey", fontStyle:"OpenSans-Regular", paddingTop:width*0.05}}>NOT ORDERS YET</Text>
           
                       </View>}
           </SafeAreaView>
@@ -154,11 +154,12 @@ export default function orders({navigation, data}) {
 
 const styles = StyleSheet.create({
         OrderHeader:{
-          marginTop:width*0.03,
-        //   marginBottom:width*0.01,
-          alignSelf:"center",
-          fontSize: width*0.07,
-          fontFamily:"OpenSans-Regular"
+            textAlign:"center",
+            marginTop:width*0.04,
+            marginBottom:width*0.05,
+            fontSize: width*0.06,
+        
+            fontFamily:"OpenSans-SemiBold"
         },
         card:{
             

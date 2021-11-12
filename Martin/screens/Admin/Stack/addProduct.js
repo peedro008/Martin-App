@@ -73,10 +73,7 @@ export default function addProduct() {
                 <TextInput placeholderTextColor="rgba(228, 228, 228,1)" placeholder={"  Name"} style={styles.input} value={name} onChangeText={(value)=>setName(value)}/>
             </View>
             <Text  style={styles.textInput}>Category</Text>
-            <View style={{flexDirection:"row"}}>
-            <Text style={{fontSize:width*0.035,fontFamily:"OpenSans-Regular"}}>Current category : </Text>
-            <Text style={{fontSize:width*0.035,fontFamily:"OpenSans-SemiBold"}}>{category}</Text>
-            </View>
+           
             <Picker  selectedValue={categoryID} onValueChange={(value)=> handlePicker(value)} style={{height:width*0.2,marginBottom:width*0.04, borderRadius:5}}>
                 
                 {

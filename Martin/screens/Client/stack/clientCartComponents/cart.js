@@ -24,7 +24,7 @@ export default function Cart({order}){
         <FlatList
         keyExtractor={item => item.id.toString()}
         data={order}
-        contentContainerStyle={{paddingVertical:width*0.02}}
+        contentContainerStyle={{paddingVertical:width*0., marginTop:width*0.04}}
         renderItem={({item})=>
        
                <View style={styles.container}>
@@ -35,7 +35,7 @@ export default function Cart({order}){
                                 style={styles.buttonX}
                                 onPress={() => handleDelete(item.id)} 
                              
-                                ><Text style={{fontSize:width*0.035, fontFamily:"OpenSans-SemiBold",color:"white", textAlign:"center"}}>x</Text></TouchableOpacity>
+                                ><Text style={{fontSize:width*0.035, fontFamily:"OpenSans-SemiBold",color:"grey", textAlign:"center"}}>x</Text></TouchableOpacity>
                             </View>
                            
                         </ImageBackground>
@@ -44,7 +44,7 @@ export default function Cart({order}){
                         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.name}>
                             {item.name}
                         </Text>
-                        <Text style={styles.price}>$ {item.price.toFixed(2)}</Text>
+                        <Text style={styles.price}>$ {item.price.toFixed(2)*item.quantity}</Text>
                         <View style={styles.contQuantity}>
                             <Text style={{fontSize:width*0.038,fontFamily:"OpenSans-Regular"}}>Quantity:</Text>
                             <Text style={{fontSize:width*0.038,fontFamily:"OpenSans-Regular",color:"#777777"}}> x{item.quantity} </Text>
@@ -65,7 +65,7 @@ const styles= StyleSheet.create({
     container:{
     
         alignSelf:"center",
-        width: width*0.9,
+        width: width*0.92,
         flexDirection:"row",
         borderWidth:0.5,
         borderColor:"rgba(228, 228, 228, 0.6)",
@@ -80,7 +80,8 @@ const styles= StyleSheet.create({
         shadowOpacity: 0.34,
         shadowRadius: 6.27, 
         elevation: 10,
-        backgroundColor:"#FFF"
+        backgroundColor:"#FFF",
+        marginVertical:width*0.011
     },
     contImage:{
         width: width*0.23,
@@ -91,41 +92,46 @@ const styles= StyleSheet.create({
         marginTop:width*0.008
     },
     image:{
-        width: width*0.23,
-        height: width*0.23,
+        marginVertical:width*0.011,
+        marginHorizontal:width*0.01,
+      
+        width: width*0.21,
+        height: width*0.21,
+    
   },
   buttonX:{
-    width:width*0.055,
+    width:width*0.03,
     
     height:width*0.055,
     position:"absolute",
     top:0,  
     right:0,
     borderRadius:5,
-    backgroundColor:"#F15A4D"
+    backgroundColor:"transparent"
     
 },
 
 info:{
-    flexGrow:10,
+    flexGrow:15,
+   
   
 },
 name:{
     position:"absolute",
     fontSize: width*0.04,
     width:width*0.59,
-    fontFamily:"OpenSans-SemiBold",
-    marginTop:width*0.02
+    fontFamily:"OpenSans-Bold",
+    marginTop:width*0.03
 },
 price:{
 
   position:"absolute",
-  right:width*0.01,
+  right:width*0.03,
   color:"#151522",
   bottom:width*0.035,
   fontStyle: "normal",
   fontWeight: "normal",
-  fontSize: width*0.05,
+  fontSize: width*0.04,
 //   paddingVertical:width*0.08,
   fontFamily:"OpenSans-SemiBold"
  

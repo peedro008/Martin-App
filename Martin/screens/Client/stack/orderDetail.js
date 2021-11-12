@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity,Dimensions, S
 import { useState,useEffect  } from 'react';
 import axios from 'axios';
 import { IP } from '../../../env';
-import { Card, Icon } from 'react-native-elements';
+import { Card, Icon,Divider } from 'react-native-elements';
 import * as Font from "expo-font"
 
 
@@ -58,16 +58,17 @@ export default function adminOrderDetail({route}) {
         <ScrollView style={{backgroundColor:"#FFF", }}>
         <View style={{backgroundColor:"##FFF", }}>
             <Text style={styles.header}>Order Details</Text>
+            
             {order.length>0 && 
             <View>
             <Card
-            containerStyle={{width:width*0.9 ,alignSelf:"center", paddingHorizontal:width*0.04,backgroundColor:"##FFFFF0"}}>
+            containerStyle={{width:width*0.9 ,alignSelf:"center", paddingHorizontal:width*0.04,backgroundColor:"##FFFFF0", marginTop:-width*0.01}}>
                 <View style={{flexDirection:"row", alignItems:"center",marginBottom:height*0.015 }}>
-                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Date:  {order[0].createdAt.substring(0,9)}  </Text>
+                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Date: {order[0].createdAt.substring(0,9)}  </Text>
                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Time: {order[0].createdAt.substring(11,16)}</Text>  
                 </View>
                 <Card.Divider/>
-                <Text style={{fontSize:width*0.06,fontFamily:"OpenSans-Bold", color:"#6979F8", marginBottom:height*0.015}}>Order N° {order[0].id}</Text>
+                <Text style={{fontSize:width*0.06,fontFamily:"OpenSans-SemiBold", color:"#00C48C", marginBottom:height*0.015}}>Order N° {order[0].id}</Text>
                 
                 <Card.Divider/>
                 
@@ -76,7 +77,7 @@ export default function adminOrderDetail({route}) {
                 
                     <View style={{width:"50%",justifyContent:"center"}}>
                         <Text style={{color:"#999999", fontSize:width*0.035,fontFamily:"OpenSans-Regular"}}>VALUE OF ITEMS</Text>
-                        <Text style={{fontSize:width*0.034}}>$ {order[0].total.toFixed(2)}</Text>
+                        <Text style={{fontSize:width*0.035, fontFamily:"OpenSans-SemiBold"}}>$ {order[0].total.toFixed(2)}</Text>
                     </View>
                     <View style={{width:"50%",justifyContent:"center"}}>
                         <Text style={{color:"#999999", fontSize:width*0.035,fontFamily:"OpenSans-Regular"}}>QUANTITY  </Text>
@@ -90,49 +91,53 @@ export default function adminOrderDetail({route}) {
                     <View style={{flexDirection:"row",paddingTop:width*0.03, alignItems:"center"}}>
                         <Icon type="feather" name="truck" color="black" size={width*0.08}/>
                     
-                        <Text  style={{fontSize:width*0.05,marginLeft:-width*0.02, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
+                        <Text  style={{fontSize:width*0.04,marginLeft:width*0.01, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
                         <Text  style={{fontSize:width*0.045, color:"grey", fontFamily:"OpenSans-Regular"}}> - 3 day shipping</Text>
                                     
                     </View>
                     <View style={{width:width*0.5, flexDirection:"row", alignItems:"center", justifyContent:"space-between", marginVertical:height*0.015}}>
-                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#6979F8"}}/>
-                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
-                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
-                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#CDD2FD"}}/>
+                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#00C48C"}}/>
+                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#00C48C", opacity:0.2}}/>
+                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#00C48C", opacity:0.2}}/>
+                        <View style={{width:"23%", height:width*0.008, backgroundColor:"#00C48C", opacity:0.2}}/>
                     </View>
                 </View>
                 <Card.Divider/>
                 <Text style={{fontSize:width*0.05, fontFamily:"OpenSans-Bold"}}>Shipping Address</Text>
                 <View style={{marginVertical:height*0.01}}>
-                    <Text numberOfLines={4} ellipsizeMode="tail" style={{ width:"100%", fontSize:width*0.048,textTransform:"capitalize" ,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.fullName}, {order[0].userInfo.address} </Text>
-                    <Text numberOfLines={2} ellipsizeMode="tail" style={{width:"100%", fontSize:width*0.048,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.city}, {order[0].userInfo.postalCode} </Text>
-                    <Text numberOfLines={2} ellipsizeMode="tail"  style={{width:"100%",fontSize:width*0.048,fontFamily:"OpenSans-Regular"}}>TEL:  {order[0].userInfo.phone}</Text>
+                    <Text numberOfLines={4} ellipsizeMode="tail" style={{ width:"100%", fontSize:width*0.041,textTransform:"capitalize" ,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.fullName}, {order[0].userInfo.address} </Text>
+                    <Text numberOfLines={2} ellipsizeMode="tail" style={{width:"100%", fontSize:width*0.041,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.city}, {order[0].userInfo.postalCode} </Text>
+                    <Text numberOfLines={2} ellipsizeMode="tail"  style={{width:"100%",fontSize:width*0.041,fontFamily:"OpenSans-Regular"}}>TEL:  {order[0].userInfo.phone}</Text>
                 </View>
              
             </Card>
           
+          
+          <Text style={{fontSize:width*0.05, fontFamily:"OpenSans-Bold", paddingLeft:width*0.05, paddingTop:width*0.06}}>Products</Text>
+            
+            
             <FlatList
                 data={order[0].orderItems}
-                
+                contentContainerStyle={{paddingBottom:width*0.04, paddingTop:width*0.04}}
                 renderItem={({item})=>
             
                    
                     <Card
-                    containerStyle={{marginVertical:width*0.018, width:width*0.9,alignSelf:"center",padding:0, elevation:5, borderRadius:5,backgroundColor:"#FFF"}}>
+                    containerStyle={{marginVertical:width*0.03, width:width*0.9,alignSelf:"center",padding:0,   borderRadius:5,backgroundColor:"#FFF", height:width*0.22}}>
                         <View
-                        style={{flexDirection: 'row',width:width*0.9}}>                        
+                        style={{flexDirection: 'row',width:width*0.9, paddingTop:7}}>                        
                             <Image source={{uri:item.img}}
                             style={{width:width*0.18, height:width*0.18, borderRadius:5}}/>
                             
                             <View
-                            style={{paddingLeft:width*0.03 ,  width:(width*0.9)-(width*0.18) }}>
+                            style={{paddingLeft:width*0.03 ,  width:(width*0.9)-(width*0.18),  }}>
                             <View style={{flexDirection:"row", alignItems:"center", width:"100%"}}>
                                 <Text
                                 ellipsizeMode="tail"
                                 numberOfLines={1}
-                                style={{fontSize:width*0.05, width:width*0.48,fontFamily:"OpenSans-SemiBold"}}>{item.name}</Text>
+                                style={{fontSize:width*0.04, width:width*0.48,fontFamily:"OpenSans-SemiBold", paddingTop:width*0.01}}>{item.name}</Text>
                                
-                                <Text style={{fontSize:width*0.045,  position:"absolute", right:0, fontFamily:"OpenSans-Bold" }}>$ {item.total.toFixed(2)}   </Text>
+                                <Text style={{fontSize:width*0.04,  position:"absolute", right:0, fontFamily:"OpenSans-Bold",paddingTop:width*0.01 }}>$ {item.total.toFixed(2)}   </Text>
                                 
                             </View>
 
@@ -174,11 +179,12 @@ const styles = StyleSheet.create({
         elevation: 3,
     },
     header:{
-        alignSelf:"center",
-        fontSize:width*0.07,
-        fontWeight: "600",
-        marginTop:width*0.09,
-        fontFamily:"OpenSans-Regular"
+        textAlign:"center",
+        marginTop:width*0.12,
+        marginBottom:width*0.07,
+        fontSize: width*0.06,
+       
+        fontFamily:"OpenSans-SemiBold"
     },
     containerButton:{
         flexDirection:"row",

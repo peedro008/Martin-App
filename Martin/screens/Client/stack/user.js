@@ -94,13 +94,13 @@ export default function user({navigation}) {
         
           <View style={{flexDirection:"row",alignSelf:"center",marginTop:width*0.099,}}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
-                 <View style={[styles.renderButton,{borderBottomWidth:render?width*0.015:0,borderBottomColor:"#6979F8"}]}>
-                    <Text style={{fontFamily:"OpenSans-Regular", color:!render ? "#999999" : "#6979F8",fontWeight:"400",}}>Recent Orders</Text>
+                 <View style={[styles.renderButton,{borderBottomWidth:render?width*0.01:0,borderBottomColor:"#40D3A8"}]}>
+                    <Text style={{fontFamily:"OpenSans-Regular", color:!render ? "#999999" : "#40D3A8",fontWeight:"400",marginBottom:5}}>Recent Orders</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>handleCheckRender()}>
-                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:width*0.015, borderBottomColor:"#6979F8"}]}>
-                    <Text  style={{fontFamily:"OpenSans-Regular", color:render ? "#999999" : "#6979F8",fontWeight:"400"}}>Notifications</Text>
+                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:width*0.01, borderBottomColor:"#40D3A8"}]}>
+                    <Text  style={{fontFamily:"OpenSans-Regular", color:render ? "#999999" : "#40D3A8",fontWeight:"400",marginBottom:5}}>Notifications</Text>
                 </View>
                 </TouchableOpacity>
             </View>
@@ -115,9 +115,12 @@ export default function user({navigation}) {
 
 const styles = StyleSheet.create({
     profile:{
-        fontSize: width*0.07,
-        alignSelf:"center",
-        fontFamily:"OpenSans-Regular",
+        textAlign:"center",
+    marginTop:width*0.03,
+    marginBottom:width*0.05,
+    fontSize: width*0.06,
+   
+    fontFamily:"OpenSans-SemiBold"
     },
     header:{
         alignItems:"center",
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
         borderRadius:100,
         marginBottom:width*0.063,
         borderWidth:1,
-        borderColor:"#6979F8",
+        borderColor:"#40D3A8",
         
     },
     initials:{
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
         width:width*0.44,
         height:width*0.085,
         marginTop:width*0.035,
-        borderColor:'#6979F8',
+        borderColor:'grey',
         borderWidth:1,
         borderRadius:5,
         alignItems:"center",
