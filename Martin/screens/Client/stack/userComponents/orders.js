@@ -84,7 +84,7 @@ export default function orders({navigation, data}) {
             {data.length>0?
             <FlatList
             
-            contentContainerStyle={{paddingBottom:width*0.04}}
+            contentContainerStyle={{paddingBottom:width*0.07}}
             bounces={false}
             data={data}
             renderItem={({item})=> {
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
             },
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
-            elevation: 16,
+            elevation: 12,
          
         }
     })

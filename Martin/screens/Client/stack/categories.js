@@ -87,7 +87,7 @@ export default function Categories({navigation}) {
     return (
     
         <View
-        style={{backgroundColor:"#FFF", alignItems:"center", flex: 1}}>
+        style={{backgroundColor:"#FFF", alignItems:"center", flex: 1, paddingBottom:width*0.5}}>
             <View style={{marginTop:width*0.044}}>
                 <View
                 style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
@@ -99,7 +99,7 @@ export default function Categories({navigation}) {
                 
                 <SearchBar 
                 inputContainerStyle={{backgroundColor:"white"}}
-                inputStyle={{height:width*0.08,backgroundColor: 'white'}}
+                inputStyle={{height:width*0.08,backgroundColor: 'white',}}
                 containerStyle={Styles.searchBar}
                 onChangeText={handleSearch}
                 placeholder="Search..."
@@ -273,7 +273,7 @@ const Styles= StyleSheet.create({
         borderTopColor:"rgba(228, 228, 228, 0.6)",
         borderBottomColor:"rgba(228, 228, 228, 0.6)",
         width:width-10,
-        height:width*0.165
+        height:width*0.16
     },
     // imageProduct:{
     //     marginHorizontal:5,

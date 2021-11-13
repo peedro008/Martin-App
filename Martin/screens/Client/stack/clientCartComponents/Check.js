@@ -15,10 +15,12 @@ export default function Check({navigation}) {
    
     const email =  useSelector(state=> state.User)
     const [orders,setOrders]= useState([]) 
+    const [lastOrder,setLastOrder]= useState([]) 
+    
     useEffect(()=>{
         axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
             .then(function(response){
-            setOrders(response.data.reverse())
+            setOrders(response.data)
             console.log(response.data)
             })
             .catch(error=>{
@@ -26,7 +28,21 @@ export default function Check({navigation}) {
                 })
     },[email])
     
-    const order = orders.pop()
+    
+    const handlePress=()=>{
+
+    var lastOrder = []
+    
+    for(let i=0;i<orders.length;i++){
+      
+           lastOrder.push(orders[i].id) 
+        }
+    let last = Math.max(...lastOrder);    
+    navigation.navigate("order detail",{id:last})
+     }
+
+
+
     return (
         <View style={{height:height,flex:1, backgroundColor:"#FFFFFFFF" }}>
             <ScrollView>
@@ -43,7 +59,7 @@ export default function Check({navigation}) {
                   <TouchableOpacity
                   containerStyle={{   width:width*0.5,
                      height:width*0.12,}}
-                  onPress={() => navigation.navigate("order detail",{id:order.id})}>
+                  onPress={handlePress}>
                         <Text style={styles.TextButton}>
                         Track Your Order</Text>
                   </TouchableOpacity>
