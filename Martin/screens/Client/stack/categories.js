@@ -94,33 +94,21 @@ export default function Categories({navigation}) {
                     <Text style={Styles.search}>
                         Categories
                     </Text>
-                    <View style={{position:"absolute", right:0}}>
-
-                        <Icon 
-                        name='shopping-bag'
-                        type="feather"
-                        color='gray'
-                        size={width*0.07 }
-                        style={{marginTop:width*0.035, marginRight:width*0.04}}
-                        />
-                    </View>
+                    
                 </View>
                 
                 <SearchBar 
                 inputContainerStyle={{backgroundColor:"white"}}
-                inputStyle={{height:width*0.1,backgroundColor: 'white'}}
+                inputStyle={{height:width*0.08,backgroundColor: 'white'}}
                 containerStyle={Styles.searchBar}
                 onChangeText={handleSearch}
                 placeholder="Search..."
                 value={name}/> 
             </View >
-            <View style={{alignItems:"center",justifyContent:"center", width:width*0.9, flexDirection:"row"}}>
-               
-               
-            </View>
+           
             {
              !name? 
-             
+             <View style={{marginTop:-10}}>
              <FlatList
                 keyExtractor={item => item.id.toString()}
                 numColumns={2}
@@ -147,12 +135,12 @@ export default function Categories({navigation}) {
                 />
                 
                    
-                     
+                     </View>
                     
                     
                 
                 : 
-                <View style={{flex:1}}>
+                <View style={{flex:1,}}>
                 <FlatList
                 key={"_"}
                 keyExtractor={item => "_" + products.indexOf(item)}
@@ -263,9 +251,10 @@ const Styles= StyleSheet.create({
                 color: "white",
                 flex:1,
                 textAlign:"center",
-                marginTop:width*0.07,
+                marginTop:width*0.08,
                 width:width*0.42,
                 fontFamily:"OpenSans-Bold",
+                lineHeight:32
                 
     },
     image:{
@@ -301,9 +290,12 @@ const Styles= StyleSheet.create({
     //     position:"relative"
     // },
     search:{
-        marginTop:width*0.018,
-        fontSize: width*0.07,
-        fontFamily:"OpenSans-Regular"
+        textAlign:"center",
+        marginTop:width*0.047,
+        marginBottom:width*0.01,
+        fontSize: width*0.06,
+       
+        fontFamily:"OpenSans-SemiBold"
     },
     categories:{
         marginVertical:width*0.04,

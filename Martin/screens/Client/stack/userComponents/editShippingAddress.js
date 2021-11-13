@@ -104,7 +104,7 @@ export default function EditShippingAddress(){
                 </TouchableOpacity>
                 <Text style={styles.defaultText}>SET AS DEFAULT</Text>
             </View>
-            <View style={{marginBottom:0,alignItems: "center",justifyContent:"center",height: width*0.17}}>
+            <View style={{marginTop:width*0.1,marginBottom:0,alignItems: "center",justifyContent:"center",height: width*0.17}}>
                 <TouchableOpacity onPress={()=>handleSave()}>
                     <View style={styles.buttonSave}>
                         <Text style={styles.buttonSaveText}>Save</Text>
@@ -120,12 +120,12 @@ export default function EditShippingAddress(){
 
 const styles= StyleSheet.create({
     header:{
-        alignSelf:"center",
-        marginTop:width*0.1,
-        fontSize: width*0.07,
-        fontWeight: "600",
-        marginBottom:width*0.09,
-        fontFamily:"OpenSans-Regular"
+        textAlign:"center",
+        marginTop:width*0.13,
+        marginBottom:width*0.1,
+        fontSize: width*0.06,
+       
+        fontFamily:"OpenSans-SemiBold"
     },
     container:{
         width:width-50,
@@ -144,7 +144,7 @@ const styles= StyleSheet.create({
         alignItems:"center",
         width:width-50, 
         alignSelf:"center",
-        marginTop:width*0.07,
+        marginTop:width*0.04,
     },
     contButtonDefault:{
         width:width*0.13,
@@ -157,12 +157,12 @@ const styles= StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 5,
         elevation:1,
-        justifyContent:"center"
+        justifyContent:"center",
     },
     buttonDefault1:{
         height:width*0.06,
         width:width*0.06,
-        backgroundColor:"#6979F8",
+        backgroundColor:"grey",
         borderRadius:100,
         alignSelf:"flex-end"
     },
@@ -178,8 +178,9 @@ const styles= StyleSheet.create({
         fontWeight:"400"
     },
     buttonSave:{
-        width:(width -50)/2,
-        height: width*0.12 ,
+        
+        width:(width -50)/2.5,
+        height: width*0.11 ,
         backgroundColor:"#F15A4D",
         borderRadius:5,
         justifyContent:"center",

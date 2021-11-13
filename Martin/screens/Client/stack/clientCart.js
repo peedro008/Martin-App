@@ -1,6 +1,6 @@
 import React, { useEffect, useState,  Suspense } from 'react'
 import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions, ScrollView} from 'react-native'
-import { Icon } from 'react-native-elements'
+import { Divider, Icon } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../../../actions'
@@ -8,7 +8,7 @@ import axios from 'axios'
 import { IP } from '../../../env'
 import Cart from './clientCartComponents/cart'
 
-import { Input } from "react-native-elements";
+import { Input, } from "react-native-elements";
 import Loading from './clientCartComponents/loading'
 
 const width=Dimensions.get("window").width
@@ -45,14 +45,20 @@ export default function clienCart({navigation}) {
   
 
     const  handlePostOrder=()=>{
-        setLoading(false)
-        axios.post(`${IP}/orderItems`,[order,user, info])
-        .then(response=>{
-          console.log(response.data)
-        })
-        .then(()=>navigation.navigate("Check"))
         
-        dispatch(postDelete())
+        if(info.fullName||info.address||info.postalCode||info.city||info.phone)
+        {
+            setLoading(false)
+            axios.post(`${IP}/orderItems`,[order,user, info])
+            .then(response=>{
+            console.log(response.data)
+            })
+            .then(()=>navigation.navigate("Check"))
+            
+            dispatch(postDelete())}
+        else{
+            setRender(false)
+        }
         
         
     }
@@ -76,17 +82,18 @@ export default function clienCart({navigation}) {
           <View style={{display:/*order.length<1 && "none"*/"flex"}}>
             <View style={{alignSelf:"center", alignItems:"center",height:width*0.1, width:width*0.3,  marginTop:width*0.08, marginBottom:width*0.053}}>
                 <Text style={styles.cart}>Cart</Text>
+                
             </View> 
-            
-            <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4,marginBottom:width*0.02 }}>
+            <Divider style={{marginBottom:width*0.04}}/>
+            <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4,marginVertical:width*0.02 }}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
-                 <View style={[styles.renderButton,{borderBottomWidth:render?width*0.015:0,borderBottomColor:"#6979F8"}]}>
-                    <Text style={{fontSize:width*0.035, color:!render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CART</Text>
+                 <View style={[styles.renderButton,{borderBottomWidth:render?width*0.01:0,borderBottomColor:"#40D3A8"}]}>
+                    <Text style={{fontSize:width*0.035, color:!render ? "#999999" : "#40D3A8",fontWeight:"400",fontFamily:"OpenSans-SemiBold",marginBottom:5}}>CART</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>handleCheckRender()}>
-                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:width*0.015, borderBottomColor:"#6979F8"}]}>
-                    <Text  style={{fontSize:width*0.035, color:render ? "#999999" : "#6979F8",fontWeight:"400",fontFamily:"OpenSans-Regular"}}>CHECKOUT</Text>
+                 <View style={[styles.renderButton,{borderBottomWidth:render? 0:width*0.01, borderBottomColor:"#40D3A8"}]}>
+                    <Text  style={{fontSize:width*0.035, color:render ? "#999999" : "#40D3A8",fontWeight:"400",fontFamily:"OpenSans-SemiBold",marginBottom:5}}>CHECKOUT</Text>
                 </View>
                 </TouchableOpacity>
             </View>
@@ -98,7 +105,7 @@ export default function clienCart({navigation}) {
            render ?  <Cart order={order}/>
                   :   order.length>0 && <ScrollView style={{flex:1, }}>
                         
-                        <View>
+                        <View style={{marginTop:width*0.045}}>
                             <View style={styles.container}>
                                 <Text style={styles.text}>Full Name</Text>
                                 <Input  value={info.fullName}  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
@@ -163,9 +170,12 @@ export default function clienCart({navigation}) {
 const styles = StyleSheet.create({
   
   cart:{
-    marginTop:width*0.02,
-    fontSize: width*0.07,
-    fontFamily:"OpenSans-Regular"
+    textAlign:"center",
+    marginTop:width*0.05,
+    marginBottom:width*0.05,
+    fontSize: width*0.06,
+   
+    fontFamily:"OpenSans-SemiBold"
   },
   renderButton:{
     alignItems:"center",
@@ -176,10 +186,10 @@ const styles = StyleSheet.create({
   },
   contTotalOrder:{
     
-    backgroundColor:"beige"
+    backgroundColor:"#323531"
   },
   totalOrder:{
-    color:"#151522",
+    color:"white",
     fontStyle: "normal",
     marginVertical:width*0.02,
     fontSize: width*0.0385,
@@ -195,7 +205,7 @@ const styles = StyleSheet.create({
       alignSelf:"center",
       justifyContent:"center",
       borderRadius:5,
-      backgroundColor:"#F15A4D",
+      backgroundColor:"#00bb2d",
       fontFamily:"OpenSans-Regular"
 
   },

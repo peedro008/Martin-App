@@ -26,7 +26,7 @@ export default function Check({navigation}) {
                 })
     },[email])
     
-    const order = orders.shift()
+    const order = orders.pop()
     return (
         <View style={{height:height,flex:1, backgroundColor:"#FFFFFFFF" }}>
             <ScrollView>
@@ -41,6 +41,8 @@ export default function Check({navigation}) {
               </View>
               <View style={styles.button}>
                   <TouchableOpacity
+                  containerStyle={{   width:width*0.5,
+                     height:width*0.12,}}
                   onPress={() => navigation.navigate("order detail",{id:order.id})}>
                         <Text style={styles.TextButton}>
                         Track Your Order</Text>
@@ -65,17 +67,18 @@ const styles = StyleSheet.create({
         color:"#999999"
     },
     congratulations:{
-        fontSize:44,
+        fontSize:38,
         color:"#151522",
         textAlign:"center",
         fontFamily:"OpenSans-Regular",
-        marginBottom:width*0.03
+        marginBottom:width*0.03,
+        letterSpacing:0.2
     },
     button:{
         backgroundColor:"#F15A4D",
         alignItems:"center",
-        width:width*0.8,
-        height:width*0.12,
+        // width:width*0.7,
+        // height:width*0.12,
         alignSelf:"center",
         borderRadius:5,
       
@@ -90,7 +93,9 @@ const styles = StyleSheet.create({
         
     },
     image:{
-        marginVertical:width*0.2
+        marginTop:width*0.3,
+        marginBottom:width*0.3
+        
     },
     TextButton:{
         color:"#ffffffff",

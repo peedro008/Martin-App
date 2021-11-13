@@ -85,7 +85,7 @@ export default function ProductDetail({route,navigation}) {
                     {  
                         product.sale   && <Text style={styles.discount}>{ "$" + product.price}</Text>
                     }
-                    <View style={{flexDirection:"row"}}>
+                    <View style={{flexDirection:"row", marginTop:width*0.015}}>
                         <Text style={styles.price}>
                             ${product.sale ? ((product.price*(100-product.salePercent))/100).toFixed(2) : product.price} 
                         </Text>
@@ -95,7 +95,7 @@ export default function ProductDetail({route,navigation}) {
                     </View>  
                 </View>
                 <View style={styles.category}>
-                    <Text style={{fontSize:width*0.06, fontWeight:"600", color:"#6979F8", fontFamily:"OpenSans-Regular"}}>
+                    <Text style={{fontSize:width*0.055, fontWeight:"600", color:"black", fontFamily:"OpenSans-SemiBold"}}>
                         {category}
                     </Text>
                 </View>
@@ -115,7 +115,7 @@ export default function ProductDetail({route,navigation}) {
                     <TouchableOpacity
                     onPress={()=>handleCount() }
                     style={ styles.minibutton  }>
-                        <Text style={{fontFamily:"OpenSans-SemiBold",fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>-</Text>
+                        <Text style={{fontFamily:"OpenSans-SemiBold",fontSize: width*0.06, alignSelf:"center", color:"grey", fontWeight:"600"}}>-</Text>
                     </TouchableOpacity>
                     
                     <View style={styles.count}>
@@ -126,7 +126,7 @@ export default function ProductDetail({route,navigation}) {
                     style={ styles.minibutton  }
                     >
                         <Text
-                        style={{fontFamily:"OpenSans-SemiBold", fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>
+                        style={{fontFamily:"OpenSans-SemiBold", fontSize: width*0.06, alignSelf:"center", color:"grey", fontWeight:"600"}}>
                             +
                         </Text>
                     </TouchableOpacity>
@@ -141,7 +141,7 @@ export default function ProductDetail({route,navigation}) {
                 </View>
             : 
                 <View>
-                    <View style={[styles.buttonView,{backgroundColor:"#00bb2d"}]}>
+                    <View style={[styles.buttonView,{backgroundColor:"#40D3A8"}]}>
                         <TouchableOpacity onPress={()=>navigation.navigate("Cart")}>
                             <Text style={styles.buttonStyle}>
                                 GO TO CART 
@@ -200,13 +200,13 @@ const styles = StyleSheet.create({
     },
     category:{
         marginLeft:width*0.05,
-        marginVertical:width*0.026,
+        marginTop:width*0.026,
+        marginBottom:width*0.05,
     },
     price:{
         fontSize:width*0.13,
         marginLeft:width*0.05,
-        fontWeight:"600",
-        fontFamily:"OpenSans-Regular"
+        fontFamily:"OpenSans-Bold"
     },
     discount:{
         textAlign:"center",
@@ -235,11 +235,13 @@ const styles = StyleSheet.create({
     },
     name:{
         fontWeight:"600", 
-        fontSize:width*0.10,
+        fontSize:width*0.09,
         marginLeft:width*0.05, 
         marginBottom:width*0.026,
         textTransform:"uppercase",
-        fontFamily:"OpenSans-Regular"
+        fontFamily:"OpenSans-SemiBold",
+        marginTop:width*0.01,
+        lineHeight:40
     },
     desc:{
         fontSize:width*0.04,
@@ -262,7 +264,7 @@ const styles = StyleSheet.create({
         marginVertical:width*0.04    
     },
     countText:{
-        color:"#6979F8",
+        color:"black",
         fontWeight:"600",
         alignSelf:"center",
         fontSize:width*0.05,

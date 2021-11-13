@@ -1,6 +1,6 @@
 import { StyleSheet, Text,Button, View,FlatList,ImageBackground,TouchableOpacity, useWindowDimensions, Image, Dimensions, Animated, ScrollView, SafeAreaView} from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Card,Icon } from 'react-native-elements'
+import { Card,Icon, Overlay } from 'react-native-elements'
 import {addOrder} from "../../../../actions"
 import axios from 'axios'
 import React,{useEffect,  useState} from 'react'
@@ -24,15 +24,39 @@ const width=Dimensions.get("window").width
 
 
 export default function orders({navigation, data}) {
-    const [orders,setOrders]= useState([]) 
+
     const email =  useSelector(state=> state.User)
     const preOrder=useSelector(state=> state.PreOrder)
-    const [msj,setMsj]=useState(false)
+   
+    const [card, setCard] = useState()
+
     
     const dispatch=useDispatch()
 
+    
+    useEffect(() => {
+        let pes = {}
+       for(let i=0;i<data.length;i++){
+       pes[i]=false    
+      
+       }
+       setCard(pes)
+      
+   }, [data])
+  
+    console.log(card)
 
-    let handleAddProduct=(order)=>{
+    let handleAddProduct=(order, id)=>{
+    let pes = card
+    pes[id] = true
+    console.log(id)
+    console.log(pes)
+    setCard(pes)
+    
+    
+        
+   
+       
         order.map(e=>{
             let aux= true
             for(let i=0; i<preOrder.length;i++){
@@ -42,53 +66,70 @@ export default function orders({navigation, data}) {
                 dispatch(addOrder(e))
             }
         }) 
-        setMsj(true)
-        setTimeout(()=>{ setMsj(false)},1000)
-    
+
+       
+        console.log(card)
+   
     }
 
-      if(!orders){<View></View>}
-      else{
+     
         return (
             <SafeAreaView
             style={{  marginTop:width*.06,marginBottom:width*0.02, alignItems:'center',}}>
                 <View style={{width:width*0.9, marginBottom:width*0.01}}>   
                     <Text style={styles.OrderHeader} >History Orders</Text> 
+                    
                 </View>
-                {msj &&<Text style={{alignSelf:"center",marginTop:width*0.02,marginBottom:-width*0.02,fontSize:width*0.05,fontFamily:"OpenSans-Regular",color:"#00bb2d"}}>Added to cart</Text>}
+                
             {data.length>0?
             <FlatList
-            showsHorizontalScrollIndicator={false}
+            
             contentContainerStyle={{paddingBottom:width*0.04}}
             bounces={false}
             data={data}
-            renderItem={({item})=> 
-          
+            renderItem={({item})=> {
+             let id=data.indexOf(item)
+                return(
+                   
+                
                 <Card containerStyle={styles.card} >
                 <View style={{margin:width*0.03, alignSelf:"center"}}>
+                   
                    <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
-                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#00bb2d" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
+                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#40D3A8" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
                         <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
                         style={{flexDirection: 'row'}}>
-                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
+                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#40D3A8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
                         
                         <View
                         style={{marginBottom:width*0.04}}>
                            
+                           
+
+
+
+
                         <View style={{flexDirection:"row"}}>   
+                            
+                            
                             <TouchableOpacity 
-                            onPress={() => handleAddProduct(item.orderItems)}
-                            style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:"#00bb2d",justifyContent:"center", marginLeft:width*0.23}}>
+                            onPress={() => handleAddProduct( item.orderItems, id )}
+                            style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
+                            {card[id]?<Text
+                            style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
+                            ADDED
+                            </Text>
+                            :
                             <Text
                             style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
                             ADD TO CART
-                            </Text>
+                            </Text>}
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity
@@ -118,7 +159,7 @@ export default function orders({navigation, data}) {
                         </View>
                      </View>   
                     </Card> 
-         
+         )}
                         }/>
                       :
                       <View>
@@ -127,14 +168,16 @@ export default function orders({navigation, data}) {
                       </View>}
           </SafeAreaView>
         )}
-}
+
 
 const styles = StyleSheet.create({
         OrderHeader:{
-            marginTop:width*0.05,
-          alignSelf:"center",
-          fontSize: width*0.07,
-          fontFamily:"OpenSans-Regular"
+            textAlign:"center",
+            marginTop:width*0.04,
+            marginBottom:width*0.05,
+            fontSize: width*0.06,
+        
+            fontFamily:"OpenSans-SemiBold"
         },
         card:{
             height:width*0.47,

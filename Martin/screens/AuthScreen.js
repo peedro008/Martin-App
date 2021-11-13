@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     buttonAltText: {
-        color: '#6979F8',
+        color: "#40D3A8",
         fontSize: width*0.05,
     },
     message: {
