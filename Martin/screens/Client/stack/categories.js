@@ -254,7 +254,7 @@ const Styles= StyleSheet.create({
                 marginTop:width*0.08,
                 width:width*0.42,
                 fontFamily:"OpenSans-Bold",
-                lineHeight:32
+                // lineHeight:32s
                 
     },
     image:{

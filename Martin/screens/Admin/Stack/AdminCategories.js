@@ -83,18 +83,18 @@ export default function AdminCategories({navigation}) {
                 <View>
                 <TouchableOpacity onPress={() => navigation.navigate("Catalog Screen", {params: item})}
 >
-                    <ImageBackground 
-                    source={{uri:item.img}}
-                    style={Styles.image}>
-                    <Text  style={Styles.cardText}>
-                    {item.name}
-                    </Text>
-                    <View style={{width:width*0.5,height:width*0.5, marginTop:-width*0.2,backgroundColor:"rgba(81, 90, 90 ,0.35)" }}>
-                        <Text numberOfLines={2} ellipsizeMode="tail" style={Styles.cardText}>
-                        {item.name}
-                        </Text>
-                    </View>
-                </ImageBackground>
+                        <ImageBackground 
+                            source={{uri:item.img}}
+                            style={Styles.image}>
+            
+                            <View style={{width:Dimensions.get('window').width /2,height:Dimensions.get('window').width /2,backgroundColor:"rgba(81, 90, 90 ,0.35)",justifyContent:"center"}}>
+                                <View style={{alignItems:"center",alignSelf:"center", height:width*0.3,width:width*0.42}}>
+                                    <Text numberOfLines={2} ellipsizeMode="tail" style={Styles.cardText}>
+                                    {item.name}
+                                    </Text>
+                                </View>
+                            </View>
+                        </ImageBackground>
                 </TouchableOpacity>
             </View>
                     
@@ -154,13 +154,12 @@ const Styles= StyleSheet.create({
     cardText:{
         fontSize:width*0.07,
         color: "white",
-        marginTop:"40%",
         flex:1,
-        alignSelf:"center",
         textAlign:"center",
-        fontWeight: "bold",
+        marginTop:width*0.08,
+        width:width*0.42,
         fontFamily:"OpenSans-Bold",
-        width:width*0.45
+        // lineHeight:32
     },
     image:{
       
