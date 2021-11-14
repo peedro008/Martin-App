@@ -46,7 +46,7 @@ export default function adminOrderRegister() {
         <View style={{backgroundColor:"#FFFFFFFF", height:heigth}}>
            <View>
                  <Text style={styles.header}>Order Register</Text>
-                 
+                 <Divider/>
             </View> 
           
             <View
@@ -94,12 +94,12 @@ export default function adminOrderRegister() {
 
 const styles = StyleSheet.create({
     header:{
-        fontSize:width*0.07,
-        fontWeight:"400",
-        marginTop:width*0.1,
+        textAlign:"center",
+        marginTop:width*0.09,
+        marginBottom:width*0.03,
+        fontSize: width*0.06,
        
-        fontFamily:"OpenSans-Regular",
-        alignSelf:"center"
+        fontFamily:"OpenSans-SemiBold"
     },
     containerButton:{
        flexDirection:"row",

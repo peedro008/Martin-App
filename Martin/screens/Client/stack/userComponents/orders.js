@@ -34,6 +34,9 @@ export default function orders({navigation, data}) {
     const dispatch=useDispatch()
 
     
+
+
+
     useEffect(() => {
         let pes = {}
        for(let i=0;i<data.length;i++){
@@ -68,9 +71,14 @@ export default function orders({navigation, data}) {
         }) 
 
        
-        console.log(card)
+    
    
     }
+
+    const toCart=()=>{
+        navigation.navigate("Cart")
+    }
+    
 
      
         return (
@@ -115,22 +123,40 @@ export default function orders({navigation, data}) {
 
 
 
-                        <View style={{flexDirection:"row"}}>   
+                           <View style={{flexDirection:"row"}}>  
                             
                             
+                            
+                            {card[id]?
                             <TouchableOpacity 
-                            onPress={() => handleAddProduct( item.orderItems, id )}
+                            onPress={toCart}
                             style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
-                            {card[id]?<Text
-                            style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
-                            ADDED
-                            </Text>
-                            :
                             <Text
                             style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
-                            ADD TO CART
-                            </Text>}
-                            </TouchableOpacity>
+                            GO TO CART
+                            </Text>
+                                                        
+                            </TouchableOpacity>:
+
+                             <TouchableOpacity 
+                             onPress={() => handleAddProduct( item.orderItems, id )}
+                             style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
+                            <Text
+                             style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
+                             ADD TO CART
+                             </Text>
+                             </TouchableOpacity>
+
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         </View>
                         <TouchableOpacity
                         onPress={() => navigation.navigate("order detail",{id:item.id})}

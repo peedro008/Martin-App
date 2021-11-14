@@ -9,6 +9,7 @@ import { StyleSheet, Text,Dimensions, View, Image } from 'react-native'
 import { Card } from 'react-native-elements'
 import { Icon } from 'react-native-elements/dist/icons/Icon'
 import { ScrollView } from 'react-native-gesture-handler'
+import { Divider } from 'react-native-elements/dist/divider/Divider'
 
 const width=Dimensions.get("window").width
 const heigth=Dimensions.get("window").height
@@ -34,6 +35,8 @@ export default function adminHome({navigation}) {
         <View style={{flex:1, backgroundColor:"#fff",}}>
          <ScrollView>  
             <Text style={styles.header}>Welcome Admin</Text>
+            <Divider style={{marginVertical:width*0.04}}/> 
+            
              <Balance/>
             <Text style={[styles.header, {marginTop:44}]} >Latest Orders</Text>
             { orders.length ?<OrdersA data={orders}/> : <Icon style={{marginTop:width*0.06,alignSelf:"flex-start",marginLeft:width*0.06}} name="file-text" type="feather"  size= {width*0.4}/>}

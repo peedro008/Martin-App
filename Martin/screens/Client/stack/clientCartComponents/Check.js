@@ -15,30 +15,29 @@ export default function Check({navigation}) {
    
     const email =  useSelector(state=> state.User)
     const [orders,setOrders]= useState([]) 
-    const [lastOrder,setLastOrder]= useState([]) 
+  
     
     useEffect(()=>{
         axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
             .then(function(response){
             setOrders(response.data)
-            console.log(response.data)
+          
             })
+          
             .catch(error=>{
                 console.log(error)  
                 })
     },[email])
     
     
-    const handlePress=()=>{
 
-    var lastOrder = []
+
     
-    for(let i=0;i<orders.length;i++){
-      
-           lastOrder.push(orders[i].id) 
-        }
-    let last = Math.max(...lastOrder);    
-    navigation.navigate("order detail",{id:last})
+    const handlePress=()=>{
+       
+
+  
+    navigation.navigate("user")
      }
 
 

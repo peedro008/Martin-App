@@ -46,23 +46,13 @@ export default function AdminCategories({navigation}) {
     
         <View
         style={{backgroundColor:"#fff", alignItems:"center", flex: 1}}>
-            <View style={{marginTop:width*0.044}}>
-                <View
-                style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
+            <View>
+                
                     <Text style={Styles.header}>
                         Categories
                     </Text>
-                    <View style={{position:"absolute", right:0}}>
-
-                        <Icon 
-                        name='shopping-bag'
-                        type="feather"
-                        color='gray'
-                        size={width*0.07 }
-                        style={{marginTop:width*0.035, marginRight:width*0.04}}
-                        />
-                    </View>
-                </View>
+                   
+                
                 
                 <SearchBar 
                 inputContainerStyle={{backgroundColor:"white"}}
@@ -180,10 +170,12 @@ const Styles= StyleSheet.create({
     },
 
     header:{
-        marginTop:width*0.018,
-        fontSize: width*0.07,
-        fontWeight: "600",
-        fontFamily:"OpenSans-Regular"
+        textAlign:"center",
+        marginTop:width*0.09,
+        marginBottom:width*0.05,
+        fontSize: width*0.06,
+       
+        fontFamily:"OpenSans-SemiBold"
     },
     containerProduct:{
         width:width,
