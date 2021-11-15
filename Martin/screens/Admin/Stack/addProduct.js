@@ -7,6 +7,7 @@ import {createProduct} from '../../../actions'
 import { useDispatch } from 'react-redux';
 import { IP } from '../../../env';
 import { set } from 'react-native-reanimated';
+import { Divider } from 'react-native-elements/dist/divider/Divider';
 
 const width=Dimensions.get("window").width
 
@@ -66,15 +67,17 @@ export default function addProduct() {
         
     return (
         <ScrollView style={{backgroundColor:"#fff"}}>
+        
         <ScrollView style={{flex:1, backgroundColor:"#fff", width:width*0.88, alignSelf:"center",}}>
-                 <Text style={styles.header}>Product Detail</Text>
+                 <Text style={styles.header}>Add Product</Text>
+                 <Divider/>
             <Text style={[styles.textInput,{marginTop:width*0.06}]}>Name</Text>
             <View style={styles.contInput}>
                 <TextInput placeholderTextColor="rgba(228, 228, 228,1)" placeholder={"  Name"} style={styles.input} value={name} onChangeText={(value)=>setName(value)}/>
             </View>
             <Text  style={styles.textInput}>Category</Text>
            
-            <Picker  selectedValue={categoryID} onValueChange={(value)=> handlePicker(value)} style={{height:width*0.2,marginBottom:width*0.04, borderRadius:5}}>
+            <Picker  selectedValue={categoryID} onValueChange={(value)=> handlePicker(value)} style={Platform.OS === 'ios'?{}:{height:width*0.15,marginBottom:width*0.06, borderRadius:5}}>
                 
                 {
                     categories?.map(e=>{
@@ -122,13 +125,12 @@ export default function addProduct() {
 
 const styles = StyleSheet.create({
   header:{
-      marginTop:width*0.1,
-      fontSize:width*0.07,
-      fontFamily:"OpenSans-Regular",
-      alignSelf:"center",
-      textAlign:"center",
-      marginBottom:width*0.09,
-      color:"#222222"
+    textAlign:"center",
+    marginTop:width*0.08,
+    marginBottom:width*0.02,
+    fontSize: width*0.06,
+
+    fontFamily:"OpenSans-SemiBold"
   },
   name:{
       fontSize: width*0.07,

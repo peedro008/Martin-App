@@ -34,6 +34,9 @@ export default function orders({navigation, data}) {
     const dispatch=useDispatch()
 
     
+
+
+
     useEffect(() => {
         let pes = {}
        for(let i=0;i<data.length;i++){
@@ -68,9 +71,14 @@ export default function orders({navigation, data}) {
         }) 
 
        
-        console.log(card)
+    
    
     }
+
+    const toCart=()=>{
+        navigation.navigate("Cart")
+    }
+    
 
      
         return (
@@ -84,7 +92,7 @@ export default function orders({navigation, data}) {
             {data.length>0?
             <FlatList
             
-            contentContainerStyle={{paddingBottom:width*0.04}}
+            contentContainerStyle={{paddingBottom:width*0.07}}
             bounces={false}
             data={data}
             renderItem={({item})=> {
@@ -103,7 +111,7 @@ export default function orders({navigation, data}) {
                     <Card.Divider/>
                     <View
                         style={{flexDirection: 'row'}}>
-                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#40D3A8", fontWeight:"600"}}>
+                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017, fontSize:width*0.065, color:"#40D3A8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
                         
@@ -115,22 +123,40 @@ export default function orders({navigation, data}) {
 
 
 
-                        <View style={{flexDirection:"row"}}>   
+                           <View style={{flexDirection:"row"}}>  
                             
                             
+                            
+                            {card[id]?
                             <TouchableOpacity 
-                            onPress={() => handleAddProduct( item.orderItems, id )}
+                            onPress={toCart}
                             style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
-                            {card[id]?<Text
-                            style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
-                            ADDED
-                            </Text>
-                            :
                             <Text
                             style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
-                            ADD TO CART
-                            </Text>}
-                            </TouchableOpacity>
+                            GO TO CART
+                            </Text>
+                                                        
+                            </TouchableOpacity>:
+
+                             <TouchableOpacity 
+                             onPress={() => handleAddProduct( item.orderItems, id )}
+                             style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
+                            <Text
+                             style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
+                             ADD TO CART
+                             </Text>
+                             </TouchableOpacity>
+
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         </View>
                         <TouchableOpacity
                         onPress={() => navigation.navigate("order detail",{id:item.id})}
@@ -193,7 +219,7 @@ const styles = StyleSheet.create({
             },
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
-            elevation: 16,
+            elevation: 12,
          
         }
     })

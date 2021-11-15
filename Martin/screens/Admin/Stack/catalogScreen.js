@@ -59,13 +59,7 @@ export default  function  Products ({route, navigation}) {
                     style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"white"}}>
                         <Text style={styles.products}>{category.name}</Text>
                         <View style={{position:"absolute", right:0}}>
-                            <Icon 
-                            name='edit'
-                            type="feather"
-                            color='gray'
-                            size={width*0.07 }
-                            style={{marginTop:width*0.025, marginRight:width*0.03}}
-                            />
+                            
                         </View>
                 </View>
                 <SearchBar 
@@ -181,13 +175,11 @@ const styles = StyleSheet.create({
         height:width*0.09
     },
     products:{
-        marginVertical:width*0.01,
-        marginBottom:-width*0.001,
-        fontSize:width*0.07,
-        fontWeight: "600",
-        alignSelf:"center",
         textAlign:"center",
-        textTransform:"capitalize"
+       
+        fontSize: width*0.06,
+       
+        fontFamily:"OpenSans-SemiBold"
     },
     containerProduct:{
         width:width,

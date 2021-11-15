@@ -34,7 +34,7 @@ export default function adminOrderDetail({route}) {
         axios.get(`${IP}/orderid?id=${id}`)
             .then(function(response){
                 setOrder(response.data)
-                setStatus(response.data[0].status)
+               
             })
             
             .catch(error=>{

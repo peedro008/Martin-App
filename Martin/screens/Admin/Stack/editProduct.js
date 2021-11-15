@@ -7,6 +7,7 @@ import {updateProduct} from '../../../actions'
 import { useDispatch } from 'react-redux';
 import { IP } from '../../../env';
 import { set } from 'react-native-reanimated';
+import { Divider } from 'react-native-elements/dist/divider/Divider';
 
 const width=Dimensions.get("window").width
 
@@ -85,6 +86,7 @@ export default function editProduct({route}) {
         <ScrollView style={{backgroundColor:"#fff"}}>
         <ScrollView style={{flex:1, backgroundColor:"#fff", width:width*0.88, alignSelf:"center",}}>
                  <Text style={styles.header}>Product Detail</Text>
+                 <Divider/>
               
             <View>
                 <Text style={styles.name}>{product.name}</Text>
@@ -96,7 +98,7 @@ export default function editProduct({route}) {
             </View>
             <Text  style={styles.textInput}>Category</Text>
            
-            <Picker  selectedValue={categoryID} onValueChange={(value)=> handlePicker(value)} style={Platform.OS === 'ios'?{}:{height:width*0.2,marginBottom:width*0.06, borderRadius:5}}>
+            <Picker  selectedValue={categoryID} onValueChange={(value)=> handlePicker(value)} style={Platform.OS === 'ios'?{}:{height:width*0.15,marginBottom:width*0.06, borderRadius:5}}>
                 
                 {
                     categories?.map(e=>{
@@ -143,14 +145,13 @@ export default function editProduct({route}) {
 }
 
 const styles = StyleSheet.create({
-  header:{
-      marginTop:width*0.1,
-      fontSize:width*0.07,
-      fontFamily:"OpenSans-Regular",
-      alignSelf:"center",
-      textAlign:"center",
-      marginBottom:width*0.09,
-      color:"#222222"
+    header:{
+        textAlign:"center",
+        marginTop:width*0.08,
+        marginBottom:width*0.02,
+        fontSize: width*0.06,
+    
+        fontFamily:"OpenSans-SemiBold"
   },
   name:{
       fontSize: width*0.07,

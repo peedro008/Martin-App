@@ -22,7 +22,7 @@ export default function clienCart({navigation}) {
     const dispatch= useDispatch()
     const [info, setInfo]= useState({fullName:"", city:"", phone:"", postalCode:"", apt_Suite:"",address:""})
     const [loading, setLoading]=useState(true)
-
+    const [orderId, setOrderId]=useState(true)
 
 
     useEffect(()=>{
@@ -53,6 +53,7 @@ export default function clienCart({navigation}) {
             .then(response=>{
             console.log(response.data)
             })
+           
             .then(()=>navigation.navigate("Check"))
             
             dispatch(postDelete())}
@@ -102,7 +103,11 @@ export default function clienCart({navigation}) {
          
           
            { 
-           render ?  <Cart order={order}/>
+           render ?  
+           
+           
+           
+           <Cart order={order}/>
                   :   order.length>0 && <ScrollView style={{flex:1, }}>
                         
                         <View style={{marginTop:width*0.045}}>

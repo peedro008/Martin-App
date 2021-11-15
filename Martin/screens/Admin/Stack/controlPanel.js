@@ -5,6 +5,7 @@ import { Card,   } from 'react-native-elements';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { logOut } from '../../../actions';
 import { useDispatch } from 'react-redux';
+import { Divider } from 'react-native-elements/dist/divider/Divider';
 
 const width=Dimensions.get("window").width
 const height=Dimensions.get("window").height
@@ -22,16 +23,18 @@ export default function controlPanel({navigation}) {
         
         <View style={{backgroundColor:"white", height:height}}>
             <View
-                style={{alignItems:"center",marginTop:width*0.04,marginBottom:width*0.08 }}>
+                style={{alignItems:"center",marginTop:width*0.04, marginBottom:width*0.04}}>
                     <Text style={styles.search}>
                         Control Panel
                     </Text>
-                    <View style={{position:"absolute", right:width*0.055,top:width*0.065}}>
+                    <Divider/>
+                    <View style={{position:"absolute", right:width*0.055,top:width*0.055}}>
                 <TouchableOpacity onPress={()=>setConfig(!config)}>
                     <Icon type="feather" name="settings" size={width*0.07} color="gray"/>
                 </TouchableOpacity>
                     </View>  
             </View>
+            <Divider  style={{marginBottom:width*0.08}}/>
             { config &&<View style={styles.logOut}>
                         <TouchableOpacity onPress={()=>handleLogOut()}>
                         <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.04}}>Log out</Text>
@@ -99,6 +102,12 @@ const styles = StyleSheet.create({
         marginTop:width*0.05,
         fontSize: width*0.07,
         
+        fontFamily:"OpenSans-SemiBold",
+        textAlign:"center",
+        
+        
+        fontSize: width*0.06,
+       
         fontFamily:"OpenSans-SemiBold"
     },
     boton:{
