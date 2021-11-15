@@ -69,10 +69,11 @@ export default  function  Products ({route, navigation}) {
                         </View>
                 </View>
                 <SearchBar 
-                    inputContainerStyle={{backgroundColor:"white"}}
-                    inputStyle={{backgroundColor: 'white'}}
+                    inputContainerStyle={{backgroundColor:"#fff",height:width*0.08}}
+                    inputStyle={{backgroundColor: 'white',height:width*0.08}}
                     containerStyle={styles.searchBar}
                     onChangeText={handleSearch}
+                    placeholder="Search..."
                     value={name}/>
             </View>
                 <View style={{alignItems:"center",justifyContent:"center", width:width*0.9, flexDirection:"row"}}>  
@@ -110,7 +111,7 @@ export default  function  Products ({route, navigation}) {
                     }}
                         
                     /> : 
-                    
+                        product.length ?
                     <FlatList
                     key={"_"}
                     keyExtractor={item => "_" + item.id.toString()}
@@ -139,6 +140,7 @@ export default  function  Products ({route, navigation}) {
                     }}
                         
                     />
+                  :  <Text style={{fontSize:width*0.035,alignSelf:"center",fontFamily:"OpenSans-Regular"}}>No results</Text>
                 }
 
             
@@ -169,12 +171,14 @@ const styles = StyleSheet.create({
         marginBottom: width*0.05,
         alignSelf:"center", 
         backgroundColor: 'white', 
+        justifyContent:"center",
         borderWidth: 1, 
         borderRadius: 5,
         borderColor:"rgba(228, 228, 228, 0.6)", 
         borderTopColor:"rgba(228, 228, 228, 0.6)",
         borderBottomColor:"rgba(228, 228, 228, 0.6)",
-        width:width-10
+        width:width-10,
+        height:width*0.09
     },
     products:{
         marginVertical:width*0.01,

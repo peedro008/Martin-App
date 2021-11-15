@@ -118,7 +118,7 @@ export default function Home({navigation}) {
                         <Text  style={styles.price}>${item.sale ? ((item.price*(100-item.salePercent))/100).toFixed(2) : item.price}</Text>
                         <View style={{flexDirection:"row",alignItems:"flex-end", marginTop:width*0.03, marginLeft:-width*0.01}}>
                           <Text style={{color:"#40D3A8", fontSize:width*0.04}}>{item.salePercent}</Text>
-                          <Text style={{color:"#40D3A8", fontSize:width*0.04}}>% off </Text>
+                          <Text style={{color:"#40D3A8",fontFamily:"OpenSans-SemiBold", fontSize:width*0.04}}>% off </Text>
                         </View>
                       </View>
                     </View>
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         fontSize:width*0.05,
         textAlign:"justify",
         marginLeft: width*0.03,
-        fontFamily:"OpenSans-Regular"
+        fontFamily:"OpenSans-SemiBold"
       
       },
       title2:{
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
         fontWeight:"600",
         fontSize:width*0.07,
         marginRight:width*0.03,
-        fontFamily:"OpenSans-Regular"
+        fontFamily:"OpenSans-SemiBold"
         //color:"#FF0808"
       },
       prevPrice:{
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
         fontSize:width*0.04,
         color:"#F15A4D",
         textDecorationLine:"line-through",
-        fontFamily:"OpenSans-Regular",
+        fontFamily:"OpenSans-SemiBold",
         
         
       },
@@ -217,11 +217,11 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
         height:width*0.148,
         alignItems:"center",
-        backgroundColor:'rgba(255,255,255, 0.4)',
+        backgroundColor:'rgba(255,255,255, 0.7)',
         width:width*0.9,
         alignSelf:"center",
-        marginTop:-width*0.16,
-        marginBottom:4,
+        marginTop:-width*0.65,
+        marginBottom:width*0.6,
         borderBottomLeftRadius:5,
         borderBottomRightRadius:5
         

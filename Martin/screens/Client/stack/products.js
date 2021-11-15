@@ -96,10 +96,11 @@ export default  function  Products ({route, navigation}) {
                         
                 </View>
                 <SearchBar 
-                    inputContainerStyle={{backgroundColor:"white"}}
-                    inputStyle={{height:width*0.1,backgroundColor: 'white'}}
+                    inputContainerStyle={{backgroundColor:"#fff",height:width*0.08}}
+                    inputStyle={{height:width*0.08,backgroundColor: 'white'}}
                     containerStyle={styles.searchBar}
                     onChangeText={handleSearch}
+                    placeholder="Search..."
                     value={name}/>
             </View>
                 <View style={{alignItems:"center",justifyContent:"center", width:width*0.9, flexDirection:"row"}}>  
@@ -192,7 +193,7 @@ export default  function  Products ({route, navigation}) {
                 /> 
             </View> 
             :
-                <View style={{flex:1}}>
+                product.length ?
                 <FlatList
                 keyExtractor={item => product.indexOf(item)}
                 numColumns={1}
@@ -216,7 +217,7 @@ export default  function  Products ({route, navigation}) {
                                     </TouchableOpacity>
                             
                                   
-                                    <View >
+                                    <View>
                                         <View style={{marginLeft:width*0.03, marginTop:-width*0.02}}>
                                             <TouchableOpacity
                                             onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
@@ -268,7 +269,8 @@ export default  function  Products ({route, navigation}) {
                )
             }}
             />
-            </View>
+            : <Text style={{fontSize:width*0.035,alignSelf:"center",fontFamily:"OpenSans-Regular"}}>No results</Text>
+        
             
            
 
@@ -304,10 +306,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white', 
         borderWidth: 1, 
         borderRadius: 5,
+        justifyContent:"center",
         borderColor:"rgba(228, 228, 228, 0.6)", 
         borderTopColor:"rgba(228, 228, 228, 0.6)",
         borderBottomColor:"rgba(228, 228, 228, 0.6)",
-        width:width-10
+        width:width-10,
+        height:width*0.09
     },
     products:{
         textAlign:"center",
@@ -385,19 +389,16 @@ const styles = StyleSheet.create({
     card:{ 
         width:width*0.9,
         height:width*0.315,
-        // marginBottom:width*0.02,
-        // marginTop:width*0.0005,
         marginVertical:width*0.035,
         elevation:8,
         shadowColor: "grey",
-        
-
        shadowOffset: {
              width: 0,
              height: 5,
         },
          shadowOpacity: 0.34,
-         shadowRadius: 6.27, borderRadius:8 
+         shadowRadius: 6.27,
+         borderRadius:8 
     },
     title:{
         fontFamily:"OpenSans-SemiBold",

@@ -65,8 +65,8 @@ export default function AdminCategories({navigation}) {
                 </View>
                 
                 <SearchBar 
-                inputContainerStyle={{backgroundColor:"white"}}
-                inputStyle={{height:width*0.1,backgroundColor: 'white'}}
+                inputContainerStyle={{backgroundColor:"#fff",height:width*0.08}}
+                inputStyle={{height:width*0.08,backgroundColor: 'white'}}
                 containerStyle={Styles.searchBar}
                 onChangeText={handleSearch}
                 placeholder="Search..."
@@ -100,7 +100,9 @@ export default function AdminCategories({navigation}) {
                     
                 }
                 /> :  
-
+                    
+                product.length ?
+              
                 <FlatList
                 key={"_"}
                 keyExtractor={item => "_" + item.id.toString()}
@@ -128,7 +130,7 @@ export default function AdminCategories({navigation}) {
                     )
                 }}
                     
-                />
+                /> : <Text style={{fontSize:width*0.035,alignSelf:"center",fontFamily:"OpenSans-Regular"}}>No results</Text>
                 
             }
 
@@ -173,10 +175,12 @@ const Styles= StyleSheet.create({
         backgroundColor: 'white', 
         borderWidth: 1, 
         borderRadius: 5,
+        justifyContent:"center",
         borderColor:"rgba(228, 228, 228, 0.6)", 
         borderTopColor:"rgba(228, 228, 228, 0.6)",
         borderBottomColor:"rgba(228, 228, 228, 0.6)",
-        width:width-10
+        width:width-10,
+        height:width*0.09
     },
 
     header:{
@@ -189,7 +193,8 @@ const Styles= StyleSheet.create({
         width:width,
         marginVertical:width*0.035,
         flexDirection:"row",
-        alignItems:"center",   
+        alignItems:"center",  
+        flex:1 
     },
     
     circle:{

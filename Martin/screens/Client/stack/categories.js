@@ -98,7 +98,7 @@ export default function Categories({navigation}) {
                 </View>
                 
                 <SearchBar 
-                inputContainerStyle={{backgroundColor:"white"}}
+                inputContainerStyle={{backgroundColor:"#fff",height:width*0.08}}
                 inputStyle={{height:width*0.08,backgroundColor: 'white'}}
                 containerStyle={Styles.searchBar}
                 onChangeText={handleSearch}
@@ -140,7 +140,8 @@ export default function Categories({navigation}) {
                     
                 
                 : 
-                <View style={{flex:1,}}>
+                products.length ?
+             
                 <FlatList
                 key={"_"}
                 keyExtractor={item => "_" + products.indexOf(item)}
@@ -152,78 +153,74 @@ export default function Categories({navigation}) {
                 return(
                          
                    
-                    <Card
-                    key={item.id}
-                    containerStyle={{ marginBottom:width*0.05,marginTop:width*0.0005,elevation:10,shadowColor: "#000",
-                    shadowOffset: {
-                        width: 0,
-                        height: 5,
-                    },
-                    shadowOpacity: 0.34,
-                    shadowRadius: 6.27,width:width*0.9, height:width*0.35, borderRadius:8 }}>
-                      <View
-                      style={{flexDirection:"row"}}>
-                        
-                        
-                        
-                        
+                    <Card  key={item.id} containerStyle={Styles.card}>
+                              
+                    <View style={{flexDirection:"row"}}>
+                   
+                   
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
-                           
-                        
-                        <ImageBackground 
-                        source={{uri: item.img}}
-                        style={Styles.imageCard}
-                        >
-                            
-                            </ImageBackground>
-
+                        onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
+                            <Image 
+                                source={{uri: item.img}}
+                                style={Styles.imageSearch}/>
                         </TouchableOpacity>
-                        <View style={{marginLeft:width*0.04}}>
-                            <TouchableOpacity
-                            onPress={() => navigation.navigate("ProductDetail",{id:item.id, category:item.name})}>
-                            <Text numberOfLines={1} ellipsizeMode="tail" style={{fontFamily:"OpenSans-Regular",marginBottom: width*0.01, fontSize:width*0.05, fontWeight:"600", width:width*0.4 }}>{item.name}</Text>
-                            </TouchableOpacity>
-                          
-                            <Text style={{fontFamily:"OpenSans-Regular", fontSize:width*0.038,marginTop:height*0.001}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
-                            <View style={{flexDirection:"row"}}>
-                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038}}>Quantity:</Text>
-                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.038, color:"gray"}}> x{count[id]}</Text>
+                
+                      
+                        <View>
+                            <View style={{marginLeft:width*0.03, marginTop:-width*0.02}}>
+                                <TouchableOpacity
+                                onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
+                                    <Text numberOfLines={1} ellipsizeMode="tail" style={Styles.title}>{item.name}</Text>
+                                </TouchableOpacity>
                             </View>
-                            <Text style={{fontSize:width*0.038}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
+                    
+                            <View style={{marginLeft:width*0.03,}}>
                             
-                            
-                            <TouchableOpacity
-                            onPress={()=>handleAddProduct(item, count[id])} ><Text style={{marginTop:width*0.01, fontSize:width*0.038, color:"green",textDecorationLine: 'underline',fontFamily:"OpenSans-Bold"}}>Add to Cart</Text></TouchableOpacity>
+                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034,}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
+                                <View style={{flexDirection:"row"}}>
+                                    <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034}}>Quantity:</Text>
+                                    <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034, color:"gray"}}> x{count[id]}</Text>
+                                </View>
+                                <Text style={{fontSize:width*0.034}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
+                        
+                                <View style={{flexDirection:"row", }}>
+                                
+                                    <TouchableOpacity
+                                    onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                    </TouchableOpacity>
+                                    
+                                </View>
+                            </View>
                         </View>
-                        <View style={{position:"absolute", display:"flex", right:0, marginTop:height*0.01}}> 
+                        <View style={{position:"absolute", display:"flex", right:0, marginTop:-width*0.01}}> 
                             <TouchableOpacity 
                             onPress={() => setCount({...count, [id]:count[id]+1  }) }
                             style={ Styles.minibutton  }>
-                                <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"600"}}>+</Text>
+                                <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"600"}}>+</Text>
                             </TouchableOpacity>
                             
                             <View style={Styles.count}>
                                 <Text style={{fontSize:width*0.04}}>{count[id]}</Text>
                             </View>
+
                             <TouchableOpacity
-                             onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
+                            onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
                             style={ Styles.minibutton  }
                             >
                                 <Text
-                                style={{fontSize: width*0.06, alignSelf:"center", color:"#6979F8", fontWeight:"bold"}}>
+                                style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"bold"}}>
                                     -
                                 </Text>
                             </TouchableOpacity>
                         </View>
-                                    
-                        </View>
-                    </Card>
+                    </View>
+                </Card>
 
                )
             }}
             />
-            </View>
+            :<Text style={{fontSize:width*0.035,alignSelf:"center",fontFamily:"OpenSans-Regular"}}>No results</Text>
+            
                 
             }
 
@@ -269,11 +266,12 @@ const Styles= StyleSheet.create({
         backgroundColor: '#fff', 
         borderWidth: 1, 
         borderRadius: 5,
+        justifyContent:"center",
         borderColor:"rgba(228, 228, 228, 0.6)", 
         borderTopColor:"rgba(228, 228, 228, 0.6)",
         borderBottomColor:"rgba(228, 228, 228, 0.6)",
         width:width-10,
-        height:width*0.165
+        height:width*0.09
     },
     // imageProduct:{
     //     marginHorizontal:5,
@@ -306,15 +304,7 @@ const Styles= StyleSheet.create({
         fontFamily:"OpenSans-Regular"
         
     },
-    // nombre:{
-    //     fontStyle: "normal",
-    //    fontWeight: "500",
-    //     fontSize: 20,
-    //     marginTop:15,
-    //     marginBottom:15,
-    //     alignSelf:"center",
-    //     fontFamily:"OpenSans-Regular"
-    // },
+   
     contPrice:{
         position:"absolute",
         bottom:0,
@@ -331,32 +321,46 @@ const Styles= StyleSheet.create({
        color:"white",
        fontFamily:"OpenSans-Regular"
     },
-    imageCard:{
-        marginHorizontal:width*0.01,
-        marginVertical:width*0.01, 
+    card:{ 
+        width:width*0.9,
+        height:width*0.315,
+        marginVertical:width*0.035,
+        elevation:8,
+        shadowColor: "grey",
+       shadowOffset: {
+             width: 0,
+             height: 5,
+        },
+         shadowOpacity: 0.34,
+         shadowRadius: 6.27,
+         borderRadius:8 
+    },
+    imageSearch:{
+       
+        marginVertical:width*0.0008,
+        marginHorizontal:width*0.0008,
         borderRadius:5,
-        height:width*0.245,
-        width:width*0.245,
-      //  shadowRadius:45,
+        height:width*0.236,
+        width:width*0.236,
+        shadowRadius:45,
         position:"relative"
     },
     count:{
-        //marginLeft:9,
-       // marginRight:9,
-       marginVertical:width*0.01, 
-       borderRadius:8,
-        shadowColor: 'rgba(0,0,0, .4)',
-        shadowOffset: { height: 1, width: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 1,
-        backgroundColor: '#fff',
-        elevation: 2,
-        height:width*0.07,
-        width:width*0.07,
-        justifyContent: 'center',
-        alignItems: 'center',
-        
-    },
+      
+        marginVertical:width*0.017, 
+        borderRadius:8,
+         shadowColor: 'rgba(0,0,0, .4)',
+         shadowOffset: { height: 1, width: 1 },
+         shadowOpacity: 1,
+         shadowRadius: 1,
+         backgroundColor: '#fff',
+         elevation: 2,
+         height:width*0.075,
+         width:width*0.075,
+         justifyContent: 'center',
+         alignItems: 'center',
+         
+     },
     minibutton:{
         borderRadius:8,
         shadowColor: 'rgba(0,0,0, .2)',
@@ -369,11 +373,18 @@ const Styles= StyleSheet.create({
         shadowRadius: 1,
         backgroundColor: '#fff',
         elevation: 4,
-        height: width*0.07,
-        width: width*0.07,
+        height: width*0.075,
+        width: width*0.075,
         justifyContent: 'center',
         alignItems: 'center',
       
        
     },
+    title:{
+        fontFamily:"OpenSans-SemiBold",
+        marginTop: width*0.005, 
+        fontSize:width*0.045, 
+        fontWeight:"600", 
+        width:width*0.4 }
+
 })        
