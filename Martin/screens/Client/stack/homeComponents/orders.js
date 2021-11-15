@@ -100,7 +100,7 @@ export default function orders({navigation, data}) {
                     <Card.Divider/>
                     <View
                         style={{flexDirection: 'row'}}>
-                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#40D3A8", fontWeight:"600"}}>
+                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017, fontSize:width*0.065, color:"#40D3A8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
                         

@@ -15,19 +15,26 @@ export default function Check({navigation}) {
    
     const email =  useSelector(state=> state.User)
     const [orders,setOrders]= useState([]) 
+    const [lastOrder,setLastOrder]= useState()
   
     
     useEffect(()=>{
         axios.get(`${IP}/orderuser?email=${email}`)    //traigo los ultimos pedidos del usuario 
             .then(function(response){
             setOrders(response.data)
-          
-            })
+           })
+
           
             .catch(error=>{
                 console.log(error)  
                 })
     },[email])
+   
+   
+    useEffect(() => {
+        setLastOrder(orders[orders.length-1])
+        
+    }, [orders])
     
     
 
@@ -37,7 +44,7 @@ export default function Check({navigation}) {
        
 
   
-    navigation.navigate("user")
+    navigation.navigate("order detail",{id:lastOrder.id})
      }
 
 

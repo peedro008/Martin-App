@@ -6,6 +6,7 @@ import clientCart from "./clientCart"
 import Check from './clientCartComponents/Check';
 import loading from './clientCartComponents/loading';
 import user from "./user"
+import orderDetail from "./orderDetail"
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ export default function clientCartStack() {
         <Stack.Screen name="Check" component={Check} options={{headerShown: false}}/>
         <Stack.Screen name="Loading" component={loading} options={{headerShown: false}}/>
         <Stack.Screen name="user" component={user} options={{headerShown: false}}/>
+        <Stack.Screen name="order detail" component={orderDetail} options={{headerShown: false}}/>
       </Stack.Navigator>
     )
 }

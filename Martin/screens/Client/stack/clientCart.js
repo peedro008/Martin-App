@@ -54,7 +54,7 @@ export default function clienCart({navigation}) {
             console.log(response.data)
             })
            
-            .then(()=>navigation.navigate("Check", {id:orderId}))
+            .then(()=>navigation.navigate("Check"))
             
             dispatch(postDelete())}
         else{
