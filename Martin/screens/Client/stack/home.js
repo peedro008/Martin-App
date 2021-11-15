@@ -4,11 +4,10 @@ import { Icon, Divider } from 'react-native-elements'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { IP } from '../../../env'
-import Paginator from './homeComponents/paginator'
-import { Card } from 'react-native-elements'
+
 import {addOrder} from "../../../actions"
 import  Orders from './homeComponents/orders'
-
+import {ExpandingDot} from "react-native-animated-pagination-dots"
 const width=Dimensions.get("window").width
 
 
@@ -63,7 +62,7 @@ export default function Home({navigation}) {
 
 
 
-     
+         const scrollX = React.useRef(new Animated.Value(0)).current;
     return (
         <ScrollView style={{flex:1, backgroundColor:"#FFF"}}>
           <View>
@@ -101,6 +100,12 @@ export default function Home({navigation}) {
           data={sales}
           pagingEnabled
           bounces={false}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            {
+              useNativeDriver: false,
+            }
+          )}
           renderItem={({item})=>
             
             <View style={styles.container, {width:width}}>
@@ -135,7 +140,24 @@ export default function Home({navigation}) {
           }
           
         /> 
-        <Paginator data={sales}/>
+        <View style={{paddingBottom:width*0.08}}>
+                <ExpandingDot
+            data={sales}
+            expandingDotWidth={10}
+            scrollX={scrollX}
+            inActiveDotOpacity={0.6}
+            inActiveDotColor="#eecece"
+            activeDotColor="#F15A4D"
+            dotStyle={{
+                width: 10,
+                height: 10,
+               
+                borderRadius: 5,
+                marginHorizontal: 5
+            }}
+            
+        />
+       </View>
         </View>
         
        {/* } */}
@@ -159,7 +181,7 @@ const styles = StyleSheet.create({
 
       },
       orders:{
-        marginTop:-width*0.14
+        marginTop:-width*0.08
       },
       header:{
         textAlign:"center",
@@ -230,11 +252,11 @@ const styles = StyleSheet.create({
         width:width*0.36,
         height: width*0.1 ,
         alignSelf:"center",
-        marginBottom:width*0.03,
+        marginBottom:width*0.05,
         backgroundColor:"#F15A4D",
         justifyContent:"center",
         borderRadius:5,
-        marginTop:-width*0.015,
+        marginTop:-width*0.08,
         shadowColor:"black",
         shadowOffset: { width: 0, height: 12},
         shadowOpacity: 0.08,
@@ -245,7 +267,7 @@ const styles = StyleSheet.create({
         color:"#FFFFFF" ,
         alignSelf:"center", 
         fontSize:width*0.0471,
-        fontFamily:"OpenSans-Regular"
+        fontFamily:"OpenSans-Regular",
       },
       shopBotton:{
         backgroundColor:"#F15A4D",
@@ -253,7 +275,8 @@ const styles = StyleSheet.create({
         height:width*0.1,
         alignSelf:"center",
         borderRadius:8,
-        elevation:16
+        elevation:16,
+        
       },
       imageSale:{
         width:width*0.9,
