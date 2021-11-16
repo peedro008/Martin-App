@@ -4,7 +4,6 @@ import { Icon, Divider } from 'react-native-elements'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { IP } from '../../../env'
-
 import {addOrder} from "../../../actions"
 import  Orders from './homeComponents/orders'
 import {ExpandingDot} from "react-native-animated-pagination-dots"

@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
         width:"100%"
     },
     count:{
-      
+       
        marginVertical:width*0.017, 
        borderRadius:8,
         shadowColor: 'rgba(0,0,0, .4)',

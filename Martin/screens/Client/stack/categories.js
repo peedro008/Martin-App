@@ -98,13 +98,8 @@ export default function Categories({navigation}) {
                 </View>
                 
                 <SearchBar 
-<<<<<<< HEAD
                 inputContainerStyle={{backgroundColor:"#fff",height:width*0.08}}
                 inputStyle={{height:width*0.08,backgroundColor: 'white'}}
-=======
-                inputContainerStyle={{backgroundColor:"white"}}
-                inputStyle={{height:width*0.08,backgroundColor: 'white',}}
->>>>>>> c077fc76c269ec64a2f9c2cd99cfdaae302ee0d6
                 containerStyle={Styles.searchBar}
                 onChangeText={handleSearch}
                 placeholder="Search..."
@@ -276,11 +271,7 @@ const Styles= StyleSheet.create({
         borderTopColor:"rgba(228, 228, 228, 0.6)",
         borderBottomColor:"rgba(228, 228, 228, 0.6)",
         width:width-10,
-<<<<<<< HEAD
         height:width*0.09
-=======
-        height:width*0.16
->>>>>>> c077fc76c269ec64a2f9c2cd99cfdaae302ee0d6
     },
     // imageProduct:{
     //     marginHorizontal:5,
