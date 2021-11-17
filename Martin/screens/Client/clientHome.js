@@ -6,7 +6,8 @@ import Products from './stack/products';
 import ProductDetail from './stack/productDetail';
 import Home from './stack/home';
 import orderDetail from './stack/orderDetail';
-import orders from './stack/homeComponents/orders';
+
+import fastOrder from './stack/homeComponents/fastOrder';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +21,7 @@ export default function clientHome({navigation}) {
       <Stack.Screen name="Products" component={Products} options={{headerShown: false}}/>
       <Stack.Screen name="ProductDetail" component={ProductDetail} options={{headerShown: false}}  />
       <Stack.Screen name="order detail" component={orderDetail} options={{headerShown: false}}/>
-      <Stack.Screen name="orders" component={orders} options={{headerShown: false}}/>
+      <Stack.Screen name="fast Order" component={fastOrder} options={{headerShown: false}}/>
   
     </Stack.Navigator>
         
