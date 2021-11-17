@@ -6,7 +6,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { Icon, Card, Image, SearchBar, Button } from 'react-native-elements';
 import { addOrder } from "../../../../actions"
 import { useDispatch, useSelector } from 'react-redux'
-
+import Loading from '../clientCartComponents/loading'
 
 const width=Dimensions.get("window").width
 const height=Dimensions.get("window").height
@@ -29,44 +29,28 @@ export default  function  Products ({route, navigation}) {
 
     
     const handleSearch=(name)=>{
-        setName(name)
-       
-        setProduct(final.filter(e=>e.name.includes(name)))
         
+        setName(name)
+       console.log(final)
+        setProduct(final.filter(e=>e.name.toLowerCase().includes(name.toLowerCase())))
+        
+     
  }
+ const pes=()=>{
+     let tob=[]
+     for(let i=0;i<orderItems.length;i++){
+            axios.get(`${IP}/products?name=${orderItems[i].name}`)
+            .then(res=> tob.push(res.data[0]))
+         }
 
+         setTimeout(()=>{
+             setFinal(tob)       
+        },500)
+    }
     useEffect(() => {
         
-        for(let i=0;i<orderItems.length;i++){
-                axios.get(`${IP}/products?name=${orderItems[i].name}`)
-                .then(function(response){
-                    final.push(response.data[0])
-                    
-                
-                
-                })
-                
-                .catch(error=>{
-                console.log(error)  
-                })
-        
-            }
-        
-    }, [route])
-
-
-    console.log(orderItems)
- 
-
-
-
-
-
-
-
-
-
-
+        pes ()
+    }, [])
 
 
  let handleAddProduct=(product, count)=>{
@@ -110,6 +94,9 @@ export default  function  Products ({route, navigation}) {
    
    return (
         <View style={styles.container}>
+           { 
+            final.length ?
+           <View>
             <View style={{marginTop:width*0.044}}>
                 <View
                     style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"#FFF"}}>
@@ -130,7 +117,7 @@ export default  function  Products ({route, navigation}) {
                     
                    </View> 
                 </View>
-            {  
+            {  !name ?
              
                 
               <View style={{flex:1}}>
@@ -216,91 +203,91 @@ export default  function  Products ({route, navigation}) {
                 }}
                 /> 
             </View> 
-            // :
-            //     product.length ?
-            //     <FlatList
-            //     keyExtractor={item => product.indexOf(item)}
-            //     numColumns={1}
-            //     data={product}
-            //     renderItem={({item})=>{
+            :
+                product.length ?
+                <FlatList
+                keyExtractor={item => product.indexOf(item)}
+                numColumns={1}
+                data={product}
+                renderItem={({item})=>{
                    
-            //         let id=product.indexOf(item)
-            //     return(
+                    let id=product.indexOf(item)
+                return(
                          
                    
-            //         <Card  key={item.id} containerStyle={styles.card}>
+                    <Card  key={item.id} containerStyle={styles.card}>
                               
-            //                     <View style={{flexDirection:"row"}}>
+                                <View style={{flexDirection:"row"}}>
                                
                                
-            //                         <TouchableOpacity
-            //                         onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
-            //                             <Image 
-            //                                 source={{uri: item.img}}
-            //                                 style={styles.image}/>
-            //                         </TouchableOpacity>
+                                    <TouchableOpacity
+                                    onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
+                                        <Image 
+                                            source={{uri: item.img}}
+                                            style={styles.image}/>
+                                    </TouchableOpacity>
                             
                                   
-            //                         <View>
-            //                             <View style={{marginLeft:width*0.03, marginTop:-width*0.02}}>
-            //                                 <TouchableOpacity
-            //                                 onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
-            //                                     <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{item.name}</Text>
-            //                                 </TouchableOpacity>
-            //                             </View>
+                                    <View>
+                                        <View style={{marginLeft:width*0.03, marginTop:-width*0.02}}>
+                                            <TouchableOpacity
+                                            onPress={() => navigation.navigate("ProductDetail",{id:item.id})}>
+                                                <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{item.name}</Text>
+                                            </TouchableOpacity>
+                                        </View>
                                 
-            //                             <View style={{marginLeft:width*0.03,}}>
+                                        <View style={{marginLeft:width*0.03,}}>
                                         
-            //                                 <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034,}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
-            //                                 <View style={{flexDirection:"row"}}>
-            //                                     <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034}}>Quantity:</Text>
-            //                                     <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034, color:"gray"}}> x{count[id]}</Text>
-            //                                 </View>
-            //                                 <Text style={{fontSize:width*0.034}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
+                                            <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034,}}>Price: $ {!item.salePercent ? item.price.toFixed(2) : ((item.price*(100-item.salePercent))/100).toFixed(2)}</Text>
+                                            <View style={{flexDirection:"row"}}>
+                                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034}}>Quantity:</Text>
+                                                <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.034, color:"gray"}}> x{count[id]}</Text>
+                                            </View>
+                                            <Text style={{fontSize:width*0.034}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                                     
-            //                                 <View style={{flexDirection:"row", }}>
+                                            <View style={{flexDirection:"row", }}>
                                             
-            //                                     <TouchableOpacity
-            //                                     onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
-            //                                     </TouchableOpacity>
+                                                <TouchableOpacity
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                                </TouchableOpacity>
                                                 
-            //                                 </View>
-            //                             </View>
-            //                         </View>
-            //                         <View style={{position:"absolute", display:"flex", right:0, marginTop:-width*0.01}}> 
-            //                             <TouchableOpacity 
-            //                             onPress={() => setCount({...count, [id]:count[id]+1  }) }
-            //                             style={ styles.minibutton  }>
-            //                                 <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"600"}}>+</Text>
-            //                             </TouchableOpacity>
+                                            </View>
+                                        </View>
+                                    </View>
+                                    <View style={{position:"absolute", display:"flex", right:0, marginTop:-width*0.01}}> 
+                                        <TouchableOpacity 
+                                        onPress={() => setCount({...count, [id]:count[id]+1  }) }
+                                        style={ styles.minibutton  }>
+                                            <Text style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"600"}}>+</Text>
+                                        </TouchableOpacity>
                                         
-            //                             <View style={styles.count}>
-            //                                 <Text style={{fontSize:width*0.04}}>{count[id]}</Text>
-            //                             </View>
+                                        <View style={styles.count}>
+                                            <Text style={{fontSize:width*0.04}}>{count[id]}</Text>
+                                        </View>
 
-            //                             <TouchableOpacity
-            //                             onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
-            //                             style={ styles.minibutton  }
-            //                             >
-            //                                 <Text
-            //                                 style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"bold"}}>
-            //                                     -
-            //                                 </Text>
-            //                             </TouchableOpacity>
-            //                         </View>
-            //                     </View>
-            //                 </Card>
-            //    )
-            // }}
-            // />
-            // : <Text style={{fontSize:width*0.035,alignSelf:"center",fontFamily:"OpenSans-Regular"}}>No results</Text>
-        
-            
-           
+                                        <TouchableOpacity
+                                        onPress={() =>count[id]>0&& setCount({...count, [id]:count[id]-1  })  }
+                                        style={ styles.minibutton  }
+                                        >
+                                            <Text
+                                            style={{fontSize: width*0.06, alignSelf:"center", color:"#8a8a8a", fontWeight:"bold"}}>
+                                                -
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </Card>
+               )
+            }}
+            />
+            : <Text style={{fontSize:width*0.035,alignSelf:"center",fontFamily:"OpenSans-Regular"}}>No results</Text>
 
             }
 
-            
+            </View>
+            :
+            <Loading/>
+            }
         </View>
     )
         }
