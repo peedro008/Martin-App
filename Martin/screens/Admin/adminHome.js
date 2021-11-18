@@ -46,10 +46,16 @@ export default function adminHome({navigation}) {
 
 const styles = StyleSheet.create({
     header:{
-                fontSize:width*0.07,
-                marginTop:width*0.1,
-                marginLeft:width*0.06,
-                fontFamily:"OpenSans-Regular"
+        marginTop:width*0.09,
+        fontSize: width*0.07,
+        
+        fontFamily:"OpenSans-Regular",
+        textAlign:"center",
+        
+        
+        fontSize: width*0.06,
+       
+       
             },
    balanceCard:{
        width:width*0.95,

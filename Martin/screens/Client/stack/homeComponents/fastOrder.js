@@ -169,7 +169,7 @@ export default  function  Products ({route, navigation}) {
                                             <View style={{flexDirection:"row", }}>
                                             
                                                 <TouchableOpacity
-                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:count[id]>0?"#40D3A8":"#8a8a8a",textDecorationLine: 'underline'}}>Add to Cart</Text>
                                                 </TouchableOpacity>
                                                 
                                             </View>

@@ -69,31 +69,37 @@ export default function orders(data) {
             data={orders}
             renderItem={({item})=> 
                 <View style={{marginVertical:width/1000, display:"flex", flex:1}}>
-                <Card containerStyle={styles.card} >
-                <View style={{margin:width*0.03, alignSelf:"center",}}>
+                 <Card containerStyle={styles.card} >
+                <View style={{margin:width*0.03, alignSelf:"center"}}>
+                   
                    <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
-                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#00bb2d" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
-                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04}}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
+                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#40D3A8" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
+                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
-                        style={{flexDirection: "row", marginBottom:width*0.047}}>
-                        <Text style={{fontFamily:"OpenSans-Regular",margin:width*0.017,marginLeft:0, fontSize:width*0.07, color:"#6979F8", fontWeight:"600"}}>
+                        style={{flexDirection: 'row',marginVertical:width*0.035, alignContent:'center'}}>
+                        <Text style={{fontFamily:"OpenSans-Regular", fontSize:width*0.065, color:"#40D3A8", fontWeight:"600"}}>
                         Order N° {item.id} 
                         </Text>
                         
-                        <View style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:"#F15A4D", marginLeft:width*0.25, justifyContent:"center",alignSelf:"center"}}>
+                        <View
+                        style={{marginBottom:width*0.04}}>
+                           
+                           
 
+
+
+
+                    
                         <TouchableOpacity
                         onPress={() => navigation.navigate("Order Details",{id:item.id})}
-                        >
-                           
+                        style={{borderRadius:5, width:width*0.2, height:width*0.065, marginTop:width*0.008,justifyContent:"center", backgroundColor:"#F15A4D", marginLeft:width*0.23}}>
                             <Text
                             style={{fontFamily:"OpenSans-Regular",fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
                             DETAILS
                             </Text>
-                         
                         </TouchableOpacity>
                         </View>
                       
@@ -139,19 +145,18 @@ const styles = StyleSheet.create({
     card:{
         height:width*0.47,
         width:width*0.9,
-            borderRadius:5, 
-            borderWidth:1, 
-            borderColor:"rgba(228, 228, 228, 0.6)",
-            shadowColor: "#000",
-            shadowOffset: {
-	            width: 0,
-	            height: 8,
-            },
-            shadowOpacity: 0.44,
-            shadowRadius: 10.32,
-            elevation: 16,
-
-            
-            
+        marginVertical:width*0.025,
+        borderRadius:5, 
+        borderWidth:1, 
+        borderColor:"rgba(228, 228, 228, 0.6)",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 8,
+        },
+        shadowOpacity: 0.44,
+        shadowRadius: 10.32,
+        elevation: 12,
+     
     }
 })

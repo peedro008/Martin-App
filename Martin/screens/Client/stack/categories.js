@@ -108,8 +108,9 @@ export default function Categories({navigation}) {
            
             {
              !name? 
-             <View style={{marginTop:-10}}>
+             <View style={{marginTop:-10, height:height}}>
              <FlatList
+             contentContainerStyle={{paddingBottom:width*0.45}}
                 keyExtractor={item => item.id.toString()}
                 numColumns={2}
                 data={categories}
@@ -141,9 +142,10 @@ export default function Categories({navigation}) {
                 
                 : 
                 products.length ?
-             
+             <View style={{height:height, }}>
                 <FlatList
                 key={"_"}
+                contentContainerStyle={{paddingBottom:width*0.5}}
                 keyExtractor={item => "_" + products.indexOf(item)}
                 numColumns={1}
                 data={products}
@@ -219,6 +221,7 @@ export default function Categories({navigation}) {
                )
             }}
             />
+            </View>
             :<Text style={{fontSize:width*0.035,alignSelf:"center",fontFamily:"OpenSans-Regular"}}>No results</Text>
             
                 
