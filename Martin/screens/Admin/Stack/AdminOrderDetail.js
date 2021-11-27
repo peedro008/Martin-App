@@ -98,7 +98,7 @@ export default function adminOrderDetail({route}) {
             <Card
             containerStyle={{width:width*0.9 ,alignSelf:"center", paddingHorizontal:width*0.04,backgroundColor:"##FFFFF0", marginTop:-width*0.01}}>
                 <View style={{flexDirection:"row", alignItems:"center",marginBottom:height*0.015 }}>
-                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Date: {order[0].createdAt.substring(0,9)}  </Text>
+                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Date: {order[0].createdAt.substring(0,10)}  </Text>
                                    <Text style={{fontSize:width*0.04, color:"#999999", fontWeight:"900",fontFamily:"OpenSans-Regular"}}>Time: {order[0].createdAt.substring(11,16)}</Text>  
                 </View>
                 <Card.Divider/>
@@ -115,18 +115,18 @@ export default function adminOrderDetail({route}) {
                     </View>
                     <View style={{width:"50%",justifyContent:"center"}}>
                         <Text style={{color:"#999999", fontSize:width*0.035,fontFamily:"OpenSans-Regular"}}>QUANTITY  </Text>
-                        <Text style={{fontFamily:"OpenSans-Regular"}}>{order[0].orderItems.length} products</Text>
+                        <Text style={{fontSize:width*0.035, fontFamily:"OpenSans-SemiBold"}}>{order[0].orderItems.length} products</Text>
                     </View>
 
                 </View>
                 <Card.Divider/>
                 <View style={{marginBottom:width*0.015}}>
-                    <Text style={{fontSize:width*0.045, fontFamily:"OpenSans-Regular"}}>SHIPPING PROGRESS</Text>
+                    <Text style={{fontSize:width*0.045, fontFamily:"OpenSans-Regular"}}>Shipping Progress</Text>
                     <View style={{flexDirection:"row",paddingTop:width*0.03, alignItems:"center"}}>
                         <Icon type="feather" name="truck" color="black" size={width*0.08}/>
                     
-                        <Text  style={{fontSize:width*0.04,marginLeft:width*0.01, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
-                        <Text  style={{fontSize:width*0.045, color:"grey", fontFamily:"OpenSans-Regular"}}> - 3 day shipping</Text>
+                        <Text  style={{fontSize:width*0.035, fontFamily:"OpenSans-SemiBold"}}>  Out for Delivery</Text>
+                        <Text  style={{fontSize:width*0.035, fontFamily:"OpenSans-SemiBold", color:"grey",}}> - 3 day shipping</Text>
                                     
                     </View>
                     <View style={{width:width*0.5, flexDirection:"row", alignItems:"center", justifyContent:"space-between", marginVertical:height*0.015}}>
@@ -137,14 +137,14 @@ export default function adminOrderDetail({route}) {
                     </View>
                 </View>
                 <Card.Divider/>
-                <Text style={{fontSize:width*0.05, fontFamily:"OpenSans-Bold"}}>Shipping Address</Text>
+                <Text style={{fontSize:width*0.045, fontFamily:"OpenSans-Regular"}}>Shipping Address</Text>
                 <View style={{marginVertical:height*0.01}}>
-                    <Text numberOfLines={4} ellipsizeMode="tail" style={{ width:"100%", fontSize:width*0.041,textTransform:"capitalize" ,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.fullName}, {order[0].userInfo.address} </Text>
-                    <Text numberOfLines={2} ellipsizeMode="tail" style={{width:"100%", fontSize:width*0.041,fontFamily:"OpenSans-Regular"}}>{order[0].userInfo.city}, {order[0].userInfo.postalCode} </Text>
-                    <Text numberOfLines={2} ellipsizeMode="tail"  style={{width:"100%",fontSize:width*0.041,fontFamily:"OpenSans-Regular"}}>TEL:  {order[0].userInfo.phone}</Text>
+                    <Text numberOfLines={4} ellipsizeMode="tail" style={{ width:"100%", fontSize:width*0.041,textTransform:"capitalize" ,fontFamily:"OpenSans-SemiBold",fontSize:width*0.035}}>{order[0].userInfo.fullName}, {order[0].userInfo.address} </Text>
+                    <Text numberOfLines={2} ellipsizeMode="tail" style={{width:"100%", fontSize:width*0.041,fontFamily:"OpenSans-SemiBold",fontSize:width*0.035}}>{order[0].userInfo.city}, {order[0].userInfo.postalCode} </Text>
+                    <Text numberOfLines={2} ellipsizeMode="tail"  style={{width:"100%",fontSize:width*0.041,fontFamily:"OpenSans-SemiBold",fontSize:width*0.035}}>TEL:  {order[0].userInfo.phone}</Text>
                 </View>
                 <Card.Divider/>
-                <Text style={{fontSize:width*0.05, fontFamily:"OpenSans-Bold"}}>Set Status</Text>
+                <Text style={{fontSize:width*0.045, fontFamily:"OpenSans-Regular"}}>Set Status</Text>
                 <View
             style={styles.containerButton}>
                 <TouchableOpacity
@@ -158,7 +158,7 @@ export default function adminOrderDetail({route}) {
                 </TouchableOpacity>
                 <TouchableOpacity
                  onPress={onPending}
-                style={styles.button}>
+                style={styles.button,{marginHorizontal:width*0.04}}>
                     <Text style={
                          [status=="Pending"?
                          styles.PtextP:
@@ -177,79 +177,45 @@ export default function adminOrderDetail({route}) {
              
             </Card>
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            <View style={{ paddingHorizontal:width*0.09, paddingVertical:width*0.03, marginTop:width*0.03}}>
+                <Text style={{fontSize:width*0.045, fontFamily:"OpenSans-SemiBold"}}>Order Items</Text>
+            </View>
           
             <FlatList
                 data={order[0].orderItems}
-                s
+                contentContainerStyle={{paddingBottom:width*0.1}}
                 renderItem={({item})=>
             
                    
-                    <Card
-                    containerStyle={{marginVertical:width*0.018, width:width*0.9,alignSelf:"center",padding:0, elevation:5, borderRadius:5}}>
+                <Card
+                containerStyle={{marginVertical:width*0.03, width:width*0.9,alignSelf:"center",padding:0,   borderRadius:5,backgroundColor:"#FFF", height:width*0.22}}>
+                    <View
+                    style={{flexDirection: 'row',width:width*0.9, paddingTop:7}}>                        
+                        <Image source={{uri:item.img}}
+                        style={{width:width*0.18, height:width*0.18, borderRadius:5, marginLeft:width*0.01}}/>
+                        
                         <View
-                        style={{flexDirection: 'row',width:width*0.9}}>                        
-                            <Image source={{uri:item.img}}
-                            style={{width:width*0.18, height:width*0.18, borderRadius:5}}/>
+                        style={{paddingLeft:width*0.03 ,  width:(width*0.9)-(width*0.18),  }}>
+                        <View style={{flexDirection:"row", alignItems:"center", width:"100%"}}>
+                            <Text
+                            ellipsizeMode="tail"
+                            numberOfLines={1}
+                            style={{fontSize:width*0.04, width:width*0.48,fontFamily:"OpenSans-SemiBold", paddingTop:width*0.01}}>{item.name}</Text>
+                           
+                            <Text style={{fontSize:width*0.04,  position:"absolute", right:0, fontFamily:"OpenSans-Bold",paddingTop:width*0.01 }}>$ {item.total.toFixed(2)}   </Text>
                             
-                            <View
-                            style={{paddingLeft:width*0.03 ,  width:(width*0.9)-(width*0.18) }}>
-                            <View style={{flexDirection:"row", alignItems:"center", width:"100%"}}>
-                                <Text
-                                ellipsizeMode="tail"
-                                numberOfLines={1}
-                                style={{fontSize:width*0.05, width:width*0.48,fontFamily:"OpenSans-SemiBold"}}>{item.name}</Text>
-                               
-                                <Text style={{fontSize:width*0.045,  position:"absolute", right:0, fontFamily:"OpenSans-Bold" }}>$ {item.total.toFixed(2)}   </Text>
-                                
-                            </View>
-
-                            <Text style={{fontSize:width*0.037}}>Price:  ${item.price.toFixed(2)}</Text>
-                            <View style={{flexDirection:"row"}}>
-                                <Text style={{fontSize:width*0.037}}>Quantity:</Text>
-                                <Text style={{fontSize:width*0.037,color:"grey"}}> x{item.quantity}</Text>
-                            </View>
-                            </View>
-                        
                         </View>
-                        
-                    </Card>
+
+                        <Text style={{fontSize:width*0.037}}>Price:  ${item.price.toFixed(2)}</Text>
+                        <View style={{flexDirection:"row"}}>
+                            <Text style={{fontSize:width*0.037}}>Quantity:</Text>
+                            <Text style={{fontSize:width*0.037,color:"grey"}}> x{item.quantity}</Text>
+                        </View>
+                        </View>
+                    
+                    </View>
+                    
+                </Card>
 
                 
         }
@@ -287,48 +253,51 @@ const styles = StyleSheet.create({
     },
     containerButton:{
         flexDirection:"row",
-        alignSelf:"center",
-        marginVertical:width*0.015,
+        alignSelf:"flex-start",
+        marginTop:width*0.02,
+        marginVertical:width*0.02
+    
         
                
      },
      button:{
-       alignItems:"center" 
+       alignItems:"center" ,
+       
      },
      textP:{
-        fontSize:width*0.045,
+        fontSize:width*0.04,
         fontFamily:"OpenSans-Regular",
-        color:"black"
+        color:"grey"
         
     },
     textR:{
-        fontSize:width*0.045,
+        fontSize:width*0.04,
         fontFamily:"OpenSans-Regular",
-        color:"black"
+        color:"grey"
         
     },
     textD:{
-        fontSize:width*0.045,
+        fontSize:width*0.04,
         fontFamily:"OpenSans-Regular",
-        color:"black"
+        color:"grey"
         
     },
     PtextR:{
-        fontSize:width*0.05,
+        fontSize:width*0.04,
         fontFamily:"OpenSans-Bold",
         color:"#00C48C",
         textDecorationLine: 'underline'
         
     },
     PtextP:{
-        fontSize:width*0.05,
+        fontSize:width*0.04,
         fontFamily:"OpenSans-Bold",
         color:"#FFCF5C",
         textDecorationLine: 'underline'
         
     },
     PtextD:{
-        fontSize:width*0.05,
+        fontSize:width*0.04,
         fontFamily:"OpenSans-Bold",
         color:"#0084F4",
         textDecorationLine: 'underline'

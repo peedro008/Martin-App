@@ -1,7 +1,7 @@
 import React, { useEffect, useState,  Suspense } from 'react'
 import { StyleSheet, Text, View,TouchableOpacity, Button,ImageBackground, Dimensions, ScrollView} from 'react-native'
 import { Divider, Icon } from 'react-native-elements'
-import { FlatList } from 'react-native-gesture-handler'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { plusQuantity,lessQuantity,deleteProduct,postOrder,postDelete} from '../../../actions'
 import axios from 'axios'
@@ -81,12 +81,12 @@ export default function clienCart({navigation}) {
 
             
           <View style={{display:/*order.length<1 && "none"*/"flex"}}>
-            <View style={{alignSelf:"center", alignItems:"center",height:width*0.1, width:width*0.3,  marginTop:width*0.08, marginBottom:width*0.053}}>
+            <View style={{marginTop:width*0.13, marginBottom:width*0.05}}>
                 <Text style={styles.cart}>Cart</Text>
                 
             </View> 
             <Divider style={{marginBottom:width*0.04}}/>
-            <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4,marginVertical:width*0.02 }}>
+            <View style={{flexDirection:"row",alignSelf:"center", width:width*0.4,marginVertical:width*0.02, }}>
                 <TouchableOpacity onPress={()=>handleOrderRender()}>
                  <View style={[styles.renderButton,{borderBottomWidth:render?width*0.01:0,borderBottomColor:"#40D3A8"}]}>
                     <Text style={{fontSize:width*0.035, color:!render ? "#999999" : "#40D3A8",fontWeight:"400",fontFamily:"OpenSans-SemiBold",marginBottom:5}}>CART</Text>
@@ -94,7 +94,7 @@ export default function clienCart({navigation}) {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>handleCheckRender()}>
                  <View style={[styles.renderButton,{borderBottomWidth:render? 0:width*0.01, borderBottomColor:"#40D3A8"}]}>
-                    <Text  style={{fontSize:width*0.035, color:render ? "#999999" : "#40D3A8",fontWeight:"400",fontFamily:"OpenSans-SemiBold",marginBottom:5}}>CHECKOUT</Text>
+                    <Text  style={{fontSize:width*0.035, color:render ? "#999999" : "#40D3A8",fontWeight:"400",fontFamily:"OpenSans-SemiBold",marginBottom:5}}>CHTECKOUT</Text>
                 </View>
                 </TouchableOpacity>
             </View>
@@ -113,27 +113,27 @@ export default function clienCart({navigation}) {
                         <View style={{marginTop:width*0.045}}>
                             <View style={styles.container}>
                                 <Text style={styles.text}>Full Name</Text>
-                                <Input  value={info.fullName}  leftIcon={{type:"font-awesome", name:"user"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
+                                <Input  value={info.fullName}  leftIcon={{type:"feather", name:"check"}} name= "fullName" onChangeText={value=>setInfo({...info,fullName:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Street Address</Text>
-                                <Input  value={info.address} leftIcon={{type:"font-awesome", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
+                                <Input  value={info.address} leftIcon={{type:"feather", name:"map-pin"}} onChangeText={value=>setInfo({...info,address:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Apt / Suite / Other</Text>
-                                <Input  value={info.apt_Suite} leftIcon={{type:"font-awesome", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite:value})}/>
+                                <Input  value={info.apt_Suite} leftIcon={{type:"feather", name:"home"}} onChangeText={value=>setInfo({...info,apt_Suite:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>State / City</Text>
-                                <Input  value={info.city} leftIcon={{type:"font-awesome", name:"building"}} onChangeText={value=>setInfo({...info,city:value})}/>
+                                <Input  value={info.city} leftIcon={{type:"feather", name:"map"}} onChangeText={value=>setInfo({...info,city:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Postal Code</Text>
-                                <Input  value={ info.postalCode} leftIcon={{type:"font-awesome", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
+                                <Input  value={ info.postalCode} leftIcon={{type:"feather", name:"clipboard"}} onChangeText={value=>setInfo({...info,postalCode:value})}/>
                             </View>
                             <View style={styles.container}> 
                                 <Text style={styles.text}>Phone</Text>
-                                <Input  value={ info.phone} leftIcon={{type:"font-awesome", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
+                                <Input  value={ info.phone} leftIcon={{type:"feather", name:"phone"}} onChangeText={value=>setInfo({...info,phone:value})}/>
                             </View>
                         </View>
                 
@@ -144,7 +144,7 @@ export default function clienCart({navigation}) {
             }
 
 
-            {order.length>0 ? (
+            {order.length>0 && (
             <View style={styles.contTotalOrder}>
                 <Text style={styles.totalOrder}>
                     Total order: ${totalPrice.toFixed(2)}  
@@ -155,10 +155,12 @@ export default function clienCart({navigation}) {
                  </TouchableOpacity>
             </View> 
             </View>)
-             :
-             <View style={{marginTop:Dimensions.get("screen").width*0.50, justifyContent:"center", alignItems:"center", position:"absolute", top:50, left:Dimensions.get("screen").width*0.25}}>
-                <Icon name="shopping-cart" color="gray" size={Dimensions.get("screen").width/2}/>
-             </View>
+             
+             
+                
+                      
+                     
+           
             }
            
            
@@ -176,15 +178,15 @@ const styles = StyleSheet.create({
   
   cart:{
     textAlign:"center",
-    marginTop:width*0.05,
-    marginBottom:width*0.05,
+ 
     fontSize: width*0.06,
+   
    
     fontFamily:"OpenSans-SemiBold"
   },
   renderButton:{
     alignItems:"center",
-    width:(width*0.4)/2,
+    width:(width*0.44)/2,
     fontSize:width*0.06,
     fontFamily:"OpenSans-Regular"
     
@@ -200,8 +202,6 @@ const styles = StyleSheet.create({
     fontSize: width*0.0385,
     alignSelf:"center",
     fontFamily:"OpenSans-Bold"
-    
-  //  lineheight: 20,
 
   },
   buttonOrder:{
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
       alignSelf:"center",
       justifyContent:"center",
       borderRadius:5,
-      backgroundColor:"#00bb2d",
+      backgroundColor:"#40D3A8",
       fontFamily:"OpenSans-Regular"
 
   },

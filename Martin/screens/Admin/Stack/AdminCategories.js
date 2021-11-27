@@ -101,23 +101,25 @@ export default function AdminCategories({navigation}) {
                 data={product}
                 renderItem={({item})=>{
                     return(
-                        <View style={Styles.containerProduct}>
-                            <View style={Styles.circle}>
-                                <Icon size={width*0.06} name="edit-3" type="feather" color="#fff"/>
-                            </View>
-                            <View  style={{marginLeft:width*0.05, width:width*0.41}}>
-                                <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
-                                <Text numberOfLines={2} ellipsizeMode='tail' style={{textTransform:"capitalize",fontWeight: "600",fontSize: width*0.05,color:"#151522", fontFamily:"OpenSans-Regular"}}>{item.name}</Text>
-                                </TouchableOpacity>
-                                <Text style={{fontWeight:"600",fontSize:width*0.04, color:"#999999",fontFamily:"OpenSans-Regular"}}>{item.sale ? item.salePercent+"% Off" : "No Offer" }</Text>
-                            </View>
-                            <View style={{position:"absolute",right:0, flexDirection:"row", justifyContent:"flex-end",marginRight:width*0.065}}>
-                                <Text style={{fontSize:width*0.045, color:"#00C48C", marginRight:width*0.03,fontFamily:"OpenSans-SemiBold"}}>{"$"+item.price.toFixed(2)}</Text>
-                                <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
-                                <Icon size={width*0.06} name="chevron-right" type="feather" color="#999999"/>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
+                        <View>
+                            <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}> 
+                            <View style={Styles.containerProduct}>
+                                <View style={Styles.circle}>
+                                    <Icon name="edit-3" type="feather" color="#fff"/>
+                                </View>
+                                <View  style={{marginLeft:18.35, width:width*0.41}}>
+                                  
+                                    <Text numberOfLines={1} ellipsizeMode='tail' style={{textTransform:"capitalize",fontWeight: "600",fontSize: width*0.05,color:"#151522"}}>{item.name}</Text>
+                                  
+                                    <Text style={{fontWeight:"600",fontSize:width*0.04, color:"#999999"}}>{item.sale ? item.salePercent+"% Off" : "No Offer" }</Text>
+                                </View>
+                                <View style={{position:"absolute",right:0, flexDirection:"row", justifyContent:"flex-end",marginRight:25}}>
+                                    <Text style={{fontSize:width*0.045, color:"#00C48C", fontWeight:"300", marginRight:16.14}}>{"$"+item.price}</Text>
+                                   
+                                    <Icon name="chevron-right" type="feather" color="#999999"/>
+                                   
+                                </View>
+                            </View></TouchableOpacity></View>
                     )
                 }}
                     

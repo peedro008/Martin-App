@@ -6,13 +6,18 @@ import { IP } from '../../env'
 import { FlatList } from 'react-native-gesture-handler'
 import OrdersR from './Stack/adminHomeComponents/ordersR'
 import { Divider } from 'react-native-elements/dist/divider/Divider'
-
+import 'react-native-gesture-handler';
 
 const width=Dimensions.get("window").width
 const heigth=Dimensions.get("window").height
-export default function adminOrderRegister() {
+export default function adminOrderRegister({navigation}) {
     const [button, setButton]=useState(1)
     const [order, setOrder]= useState([])
+    
+const unsubscribe = navigation.addListener('focus', () => {
+    
+  });
+    
     useEffect(() => {
         axios.get(`${IP}/orders`)
         .then(function(response){
@@ -21,7 +26,7 @@ export default function adminOrderRegister() {
         .catch(error=>{
         console.log(error)  
         })
-    }, [])
+    }, [unsubscribe])
          
     
     let Pending = order.filter(e=>e.status=="Pending")
@@ -96,7 +101,7 @@ const styles = StyleSheet.create({
     header:{
         textAlign:"center",
         marginTop:width*0.09,
-        marginBottom:width*0.03,
+        marginBottom:width*0.055,
         fontSize: width*0.06,
        
         fontFamily:"OpenSans-SemiBold"
@@ -112,39 +117,39 @@ const styles = StyleSheet.create({
         
     },
     textP:{
-        fontSize:width*0.045,
+        fontSize:width*0.038,
         fontFamily:"OpenSans-Regular",
         color:"#00C48C"
         
     },
     textR:{
-        fontSize:width*0.045,
+        fontSize:width*0.038,
         fontFamily:"OpenSans-Regular",
         color:"#FFCF5C"
         
     },
     textD:{
-        fontSize:width*0.045,
+        fontSize:width*0.038,
         fontFamily:"OpenSans-Regular",
         color:"#0084F4"
         
     },
     PtextP:{
-        fontSize:width*0.05,
+        fontSize:width*0.038,
         fontFamily:"OpenSans-Bold",
         color:"#00C48C",
         textDecorationLine: 'underline'
         
     },
     PtextR:{
-        fontSize:width*0.05,
+        fontSize:width*0.038,
         fontFamily:"OpenSans-Bold",
         color:"#FFCF5C",
         textDecorationLine: 'underline'
         
     },
     PtextD:{
-        fontSize:width*0.05,
+        fontSize:width*0.038,
         fontFamily:"OpenSans-Bold",
         color:"#0084F4",
         textDecorationLine: 'underline'

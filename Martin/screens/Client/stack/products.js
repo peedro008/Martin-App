@@ -113,6 +113,7 @@ export default  function  Products ({route, navigation}) {
                 !name ?
 
               <View style={{flex:1}}>
+                  {cate.length?
                 <FlatList
                 keyExtractor={item => cate.indexOf(item)}
                 numColumns={1}
@@ -155,10 +156,16 @@ export default  function  Products ({route, navigation}) {
                                             </View>
                                             <Text style={{fontSize:width*0.034}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                                     
-                                            <View style={{flexDirection:"row", }}>
+                                            <View style={{flexDirection:"row", marginTop:width*0.01}}>
                                             
+                                            <TouchableOpacity
+                                             style={{marginRight:width*0.02}}
+                                                
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Icon type="feather" name="shopping-cart" size={width*0.052} color={count[id]>0?"#40D3A8":"#8a8a8a"}/>
+                                                </TouchableOpacity>
                                                 <TouchableOpacity
-                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:count[id]>0?"#40D3A8":"#8a8a8a",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                                style={{alignSelf:"center"}}
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.033, color:count[id]>0?"#40D3A8":"#8a8a8a",textDecorationLine: 'underline'}}>Add to Cart</Text>
                                                 </TouchableOpacity>
                                                 
                                             </View>
@@ -190,7 +197,7 @@ export default  function  Products ({route, navigation}) {
 
                     )
                 }}
-                /> 
+                /> :<Text style={{marginTop:width*0.1}}>NOT PRODUCTS YET</Text>}
             </View> 
             :
                 product.length ?
@@ -236,8 +243,14 @@ export default  function  Products ({route, navigation}) {
                                     
                                             <View style={{flexDirection:"row", }}>
                                             
+                                            <TouchableOpacity
+                                             style={{marginRight:width*0.02}}
+                                                
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Icon type="feather" name="shopping-cart" size={width*0.052} color={count[id]>0?"#40D3A8":"#8a8a8a"}/>
+                                                </TouchableOpacity>
                                                 <TouchableOpacity
-                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                                style={{alignSelf:"center"}}
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.033, color:count[id]>0?"#40D3A8":"#8a8a8a",textDecorationLine: 'underline'}}>Add to Cart</Text>
                                                 </TouchableOpacity>
                                                 
                                             </View>

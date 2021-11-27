@@ -69,7 +69,7 @@ export default function user({navigation}) {
             <Text style={styles.profile}>Profile</Text>
             <View style={{position:"absolute", right:width*0.055,top:width*0.03}}>
                 <TouchableOpacity onPress={()=>setConfig(!config)}>
-                    <Icon type="feather" name="settings" size={width*0.07} color="gray"/>
+                <Icon type="feather" name="settings" size={width*0.06} color="black"/>
                 </TouchableOpacity>
             </View>
           </View>

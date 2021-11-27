@@ -85,7 +85,7 @@ export default function orders({navigation, data}) {
             <SafeAreaView
             style={{  marginTop:width*.06,marginBottom:width*0.02, alignItems:'center',}}>
                 <View style={{width:width*0.9, marginBottom:width*0.01}}>   
-                    <Text style={styles.OrderHeader} >History Orders</Text> 
+                    <Text style={styles.OrderHeader} >Order Record</Text> 
                     
                 </View>
                 
@@ -106,7 +106,7 @@ export default function orders({navigation, data}) {
                    <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
                         <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#40D3A8" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
-                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
+                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,10)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
@@ -130,9 +130,9 @@ export default function orders({navigation, data}) {
                             {card[id]?
                             <TouchableOpacity 
                             onPress={toCart}
-                            style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
+                            style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#229675":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
                             <Text
-                            style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
+                            style={{fontFamily:"OpenSans-Bold", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
                             GO TO CART
                             </Text>
                                                         
@@ -140,7 +140,7 @@ export default function orders({navigation, data}) {
 
                              <TouchableOpacity 
                              onPress={() => handleAddProduct( item.orderItems, id )}
-                             style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#6979F8":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
+                             style={{borderRadius:5, width:width*0.2, height:width*0.065, backgroundColor:card[id]?"#229675":"#40D3A8",justifyContent:"center", marginLeft:width*0.23}}>
                             <Text
                              style={{fontFamily:"OpenSans-Regular", fontSize:width*0.026, alignSelf:"center",fontWeight:"500", color:"#fff", }}>
                              ADD TO CART
@@ -188,8 +188,9 @@ export default function orders({navigation, data}) {
          )}
                         }/>
                       :
-                      <View>
-                      <Icon name="file-text" type="feather" size= {width*0.2} />
+                      <View
+                      style={{paddingTop:-30}}>
+                      <Text style={{color:"grey", fontStyle:"OpenSans-Regular"}}>NOT ORDERS YET</Text>
           
                       </View>}
           </SafeAreaView>

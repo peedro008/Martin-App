@@ -27,14 +27,14 @@ export default function controlPanel({navigation}) {
                     <Text style={styles.search}>
                         Control Panel
                     </Text>
-                    <Divider/>
+                    
                     <View style={{position:"absolute", right:width*0.055,top:width*0.055}}>
                 <TouchableOpacity onPress={()=>setConfig(!config)}>
-                    <Icon type="feather" name="settings" size={width*0.07} color="gray"/>
+                    <Icon type="feather" name="settings" size={width*0.06} color="black"/>
                 </TouchableOpacity>
                     </View>  
             </View>
-            <Divider  style={{marginBottom:width*0.08}}/>
+            <View  style={{marginBottom:width*0.08}}/>
             { config &&<View style={styles.logOut}>
                         <TouchableOpacity onPress={()=>handleLogOut()}>
                         <Text style={{fontFamily:"OpenSans-Regular",fontSize:width*0.04}}>Log out</Text>
@@ -43,16 +43,24 @@ export default function controlPanel({navigation}) {
         <View style={styles.card}  >
            <TouchableOpacity
            onPress={() => navigation.navigate("Admin Categories")}>
-               <Text style={styles.boton}>Product Catalog</Text>
-           </TouchableOpacity>
+               <View style={{flexDirection:"row",alignItems:"center", marginVertical: width*0.04,
+        marginHorizontal:width*0.08    }}>
+               <Icon type="feather" name="list" size={width*0.06} color="black"/><Text style={styles.boton}>Product Catalog</Text>
+           </View></TouchableOpacity>
            <Card.Divider style={{width:width*0.85, alignSelf:"center"}}/>
            <TouchableOpacity
            onPress={() => navigation.navigate("Order Register")}>
+               <View style={{flexDirection:"row",alignItems:"center", marginVertical: width*0.04,
+        marginHorizontal:width*0.08    }}>
+               <Icon type="feather" name="check-circle" size={width*0.06} color="black"/>
                <Text style={styles.boton}>Order Register</Text>
-           </TouchableOpacity>
+           </View></TouchableOpacity>
            <Card.Divider style={{width:width*0.85, alignSelf:"center"}}/>
            <TouchableOpacity onPress={() => navigation.navigate("Add Product")}>
-               <Text style={styles.boton}>Add Products</Text>
+           <View style={{flexDirection:"row",alignItems:"center", marginVertical: width*0.04,
+        marginHorizontal:width*0.08    }}>
+               <Icon type="feather" name="plus-circle" size={width*0.06} color="black"/>
+               <Text style={styles.boton}>Add Products</Text></View>
            </TouchableOpacity>
            <Card.Divider style={{width:width*0.85, alignSelf:"center"}}/>
            <Image style={styles.image} source={require('../../../assets/logo.png')}/>
@@ -76,9 +84,9 @@ const styles = StyleSheet.create({
     image:{
         alignSelf:"center",
       
-        height:width*0.7,
-        width:width*0.7,
-    
+        height:width*0.65,
+        width:width*0.65,
+        marginTop:width*0.1
 
     },
     logOut:{
@@ -111,10 +119,10 @@ const styles = StyleSheet.create({
         fontFamily:"OpenSans-SemiBold"
     },
     boton:{
-        fontSize:width*0.065,
+        fontSize:width*0.055,
         fontFamily:"OpenSans-Regular",
-        marginVertical: width*0.04,
-        marginHorizontal:width*0.08    
+        
+        marginHorizontal:width*0.03    
         
     },
     card:{

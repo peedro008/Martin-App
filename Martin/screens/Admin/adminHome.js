@@ -38,8 +38,9 @@ export default function adminHome({navigation}) {
             <Divider style={{marginVertical:width*0.04}}/> 
             
              <Balance/>
-            <Text style={[styles.header, {marginTop:44}]} >Latest Orders</Text>
-            { orders.length ?<OrdersA data={orders}/> : <Icon style={{marginTop:width*0.06,alignSelf:"flex-start",marginLeft:width*0.06}} name="file-text" type="feather"  size= {width*0.4}/>}
+            <Text style={{marginTop:width*0.07, marginBottom:width*0.02,fontSize: width*0.07, fontFamily:"OpenSans-Regular",textAlign:"center", fontSize: width*0.06,}} >Latest Orders</Text>
+            { orders.length ?<OrdersA data={orders}/> : 
+            <Text style={{fontSize:width*0.035,alignSelf:"center",fontFamily:"OpenSans-Regular"}}>NOT ORDERS</Text>}
         </ScrollView></View>
     )
 }

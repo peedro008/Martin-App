@@ -5,6 +5,7 @@ import { IP } from '../../../env';
 import { FlatList } from 'react-native-gesture-handler';
 import { Icon, Card, Image, SearchBar, Button } from 'react-native-elements'
 import { useDispatch, useSelector } from 'react-redux'
+import 'react-native-gesture-handler';
 
 
 const width=Dimensions.get("window").width
@@ -19,8 +20,10 @@ export default  function  Products ({route, navigation}) {
     const [product,setProduct] = useState([])
     const [count, setCount] = useState({});
     const preOrder= useSelector(state=>state.PreOrder)
-
-
+    const unsubscribe = navigation.addListener('focus', () => {
+        // Do whatever you want
+      });
+    
 
     useEffect(()=>{
         axios.get(`${IP}/productsCat?id=${category.id}`)
@@ -32,7 +35,7 @@ export default  function  Products ({route, navigation}) {
             })
     
 
-    },[])
+    },[unsubscribe])
 
     const handleSearch=(name)=>{
         setName(name)
@@ -83,24 +86,25 @@ export default  function  Products ({route, navigation}) {
                     numColumns={1}
                     data={cate}
                     renderItem={({item})=>{
-                        return(
+                        return(<View>
+                            <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}> 
                             <View style={styles.containerProduct}>
                                 <View style={styles.circle}>
                                     <Icon name="edit-3" type="feather" color="#fff"/>
                                 </View>
                                 <View  style={{marginLeft:18.35, width:width*0.41}}>
-                                    <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
+                                  
                                     <Text numberOfLines={1} ellipsizeMode='tail' style={{textTransform:"capitalize",fontWeight: "600",fontSize: width*0.05,color:"#151522"}}>{item.name}</Text>
-                                    </TouchableOpacity>
+                                  
                                     <Text style={{fontWeight:"600",fontSize:width*0.04, color:"#999999"}}>{item.sale ? item.salePercent+"% Off" : "No Offer" }</Text>
                                 </View>
                                 <View style={{position:"absolute",right:0, flexDirection:"row", justifyContent:"flex-end",marginRight:25}}>
                                     <Text style={{fontSize:width*0.045, color:"#00C48C", fontWeight:"300", marginRight:16.14}}>{"$"+item.price}</Text>
-                                    <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
+                                   
                                     <Icon name="chevron-right" type="feather" color="#999999"/>
-                                    </TouchableOpacity>
+                                   
                                 </View>
-                            </View>
+                            </View></TouchableOpacity></View>
                         )
                     }}
                         
@@ -113,23 +117,25 @@ export default  function  Products ({route, navigation}) {
                     data={product}
                     renderItem={({item})=>{
                         return(
+                            <View>
+                            <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}> 
                             <View style={styles.containerProduct}>
                                 <View style={styles.circle}>
                                     <Icon name="edit-3" type="feather" color="#fff"/>
                                 </View>
                                 <View  style={{marginLeft:18.35, width:width*0.41}}>
-                                    <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
+                                  
                                     <Text numberOfLines={1} ellipsizeMode='tail' style={{textTransform:"capitalize",fontWeight: "600",fontSize: width*0.05,color:"#151522"}}>{item.name}</Text>
-                                    </TouchableOpacity>
+                                  
                                     <Text style={{fontWeight:"600",fontSize:width*0.04, color:"#999999"}}>{item.sale ? item.salePercent+"% Off" : "No Offer" }</Text>
                                 </View>
                                 <View style={{position:"absolute",right:0, flexDirection:"row", justifyContent:"flex-end",marginRight:25}}>
                                     <Text style={{fontSize:width*0.045, color:"#00C48C", fontWeight:"300", marginRight:16.14}}>{"$"+item.price}</Text>
-                                    <TouchableOpacity  onPress={() => navigation.navigate("Edit Product",{id:item.id})}>
+                                   
                                     <Icon name="chevron-right" type="feather" color="#999999"/>
-                                    </TouchableOpacity>
+                                   
                                 </View>
-                            </View>
+                            </View></TouchableOpacity></View>
                         )
                     }}
                         

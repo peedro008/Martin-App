@@ -89,26 +89,31 @@ export default function orders({navigation, data}) {
             data={last}
             renderItem={({item})=>{
              return(
-                <View>
+                <View >
                 
-                <Card containerStyle={styles.card}>
+                <Card containerStyle={styles.card}><TouchableOpacity
+                onPress={()=>navigation.navigate("fast Order", {order:item})}
+                >
+                
+                      <View>
                         <View>
-                            <TouchableOpacity
-                                onPress={()=>navigation.navigate("fast Order", {order:item})}>
+                            
                                 <Image style={styles.image} source={require("../../../../assets/Check.png")}/>
-                            </TouchableOpacity>
+                            
                         </View> 
                         <View style={styles.textContainer}>
-                    <Text style={{fontFamily:"OpenSans-Regular"}}>{item.createdAt.substring(0,9)}</Text>
+                    <Text style={{fontFamily:"OpenSans-Regular"}}>{item.createdAt.substring(0,10)}</Text>
+                   
                     <Text style={{color:"#666666", fontFamily:"OpenSans-Regular"}}>$ {item.total.toFixed(2)}</Text></View>
-                </Card>
+                </View></TouchableOpacity></Card>
                 </View>
                 
                 )} 
             }/>
                       :
-                      <View>
-                      <Text style={{color:"grey", fontStyle:"OpenSans-Regular", paddingTop:width*0.05}}>NOT ORDERS YET</Text>
+                      <View
+                      style={{paddingTop:-30}}>
+                      <Text style={{color:"grey", fontStyle:"OpenSans-Regular"}}>NOT ORDERS YET</Text>
           
                       </View>}
           </SafeAreaView>

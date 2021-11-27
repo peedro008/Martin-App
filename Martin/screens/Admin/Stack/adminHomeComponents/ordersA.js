@@ -74,8 +74,8 @@ export default function orders(data) {
                    
                    <View style={{flexDirection: 'row', marginBottom:width*0.03, marginTop:-width*0.03, alignItems:'center'}}>
                     
-                        <Text style={{color:item.status == "Pending" ? "orange" : item.status=="Received" ? "#40D3A8" : "#6979F8" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
-                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,9)} | {item.createdAt.substring(11,16)}</Text>
+                        <Text style={{color:item.status == "Pending" ? "#FFCF5C" : item.status=="Received" ? "#40D3A8" : "#0084F4" , fontSize:width*0.04,fontFamily:"OpenSans-Regular", textTransform:"uppercase"}}>{item.status}</Text>
+                        <Text style={{fontFamily:"OpenSans-Regular",color:"#999999", fontWeight:"300",position:"absolute",right:0,fontSize:width*0.04 }}>{item.createdAt.substring(0,10)} | {item.createdAt.substring(11,16)}</Text>
                     </View>
                     <Card.Divider/>
                     <View
@@ -124,8 +124,9 @@ export default function orders(data) {
          
                         }/>
                       :
-                      <View>
-                      <Icon name="file-text" type="feather" size= {width*0.2} />
+                      <View
+                      style={{paddingTop:-30}}>
+                      <Text style={{color:"grey", fontStyle:"OpenSans-Regular"}}>NOT ORDERS YET</Text>
           
                       </View>}
           </View>

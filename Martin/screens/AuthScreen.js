@@ -103,7 +103,7 @@ const AuthScreen = () => {
                         <TextInput secureTextEntry={true} style={[styles.input,{marginTop:width*0.055}]} placeholder="Password" onChangeText={setPassword}></TextInput>
                         <Text style={[styles.message, {color: isError ? 'red' : 'green'}]}>{message ? getMessage() : null}</Text>
                         <TouchableOpacity style={styles.button} onPress={onSubmitHandler}>
-                            <Text style={styles.buttonText}>Done</Text>
+                        {isLogin ? <Text style={styles.buttonText}>Sign In</Text> : <Text style={styles.buttonText}>Register</Text>}
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
                             <Text style={styles.buttonAltText}>{isLogin ? 'Sign Up' : 'Log In'}</Text>

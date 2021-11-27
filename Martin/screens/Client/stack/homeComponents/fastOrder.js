@@ -13,7 +13,7 @@ const height=Dimensions.get("window").height
 
 export default  function  Products ({route, navigation}) {
     let orderItems = route.params.order.orderItems
-   
+    let date = route.params.order.createdAt.substring(0,10)
     const dispatch= useDispatch();
     
     const [name, setName]= useState("")
@@ -99,10 +99,11 @@ export default  function  Products ({route, navigation}) {
            <View>
             <View style={{marginTop:width*0.044}}>
                 <View
-                    style={{alignItems:"center",marginVertical:width*0.04, backgroundColor:"#FFF"}}>
+                    style={{alignItems:"center",marginVertical:width*0.04, marginBottom:width*-0.001, backgroundColor:"#FFF"}}>
                         <Text style={styles.products}>Fast Order</Text>
                         
                 </View>
+                <View style={{alignSelf:"center", fontFamily:"OpenSans-Regular", marginBottom:width*0.06 }}><Text>{date}</Text></View>
                 <SearchBar 
                     inputContainerStyle={{backgroundColor:"#fff",height:width*0.1}}
                     inputStyle={{height:width*0.1,backgroundColor: 'white'}}
@@ -125,6 +126,7 @@ export default  function  Products ({route, navigation}) {
                 <FlatList
                 keyExtractor={item => final.indexOf(item)}
                 numColumns={1}
+                contentContainerStyle={{paddingBottom:width*0.1}}
                 data={final}
                 renderItem={({item})=>{
                    
@@ -166,10 +168,16 @@ export default  function  Products ({route, navigation}) {
                                             </View>
                                             <Text style={{fontSize:width*0.034}}>Total: $ { (((item.price*(100-item.salePercent))/100)*count[id]).toFixed(2) }</Text>
                                     
-                                            <View style={{flexDirection:"row", }}>
+                                            <View style={{flexDirection:"row", marginTop:width*0.01}}>
                                             
+                                            <TouchableOpacity
+                                             style={{marginRight:width*0.02}}
+                                                
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Icon type="feather" name="shopping-cart" size={width*0.052} color={count[id]>0?"#40D3A8":"#8a8a8a"}/>
+                                                </TouchableOpacity>
                                                 <TouchableOpacity
-                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:count[id]>0?"#40D3A8":"#8a8a8a",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                                style={{alignSelf:"center"}}
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.033, color:count[id]>0?"#40D3A8":"#8a8a8a",textDecorationLine: 'underline'}}>Add to Cart</Text>
                                                 </TouchableOpacity>
                                                 
                                             </View>
@@ -312,7 +320,8 @@ const styles = StyleSheet.create({
     },
     searchBar:{
         marginVertical:width*0.01,
-        marginBottom: width*0.05,
+       
+        marginBottom: width*0.005,
         alignSelf:"center", 
         backgroundColor: 'white', 
         borderWidth: 1, 

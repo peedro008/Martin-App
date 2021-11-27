@@ -24,7 +24,7 @@ export default function Cart({order}){
         <FlatList
         keyExtractor={item => item.id.toString()}
         data={order}
-        contentContainerStyle={{paddingVertical:width*0., marginTop:width*0.04}}
+        contentContainerStyle={{paddingVertical:width*0., marginTop:width*0.04, paddingBottom:30}}
         renderItem={({item})=>
        
                <View style={styles.container}>

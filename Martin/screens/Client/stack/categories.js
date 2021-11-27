@@ -187,9 +187,15 @@ export default function Categories({navigation}) {
                         
                                 <View style={{flexDirection:"row", }}>
                                 
-                                    <TouchableOpacity
-                                    onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.04, color:"#40D3A8",textDecorationLine: 'underline'}}>Add to Cart</Text>
-                                    </TouchableOpacity>
+                                <TouchableOpacity
+                                             style={{marginRight:width*0.02}}
+                                                
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Icon type="feather" name="shopping-cart" size={width*0.052} color={count[id]>0?"#40D3A8":"#8a8a8a"}/>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity
+                                                style={{alignSelf:"center"}}
+                                                onPress={()=>handleAddProduct(item, count[id])} ><Text style={{fontFamily:"OpenSans-Bold", fontSize:width*0.033, color:count[id]>0?"#40D3A8":"#8a8a8a",textDecorationLine: 'underline'}}>Add to Cart</Text>
+                                                </TouchableOpacity>
                                     
                                 </View>
                             </View>

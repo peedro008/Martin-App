@@ -77,23 +77,23 @@ export default function EditShippingAddress(){
             <View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Street Address</Text>
-                <Input value={address}  onChangeText={value=>setAddress(value)} leftIcon={{type:"font-awesome", name:"map-pin"}}/>
+                <Input value={address}  onChangeText={value=>setAddress(value)} leftIcon={{type:"feather", name:"map-pin"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Apt / Suite / Other</Text>
-                <Input value={apt_Suite}  onChangeText={value=>setApt_Suite(value)} leftIcon={{type:"font-awesome", name:"home"}}/>
+                <Input value={apt_Suite}  onChangeText={value=>setApt_Suite(value)} leftIcon={{type:"feather", name:"home"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>State / City</Text>
-                <Input value={city}  onChangeText={value=>setCity(value)} leftIcon={{type:"font-awesome", name:"building"}}/>
+                <Input value={city}  onChangeText={value=>setCity(value)} leftIcon={{type:"feather", name:"map"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Postal Code</Text>
-                <Input value={postalCode}  onChangeText={value=>setPostalCode(value)}  leftIcon={{type:"font-awesome", name:"clipboard"}}/>
+                <Input value={postalCode}  onChangeText={value=>setPostalCode(value)}  leftIcon={{type:"feather", name:"clipboard"}}/>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.text}>Phone</Text>
-                <Input value={phone}  onChangeText={value=>setPhone(value)} leftIcon={{type:"font-awesome", name:"phone"}}/>
+                <Input value={phone}  onChangeText={value=>setPhone(value)} leftIcon={{type:"feather", name:"phone"}}/>
             </View>
             </View>
             <View style={styles.containerButtonDefault}>
